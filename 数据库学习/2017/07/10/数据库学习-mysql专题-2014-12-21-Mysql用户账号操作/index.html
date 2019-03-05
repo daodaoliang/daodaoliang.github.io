@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>mysql用户账号操作 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="mysql">
+    <meta name="description" content="1234作者: daodaoliang日期: 2017-07-10版本: 0.0.3邮箱: daodaoliang@yeah.net">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql用户账号操作">
+<meta property="og:url" content="http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="1234作者: daodaoliang日期: 2017-07-10版本: 0.0.3邮箱: daodaoliang@yeah.net">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-02T01:33:10.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql用户账号操作">
+<meta name="twitter:description" content="1234作者: daodaoliang日期: 2017-07-10版本: 0.0.3邮箱: daodaoliang@yeah.net">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql用户账号操作</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">mysql用户账号操作</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-09T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-07-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-新建用户"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x01 新建用户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-为用户授权"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x02 为用户授权</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-删除用户"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x03 删除用户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-修改指定用户密码"><span class="post-toc-number">4.</span> <span class="post-toc-text">0x04 修改指定用户密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-修改或者忘记ROOT密码"><span class="post-toc-number">5.</span> <span class="post-toc-text">0x05 修改或者忘记ROOT密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x06-重命名用户账号"><span class="post-toc-number">6.</span> <span class="post-toc-text">0x06 重命名用户账号</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-数据库学习-mysql专题-2014-12-21-Mysql用户账号操作" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mysql用户账号操作</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-10 00:00:00" datetime="2017-07-09T16:00:00.000Z" itemprop="datePublished">2017-07-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">作者: daodaoliang</span><br><span class="line">日期: 2017-07-10</span><br><span class="line">版本: 0.0.3</span><br><span class="line">邮箱: daodaoliang@yeah.net</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="0x01-新建用户"><a href="#0x01-新建用户" class="headerlink" title="0x01 新建用户"></a>0x01 <strong>新建用户</strong></h3><ul>
+<li>登陆mysql</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建用户(5.7系列以前)</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into mysql.user(Host,User,Password) values(<span class="string">"localhost"</span>,<span class="string">"用户名"</span>,password(<span class="string">"密码"</span>));</span><br><span class="line">mysql&gt;flush privileges;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建用户(通用)</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER <span class="string">'username'</span>@<span class="string">'host'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>这样就创建了用户,可以登陆试一下;</p>
+<h3 id="0x02-为用户授权"><a href="#0x02-为用户授权" class="headerlink" title="0x02 为用户授权"></a>0x02 <strong>为用户授权</strong></h3><p>登陆mysql</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>授权用户拥有数据库的所有权限。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to 用户名@<span class="string">'地址'</span> identified by <span class="string">'密码'</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>指定部分权限的话,可以这样子写:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant select,update on *.* to 用户名@<span class="string">'地址'</span> identified by <span class="string">'密码'</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p><strong>特别注意:</strong></p>
+<blockquote>
+<p>格式：grant 权限 on 数据库名.表名 to 用户@登录主机 identified by “用户密码”;</p>
+</blockquote>
+<blockquote>
+<p>@ 后面是访问mysql的客户端IP地址（或是 主机名） % 代表任意的客户端，如果填写 localhost 为本地访问（那此用户就不能远程访问该mysql数据库了）。</p>
+</blockquote>
+<h3 id="0x03-删除用户"><a href="#0x03-删除用户" class="headerlink" title="0x03 删除用户"></a>0x03 <strong>删除用户</strong></h3><p>登陆mysql后</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;DELETE FROM user WHERE User=<span class="string">"phplamp"</span> and Host=<span class="string">"localhost"</span>;</span><br><span class="line">mysql&gt;flush privileges;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop user daodaoliang@&apos;%&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="0x04-修改指定用户密码"><a href="#0x04-修改指定用户密码" class="headerlink" title="0x04 修改指定用户密码"></a>0x04 <strong>修改指定用户密码</strong></h3><ul>
+<li><strong><em>用UPDATE直接编辑user表(5.7之前版本)</em></strong></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user <span class="built_in">set</span> password=password(<span class="string">'新密码'</span>) <span class="built_in">where</span> User=<span class="string">"phplamp"</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>用UPDATE直接编辑user表(5.7之后版本)</em></strong></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update user <span class="built_in">set</span> authentication_string=password(<span class="string">'新密码'</span>) <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>用mysqladmin</em></strong></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root password <span class="string">"newpass"</span></span><br><span class="line"><span class="comment"># 若设置过root密码,采用如下方法</span></span><br><span class="line">mysqladmin -u root password oldpass <span class="string">"newpass"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>用SET PASSWORD命令(通用)</em></strong></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET PASSWORD FOR <span class="string">'root@localhost'</span> = PASSWORD(<span class="string">'newpass'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="0x05-修改或者忘记ROOT密码"><a href="#0x05-修改或者忘记ROOT密码" class="headerlink" title="0x05 修改或者忘记ROOT密码"></a>0x05 修改或者忘记ROOT密码</h3><ul>
+<li>停止数据库服务</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/mysql stop</span><br></pre></td></tr></table></figure>
+<ul>
+<li>跳过权限表安全启动</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld_safe --user=mysql --skip-grant-tables --skip-networking &amp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新登录mysql</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root mysql</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改root密码</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET PASSWORD FOR <span class="string">'root@%'</span> = PASSWORD(<span class="string">'newpass'</span>);</span><br><span class="line">   FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新启动mysql服务</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/mysql restart</span><br></pre></td></tr></table></figure>
+<h3 id="0x06-重命名用户账号"><a href="#0x06-重命名用户账号" class="headerlink" title="0x06 重命名用户账号"></a>0x06 重命名用户账号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename user daodaoliang@&apos;%&apos; to nami@&apos;%&apos;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-02T01:33:10.264Z" itemprop="dateUpdated">2017-08-02 09:33:10</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/" target="_blank" rel="external">http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/&title=《mysql用户账号操作》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/&title=《mysql用户账号操作》 — 刀刀亮的博客&source=1234作者: daodaoliang日期: 2017-07-10版本: 0.0.3邮箱: daodaoliang@yeah.net" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql用户账号操作》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Qt学习/2017/08/02/Qt学习-2017-8-2-CentOS下面编译Qt4-8-6/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CentOS下面编译Qt4.8.6</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2017/06/22/环境搭建-2017-06-22-CentOS下搭建ipv6环境/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CentOS下搭建IPv6环境</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="数据库学习-mysql专题-2014-12-21-Mysql用户账号操作" data-title="mysql用户账号操作" data-url="http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/&title=《mysql用户账号操作》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/&title=《mysql用户账号操作》 — 刀刀亮的博客&source=1234作者: daodaoliang日期: 2017-07-10版本: 0.0.3邮箱: daodaoliang@yeah.net" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql用户账号操作》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2017/07/10/数据库学习-mysql专题-2014-12-21-Mysql用户账号操作/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD5klEQVR42u3aS3LjMAwFQN//0p4DJFbeA8hJFq2Vy5Epsp0qGJ/XK77eX67n9/O/Js96Xvn5ndeNCwcOHDhwlEfNH/Z8//Phk2MnrF/Xz3f7zWo4cODAgeMQR/KADd/s/XY/bdDFgQMHDhx/hyNP7ZJn5eligvW8Zxw4cODA8dc48vQpAdpzbPaPAwcOHDjucbTFvnslv7zI+A6ui7VSHDhw4MCRRrq6MPf3X1+Z78CBAwcOHEGo2wSk9vGbwmIe4IvT4cCBAweONcesFZQMDZwKfrfTMxw4cODAcZYjGVzL72lDb14ETL6Sdiwv+1fBgQMHDhzj+bRiRCAJt7NwuB9iOPVl4MCBAweOGcc+ecu3PhtrWOWm8a5w4MCBA8cpjiRl+vQ6T/PyINrCze6MoHHgwIEDx4JjE0rbIYP91tv0Mv/KceDAgQPHWY62RFg8oBxQSIJufcj8fhw4cODAseDYBL/ZIZOE8Gz4L0IyDhw4cOC4wHEvecsTs9lYQ1sKjLpwOHDgwIFjwTEbOMiHDFr6/Flt0vgxRcSBAwcOHGuOzZBZ3hbKA20Ld6qgiQMHDhw47nG0AS8KXfF2k+DdfrZ+Ig4cOHDgWDwxbxRtBghmd7bo7f4/tp1w4MCBA8eCIzlk2zRqEdtRhlkArsM/Dhw4cOAYcTyHnOfXbcBrn5U/MQ/PPxQKceDAgQPHmiM/QL7cDGgzHtGOYkS/OHDgwIEDx4JjlibtB+BuN5Y2a+LAgQMHjs2aSUqWlAVnQ3Kr5lBcTBz+7sCBAwcOHCOOvHg3K+Gd+uzZce06r8WBAwcOHAFH20DabKUdetgUJd/xhQMHDhw4znLs2zmz0YT8SG3zaZ+I4sCBAweOPcemsZQfI28gzRKzzUjEqk+FAwcOHDjiemF74H0IbA8wK2gWtVIcOHDgwLHu4ycJTzK+kG8x3+h+zeHvDhw4cODAEXO05b88UM1C46xQOFv5GxocOHDgwLHmSG7KQ2xbyGsDZ1vBy1PEV26GAwcOHDgeV8iP3Q4K5Mlhm0O1ey52iwMHDhw4DnHkLZ9NCW9fHExokhT0IyIOHDhw4FhztEF0M3YQjQ7MAmQ+mpD33HDgwIEDxxoiT5M2IbmdtmhH5VbTHDhw4MCBY81xKgadGkfIm1JtS2m2Ag4cOHDgmK0wG2LIU8HN6MNmhfaHAg4cOHDgOMuxCYQ3Uqa84Dj7BfFD2wkHDhw4cPwqR9sKyot6eYjdDO1Ff8CBAwcOHP+Fo71nUwqcUbZlShw4cODAcYpjFrraz85WyOPgLDzjwIEDB46zHKtSWvypWRspH4PbDN7hwIEDB45DHP8AOIAVR2YqqOIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

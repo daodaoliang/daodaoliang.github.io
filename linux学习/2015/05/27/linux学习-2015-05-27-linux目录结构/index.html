@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>linux目录结构 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="在Linux文件系统中的每一个子目录都有特定的目的和用途。一般都是根据FHS标准定义一个正式的文件系统结构的，这个标准规定了哪些目录应该哪些作用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux目录结构">
+<meta property="og:url" content="http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="在Linux文件系统中的每一个子目录都有特定的目的和用途。一般都是根据FHS标准定义一个正式的文件系统结构的，这个标准规定了哪些目录应该哪些作用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/linux学习/2015-05-27.png">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux目录结构">
+<meta name="twitter:description" content="在Linux文件系统中的每一个子目录都有特定的目的和用途。一般都是根据FHS标准定义一个正式的文件系统结构的，这个标准规定了哪些目录应该哪些作用">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/linux学习/2015-05-27.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">linux目录结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">linux目录结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-05-26T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-05-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-根目录-的意义与内容："><span class="post-toc-number">1.</span> <span class="post-toc-text">1.根目录 (/) 的意义与内容：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1根目录-底下目录FHS定义的说明："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1根目录(/)底下目录FHS定义的说明：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#PS：不可以移动的目录："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">PS：不可以移动的目录：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-usr-的意义与内容："><span class="post-toc-number">2.</span> <span class="post-toc-text">1.2 /usr 的意义与内容：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-var-的意义与内容："><span class="post-toc-number">3.</span> <span class="post-toc-text">1.3 /var 的意义与内容：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-linux学习-2015-05-27-linux目录结构" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">linux目录结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-05-27 00:00:00" datetime="2015-05-26T16:00:00.000Z" itemprop="datePublished">2015-05-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<p>在Linux文件系统中的每一个子目录都有特定的目的和用途。一般都是根据FHS标准定义一个正式的文件系统结构的，这个标准规定了哪些目录应该哪些作用</p>
+<a id="more"></a>
+<p>FHS依据文件系统使用的频繁与否与是否允许使用者随意更动, 而将目录定义成为四种交互作用的形态,用表格来说有点像底下这样：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">可分享的(shareable)</th>
+<th style="text-align:center">不可分享的(unshareable)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">不变的(static)</td>
+<td style="text-align:center">/usr (软件放置处)</td>
+<td style="text-align:center">/etc (配置文件)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">/opt (第三方协力软件)</td>
+<td style="text-align:center">/boot (开机与核心档)</td>
+</tr>
+<tr>
+<td style="text-align:center">可变动的(variable)</td>
+<td style="text-align:center">/var/mail (使用者邮件信箱)</td>
+<td style="text-align:center">/var/run (程序相关)</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">/var/spool/news (新闻组)</td>
+<td style="text-align:center">/var/lock (程序相关)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>可分享的：可以分享给其他系统挂载使用的目录,所以包括执行文件与用户的邮件等数据, 是能够分享给网络上其他主机挂载用的目录；</p>
+</li>
+<li><p>不可分享的：自己机器上面运作的装置文件或者是与程序有关的socket文件等, 由于仅与自身机器有关,所以当然就不适合分享给其他主机了.</p>
+</li>
+<li><p>不变的：有些数据是不会经常变动的,跟随着distribution而不变动. 例如函式库、文件说明文件、系统管理员所管理的主机服务配置文件等等；</p>
+</li>
+<li><p>可变动的：经常改变的数据,例如登录文件、一般用户可自行收受的新闻组等.</p>
+<p><strong><em>事实上,FHS针对目录树架构仅定义出三层目录底下应该放置什么数据而已,分别是底下这三个目录的定义：</em></strong></p>
+</li>
+<li><p>/ (root, 根目录)：与开机系统有关；</p>
+</li>
+<li><p>/usr (unix software resource)：与软件安装/执行有关；</p>
+</li>
+<li><p>/var (variable)：与系统运作过程有关.</p>
+</li>
+</ul>
+<h3 id="1-根目录-的意义与内容："><a href="#1-根目录-的意义与内容：" class="headerlink" title="1.根目录 (/) 的意义与内容："></a><strong>1.根目录 (/) 的意义与内容：</strong></h3><p><strong><em>摘要：</em></strong></p>
+<ul>
+<li>所有的目录都是由根目录衍生出来的(根目录是整个系统最重要的一个目录)</li>
+<li>与开机/还原/系统修复等动作有关. (由于系统开机时需要特定的开机软件、核心文件、开机所需程序、 函式库等等文件数据,若系统出现错误时,根目录也必须要包含有能够修复文件系统的程序才行)</li>
+<li>FHS标准建议：根目录(/)所在分割槽应该越小越好, 且应用程序所安装的软件最好不要与根目录放在同一个分割槽内,保持根目录越小越好.(因为越大的分割槽妳会放入越多的数据,如此一来根目录所在分割槽就可能会有较多发生错误的机会,如此不但效能较佳,根目录所在的文件系统也较不容易发生问题.)</li>
+</ul>
+<h4 id="1-1根目录-底下目录FHS定义的说明："><a href="#1-1根目录-底下目录FHS定义的说明：" class="headerlink" title="1.1根目录(/)底下目录FHS定义的说明："></a><strong>1.1根目录(/)底下目录FHS定义的说明：</strong></h4><table>
+<thead>
+<tr>
+<th style="text-align:center">目录</th>
+<th style="text-align:left">应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/bin</td>
+<td style="text-align:left">系统有很多放置执行文件的目录,但/bin比较特殊.因为/bin放置的是在单人维护模式下还能够被操作的指令. 在/bin底下的指令可以被root与一般账号所使用,主要有：cat, chmod, chown, date, mv, mkdir, cp, bash等等常用的指令.</td>
+</tr>
+<tr>
+<td style="text-align:center">/boot</td>
+<td style="text-align:left">这个目录主要在放置开机会使用到的文件,包括Linux核心文件以及开机选单与开机所需配置文件等等. Linux kernel常用的档名为：vmlinuz,如果使用的是grub这个开机管理程序, 则还会存在/boot/grub/这个目录！</td>
+</tr>
+<tr>
+<td style="text-align:center">/dev</td>
+<td style="text-align:left">在Linux系统上,任何装置与接口设备都是以文件的型态存在于这个目录当中的. 你只要透过存取这个目录底下的某个文件,就等于存取某个装置啰～ 比要重要的文件有/dev/null, /dev/zero, /dev/tty, /dev/lp<em>, /dev/hd</em>, /dev/sd*等等</td>
+</tr>
+<tr>
+<td style="text-align:center">/etc</td>
+<td style="text-align:left">系统主要的配置文件几乎都放置在这个目录内,例如人员的账号密码文件、 各种服务的启始档等等.一般来说,这个目录下的各文件属性是可以让一般使用者查阅的, 但是只有root有权力修改.FHS建议不要放置可执行文件(binary)在这个目录中喔.比较重要的文件有： /etc/inittab, /etc/init.d/, /etc/modprobe.conf, /etc/X11/, /etc/fstab, /etc/sysconfig/ 等等.</td>
+</tr>
+<tr>
+<td style="text-align:center">/home</td>
+<td style="text-align:left">这是系统默认的用户家目录(home directory).在你新增一个一般使用者账号时, 默认户家目录都会规范到这里来.比较重要的是,家目录有两种代号喔：~：代表目前这个用户的家目录,而 ~dmtsai ：则代表 dmtsai 的家目录！</td>
+</tr>
+<tr>
+<td style="text-align:center">/lib</td>
+<td style="text-align:left">系统的函式库非常的多,而/lib放置的则是在开机时会用到的函式库, 以及在/bin或/sbin底下的指令会呼叫的函式库而已. 什么是函式库呢？妳可以将他想成是『外挂』,某些指令必须要有这些『外挂』才能够顺利完成程序的执行之意. 尤其重要的是/lib/modules/这个目录, 因为该目录会放置核心相关的模块(驱动程序)喔！</td>
+</tr>
+<tr>
+<td style="text-align:center">/media</td>
+<td style="text-align:left">media是『媒体』的英文,顾名思义,这个/media底下放置的就是可移除的装置啦！ 包括软盘、光盘、DVD等等装置都暂时挂载于此.常见的档名有：/media/floppy, /media/cdrom等等.</td>
+</tr>
+<tr>
+<td style="text-align:center">/mnt</td>
+<td style="text-align:left">如果妳想要暂时挂载某些额外的装置,一般建议妳可以放置到这个目录中. 在最早时候,这个目录的用途与/media相同啦！只是有了/media之后,这个目录就用来暂时挂载用了.</td>
+</tr>
+<tr>
+<td style="text-align:center">/opt</td>
+<td style="text-align:left">这个是给第三方协力软件放置的目录.什么是第三方协力软件啊？ 举例来说,KDE这个桌面管理系统是一个独立的计划,不过他可以安装到Linux系统中,因此KDE的软件就建议放置到此目录下了. 另外,如果妳想要自行安装额外的软件(非原本的distribution提供的),那么也能够将你的软件安装到这里来. 不过,以前的Linux系统中,我们还是习惯放置在/usr/local目录下呢！</td>
+</tr>
+<tr>
+<td style="text-align:center">/root</td>
+<td style="text-align:left">系统管理员(root)的家目录.之所以放在这里,是因为如果进入单人维护模式而仅挂载根目录时, 该目录就能够拥有root的家目录,所以我们会希望root的家目录与根目录放置在同一个分割槽中</td>
+</tr>
+<tr>
+<td style="text-align:center">/sbin</td>
+<td style="text-align:left">Linux有非常多指令是用来设定系统环境的,这些指令只有root才能够利用来『设定』系统,其他用户最多只能用来『查询』而已. 放在/sbin底下的为开机过程中所需要的,里面包括了开机、修复、还原系统所需要的指令. 至于某些服务器软件程序,一般则放置到/usr/sbin/当中.至于本机自行安装的软件所产生的系统执行文件(system binary), 则放置到/usr/local/sbin/当中了.常见的指令包括：fdisk, fsck, ifconfig, init, mkfs等等.</td>
+</tr>
+<tr>
+<td style="text-align:center">/srv</td>
+<td style="text-align:left">srv可以视为『service』的缩写,是一些网络服务启动之后,这些服务所需要取用的数据目录. 常见的服务例如WWW, FTP等等.举例来说,WWW服务器需要的网页数据就可以放置在/srv/www/里面.</td>
+</tr>
+<tr>
+<td style="text-align:center">/tmp</td>
+<td style="text-align:left">这是让一般使用者或者是正在执行的程序暂时放置文件的地方. 这个目录是任何人都能够存取的,所以你需要定期的清理一下.当然,重要数据不可放置在此目录啊！ 因为FHS甚至建议在开机时,应该要将/tmp下的数据都删除！</td>
+</tr>
+<tr>
+<td style="text-align:center">/lost+found</td>
+<td style="text-align:left">这个目录是使用标准的ext2/ext3文件系统格式才会产生的一个目录,目的在于当文件系统发生错误时, 将一些遗失的片段放置到这个目录下.这个目录通常会在分割槽的最顶层存在, 例如你加装一颗硬盘于/disk中,那在这个系统下就会自动产生一个这样的目录『/disk/lost+found』</td>
+</tr>
+<tr>
+<td style="text-align:center">/proc</td>
+<td style="text-align:left">这个目录本身是一个『虚拟文件系统(virtual filesystem)』喔！他放置的数据都是在内存当中, 例如系统核心、行程信息(process)、周边装置的状态及网络状态等等.因为这个目录下的数据都是在内存当中, 所以本身不占任何硬盘空间啊！比较重要的文件例如：/proc/cpuinfo, /proc/dma, /proc/interrupts, /proc/ioports, /proc/net/* 等等.</td>
+</tr>
+<tr>
+<td style="text-align:center">/sys</td>
+<td style="text-align:left">这个目录其实跟/proc非常类似,也是一个虚拟的文件系统,主要也是记录与核心相关的信息. 包括目前已加载的核心模块与核心侦测到的硬件装置信息等等.这个目录同样不占硬盘容量！</td>
+</tr>
+</tbody>
+</table>
+<h4 id="PS：不可以移动的目录："><a href="#PS：不可以移动的目录：" class="headerlink" title="PS：不可以移动的目录："></a><strong>PS：不可以移动的目录：</strong></h4><ul>
+<li>根目录与开机有关,开机过程中仅有根目录会被挂载, 其他分割槽则是在开机完成之后才会持续的进行挂载的行为.就是因为如此,因此根目录下与开机过程有关的目录, 就不能够与根目录放到不同的目录去！<ul>
+<li>/etc：配置文件</li>
+<li>/bin：重要执行档</li>
+<li>/dev：所需要的装置文件</li>
+<li>/lib：执行档所需的函式库与核心所需的模块</li>
+<li>/sbin：重要的系统执行文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-usr-的意义与内容："><a href="#1-2-usr-的意义与内容：" class="headerlink" title="1.2 /usr 的意义与内容："></a><strong>1.2 /usr 的意义与内容：</strong></h3><ul>
+<li>依据FHS的基本定义,/usr里面放置的数据属于可分享的与不可变动的(shareable, static), 如果你知道如何透过网络进行分割槽的挂载,那么/usr确实可以分享给局域网络内的其他主机来使用！</li>
+<li>usr(Unix Software Resource 即Unix操作系统软件资源) FHS建议所有软件开发者,应该将他们的数据合理的分别放置到这个目录下的次目录,而不要自行建立该软件自己独立的目录.</li>
+<li>所有系统默认的软件(distribution发布者提供的软件)都会放置到/usr底下,因此这个目录有点类似Windows 系统的『C:\Windows\ + C:\Program files\』这两个目录的综合体,系统刚安装完毕时,这个目录会占用最多的硬盘容量.</li>
+</ul>
+<p>/usr的次目录建议有底下这些：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">目录</th>
+<th style="text-align:left">应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/usr/X11R6/</td>
+<td style="text-align:left">为X Window System重要数据所放置的目录,之所以取名为X11R6是因为最后的X版本为第11版,且该版的第6次释出之意.</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/bin/</td>
+<td style="text-align:left">绝大部分的用户可使用指令都放在这里！请注意到他与/bin的不同之处.(是否与开机过程有关)</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/include/</td>
+<td style="text-align:left">c/c++等程序语言的档头(header)与包含档(include)放置处,当我们以tarball方式 (*.tar.gz 的方式安装软件)安装某些数据时,会使用到里头的许多包含档喔！</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/lib/</td>
+<td style="text-align:left">包含各应用软件的函式库、目标文件(object file),以及不被一般使用者惯用的执行档或脚本(script). 某些软件会提供一些特殊的指令来进行服务器的设定,这些指令也不会经常被系统管理员操作, 那就会被摆放到这个目录下啦.要注意的是,如果你使用的是X86_64的Linux系统, 那可能会有/usr/lib64/目录产生喔！</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/local/</td>
+<td style="text-align:left">系统管理员在本机自行安装自己下载的软件(非distribution默认提供者),建议安装到此目录, 这样会比较便于管理.举例来说,你的distribution提供的软件较旧,你想安装较新的软件但又不想移除旧版, 此时你可以将新版软件安装于/usr/local/目录下,可与原先的旧版软件有分别啦！ 你可以自行到/usr/local去看看,该目录下也是具有bin, etc, include, lib…的次目录！</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/sbin/</td>
+<td style="text-align:left">非系统正常运作所需要的系统指令.最常见的就是某些网络服务器软件的服务指令(daemon)！</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/share/</td>
+<td style="text-align:left">放置共享文件的地方,在这个目录下放置的数据几乎是不分硬件架构均可读取的数据, 因为几乎都是文本文件.</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/src/</td>
+<td style="text-align:left">一般原始码建议放置到这里,src有source的意思.至于核心原始码则建议放置到/usr/src/linux/目录下.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-3-var-的意义与内容："><a href="#1-3-var-的意义与内容：" class="headerlink" title="1.3 /var 的意义与内容："></a><strong><em>1.3 /var 的意义与内容：</em></strong></h3><ul>
+<li>/var目录主要针对常态性变动的文件,包括缓存(cache)、登录档(log file)以及某些软件运作所产生的文件, 包括程序文件(lock file, run file),或者例如MySQL数据库的文件等等. 所以/var在系统运作后才会渐渐占用硬盘容量的目录</li>
+</ul>
+<p>常见的次目录有：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">目录</th>
+<th style="text-align:left">应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/var/cache/</td>
+<td style="text-align:left">应用程序本身运作过程中会产生的一些暂存档；</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/lib/</td>
+<td style="text-align:left">程序本身执行的过程中,需要使用到的数据文件放置的目录.在此目录下各自的软件应该要有各自的目录. 举例来说,MySQL的数据库放置到/var/lib/mysql/而rpm的数据库则放到/var/lib/rpm去！</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/lock/</td>
+<td style="text-align:left">某些装置或者是文件资源一次只能被一个应用程序所使用,如果同时有两个程序使用该装置时, 就可能产生一些错误的状况,因此就得要将该装置上锁(lock),以确保该装置只会给单一软件所使用. 举例来说,刻录机正在刻录一块光盘,你想一下,会不会有两个人同时在使用一个刻录机烧片？ 如果两个人同时刻录,那片子写入的是谁的数据？所以当第一个人在刻录时该刻录机就会被上锁, 第二个人就得要该装置被解除锁定(就是前一个人用完了)才能够继续使用啰.</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/log/</td>
+<td style="text-align:left">重要到不行！这是登录文件放置的目录！里面比较重要的文件如/var/log/messages, /var/log/wtmp(记录登入者的信息)等.</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/mail/</td>
+<td style="text-align:left">放置个人电子邮件信箱的目录,不过这个目录也被放置到/var/spool/mail/目录中！ 通常这两个目录是互为链接文件啦！</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/run/</td>
+<td style="text-align:left">某些程序或者是服务启动后,会将他们的PID放置在这个目录下喔！ 至于PID的意义我们会在后续章节提到的.</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/spool/</td>
+<td style="text-align:left">这个目录通常放置一些队列数据,所谓的『队列』就是排队等待其他程序使用的数据啦！ 这些数据被使用后通常都会被删除.举例来说,系统收到新信会放置到/var/spool/mail/中, 但使用者收下该信件后该封信原则上就会被删除.信件如果暂时寄不出去会被放到/var/spool/mqueue/中, 等到被送出后就被删除.如果是工作排程数据(crontab),就会被放置到/var/spool/cron/目录中！</td>
+</tr>
+</tbody>
+</table>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/linux学习/2015-05-27.png" alt="2012090616454275" title="">
+                </div>
+                <div class="image-caption">2012090616454275</div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.356Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/" target="_blank" rel="external">http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/&title=《linux目录结构》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/&title=《linux目录结构》 — 刀刀亮的博客&source=
+在Linux文件系统中的每一个子目录都有特定的目的和用途。一般都是根据FHS标准定义一个正式的文件系统结构的，这个标准规定了哪些目录应该哪些作用" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux目录结构》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux下SSH命令用法小结</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/linux学习/2015/05/19/linux学习-2015-05-19-linux系统信息命令/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">linux系统信息命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux学习-2015-05-27-linux目录结构" data-title="linux目录结构" data-url="http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/&title=《linux目录结构》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/&title=《linux目录结构》 — 刀刀亮的博客&source=
+在Linux文件系统中的每一个子目录都有特定的目的和用途。一般都是根据FHS标准定义一个正式的文件系统结构的，这个标准规定了哪些目录应该哪些作用" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux目录结构》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNElEQVR42u3aQZLiQAwEwPn/p73X3Zi1KUkmAov0iWDA7mwONZL65ye+jr+u3+//fn32TvKUs+de//XnHRc2Njb2Q9jH5VX9TLIFZ3fONz252/WWYWNjY+9jX8dJ/pi7AuwIrmS7T9/HxsbG/mL2dahUC4Z8s/KfARsbGxt7wq4WGHf1fLCxsbGxq//uv2jZBJ/MS5pJaXRDLw0bGxv749m9ds9nvn7LfBsbGxv7g9lH8coP1lS/mwde7+n/fBcbGxt7ETsPgEmpUC1L7m1dnX4SGxsbewW713CfN+urgXTzABgbGxt7EXsyxM3Ht5O2/jxQT++DjY2NvYid46stpN4QIh8M58OM0W+OjY2N/Sh2tbnTGwNUm1C9Mia6GzY2NvZSdnW8modHdfvyQOqNDbCxsbGfzq4OSnsB845CpXd4CBsbG/t72NUMrB6+mRQYk43DxsbG3sqefyuPq+oot7eqFyUQNjY29lJ2cpimWiRMGlW9cW9UMmFjY2OvYycFyWTUel145EOCfItf3BMbGxt7ETuPrnxB1cIg36YcH8UwNjY29jp2dQCQY/L20NG6moMQbGxs7BXsuxY9aff3Cp5qWVKugbCxsbEfws5HsL3xQG9zc2oOPr0nNjY29sPZ1cVVY2lSNszvedqowsbGxl7ETg67zP+aDwzubWlFxQk2Njb2w9n3NnSi8ergkE11wHz6LWxsbOxF7DxOemGTt+wnvFFiY2NjYz+cnYOrR2fyuUQ18Kpxe1qKYGNjY69gTxaUvO4tcRJphY3DxsbGXsSuLjEPvPlCq4Pe6uABGxsbewe71/TpFTDV40H5HaoHgLCxsbH3sSeT0F6QVEnJT3L99P9UYNjY2Nir2XcNCebD3V4V9eL+2NjY2CvYR/FKYuPeuKpubhR+2NjY2IvYvSFBEkt5mz6PqF4QJmvGxsbGfjo7iYrqgZ5qbMybUOXJNjY2NvY6dh4MveiqDn17TagbemnY2NjYX8AuDFOLA9pJq6vckMLGxsbGjuNtMgzoNbai1hU2Njb2OnYSD3kxUCUlEZiXQ1EfCRsbG3sROw+AfIm9oqW6iflKRvNtbGxs7M9l/wGc3zUASYET5AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

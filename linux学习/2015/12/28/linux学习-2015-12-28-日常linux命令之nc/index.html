@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>日常linux命令之nc | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="这是一篇我觉得很不错的文章，故而我进行了翻译，原文在这里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日常linux命令之nc">
+<meta property="og:url" content="http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="这是一篇我觉得很不错的文章，故而我进行了翻译，原文在这里">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日常linux命令之nc">
+<meta name="twitter:description" content="这是一篇我觉得很不错的文章，故而我进行了翻译，原文在这里">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">日常linux命令之nc</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">日常linux命令之nc</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-12-27T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-12-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-测试远程主机的端口是否开放"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 测试远程主机的端口是否开放</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-发送UDP测试包到远程主机"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 发送UDP测试包到远程主机</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-对远程主机进行端口扫描"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 对远程主机进行端口扫描</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-从主机-hostA-com-复制一个文件-例如-my-jpg-到主机-hostB-com"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 从主机 hostA.com 复制一个文件(例如 my.jpg)到主机 hostB.com</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-从主机-hostA-com-传输整个文件夹-包裹里面的内容-到主机-hostB-com"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 从主机 hostA.com 传输整个文件夹(包裹里面的内容) 到主机 hostB.com</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-对远程主机的UPD端口进行扫描"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 对远程主机的UPD端口进行扫描</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-启动一个静态网站服务"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 启动一个静态网站服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-不安全-两台主机间聊天"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. (不安全)两台主机间聊天</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-运行一个-“远程shell”-允许你在远程主机上执行任何命令"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. 运行一个 “远程shell” 允许你在远程主机上执行任何命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-为一个常规网站创建一个WEB代理-例如-google-com"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. 为一个常规网站创建一个WEB代理(例如 google.com)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-味一个常规网站创建一个SSL代理-例如-google-com"><span class="post-toc-number">11.</span> <span class="post-toc-text">11. 味一个常规网站创建一个SSL代理(例如 google.com)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-在服务器上流式化视频文件，并且从客户端用mplayer进行观看视频流"><span class="post-toc-number">12.</span> <span class="post-toc-text">12. 在服务器上流式化视频文件，并且从客户端用mplayer进行观看视频流</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-用IPV6监听一个TCP端口"><span class="post-toc-number">13.</span> <span class="post-toc-text">13. 用IPV6监听一个TCP端口</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-linux学习-2015-12-28-日常linux命令之nc" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">日常linux命令之nc</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-12-28 00:00:00" datetime="2015-12-27T16:00:00.000Z" itemprop="datePublished">2015-12-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<p>这是一篇我觉得很不错的文章，故而我进行了翻译，原文在<a href="http://xmodulo.com/useful-netcat-examples-linux.html" target="_blank" rel="noopener">这里</a></p>
+<a id="more"></a>
+<p>通常被称为TCP/IP的　<code>瑞士军刀</code>，Netcat的是一种非常通用的Linux工具，它可以让用TCP/IP协议做任何操作。这是一个系统管理员在网络相关的故障排除和实验时最喜欢的工具之一。</p>
+<p>在本教程中，我分享了一些有用的<code>netcat</code>的例子，当然我所描述的例子的使用场景有限，如果你也是经常地使用<code>netcat</code>,随时分享你的使用技巧。</p>
+<p><strong>注意：</strong>当你绑定nc到 “众所周知”的端口(0~1023)时你需要<code>root</code>权限，其他情况用普通用户权限即可。</p>
+<h3 id="1-测试远程主机的端口是否开放"><a href="#1-测试远程主机的端口是否开放" class="headerlink" title="1. 测试远程主机的端口是否开放"></a>1. 测试远程主机的端口是否开放</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ nc -vn 123.125.114.144 5000</span><br><span class="line"></span><br><span class="line">nc: connect to 123.125.114.144 5000 (tcp) failed: Connection refused</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ nc -v 123.125.114.144 22</span><br><span class="line"></span><br><span class="line">Connection to 123.125.114.144 22 port [tcp/ssh] succeeded!</span><br><span class="line">SSH-2.0-OpenSSH_5.3</span><br></pre></td></tr></table></figure>
+<h3 id="2-发送UDP测试包到远程主机"><a href="#2-发送UDP测试包到远程主机" class="headerlink" title="2. 发送UDP测试包到远程主机"></a>2. 发送UDP测试包到远程主机</h3><p>下面的命令将会发送一个UDP测试包到远程主机的5000端口，并且超时时间为1秒：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -n <span class="string">"foo"</span> | nc -u -w1 123.125.114.144 5000</span><br></pre></td></tr></table></figure>
+<h3 id="3-对远程主机进行端口扫描"><a href="#3-对远程主机进行端口扫描" class="headerlink" title="3. 对远程主机进行端口扫描"></a>3. 对远程主机进行端口扫描</h3><p>下面的命令会对远程主机的[1~1000] 和 [2000~3000]端口进行扫描，检查端口是否打开</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc -vnz -w2 123.125.114.144 1-1000 2000-3000</span><br></pre></td></tr></table></figure>
+<h3 id="4-从主机-hostA-com-复制一个文件-例如-my-jpg-到主机-hostB-com"><a href="#4-从主机-hostA-com-复制一个文件-例如-my-jpg-到主机-hostB-com" class="headerlink" title="4. 从主机 hostA.com 复制一个文件(例如 my.jpg)到主机 hostB.com"></a>4. 从主机 hostA.com 复制一个文件(例如 my.jpg)到主机 hostB.com</h3><p>在主机 <code>hostB.com</code> (接收者)：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lp 5000 &gt; my.jpg</span><br></pre></td></tr></table></figure>
+<p>在主机 <code>hostB.com</code> (发送者):</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc hostA.com 5000 &lt; my.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="5-从主机-hostA-com-传输整个文件夹-包裹里面的内容-到主机-hostB-com"><a href="#5-从主机-hostA-com-传输整个文件夹-包裹里面的内容-到主机-hostB-com" class="headerlink" title="5. 从主机 hostA.com 传输整个文件夹(包裹里面的内容) 到主机 hostB.com"></a>5. 从主机 hostA.com 传输整个文件夹(包裹里面的内容) 到主机 hostB.com</h3><p>在主机 <code>hostB.com</code>(接收者)上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc -l 5000 | tar -xvf -</span><br></pre></td></tr></table></figure>
+<p>在主机 <code>hostA.com</code>(发送者)上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar -cvf - /path/to/dir hostB.com 5000</span><br></pre></td></tr></table></figure>
+<h3 id="6-对远程主机的UPD端口进行扫描"><a href="#6-对远程主机的UPD端口进行扫描" class="headerlink" title="6. 对远程主机的UPD端口进行扫描"></a>6. 对远程主机的UPD端口进行扫描</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc -vnzu 123.125.114.144 1-65535</span><br></pre></td></tr></table></figure>
+<h3 id="7-启动一个静态网站服务"><a href="#7-启动一个静态网站服务" class="headerlink" title="7. 启动一个静态网站服务"></a>7. 启动一个静态网站服务</h3><p>输入如下命令将会启动一个WEB服务，把test.html启动在 8000端口</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">while</span> <span class="literal">true</span>;<span class="keyword">do</span> nc -lp 8000 &lt; test.html;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>现在输入 http://&lt;host_ip_address&gt;:8000/test.html 就可以访问它，注意问了使用众所周知的80端口，你需要在运行nc时用root权限，如下所示：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ whilr <span class="literal">true</span>;<span class="keyword">do</span> sudo nc -lp 80 &lt; test.html;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-不安全-两台主机间聊天"><a href="#8-不安全-两台主机间聊天" class="headerlink" title="8. (不安全)两台主机间聊天"></a>8. (不安全)两台主机间聊天</h3><p>在其中一台主机(192.168.233.203):</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc -lp 5000</span><br></pre></td></tr></table></figure>
+<p>在另外一台主机上:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc 192.168.233.203 5000</span><br></pre></td></tr></table></figure>
+<p>在运行了上述的命令后，键入任何操作都回在另外的主机上显示</p>
+<h3 id="9-运行一个-“远程shell”-允许你在远程主机上执行任何命令"><a href="#9-运行一个-“远程shell”-允许你在远程主机上执行任何命令" class="headerlink" title="9. 运行一个 “远程shell” 允许你在远程主机上执行任何命令"></a>9. 运行一个 “远程shell” 允许你在远程主机上执行任何命令</h3><p>在远程主机上(192.168.233.203):</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc -lp 5000 -e /bin/bash</span><br></pre></td></tr></table></figure>
+<p>在本地主机上执行:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc 192.168.233.208 5000</span><br></pre></td></tr></table></figure>
+<p>在运行了上述命令周你就能在本地主机的终端运行任何命令了，这个命令将会被在远程主机的终端上执行，并且命令的输出也会出现在本地主机上，这个设置通常用来作为远程主机的后门程序。</p>
+<h3 id="10-为一个常规网站创建一个WEB代理-例如-google-com"><a href="#10-为一个常规网站创建一个WEB代理-例如-google-com" class="headerlink" title="10. 为一个常规网站创建一个WEB代理(例如 google.com)"></a>10. 为一个常规网站创建一个WEB代理(例如 google.com)</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkfifo proxypipe</span><br><span class="line">$ <span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span> nc -l 5000 0&lt;proxypipe | nc www.google.com 80 1&gt; proxypipe; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>上述命令将会创建一个名为 proxypipe 的管道，并且用nc重定向所有 TCP/5000 的链接到 <a href="http://www.google.com" target="_blank" rel="noopener">http://www.google.com</a> ,通过这个设置你就可以通过<a href="http://127.0.0.1:5000来访问google" target="_blank" rel="noopener">http://127.0.0.1:5000来访问google</a></p>
+<h3 id="11-味一个常规网站创建一个SSL代理-例如-google-com"><a href="#11-味一个常规网站创建一个SSL代理-例如-google-com" class="headerlink" title="11. 味一个常规网站创建一个SSL代理(例如 google.com)"></a>11. 味一个常规网站创建一个SSL代理(例如 google.com)</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkfifo proxypipe</span><br><span class="line">$ mkfifo proxypipe2</span><br><span class="line">$ nc -l 5000 -k &gt; proxypipe &lt; proxypipe2 &amp;</span><br><span class="line">$ <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span>; openssl s_client -connect www.google.com:443 -quiet &lt; proxypipe &gt; proxypipe2; <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>上述命令会用 nc 创建一个SSL代理链接到Google.com</p>
+<h3 id="12-在服务器上流式化视频文件，并且从客户端用mplayer进行观看视频流"><a href="#12-在服务器上流式化视频文件，并且从客户端用mplayer进行观看视频流" class="headerlink" title="12. 在服务器上流式化视频文件，并且从客户端用mplayer进行观看视频流"></a>12. 在服务器上流式化视频文件，并且从客户端用mplayer进行观看视频流</h3><p>在视频服务器(192.168.233.208)：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat video.avi | nc -l 5000</span><br></pre></td></tr></table></figure>
+<p>在客户端：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc 192.168.233.208 5000 | mplayer -vo x11 -cache 3000 -</span><br></pre></td></tr></table></figure>
+<h3 id="13-用IPV6监听一个TCP端口"><a href="#13-用IPV6监听一个TCP端口" class="headerlink" title="13. 用IPV6监听一个TCP端口"></a>13. 用IPV6监听一个TCP端口</h3><p>下面的命令会让nc在今听一个TCP地址时 使用 IPv6 协议，这在测试IPv6的配置时非常有用；</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nc -6 -l 5000</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo netstat -nap | grep 5000</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.356Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/" target="_blank" rel="external">http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/&title=《日常linux命令之nc》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/&title=《日常linux命令之nc》 — 刀刀亮的博客&source=
+这是一篇我觉得很不错的文章，故而我进行了翻译，原文在这里" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《日常linux命令之nc》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2015/12/29/linux学习-2015-12-29-netcat命令无效参数e的解决方案/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux下netcat命令中无效参数e的解决方案</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">reStructuredText 的基本语法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux学习-2015-12-28-日常linux命令之nc" data-title="日常linux命令之nc" data-url="http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/&title=《日常linux命令之nc》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/&title=《日常linux命令之nc》 — 刀刀亮的博客&source=
+这是一篇我觉得很不错的文章，故而我进行了翻译，原文在这里" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《日常linux命令之nc》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMUlEQVR42u3aUW7CQAwE0N7/0u0BWtIZb5Aa9/GFUEj2BQnH4/34iF+fl6/vx3z/7vU580+uz3DzCxsbG/sh7Jb0/fMEc/1+dpVX768t2NjY2FvZr/7h8yXmt+yu7ybrfPk5NjY29j9mJwUmOf/1tdoGBhsbGxu7ZeeJTd60JMlPexVsbGzs/8M+f9xPIv5Z2JQf/5YsDRsbG/vPs/Op6N9//5b5NjY2NvYfZs8i+3z4ejIYbrcEFQpsbGzsRexZSNRu67k+w0k4dXIebGxs7H3sZLCaF7NZ/NQWv1nYhI2Njb2PPQPMxgltrN/esvYYbGxs7Kez80XMgqQ2uD+/fZEFGxsbex07bzZmQX/SGJxEVPXn2NjY2OvY+bg0eZ4/aWlm+23qRgUbGxt7HXsW+iSxVNs8zDYPtQNpbGxs7E3s/KF/NkhIykwbaZ2EVtjY2Nhb2SfxffvddhtQ26LkoRU2Njb2JnbyhZNR63XBa8vq7LrRxh1sbGzsB7KvTzErD0lByhl5tl+sChsbG3sROwfPoqW2jOXFKd/0E5UxbGxs7Meyk6LSjhPaKP/6yHZTZtSQYGNjYy9iJwedBPR3TVfzMlkMg7GxsbFXsGcbHNtLnhzTjg2inxAbGxt7EXsGm01LZ4Vw1t4cDZuxsbGxH8Vuh6b583w7o5iNmfOw6Yc4CRsbG3sFexYqzZqNtp3Ib00+HsbGxsbeyj4P8Wclp+2WknLYXhcbGxv76ey7ilO7iJM2o42ufrhZ2NjY2OvY7aP/eXmbBUlt5FTsBsLGxsZ+LPveZiMfFZ+ME/KhxdGPh42Njf0odnuBpFVIYG2gnyCLMomNjY29lD1bdDsSbgvSXWVsOCTAxsbGfgh7FuXn5eSEPduI80tDgo2Njb2C/Vm+2mHw7CbmK2nbJ2xsbOx97HZIMIvyk3biZLKRl8Aaj42Njf0Q9mzsOhv3nhS/9lb+8ttiY2Njr2PnhaEtQvlwN6+xt2Vp2NjY2NhxYZtF/22pK8YM2NjY2P+Y/b6Wph0DzFaFjY2NvZXdxj31ZcptPbOBQdHAYGNjYy9i54PePL5Jjs8XcdeWIGxsbOx17C+gYwJdEzwqtgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

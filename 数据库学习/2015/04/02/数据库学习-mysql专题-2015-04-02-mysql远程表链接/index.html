@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>mysql远程表链接 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="FEDERATED简介FEDERATED存储引擎是访问远程数据库中的表，在平时开发中可以用此特性来访问远程库中的参数表之类的，还是非常方便的。使用时直接在本地构建一个federated表来链接远程数据表，配置好之后本地数据库可以直接和远程数据表进行同步，实际上这个数据库并不是真实存放数据，所需要的数据都是存放在远程服务器上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql远程表链接">
+<meta property="og:url" content="http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="FEDERATED简介FEDERATED存储引擎是访问远程数据库中的表，在平时开发中可以用此特性来访问远程库中的参数表之类的，还是非常方便的。使用时直接在本地构建一个federated表来链接远程数据表，配置好之后本地数据库可以直接和远程数据表进行同步，实际上这个数据库并不是真实存放数据，所需要的数据都是存放在远程服务器上。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/数据库学习/2015-04-02.png">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql远程表链接">
+<meta name="twitter:description" content="FEDERATED简介FEDERATED存储引擎是访问远程数据库中的表，在平时开发中可以用此特性来访问远程库中的参数表之类的，还是非常方便的。使用时直接在本地构建一个federated表来链接远程数据表，配置好之后本地数据库可以直接和远程数据表进行同步，实际上这个数据库并不是真实存放数据，所需要的数据都是存放在远程服务器上。">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/数据库学习/2015-04-02.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql远程表链接</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">mysql远程表链接</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-04-01T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-04-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FEDERATED简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">FEDERATED简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置条件"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置条件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置步骤"><span class="post-toc-number">3.</span> <span class="post-toc-text">配置步骤</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意"><span class="post-toc-number">4.</span> <span class="post-toc-text">注意</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-数据库学习-mysql专题-2015-04-02-mysql远程表链接" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mysql远程表链接</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-04-02 00:00:00" datetime="2015-04-01T16:00:00.000Z" itemprop="datePublished">2015-04-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="FEDERATED简介"><a href="#FEDERATED简介" class="headerlink" title="FEDERATED简介"></a>FEDERATED简介</h3><p>FEDERATED存储引擎是访问远程数据库中的表，在平时开发中可以用此特性来访问远程库中的参数表之类的，还是非常方便的。使用时直接在本地构建一个federated表来链接远程数据表，配置好之后本地数据库可以直接和远程数据表进行同步，实际上这个数据库并不是真实存放数据，所需要的数据都是存放在远程服务器上。</p>
+<a id="more"></a>
+<h3 id="配置条件"><a href="#配置条件" class="headerlink" title="配置条件"></a>配置条件</h3><ul>
+<li><p>mysql版本需要5.1以上；</p>
+</li>
+<li><p>在安装是需要把federated引擎已经安装;</p>
+</li>
+</ul>
+<h3 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h3><ul>
+<li>1.开启federated引擎；</li>
+</ul>
+<p>在mysql终端执行:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show engines;</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/数据库学习/2015-04-02.png" alt="数据库引擎" title="">
+                </div>
+                <div class="image-caption">数据库引擎</div>
+            </figure>
+<p>若是引擎关闭则需要配置开启，方式如下；</p>
+<p><strong><em>修改mysql的配置文件：</em></strong></p>
+<blockquote>
+</blockquote>
+<p>在my.ini中[mysqld]标签下下直接加上一行 federated重启数据库服务即可</p>
+<ul>
+<li>2.建立远程表连接</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_test ( </span><br><span class="line">   <span class="keyword">id</span> <span class="built_in">BIGINT</span>(<span class="number">20</span>) <span class="keyword">UNSIGNED</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT, </span><br><span class="line">   <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">not</span> <span class="literal">null</span>, </span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>) </span><br><span class="line">) <span class="keyword">ENGINE</span>=FEDERATED <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">CONNECTION</span>=<span class="string">'mysql://root:abc@192.168.88.16:3306/dbname/tablename'</span></span><br></pre></td></tr></table></figure>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a><strong><em>注意</em></strong></h3><ul>
+<li>1.本地的表结构必须与远程的完全一样。</li>
+<li>2.远程数据库目前仅限MySQL</li>
+<li>3.不支持事务</li>
+<li>4.不支持表结构修改 </li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.372Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/" target="_blank" rel="external">http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/&title=《mysql远程表链接》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/&title=《mysql远程表链接》 — 刀刀亮的博客&source=FEDERATED简介FEDERATED存储引擎是访问远程数据库中的表，在平时开发中可以用此特性来访问远程库中的参数表之类的，还是非常方便的。使用时直接在..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql远程表链接》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/刀刀爱学习/2015/04/05/刀刀爱学习-2015-04-05-刀刀亮的书单/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">刀刀亮的书单</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/数据库学习/2015/04/02/数据库学习-redis专题-2015-04-02-redis常用命令/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">redis常用命令总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="数据库学习-mysql专题-2015-04-02-mysql远程表链接" data-title="mysql远程表链接" data-url="http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/&title=《mysql远程表链接》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/&title=《mysql远程表链接》 — 刀刀亮的博客&source=FEDERATED简介FEDERATED存储引擎是访问远程数据库中的表，在平时开发中可以用此特性来访问远程库中的参数表之类的，还是非常方便的。使用时直接在..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql远程表链接》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/04/02/数据库学习-mysql专题-2015-04-02-mysql远程表链接/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD5klEQVR42u3dwU7kQAwE0Pn/n4YrCBJV2R00SC+n1ezQSb8cCrst8XrF18eX6+cnPz+//9mrb16tnKyZPMmxCwcOHDhwxFu932Tyzfu7tNu+p79av31+HDhw4MDxBEdyg3x7eWC34dpuPt8jDhw4cOB4N448XDdF4+xeOHDgwIHj/TnycN188z5cTz0/Dhw4cOB4giNpDu4bdvkKZw+rHumV4sCBAweONOle+cb+y78fme/AgQMHDhxxOLWhm/DlQdseO8328svdceDAgQPHmqPd3n1RlG/+VPbtyzMcOHDgwHGWY98EzFeIjnyCAYXklczaizhw4MCB4xTHZoghXyGJxtUgwoL7W9DiwIEDB441RxuT7SZnrcZZO3IzAIEDBw4cOPYc7aJ5czCHOxXPSUuxgMCBAwcOHCOO5NCoHUdoAzh/Y+3/tr804MCBAweOJzhmTHm5lTf7ZsXe7PzosqLFgQMHDhwlRxtXm2bfZpCifQHJK4meGQcOHDhwLDjyuNqXeaeOnXKsumjEgQMHDhwLjrbNNwvCDe6sLJw9FQ4cOHDg2HAkBJshtjzkkleSTGRsYhsHDhw4cDzB0VZ+qwGCeFghufJDqSJoceDAgQPH4o75AyXROCu3ZsMN7ZMUx044cODAgWPE0d4mPxDKRxZmTO1ri1bGgQMHDhwLjvywZ3YINFuzbSa2TcwiYnHgwIEDx4hjdthTTEysgzAP/nZ9HDhw4MDxBEdbIOWPsrlL3rg8tiYOHDhw4DjEkbfwksCbDc8Nz8rK+xa/d+DAgQMHjgVHHqJ54G3Kv8249qaYxIEDBw4ce44ZQT6Wfao4TOL82MEVDhw4cOA4OQMwbLfNCrM85pPNtCsXe8SBAwcOHCOONtieOCJKRus2B1pFxOLAgQMHjjVHG715+G2488Ks5VuNRODAgQMHjttjp6RYymMyWadtTe7bhVHQ4sCBAweOQxynjoj2P9uWZ7PQvXxVOHDgwIFjzZGXavvhhjwac9zZOMWwY4oDBw4cOIK7zFp7s2JvH6hn25G/3BEHDhw4cBziaMcLZp+3lG14HxiMwIEDBw4cZ2bM6j+Hlg8WtAdXp8q/2YgGDhw4cODYc3yUV46Yt/Za3PxebasRBw4cOHDsOfKrHQXIN5Mfd824i+YgDhw4cOA4xDE7ztn81CYI2zZisn50FocDBw4cOEqOPKhmAdwmfLvabH0cOHDgwPH+HLPybFbyteN6UWMRBw4cOHD8OUf+KG0855SbIbnDJRwOHDhw4Fg0B9txuuTz9kCrDc72ReLAgQMHjj1H20prhxLyI5+8GGsH+9r1ceDAgQPHiOMT+pz2SWiEY9gAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

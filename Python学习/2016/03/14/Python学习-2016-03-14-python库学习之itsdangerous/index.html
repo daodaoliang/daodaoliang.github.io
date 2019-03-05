@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>python 库学习之 itsdangerous | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="这是原始主页">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 库学习之 itsdangerous">
+<meta property="og:url" content="http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="这是原始主页">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 库学习之 itsdangerous">
+<meta name="twitter:description" content="这是原始主页">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">python 库学习之 itsdangerous</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">python 库学习之 itsdangerous</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-03-13T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-03-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-签名接口"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 签名接口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-使用时间戳签名"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 使用时间戳签名</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-序列化"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 序列化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-URL安全序列化"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. URL安全序列化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-JSON-WEB-签名"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. JSON WEB 签名</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-盐"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 盐</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-对失败的响应"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 对失败的响应</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-Python-3-提示"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. Python 3 提示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-It’s-Dangerous-的升级日志"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. It’s Dangerous 的升级日志</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-Python学习-2016-03-14-python库学习之itsdangerous" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python 库学习之 itsdangerous</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-03-14 00:00:00" datetime="2016-03-13T16:00:00.000Z" itemprop="datePublished">2016-03-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://pythonhosted.org/itsdangerous/" target="_blank" rel="noopener">这是原始主页</a></p>
+<a id="more"></a>
+<p>有时候你想向一个不可信的环境发送数据，但是如何安全的完成这个任务呢？诀窍就是引入签名！使用只有你自己知道的秘钥进行加密，并把加密后的数据发给别人处理，当你取回数据时，你就可以确保没人篡改过这份数据；</p>
+<p>虽然接受者可以解密你的数据看看里面封装的是什么内容，但他们没法修改你的内容，除非他们知道你的私钥，因此你只要保管好你的秘钥，同时使用复杂的秘钥就万事大吉了；</p>
+<p>itsdangerous内部默认使用了HMAC和SHA1来签名，基于 Django 签名模块。它也支持JSON Web 签名 (JWS)。这个库采用BSD协议，由Armin Ronacher编写，而大部分设计与实现的版权归Simon Willison和其他的把这个库变为现实的Django爱好者们；</p>
+<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>你可以从 <code>PyPI</code> 上直接安装这个库：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install itsdangerous</span><br></pre></td></tr></table></figure>
+<p><strong>适用案例：</strong></p>
+<ul>
+<li>在取消订阅某个通讯时，你可以在URL里序列化并且签名一个用户的ID。这种情况下你不需要生成一个一次性的token并把它们存到数据库中, 同样适用于一些激活链接等类似的情景下；</li>
+<li>被签名的对象可以被保存在例如 <code>cookie</code> 等不可信来源，这意味着你不需要在服务端保存 <code>session</code> , 这样可以降低数据库读取次数；</li>
+<li>通常签名后的数据可以安全的往返与服务端和客户端之间，这个特性可以用于将服务端的状态传递到客户端在传递回来；</li>
+</ul>
+<h2 id="2-签名接口"><a href="#2-签名接口" class="headerlink" title="2. 签名接口"></a>2. 签名接口</h2><p>最基本的接口是签名接口， <code>Signer</code> 类可以用来将一个签名附加到指定 string 上：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> Signer</span><br><span class="line">s = Signer(<span class="string">'secret-key'</span>)</span><br><span class="line">s.sign(<span class="string">'my string'</span>)</span><br><span class="line"><span class="string">'my string.wh6tMHxLgJqB6oY1uT73iMlyrOA'</span></span><br></pre></td></tr></table></figure>
+<p>签名会被加在字符串尾部，中间由句号 (.)分隔。验证字符串，使用 unsign() 方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.unsign(<span class="string">'my string.wh6tMHxLgJqB6oY1uT73iMlyrOA'</span>)</span><br><span class="line"><span class="string">'my string'</span></span><br></pre></td></tr></table></figure>
+<p>如果被签名的是一个unicode字符串，那么它将隐式地被转换成utf-8。然而，在反签名时，你没法知道它原来是unicode还是字节串。</p>
+<p>如果反签名失败了，将得到一个异常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s.unsign(<span class="string">'my string.wh6tMHxLgJqB6oY1uT73iMlyrOX'</span>)</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">itsdangerous.BadSignature: Signature <span class="string">"wh6tMHxLgJqB6oY1uT73iMlyrOX"</span> does <span class="keyword">not</span> match</span><br></pre></td></tr></table></figure>
+<h2 id="3-使用时间戳签名"><a href="#3-使用时间戳签名" class="headerlink" title="3. 使用时间戳签名"></a>3. 使用时间戳签名</h2><p>如果你想要一个可以过期的签名，可以使用 <code>TimestampSigner</code> 类，它会加入时间戳信息并签名。在反签名时，你可以验证时间戳就没有过期；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> TimestampSigner</span><br><span class="line">s = TimestampSigner(<span class="string">'secret-key'</span>)</span><br><span class="line">string = s.sign(<span class="string">'foo'</span>)</span><br><span class="line"><span class="comment"># 参数的意思为在签名时间后的多少秒为有效</span></span><br><span class="line">s.unsign(string, max_age=<span class="number">5</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    ...</span><br><span class="line">itsdangerous.SignatureExpired: Signature age <span class="number">15</span> &gt; <span class="number">5</span> seconds</span><br></pre></td></tr></table></figure>
+<h2 id="4-序列化"><a href="#4-序列化" class="headerlink" title="4. 序列化"></a>4. 序列化</h2><p>因为字符串难以处理，本模块也提供了一个与json或pickle类似的序列化接口.(它内部默认使用simplejson，但是可以通过子类进行修改),这个 <code>Serializer</code> 类实现了:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> Serializer</span><br><span class="line">s = Serializer(<span class="string">'secret-key'</span>)</span><br><span class="line">s.dumps([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="string">'[1, 2, 3, 4].r7R9RhGgDPvvWl3iNzLuIIfELmo'</span></span><br></pre></td></tr></table></figure>
+<p>它当然也可以加载数据:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.loads(<span class="string">'[1, 2, 3, 4].r7R9RhGgDPvvWl3iNzLuIIfELmo'</span>)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<p>若果你需要一个时间戳， 你可以使用 <code>TimedSerializer</code> 类</p>
+<h2 id="5-URL安全序列化"><a href="#5-URL安全序列化" class="headerlink" title="5. URL安全序列化"></a>5. URL安全序列化</h2><p>如果只能向一个字符受限的环境中传递可信的字符串的话，这个功能将会十分有用。<code>itsdangerous</code> 提供了一个 <code>URL</code> 安全序列化工具:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> URLSafeSerializer</span><br><span class="line">s = URLSafeSerializer(<span class="string">'secret-key'</span>)</span><br><span class="line">s.dumps([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="string">'WzEsMiwzLDRd.wSPHqC0gR7VUqivlSukJ0IeTDgo'</span></span><br><span class="line"></span><br><span class="line">s.loads(<span class="string">'WzEsMiwzLDRd.wSPHqC0gR7VUqivlSukJ0IeTDgo'</span>)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="6-JSON-WEB-签名"><a href="#6-JSON-WEB-签名" class="headerlink" title="6. JSON WEB 签名"></a>6. JSON WEB 签名</h2><p>从“itsdangerous” 0.18版本开始，也支持了JSON Web签名。它们的工作方式与原有的URL安全序列化器差不多，但是会根据当前JSON Web签名（JWS）草案（10） [draft-ietf-jose-json-web-signature] 来生成header。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> JSONWebSignatureSerializer</span><br><span class="line">s = JSONWebSignatureSerializer(<span class="string">'secret-key'</span>)</span><br><span class="line">s.dumps(&#123;<span class="string">'x'</span>: <span class="number">42</span>&#125;)</span><br><span class="line"><span class="string">'eyJhbGciOiJIUzI1NiJ9.eyJ4Ijo0Mn0.ZdTn1YyGz9Yx5B5wNpWRL221G1WpVE5fPCPKNuc6UAo'</span></span><br></pre></td></tr></table></figure>
+<p>在将值加载回来时，默认会像其他序列化器一样，不会返回header。但是你可以通过传入 return_header=True 参数来得到header，定制的header会在序列化的数据外层:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s.dumps(<span class="number">0</span>, header_fields=&#123;<span class="string">'v'</span>: <span class="number">1</span>&#125;)</span><br><span class="line"><span class="string">'eyJhbGciOiJIUzI1NiIsInYiOjF9.MA.wT-RZI9YU06R919VBdAfTLn82_iIQD70J_j-3F4z_aM'</span></span><br><span class="line"></span><br><span class="line">s.loads(<span class="string">'eyJhbGciOiJIUzI1NiIsInYiOjF9.MA.wT-RZI9YU06R919VBdAfTLn82_iIQD70J_j-3F4z_aM'</span>, return_header=<span class="keyword">True</span>)</span><br><span class="line">(<span class="number">0</span>, &#123;<span class="string">u'alg'</span>: <span class="string">u'HS256'</span>, <span class="string">u'v'</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>itsdangerous目前只提供HMAC SHA的派生算法以及不使用算法，不支持基于ECC的算法。header中的算法将与序列化器中的进行核对，如果不匹配，将引发 BadSignature 异常。</p>
+<h2 id="7-盐"><a href="#7-盐" class="headerlink" title="7. 盐"></a>7. 盐</h2><p>所有的类都接受一个盐的参数。这个名字可能会误导你，因为通常你会认为，密码学中的盐会是和被签名的字符串存储在一起的东西，用来防止彩虹表查找，这种盐是公开的。</p>
+<p>与Django中的原始实现类似，itsdangerous中的盐，是为了一个截然不同的目的而产生的。你可以将它视为成命名空间。就算你泄露了它，也不是很严重的问题，因为没有密钥的话，它对攻击者没什么帮助。</p>
+<p>假设你想签名两个链接。你的系统有个激活链接，用来激活一个用户账户，并且你有一个升级链接，可以让一个用户账户升级为付费用户，这两个链接使用email发送。在这两种情况下，如果你签名的都是用户ID，那么该用户可以在激活账户和升级账户时，复用URL的可变部分。现在你可以在你签名的地方加上更多信息（如升级或激活的意图），但是你也可以用不同的盐：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s1 = URLSafeSerializer(<span class="string">'secret'</span>, salt=<span class="string">'activate-salt'</span>)</span><br><span class="line">s1.dumps(<span class="number">42</span>)</span><br><span class="line"><span class="string">'NDI.kubVFOOugP5PAIfEqLJbXQbfTxs'</span></span><br><span class="line"></span><br><span class="line">s2 = URLSafeSerializer(<span class="string">'secret-key'</span>, salt=<span class="string">'upgrade-salt'</span>)</span><br><span class="line">s2.dumps(<span class="number">42</span>)</span><br><span class="line"><span class="string">'NDI.7lx-N1P-z2veJ7nT1_2bnTkjGTE'</span></span><br><span class="line"></span><br><span class="line">s2.loads(s1.dumps(<span class="number">42</span>))</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">itsdangerous.BadSignature: Signature <span class="string">"kubVFOOugP5PAIfEqLJbXQbfTxs"</span> does <span class="keyword">not</span> match</span><br></pre></td></tr></table></figure>
+<p>只有使用相同盐的序列化器才能成功把值加载出来：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s2.loads(s2.dumps(<span class="number">42</span>))</span><br><span class="line"><span class="number">42</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-对失败的响应"><a href="#8-对失败的响应" class="headerlink" title="8. 对失败的响应"></a>8. 对失败的响应</h2><p>从itsdangerous 0.14版本开始，异常会有一些有用的属性，可以允许你在签名检查失败时，检查你的数据。这里必须极其小心，因为这个时候，你知道有某人修改了你的数据。但这可能对你debug很有帮助。</p>
+<p>示例用法:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> URLSafeSerializer, BadSignature, BadData</span><br><span class="line">s = URLSafeSerializer(<span class="string">'secret-key'</span>)</span><br><span class="line">decoded_payload = <span class="keyword">None</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    decoded_payload = s.loads(data)</span><br><span class="line">    <span class="comment"># This payload is decoded and safe</span></span><br><span class="line"><span class="keyword">except</span> BadSignature, e:</span><br><span class="line">    encoded_payload = e.payload</span><br><span class="line">    <span class="keyword">if</span> encoded_payload <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            decoded_payload = s.load_payload(encoded_payload)</span><br><span class="line">        <span class="keyword">except</span> BadData:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="comment"># 这里的数据可以解码出来，但不是安全的，因为有某人改动了签名。</span></span><br><span class="line">        <span class="comment"># 解码步骤(load_payload)是显式的，因为将数据反序列化可能是不安全的</span></span><br><span class="line">        <span class="comment">#（请设想被解码的不是json,而是pickle）</span></span><br></pre></td></tr></table></figure>
+<p>如果你不想检查到底是哪里出错了，你也可以使用不安全的加载方式:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itsdangerous <span class="keyword">import</span> URLSafeSerializer</span><br><span class="line">s = URLSafeSerializer(<span class="string">'secret-key'</span>)</span><br><span class="line">sig_okay, payload = s.loads_unsafe(data)</span><br></pre></td></tr></table></figure>
+<p>返回的元组中第一项是一个布尔值，表明了签名是否是正确的。</p>
+<h2 id="9-Python-3-提示"><a href="#9-Python-3-提示" class="headerlink" title="9. Python 3 提示"></a>9. Python 3 提示</h2><p>在Python 3中，itsdangerous的接口在一开始可能让人困扰。由于它封装在内部的序列化器，函数返回值不一定是unicode字符串还是字节对象。内置的签名器总是基于字节的。</p>
+<p>这是为了允许模块操作不同的序列化器，独立于它们的实现方式。模块通过执行一个空对象的序列化，来决定使用哪种序列化器。</p>
+<h2 id="10-It’s-Dangerous-的升级日志"><a href="#10-It’s-Dangerous-的升级日志" class="headerlink" title="10. It’s Dangerous 的升级日志"></a>10. It’s Dangerous 的升级日志</h2><p><a href="http://pythonhosted.org/itsdangerous/#it-s-dangerous-changelog" target="_blank" rel="noopener">直接看英文版本</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/" target="_blank" rel="external">http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/&title=《python 库学习之 itsdangerous》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/&title=《python 库学习之 itsdangerous》 — 刀刀亮的博客&source=这是原始主页" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 库学习之 itsdangerous》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/环境搭建/2016/03/14/环境搭建-2016-03-14-CentOS6-5升级git/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">centos 6.5 升级git</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/Python学习/2016/03/11/Python学习-2016-03-11-python作用域学习记录/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python 作用域学习记录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Python学习-2016-03-14-python库学习之itsdangerous" data-title="python 库学习之 itsdangerous" data-url="http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/&title=《python 库学习之 itsdangerous》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/&title=《python 库学习之 itsdangerous》 — 刀刀亮的博客&source=这是原始主页" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 库学习之 itsdangerous》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2016/03/14/Python学习-2016-03-14-python库学习之itsdangerous/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADPUlEQVR42u3a0Y7iMAwF0Pn/n2alfVpph3BtF4ma06cKSpKTSuOxnZ+f+Hr8vX6K1+OfKxnzcbz+/9V5/AsubGxs7Juwe5M9++2zBSWLy5H5M0+3BhsbG3sd+xxg8uEmW3bemupcL4zY2NjYX8k+h73zk8lyJy8AGxsbGzufrBdarnr+vK3Y2NjY38xOAkOyEb3kpLf1508uq6VhY2Njfzy72uj95Ps39rexsbGxP5L9KF690SZhMn8NBQU2Njb2InZe0M8Tgx6gWu6vJieFvjE2Njb2rdhnXn5Apzrm5PnqJkbvGRsbG/vm7HnwOCcGyVx5cEruX1iwsbGx17HzYs1VtfdqWX9ebCrkXtjY2Ni3YvdKM9cevjmnKMm3zc+xsbGxV7Afg6sXC/LmbpKo9FoI2NjY2PvYeakoTwx6RZ9ealT+BBsbG3spu9dwzYtQ1RJStT9bWBU2Njb2Ova1bYBewOuV+5M1/LIqbGxs7NXs3sR5KJqXk6rlsKg9gI2NjX1bdl6U6ZWEqilN/m2vdYGNjY29j523bPPDNPNtmrQiok3BxsbGXsfu/SufJxLJJvbYzYM72NjY2IvYzR+02sC9xkDSeMjXU1gcNjY29m3ZvfJQfp+nOlVkfvwIGxsbexO7WkLqhaV5Waoarl48iY2Njb2OXR1ovpRCwlAMkFEJDBsbG3sRO2/HVg/0XJXYzGtBT8fExsbGXsFO/ugnpEmZvrfp+Ub8co+NjY29mv1sykkB6N2HNZOWwIsAho2NjX1b9rzEP1lu3pqtNnR7rQhsbGzsO7Lzya5NIapvIJmlkEphY2NjL2LP/9GfhL08UPXaAy9CHTY2NvYK9qTEXz2aM2ktzH+LjY2NvZvdO0ZznjJJG5KkoldIehFQsbGxsdexqxP3NihJGHrlpySkRXkPNjY29g3Z72v05vhCQX9wVKi5BdjY2Ng3Yfeapnn/IUlaJm2D3pqxsbGx97HnLdVqMlBt684DW6FJgI2Njb2UfZ4garIO0pjq7FFFDRsbG/vr2Xl1qlo8ylOLZs0MGxsbex07P1iTpwS9RGJyDLQwMjY2NvYidq/RW00tqsu66sjmxf1tbGxs7M9i/wETiOhMtS2UAQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

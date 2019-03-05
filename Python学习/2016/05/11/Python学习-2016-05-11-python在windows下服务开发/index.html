@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>python 在 windows 下的服务开发 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="作者：daodaoliang 版本：0.0.1 邮箱：daodaoliang@yeah.net">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 在 windows 下的服务开发">
+<meta property="og:url" content="http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="作者：daodaoliang 版本：0.0.1 邮箱：daodaoliang@yeah.net">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/python学习/project_map.png">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 在 windows 下的服务开发">
+<meta name="twitter:description" content="作者：daodaoliang 版本：0.0.1 邮箱：daodaoliang@yeah.net">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/python学习/project_map.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">python 在 windows 下的服务开发</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">python 在 windows 下的服务开发</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-05-10T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-05-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-开发环境的准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 开发环境的准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-项目工程文件布局"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 项目工程文件布局</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-服务文件源码"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 服务文件源码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-服务的安装和启动"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 服务的安装和启动</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-安装服务"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">4.1 安装服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-启动服务"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">4.2 启动服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-重启服务"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">4.3 重启服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-关闭服务"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">4.4 关闭服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-5-卸载服务"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">4.5 卸载服务</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-py2exe-打包程序"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. py2exe 打包程序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-用innosetup-进行安装包的打包"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 用innosetup 进行安装包的打包</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-Python学习-2016-05-11-python在windows下服务开发" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python 在 windows 下的服务开发</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-05-11 00:00:00" datetime="2016-05-10T16:00:00.000Z" itemprop="datePublished">2016-05-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<pre><code>作者：daodaoliang
+版本：0.0.1
+邮箱：daodaoliang@yeah.net
+</code></pre><a id="more"></a>
+<p>[TOC]</p>
+<p><a href="/res/download/windows下python服务开发.pdf">离线版本文档</a></p>
+<h2 id="1-开发环境的准备"><a href="#1-开发环境的准备" class="headerlink" title="1 开发环境的准备"></a>1 开发环境的准备</h2><ul>
+<li>首先要正确的安装 <code>python</code> 请<a href="https://www.python.org/downloads/" target="_blank" rel="noopener">点击我</a>完成所需进行安装；</li>
+<li>然后安装 <code>pywin32</code> 请<a href="https://sourceforge.net/projects/pywin32/files/pywin32/" target="_blank" rel="noopener">点击我</a>完成所需安装；</li>
+<li>最后安装 <code>py2exe</code> 请<a href="https://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/" target="_blank" rel="noopener">点击我</a> 完成所需安装；</li>
+</ul>
+<p>完成上述操作后基本上就完成了服务环境的搭建了，接下来就是编写服务程序并打包发布了；</p>
+<h2 id="2-项目工程文件布局"><a href="#2-项目工程文件布局" class="headerlink" title="2. 项目工程文件布局"></a>2. 项目工程文件布局</h2><ul>
+<li><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/python学习/project_map.png" alt="pro_map" title="">
+                </div>
+                <div class="image-caption">pro_map</div>
+            </figure>
+</li>
+</ul>
+<h2 id="3-服务文件源码"><a href="#3-服务文件源码" class="headerlink" title="3. 服务文件源码"></a>3. 服务文件源码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> win32service</span><br><span class="line"><span class="keyword">import</span> win32event</span><br><span class="line"><span class="keyword">import</span> win32serviceutil</span><br><span class="line"><span class="keyword">import</span> servicemanager</span><br><span class="line"><span class="keyword">import</span> winerror</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyServer</span><span class="params">(win32serviceutil.ServiceFramework)</span>:</span></span><br><span class="line"></span><br><span class="line">    _svc_name_ = <span class="string">"sync_vip"</span></span><br><span class="line">    _svc_display_name_ = <span class="string">"sync_vip"</span></span><br><span class="line">    _svc_description_ = <span class="string">"daodaoliang@yeah.net"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, args)</span>:</span></span><br><span class="line">        win32serviceutil.ServiceFramework.__init__(self, args)</span><br><span class="line">        self.hWaitStop = win32event.CreateEvent(<span class="keyword">None</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">None</span>)</span><br><span class="line">        self.isAlive = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SvcStop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 先告诉SCM停止这个过程</span></span><br><span class="line">        self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)</span><br><span class="line">        <span class="comment"># 设置事件</span></span><br><span class="line">        win32event.SetEvent(self.hWaitStop)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SvcDoRun</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">import</span> time</span><br><span class="line">        <span class="keyword">import</span> win32evtlogutil</span><br><span class="line">        win32evtlogutil.ReportEvent(self._svc_name_, servicemanager.PYS_SERVICE_STARTED, <span class="number">0</span>,</span><br><span class="line">                                    servicemanager.EVENTLOG_INFORMATION_TYPE, (self._svc_name_, <span class="string">''</span>))</span><br><span class="line">        <span class="keyword">while</span> self.isAlive:</span><br><span class="line">			print(<span class="string">'你的业务逻辑'</span>)</span><br><span class="line">        win32evtlogutil.ReportEvent(self._svc_name_, servicemanager.PYS_SERVICE_STOPPED, <span class="number">0</span>,</span><br><span class="line">                                    servicemanager.EVENTLOG_INFORMATION_TYPE, (self._svc_name_, <span class="string">''</span>))</span><br><span class="line">        self.ReportServiceStatus(win32service.SERVICE_STOPPED)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">import</span> os</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            evtsrc_dll = os.path.abspath(servicemanager.__file__)</span><br><span class="line">            servicemanager.PrepareToHostSingle(MyServer)</span><br><span class="line">            servicemanager.Initialize(<span class="string">'MyServer'</span>, evtsrc_dll)</span><br><span class="line">            servicemanager.StartServiceCtrlDispatcher()</span><br><span class="line">        <span class="keyword">except</span> win32service.error, details:</span><br><span class="line">            <span class="keyword">if</span> details[<span class="number">0</span>] == winerror.ERROR_FAILED_SERVICE_CONTROLLER_CONNECT:</span><br><span class="line">                win32serviceutil.usage()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        win32serviceutil.HandleCommandLine(MyServer)</span><br></pre></td></tr></table></figure>
+<h2 id="4-服务的安装和启动"><a href="#4-服务的安装和启动" class="headerlink" title="4. 服务的安装和启动"></a>4. 服务的安装和启动</h2><p>在完成上述的编写后，其实服务程序就已经可以运行了，运行方式如下：</p>
+<h3 id="4-1-安装服务"><a href="#4-1-安装服务" class="headerlink" title="4.1 安装服务"></a>4.1 安装服务</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_server.py install</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-启动服务"><a href="#4-2-启动服务" class="headerlink" title="4.2 启动服务"></a>4.2 启动服务</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_server.py start</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-重启服务"><a href="#4-3-重启服务" class="headerlink" title="4.3 重启服务"></a>4.3 重启服务</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_server.py restart</span><br></pre></td></tr></table></figure>
+<h3 id="4-4-关闭服务"><a href="#4-4-关闭服务" class="headerlink" title="4.4 关闭服务"></a>4.4 关闭服务</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_server.py stop</span><br></pre></td></tr></table></figure>
+<h3 id="4-5-卸载服务"><a href="#4-5-卸载服务" class="headerlink" title="4.5 卸载服务"></a>4.5 卸载服务</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_server.py remove</span><br></pre></td></tr></table></figure>
+<p><strong><em>防坑提示：</em></strong> 一定要以管理员权限运行该命令，或者在管理员账号下运行，不然会运行失败！</p>
+<h2 id="5-py2exe-打包程序"><a href="#5-py2exe-打包程序" class="headerlink" title="5. py2exe 打包程序"></a>5. py2exe 打包程序</h2><p>setup.py源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> distutils.core <span class="keyword">import</span> setup</span><br><span class="line"><span class="keyword">import</span> py2exe</span><br><span class="line"></span><br><span class="line">setup(console=[<span class="string">"sync_vip.py"</span>],</span><br><span class="line"></span><br><span class="line">      version=<span class="string">"0.0.2"</span>,</span><br><span class="line"></span><br><span class="line">      name=<span class="string">"my_server"</span>,</span><br><span class="line"></span><br><span class="line">      description=<span class="string">"daodaoliang@yeah.net"</span>, requires=[<span class="string">'PySQLPool'</span>]</span><br><span class="line"></span><br><span class="line">      )</span><br></pre></td></tr></table></figure>
+<p>然后用终端进入setup.py 所在的目录执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_server.py py2exe</span><br></pre></td></tr></table></figure>
+<p>执行完毕后会产生<code>build</code> 和 <code>dist</code> 文件夹，其中 <code>dist</code> 里面的内容就是待发布的文件；</p>
+<h2 id="6-用innosetup-进行安装包的打包"><a href="#6-用innosetup-进行安装包的打包" class="headerlink" title="6. 用innosetup 进行安装包的打包"></a>6. 用innosetup 进行安装包的打包</h2><p>自行百度去吧，这个很简单；</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/" target="_blank" rel="external">http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/&title=《python 在 windows 下的服务开发》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/&title=《python 在 windows 下的服务开发》 — 刀刀亮的博客&source=
+作者：daodaoliang
+版本：0.0.1
+邮箱：daodaoliang@yeah.net
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 在 windows 下的服务开发》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">mysql权限说明</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">josn 和 jsonp (转载)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Python学习-2016-05-11-python在windows下服务开发" data-title="python 在 windows 下的服务开发" data-url="http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/&title=《python 在 windows 下的服务开发》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/&title=《python 在 windows 下的服务开发》 — 刀刀亮的博客&source=
+作者：daodaoliang
+版本：0.0.1
+邮箱：daodaoliang@yeah.net
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 在 windows 下的服务开发》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADPklEQVR42u3ay27bQBAEQP//TztATgEcWt0zkiGuSydBfpBFA+nM9H58xK/Pv6+v768++ffzrz979cn3v/nqO6+u/oQXNjY29k3Yn9++rm43/23tFa9I7X0+uBNsbGzs49htaCVBlYdQG3vtfWJjY2Nj59HSDhhtUOWBh42NjY09W+i0Q0gSeHloYWNjY/9mdhsMSUTlK57ZIumHdmnY2NjYb8/eFL3v9v6H+m1sbGzst2Fv1jfJWj8ZPzYhN7x/bGxs7IPYbRGb33oLbh/f7IhnvTPDxsbGvgk7Way/onDNS4K2JC7GFWxsbOybs5OlfL6ZaevetgZuR53LK2JjY2MfxM7j4Vnla3tUKAmqPN6wsbGxz2NvQqIdPzbjSnvQ8yXFADY2NvZbsvPlTruC31cIs3AqQhEbGxv7IHa7dq9XNnEUtUurJ7fc2NjY2Ddk56ui565+ZgVt3V1ffSc2Njb2cez8n/7ZuJJv5mcVbxtj2NjY2Cexk1X+rAZYLXpGR3xm94CNjY19BruNnyTGNlXuZvgphiJsbGzsI9jtYZd8XMmXPrN6YHYP/9mlYWNjYx/BTiqB2cppc1xy9tWoSMDGxsY+jp0vbjbFcB4/7fv2QWBjY2OfxE6GgfbCrysS2keMjY2N/RvY+fKoXQ+1h3vyYz2z5Vfdh2BjY2Pflr1/EO3NzRZSq0M82NjY2AexZ8ujdrnTzkazaiH5M2BjY2Ofyp79ujyu8keZjzdROH2Px8bGxj6I3Vak+8M9mzKgRUY/i42NjX1zdjJsbP7rnzymWW3QXhEbGxv7PHayTN9cYLaE2g8tDz7HxsbGPog9W9DkFW8eP+1gkw8qDx4cNjY29s3ZmxVSWyo863hQOywVuY2NjY19Q3aRb4vyNakBVp1GfJ8PchsbGxv7huzP8tUGTLvumU1R+VeLJhkbGxv7Juw2BvIjPpsyID/E0xYY2NjY2Key89CqO4d1zDyrDK7TGxsbG/uG7HxIaCuB/QMapm4SYNjY2Ni/kt0GyaxyeEV8YmNjY2PPhoc8Wl79aLCxsbHPZrdLpU2tOyuP87VRNAJhY2NjH8Rui97Z0qeNwFkx/MJ+GxsbG/sd2X8AHiQ7TsBUwYwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

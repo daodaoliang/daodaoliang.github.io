@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>crtmpserver配置文件说明 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="配置文件说明配置文件实际上是一个Lua脚本，它包含至少一个configuration的对象，从而为程序提供灵活的扩展和定制功能。除了configuration对象外，还可以有函数，Lua库等。 主结构12345678910111213configuration=&amp;#123;  daemon=false,  pathSeparator=&quot;/&quot;,  logAppenders=  &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="crtmpserver配置文件说明">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="配置文件说明配置文件实际上是一个Lua脚本，它包含至少一个configuration的对象，从而为程序提供灵活的扩展和定制功能。除了configuration对象外，还可以有函数，Lua库等。 主结构12345678910111213configuration=&amp;#123;  daemon=false,  pathSeparator=&quot;/&quot;,  logAppenders=  &amp;#123;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="crtmpserver配置文件说明">
+<meta name="twitter:description" content="配置文件说明配置文件实际上是一个Lua脚本，它包含至少一个configuration的对象，从而为程序提供灵活的扩展和定制功能。除了configuration对象外，还可以有函数，Lua库等。 主结构12345678910111213configuration=&amp;#123;  daemon=false,  pathSeparator=&quot;/&quot;,  logAppenders=  &amp;#123;">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">crtmpserver配置文件说明</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">crtmpserver配置文件说明</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-27T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置文件说明"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置文件说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主结构"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">主结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#日志追加器"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">日志追加器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">应用</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2015-01-28-crtmpserver配置文件说明" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">crtmpserver配置文件说明</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-28 00:00:00" datetime="2015-01-27T16:00:00.000Z" itemprop="datePublished">2015-01-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="配置文件说明"><a href="#配置文件说明" class="headerlink" title="配置文件说明"></a><strong><em>配置文件说明</em></strong></h2><p>配置文件实际上是一个Lua脚本，它包含至少一个configuration的对象，从而为程序提供灵活的扩展和定制功能。除了configuration对象外，还可以有函数，Lua库等。</p>
+<h3 id="主结构"><a href="#主结构" class="headerlink" title="主结构"></a><strong><em>主结构</em></strong></h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">configuration=</span><br><span class="line">&#123;</span><br><span class="line">  daemon=<span class="literal">false</span>,</span><br><span class="line">  pathSeparator=<span class="string">"/"</span>,</span><br><span class="line">  logAppenders=</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">-- content removed for clarity</span></span><br><span class="line">  &#125;,</span><br><span class="line">  applications=</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">-- content removed for clarity</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">mandatory</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">daemon</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">true  表示 服务以后台方式启动;false 表示 服务以控制台模式启动(以用于开发);</td>
+</tr>
+<tr>
+<td style="text-align:center">pathSeparator</td>
+<td style="text-align:center">string(1)</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">用来分隔路径; 例如，在UNIX-like是 /, Windows是\;</td>
+</tr>
+<tr>
+<td style="text-align:center">logAppenders</td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">配置日志追加的容器</td>
+</tr>
+<tr>
+<td style="text-align:center">applications</td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">配置加载各种应用的容器</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>服务启动时，将按顺序执行下列操作:</em></strong></p>
+<ul>
+<li>配置文件加载后，首先做的就是对配置文件进行校验，如果配置文件有错误，将会有错误提示并停止启动，可进行修改后再启动;</li>
+<li>读取 daemon 值，判断服务是以后台方式启动还是以控制台方式启动;</li>
+<li>读取日志追加器，用来配置日志记录并启动到运行状态，依据日志追加器，可以看到更多的日志信息;</li>
+<li>最后的应用加载，只到这一步完成后，服务和应用才在线，并准备就绪;</li>
+</ul>
+<h3 id="日志追加器"><a href="#日志追加器" class="headerlink" title="日志追加器"></a><strong><em>日志追加器</em></strong></h3><p>这部分包含了一个日志追加器的列表。整个日志追加器的添加是在加载时配置，依据日志级别，追加器可以选择是否有日志消息输出到指定目的处；</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">logAppenders=</span><br><span class="line">&#123;</span><br><span class="line">  &#123;</span><br><span class="line">    name=<span class="string">"console appender"</span>,</span><br><span class="line">    <span class="built_in">type</span>=<span class="string">"coloredConsole"</span>,</span><br><span class="line">    level=<span class="number">6</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name=<span class="string">"file appender"</span>,</span><br><span class="line">    <span class="built_in">type</span>=<span class="string">"file"</span>,</span><br><span class="line">    level=<span class="number">6</span>,</span><br><span class="line">    fileName=<span class="string">"/tmp/crtmpserver.log"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p><strong><em>logAppenders structure</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">mandatory</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">追加器的名字.</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">追加器的类型可以是控制台，带颜色控制台或文件;控制台和带颜色控制台都会将日志消息输出到控制台，不同之处在于带颜色控制台会依据日志级别进行颜色标记；文件类型则会将所有消息输出到指定的文件；</td>
+</tr>
+<tr>
+<td style="text-align:center">level</td>
+<td style="text-align:center">number</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">日志的级别可见下表中的级别定义；\n只有小于或等于这个级别的日志消息会被记录，高于这个级别则都被丢弃；例如:级别为0时，只记录 FATAL 消息；级别为3时，只记录 FATAL, ERROR, WARNING, INFO 消息；</td>
+</tr>
+<tr>
+<td style="text-align:center">fileName</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">如果追加器类型为文件，则在此处指定日志文件和路径</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>Log levels</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">FATAL</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">ERROR</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">WARNING</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">INFO</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">DEBUG</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">FINE</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">FINEST</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>PS</em></strong>: 当使用后台模式时，所有的控制台追加消息将会被忽略。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a><strong><em>应用</em></strong></h3><p>这部分用来配置各种应用，并设置这些应用的属性；每个应用的属性都对应了这个应用的指定功能；</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">applications=</span><br><span class="line">&#123;</span><br><span class="line">  rootDirectory=<span class="string">"applications"</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">-- settings for application 1</span></span><br><span class="line">    <span class="comment">-- content removed for clarity</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">-- settings for application 2</span></span><br><span class="line">    <span class="comment">-- content removed for clarity</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">-- settings for application 3</span></span><br><span class="line">    <span class="comment">-- content removed for clarity</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>applications structure</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">mandatory</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rootDirectory</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">这个目录包含了应用的子目录；如果路径以 / 或 \ 开始， 则视其为绝对路径，否则视为启动服务时所在的相对路径；</td>
+</tr>
+</tbody>
+</table>
+<p>rootDirectory 之后，是应用的集合；每个应用都定义了一个有特定属性的对象；细节如下所示；</p>
+<p><strong><em>应用定义</em></strong></p>
+<p>这些目录用来定义应用.自从790版本后，添加了一新的功能：mediaStorage; 这个功能能使应用可以有多个mediaFolder，并且可以将.seek/.meta文件和媒体文件分开存储在不同的文件夹中；</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  name=<span class="string">"flvplayback"</span>,</span><br><span class="line">  protocol=<span class="string">"dynamiclinklibrary"</span>,</span><br><span class="line">  description=<span class="string">"FLV Playback Sample"</span>,</span><br><span class="line">  default=<span class="literal">false</span>,</span><br><span class="line">  validateHandshake=<span class="literal">true</span>,</span><br><span class="line">  enableCheckBandwidth=<span class="literal">true</span>,</span><br><span class="line">  <span class="comment">-- this settings are now part of mediaStorage setting</span></span><br><span class="line">  <span class="comment">-- keyframeSeek=true,</span></span><br><span class="line">  <span class="comment">-- seekGranularity=1.5,</span></span><br><span class="line">  <span class="comment">-- clientSideBuffer=12,</span></span><br><span class="line">  <span class="comment">-- generateMetaFiles=true,</span></span><br><span class="line">  <span class="comment">-- renameBadFiles=true,</span></span><br><span class="line">  aliases=</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"simpleLive"</span>,</span><br><span class="line">    <span class="string">"vod"</span>,</span><br><span class="line">    <span class="string">"live"</span>,</span><br><span class="line">    <span class="string">"WeeklyQuest"</span>,</span><br><span class="line">    <span class="string">"SOSample"</span>,</span><br><span class="line">    <span class="string">"oflaDemo"</span>,</span><br><span class="line">    <span class="string">"chat"</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  acceptors = </span><br><span class="line">  &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">-- acceptor 1</span></span><br><span class="line">      <span class="comment">-- content removed for clarity</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">-- acceptor 2</span></span><br><span class="line">      <span class="comment">-- content removed for clarity</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">-- acceptor n</span></span><br><span class="line">      <span class="comment">-- content removed for clarity</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">-- new feature mediaStorage</span></span><br><span class="line">  mediaStorage = &#123;</span><br><span class="line">     namedStorage1=&#123;</span><br><span class="line">      description=<span class="string">"Main storage"</span>,</span><br><span class="line">      mediaFolder=<span class="string">"/usr/main_storage/media"</span>, <span class="comment">-- only this parameter IS MANDATORY</span></span><br><span class="line">      metaFolder=<span class="string">"/usr/main_storage/metadata"</span>, <span class="comment">-- if you have static large file to stream it is good to know that for a file around 500MB </span></span><br><span class="line">                                               <span class="comment">-- it's .seek file has around 16MB; so it would be preffer to designate metafolder into a system</span></span><br><span class="line">                                               <span class="comment">-- partition which has enough space... for no surprises... :)</span></span><br><span class="line">      statsFolder=<span class="string">"/usr/main_storage/statsFolder"</span>,</span><br><span class="line">      enableStats=<span class="literal">true</span>,</span><br><span class="line">      clientSideBuffer=<span class="number">16</span>,</span><br><span class="line">      keyframeSeek=<span class="literal">false</span>, <span class="comment">-- should crtmpdserver DO SEEK ONLY IN key-frame (true/false)? </span></span><br><span class="line">                          <span class="comment">-- very useful to know in situations like play/pause/resume (meaning pause/seek/play)</span></span><br><span class="line">      seekGranularity=<span class="number">1</span>,</span><br><span class="line">      generateMetaFiles=<span class="literal">false</span>,</span><br><span class="line">      renameBadFiles=<span class="literal">false</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">--[[&#123;</span></span><br><span class="line"><span class="comment">      -- here is another example of storage; it does not start with name=&#123;...&#125;</span></span><br><span class="line"><span class="comment">       description="Second storage of same application",</span></span><br><span class="line"><span class="comment">       mediaFolder="/usr/second_storage/media/flv",</span></span><br><span class="line"><span class="comment">       metaFolder="/usr/second_storage/metadata",</span></span><br><span class="line"><span class="comment">       statsFolder="/usr/second_storage/statsFolder",</span></span><br><span class="line"><span class="comment">    &#125;,]]</span><span class="comment">--</span></span><br><span class="line">  &#125;, </span><br><span class="line">  externalStreams = </span><br><span class="line">  &#123;</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">-- stream 1</span></span><br><span class="line">      <span class="comment">-- content removed for clarity</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">-- stream 2</span></span><br><span class="line">      <span class="comment">-- content removed for clarity</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">-- stream n</span></span><br><span class="line">      <span class="comment">-- content removed for clarity</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  authentication=</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">-- content removed for clarity</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>application structure</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">mandatory</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">应用的名称</td>
+</tr>
+<tr>
+<td style="text-align:center">protocol</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">应用的类型值为 dynamiclinklibrary 意即 应用是一个共享库</td>
+</tr>
+<tr>
+<td style="text-align:center">description</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">应用的描述信息</td>
+</tr>
+<tr>
+<td style="text-align:center">default</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">这个标志指定了默认应用；默认应用负责分析连接请求并将连接分配到正确的应用</td>
+</tr>
+<tr>
+<td style="text-align:center">validateHandshake</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">通知服务器在进行下一步前要对客户端的握手进行验证；这是一个可选项，其默认值为真。如果这个值为真 且 握手失败，服务器就放弃这个连接;如果这个值为假，则不会进行强制的握手验证，所有的连接都会被接受；</td>
+</tr>
+<tr>
+<td style="text-align:center">keyframeSeek</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">这个属性指定了流生成器只在关键帧搜索，如果是直播流，则忽略这个值</td>
+</tr>
+<tr>
+<td style="text-align:center">seekGranularity</td>
+<td style="text-align:center">double</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">搜索的精细度，以秒为单位, 值域定义在 0.1 ~ 600; 例如：如果粒度定义为10秒，并期望定位到 t= 2:34; 则实际上是会定位到 t= 2:30. 60秒被认定为完整的电影长度，1秒为电影片断；</td>
+</tr>
+<tr>
+<td style="text-align:center">clientSideBuffer</td>
+<td style="text-align:center">double</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">每个连接在客户端的缓冲秒数，值定义在5 ~ 30 秒；</td>
+</tr>
+<tr>
+<td style="text-align:center">generateMetaFiles</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">在应用启动前生成 seek/meta文件</td>
+</tr>
+<tr>
+<td style="text-align:center">renameBadFiles</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">如果这上值为真且媒体文件是不能被解析的，则媒体文件被重命名为 *.bad，否则这样的文件将不做处理</td>
+</tr>
+<tr>
+<td style="text-align:center">aliases</td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">应用的别名</td>
+</tr>
+<tr>
+<td style="text-align:center">acceptors</td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">接受器保持这个服务并让服务器托管；应用可以有它自己的接受器，但这个是可选的；</td>
+</tr>
+<tr>
+<td style="text-align:center">externalStreams</td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">authentication</td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">mediaFolder</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">当定义了 mediaStorage时，这个域用来指定媒体文件的物理位置；</td>
+</tr>
+<tr>
+<td style="text-align:center">metaFolder</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">指定用来存放 .seek/.meta文件的位置；</td>
+</tr>
+<tr>
+<td style="text-align:center">statsFolder</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">服状态文件的位置</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>acceptor structure</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">key</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">mandatory</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ip</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">服务所在的IP, 0.0.0.0表示所有接口和所有IP;</td>
+</tr>
+<tr>
+<td style="text-align:center">port</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">服务监听的端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">protocol</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">对应 ip:port的服务的协议</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.512Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/&title=《crtmpserver配置文件说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/&title=《crtmpserver配置文件说明》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《crtmpserver配置文件说明》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CentOS6.5安装crtmpserver搭建RTMP流媒体服务器</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/Python学习/2015/01/28/Python学习-2015-01-30-python-CRC32/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python CRC32</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2015-01-28-crtmpserver配置文件说明" data-title="crtmpserver配置文件说明" data-url="http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/&title=《crtmpserver配置文件说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/&title=《crtmpserver配置文件说明》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《crtmpserver配置文件说明》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJ0lEQVR42u3aUXLiMBAEUO5/6ewBUjHdM7CFxfMXBY6lp3yMNa3HI75+RlfyzNkov+9/vOPCxsbGvgl7M8Bf97RPaBcrGeXJk7GxsbGPY18XmOSe5Pucej36NTuaDzY2NjZ2WcbyknO9TNjY2NjY7y5gyTdJS2i2QcLGxsb+ZnYyQL7ZyLcTsyX+r700bGxs7I9n56no539+S76NjY2N/cHs2RGcTSSQb2aS74cHibCxsbEPYrebilngmgNm5XM4f2xsbOzj2PvCMCt4s19nzabHO+ohNjY29gew80nMWlFtoDvrCLWBBzY2NvbZ7OR1vz1A08a3+3A3WlZsbGzsm7M3f1y/9JelaFb2on8SNjY29kHstjXTlpz8/pyXBAn1VgQbGxv7tuw2QM15+2IzG7GIBLCxsbEPZW82IbP6mZe3vIBhY2Njfxs7Lwx5EJuMlRSntkUVBb3Y2NjYx7FzcDLpHDAbfdPAWg2MjY2N/ZHs/C19FtO+9tjN5k5sbGzsU9l5SciP5hRbglGB3Cz9nzswbGxs7NuyNwPsw91Zm2nzGRsbG/sb2K/dcswO4lwv3KYJFeUY2NjY2LdiX/+cR7b54Zv8QE9ObaNfbGxs7PPYryoes8nlC5pvhJ48GRsbG/sg9mzg5NU/WbJNKWpbSNjY2NinsvN2Uts2als/bQNrNue6i4aNjY398ey8nOxjgFUomzeM8qgAGxsb+wh2u0L7gHZz0PNl7S1sbGzsg9jt+3k76bZF1U737fEANjY29k3Y7YYhaSdtti5tmym//7GZNDY2Nvat2Hkx2GxXZqO0CzfMRrCxsbFvyG5j2jxkzePkfAMzC4CxsbGxz2bnJWdWSDaR8Ox68kxsbGzsI9g/5dUuTR4q5+Vtdk9RM7GxsbFvxZ41kmYbj1n7aRNm5IuLjY2NfXd2W7T2xys3qWsS7ta9NGxsbOwj2PnWom3Qb8LgTR1+Mgo2Njb217NzZFIsk5hhf0gUGxsbG/t6KrPClizHJgD482+xsbGxj2PPBs6LXLsEm6IYzQEbGxv7IHYbr7bbjHb58lKXt5+GKTc2Njb2p7P/AfcK7TlZkEJ8AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

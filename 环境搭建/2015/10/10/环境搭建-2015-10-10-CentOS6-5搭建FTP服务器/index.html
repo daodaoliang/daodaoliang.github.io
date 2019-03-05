@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>centos 6.5 搭建ftp 服务器 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="centos 6.5 搭建ftp 服务器">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos 6.5 搭建ftp 服务器">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">centos 6.5 搭建ftp 服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">centos 6.5 搭建ftp 服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-10-09T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-10-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x00-如何快速的搭建简易的资源发布站"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x00 如何快速的搭建简易的资源发布站</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开启简易的python-http服务器"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">开启简易的python http服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开启防火墙的对应端口"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">开启防火墙的对应端口</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x01-知识储备"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x01 知识储备</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2015-10-10-CentOS6-5搭建FTP服务器" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">centos 6.5 搭建ftp 服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-10-10 00:00:00" datetime="2015-10-09T16:00:00.000Z" itemprop="datePublished">2015-10-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<a id="more"></a>
+<h2 id="0x00-如何快速的搭建简易的资源发布站"><a href="#0x00-如何快速的搭建简易的资源发布站" class="headerlink" title="0x00 如何快速的搭建简易的资源发布站"></a>0x00 如何快速的搭建简易的资源发布站</h2><h3 id="开启简易的python-http服务器"><a href="#开启简易的python-http服务器" class="headerlink" title="开启简易的python http服务器"></a>开启简易的python http服务器</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/your_path</span><br><span class="line">python -m SimpleHTTPServer 8000</span><br></pre></td></tr></table></figure>
+<h3 id="开启防火墙的对应端口"><a href="#开启防火墙的对应端口" class="headerlink" title="开启防火墙的对应端口"></a>开启防火墙的对应端口</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure>
+<p>增加对应的端口就好</p>
+<h2 id="0x01-知识储备"><a href="#0x01-知识储备" class="headerlink" title="0x01 知识储备"></a>0x01 知识储备</h2><p><strong>FTP通道解释</strong></p>
+<ul>
+<li>FTP包含了两个通道，一个叫控制通道，一个叫数据通道；<ul>
+<li>控制通道：控制通道是和FTP服务器进行沟通的通道，连接FTP，发送FTP指令都是通过控制通道来完成的。</li>
+<li>数据通道：数据通道是和FTP服务器进行文件传输或者列表的通道。</li>
+</ul>
+</li>
+<li>FTP协议中，控制连接均有客户端发起，而数据连接有两种工作方式：PORT方式和PASV方式</li>
+</ul>
+<p><strong>FTP数据通道的主动被动方式</strong></p>
+<ul>
+<li>PORT模式(主动方式)</li>
+</ul>
+<blockquote>
+<p>FTP 客户端首先和FTP Server的TCP 21端口建立连接，通过这个通道发送命令，客户端需要接收数据的时候在这个通道上发送PORT命令。 PORT命令包含了客户端用什么端口(一个大于1024的端口)接收数据。在传送数据的时候，服务器端通过自己的TCP 20端口发送数据。 FTP server必须和客户端建立一个新的连接用来传送数据。</p>
+</blockquote>
+<ul>
+<li>PASV模式(被动方式)</li>
+</ul>
+<blockquote>
+<p>在建立控制通道的时候和PORT模式类似，当客户端通过这个通道发送PASV 命令的时候，FTP server打开一个位于1024和5000之间的随机端口并且通知客户端在这个端口上传送数据的请求，然后FTP server 将通过这个端口进行数据的传送，这个时候FTP server不再需要建立一个新的和客户端之间的连接传送数据。</p>
+</blockquote>
+<p><strong>vsftpd的配置文件说明</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">文件</th>
+<th style="text-align:center">注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/etc/vsftpd/vsftpd.conf</td>
+<td style="text-align:center">主配置文件</td>
+</tr>
+<tr>
+<td style="text-align:center">/usr/sbin/vsftpd</td>
+<td style="text-align:center">Vsftpd的主程序</td>
+</tr>
+<tr>
+<td style="text-align:center">/etc/rc.d/init.d/vsftpd</td>
+<td style="text-align:center">启动脚本</td>
+</tr>
+<tr>
+<td style="text-align:center">/etc/pam.d/vsftpd</td>
+<td style="text-align:center">PAM认证文件（此文件中file=/etc/vsftpd/ftpusers字段，指明阻止访问的用户来自/etc/vsftpd/ftpusers文件中的用户）</td>
+</tr>
+<tr>
+<td style="text-align:center">/etc/vsftpd/ftpusers</td>
+<td style="text-align:center">禁止使用vsftpd的用户列表文件。记录不允许访问FTP服务器的用户名单，管理员可以把一些对系统安全有威胁的用户账号记录在此文件中，以免用户从FTP登录后获得大于上传下载操作的权利，而对系统造成损坏。（注意：linux-4中此文件在/etc/目录下）</td>
+</tr>
+<tr>
+<td style="text-align:center">/etc/vsftpd/user_list</td>
+<td style="text-align:center">禁止或允许使用vsftpd的用户列表文件。这个文件中指定的用户缺省情况（即在/etc/vsftpd/vsftpd.conf中设置userlist_deny=YES）下也不能访问FTP服务器，在设置了userlist_deny=NO时,仅允许user_list中指定的用户访问FTP服务器。（注意：linux-4中此文件在/etc/目录下）</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/ftp</td>
+<td style="text-align:center">匿名用户主目录；本地用户主目录为：/home/用户主目录，即登录后进入自己家目录</td>
+</tr>
+<tr>
+<td style="text-align:center">/var/ftp/pub</td>
+<td style="text-align:center">匿名用户的下载目录，此目录需赋权根chmod 1777 pub（1为特殊权限，使上载后无法删除）</td>
+</tr>
+<tr>
+<td style="text-align:center">/etc/logrotate.d/vsftpd.log</td>
+<td style="text-align:center">Vsftpd的日志文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主配置文件说明</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment"># 是否允许匿名登录FTP服务器，默认设置为YES允许</span></span><br><span class="line">   <span class="comment"># 用户可使用用户名ftp或anonymous进行ftp登录，口令为用户的E-mail地址。</span></span><br><span class="line">   <span class="comment"># 如不允许匿名访问则设置为NO</span></span><br><span class="line">   anonymous_enable=YES</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 是否允许本地用户(即linux系统中的用户帐号)登录FTP服务器，默认设置为YES允许</span></span><br><span class="line">   <span class="comment"># 本地用户登录后会进入用户主目录，而匿名用户登录后进入匿名用户的下载目录/var/ftp/pub</span></span><br><span class="line">   <span class="comment"># 若只允许匿名用户访问，前面加上#注释掉即可阻止本地用户访问FTP服务器</span></span><br><span class="line">   local_enable=YES</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否允许本地用户对FTP服务器文件具有写权限，默认设置为YES允许</span></span><br><span class="line">   write_enable=YES</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 掩码，本地用户默认掩码为077</span></span><br><span class="line">   <span class="comment"># 你可以设置本地用户的文件掩码为缺省022，也可根据个人喜好将其设置为其他值</span></span><br><span class="line">   <span class="comment">#local_umask=022</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否允许匿名用户上传文件，须将全局的write_enable=YES。默认为YES</span></span><br><span class="line">   <span class="comment">#anon_upload_enable=YES</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 是否允许匿名用户创建新文件夹</span></span><br><span class="line">   <span class="comment">#anon_mkdir_write_enable=YES</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否激活目录欢迎信息功能</span></span><br><span class="line">   <span class="comment"># 当用户用CMD模式首次访问服务器上某个目录时，FTP服务器将显示欢迎信息</span></span><br><span class="line">   <span class="comment"># 默认情况下，欢迎信息是通过该目录下的.message文件获得的</span></span><br><span class="line">   <span class="comment"># 此文件保存自定义的欢迎信息，由用户自己建立</span></span><br><span class="line">   <span class="comment">#dirmessage_enable=YES</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 是否让系统自动维护上传和下载的日志文件</span></span><br><span class="line">   <span class="comment"># 默认情况该日志文件为/var/log/vsftpd.log,也可以通过下面的xferlog_file选项对其进行设定</span></span><br><span class="line">   <span class="comment"># 默认值为NO</span></span><br><span class="line">   xferlog_enable=YES</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make sure PORT transfer connections originate from port 20 (ftp-data).</span></span><br><span class="line">   <span class="comment"># 是否设定FTP服务器将启用FTP数据端口的连接请求</span></span><br><span class="line">   <span class="comment"># ftp-data数据传输，21为连接控制端口</span></span><br><span class="line">   connect_from_port_20=YES</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 设定是否允许改变上传文件的属主，与下面一个设定项配合使用</span></span><br><span class="line">   <span class="comment"># 注意，不推荐使用root用户上传文件</span></span><br><span class="line">   <span class="comment">#chown_uploads=YES</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置想要改变的上传文件的属主，如果需要，则输入一个系统用户名</span></span><br><span class="line">   <span class="comment"># 可以把上传的文件都改成root属主。whoever：任何人</span></span><br><span class="line">   <span class="comment">#chown_username=whoever</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 设定系统维护记录FTP服务器上传和下载情况的日志文件</span></span><br><span class="line">   <span class="comment"># /var/log/vsftpd.log是默认的，也可以另设其它</span></span><br><span class="line">   <span class="comment">#xferlog_file=/var/log/vsftpd.log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否以标准xferlog的格式书写传输日志文件</span></span><br><span class="line">   <span class="comment"># 默认为/var/log/xferlog，也可以通过xferlog_file选项对其进行设定</span></span><br><span class="line">   <span class="comment"># 默认值为NO</span></span><br><span class="line">   <span class="comment">#xferlog_std_format=YES</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 以下是附加配置，添加相应的选项将启用相应的设置</span></span><br><span class="line">   <span class="comment"># 是否生成两个相似的日志文件</span></span><br><span class="line">   <span class="comment"># 默认在/var/log/xferlog和/var/log/vsftpd.log目录下</span></span><br><span class="line">   <span class="comment"># 前者是wu_ftpd类型的传输日志，可以利用标准日志工具对其进行分析；后者是vsftpd类型的日志</span></span><br><span class="line">   <span class="comment">#dual_log_enable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否将原本输出到/var/log/vsftpd.log中的日志，输出到系统日志</span></span><br><span class="line">   <span class="comment">#syslog_enable</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 设置数据传输中断间隔时间，此语句表示空闲的用户会话中断时间为600秒</span></span><br><span class="line">   <span class="comment"># 即当数据传输结束后，用户连接FTP服务器的时间不应超过600秒。可以根据实际情况对该值进行修改</span></span><br><span class="line">   <span class="comment">#idle_session_timeout=600</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置数据连接超时时间，该语句表示数据连接超时时间为120秒，可根据实际情况对其个修改</span></span><br><span class="line">   <span class="comment">#data_connection_timeout=120</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 运行vsftpd需要的非特权系统用户，缺省是nobody</span></span><br><span class="line">   <span class="comment">#nopriv_user=ftpsecure</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否识别异步ABOR请求。</span></span><br><span class="line">   <span class="comment"># 如果FTP client会下达“async ABOR”这个指令时，这个设定才需要启用</span></span><br><span class="line">   <span class="comment"># 而一般此设定并不安全，所以通常将其取消</span></span><br><span class="line">   <span class="comment">#async_abor_enable=YES</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 是否以ASCII方式传输数据。默认情况下，服务器会忽略ASCII方式的请求。</span></span><br><span class="line">   <span class="comment"># 启用此选项将允许服务器以ASCII方式传输数据</span></span><br><span class="line">   <span class="comment"># 不过，这样可能会导致由"SIZE /big/file"方式引起的DoS攻击</span></span><br><span class="line">   <span class="comment">#ascii_upload_enable=YES</span></span><br><span class="line">   <span class="comment">#ascii_download_enable=YES</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录FTP服务器时显示的欢迎信息</span></span><br><span class="line">   <span class="comment"># 如有需要，可在更改目录欢迎信息的目录下创建名为.message的文件，并写入欢迎信息保存后</span></span><br><span class="line">   <span class="comment">#ftpd_banner=Welcome to blah FTP service.</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 黑名单设置。如果很讨厌某些email address，就可以使用此设定来取消他的登录权限</span></span><br><span class="line">   <span class="comment"># 可以将某些特殊的email address抵挡住。</span></span><br><span class="line">   <span class="comment">#deny_email_enable=YES</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当上面的deny_email_enable=YES时，可以利用这个设定项来规定哪些邮件地址不可登录vsftpd服务器</span></span><br><span class="line">   <span class="comment"># 此文件需用户自己创建，一行一个email address即可</span></span><br><span class="line">   <span class="comment">#banned_email_file=/etc/vsftpd/banned_emails</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 用户登录FTP服务器后是否具有访问自己目录以外的其他文件的权限</span></span><br><span class="line">   <span class="comment"># 设置为YES时，用户被锁定在自己的home目录中，vsftpd将在下面chroot_list_file选项值的位置寻找chroot_list文件</span></span><br><span class="line">   <span class="comment"># 必须与下面的设置项配合</span></span><br><span class="line">   <span class="comment">#chroot_list_enable=YES</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 被列入此文件的用户，在登录后将不能切换到自己目录以外的其他目录</span></span><br><span class="line">   <span class="comment"># 从而有利于FTP服务器的安全管理和隐私保护。此文件需自己建立</span></span><br><span class="line">   <span class="comment">#chroot_list_file=/etc/vsftpd/chroot_list</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 是否允许递归查询。默认为关闭，以防止远程用户造成过量的I/O</span></span><br><span class="line">   <span class="comment">#ls_recurse_enable=YES</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否允许监听。</span></span><br><span class="line">   <span class="comment"># 如果设置为YES，则vsftpd将以独立模式运行，由vsftpd自己监听和处理IPv4端口的连接请求</span></span><br><span class="line">   listen=YES</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 设定是否支持IPV6。如要同时监听IPv4和IPv6端口，</span></span><br><span class="line">   <span class="comment"># 则必须运行两套vsftpd，采用两套配置文件</span></span><br><span class="line">   <span class="comment"># 同时确保其中有一个监听选项是被注释掉的</span></span><br><span class="line">   <span class="comment">#listen_ipv6=YES</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置PAM外挂模块提供的认证服务所使用的配置文件名，即/etc/pam.d/vsftpd文件</span></span><br><span class="line">   <span class="comment"># 此文件中file=/etc/vsftpd/ftpusers字段，说明了PAM模块能抵挡的帐号内容来自文件/etc/vsftpd/ftpusers中</span></span><br><span class="line">   <span class="comment">#pam_service_name=vsftpd</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 是否允许ftpusers文件中的用户登录FTP服务器，默认为NO</span></span><br><span class="line">   <span class="comment"># 若此项设为YES，则user_list文件中的用户允许登录FTP服务器</span></span><br><span class="line">   <span class="comment"># 而如果同时设置了userlist_deny=YES，则user_list文件中的用户将不允许登录FTP服务器，甚至连输入密码提示信息都没有</span></span><br><span class="line">   <span class="comment">#userlist_enable=YES/NO</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># 设置是否阻扯user_list文件中的用户登录FTP服务器，默认为YES</span></span><br><span class="line">   <span class="comment">#userlist_deny=YES/NO</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否使用tcp_wrappers作为主机访问控制方式。</span></span><br><span class="line">   <span class="comment"># tcp_wrappers可以实现linux系统中网络服务的基于主机地址的访问控制</span></span><br><span class="line">   <span class="comment"># 在/etc目录中的hosts.allow和hosts.deny两个文件用于设置tcp_wrappers的访问控制</span></span><br><span class="line">   <span class="comment"># 前者设置允许访问记录，后者设置拒绝访问记录。</span></span><br><span class="line">   <span class="comment"># 如想限制某些主机对FTP服务器192.168.57.2的匿名访问，编缉/etc/hosts.allow文件，如在下面增加两行命令：</span></span><br><span class="line">   <span class="comment"># vsftpd:192.168.57.1:DENY 和vsftpd:192.168.57.9:DENY</span></span><br><span class="line">   <span class="comment"># 表明限制IP为192.168.57.1/192.168.57.9主机访问IP为192.168.57.2的FTP服务器</span></span><br><span class="line">   <span class="comment"># 此时FTP服务器虽可以PING通，但无法连接</span></span><br><span class="line">   tcp_wrappers=YES</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.512Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/&title=《centos 6.5 搭建ftp 服务器》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/&title=《centos 6.5 搭建ftp 服务器》 — 刀刀亮的博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《centos 6.5 搭建ftp 服务器》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/开源框架学习/2015/11/04/开源框架学习-2015-11-04-深入研究tornado框架-tornado入门篇/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">深入研究tornado框架---tornado入门</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/linux学习/2015/10/09/linux学习-2015-10-09-后台开发语言比较/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">后台开发语言比较</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2015-10-10-CentOS6-5搭建FTP服务器" data-title="centos 6.5 搭建ftp 服务器" data-url="http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/&title=《centos 6.5 搭建ftp 服务器》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/&title=《centos 6.5 搭建ftp 服务器》 — 刀刀亮的博客&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《centos 6.5 搭建ftp 服务器》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/10/10/环境搭建-2015-10-10-CentOS6-5搭建FTP服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLUlEQVR42u3aQW4bMRAEQP//0w6QUwBDUvfMOtBStScdJHOLPgzYza+v+Pn++zz6/O/z8zuzX30/fX5+5+s3HmxsbOybsPMFHi2WIGcvmlDbzcLGxsY+lZ0MrXws7QfSfsUXRmxsbOyPZCffz5/2WJJsDTY2Njb2ZoDNNu7FgSHYdGxsbGzszZjJo5/nL90OxWTdy7I0bGxs7Ldn74ve9/n8X/ttbGxs7Ddgz2Kg/CiSDK1Z3L9SYGNjYx/ETmKaq6rfWbmbH1HqjcPGxsY+mp3HOptrNDmsPSZFIRc2Njb2B7A3GVW7lQn74uAJGxsb+wh2PpDyQrcddW2en38nytKwsbGxD2IngVEeyu/HWL59yQZhY2Njn83+vQhpdlGy3ZS2YMbGxsY+id3WusmSswNGHjC1RfKqHsDGxsZ+e/Z+gOXbNEvmZ6VCfVkHGxsb++bs2avkh4fhXA2u47SR1ossDRsbG/u27HyY5YHOPgBKhlOOf3gUwcbGxr45uy1K80ogGSrtkJv9/ejfg42NjX0Qe7ZAO7RmEVL7N9t3xsbGxr4jew9r46fNlaCrCmZsbGzsT2PnvE31217T2RTV2NjY2Cexk+J2dqFnNgg3o7G9jYONjY19BrsN4q+aArMCeFZCYGNjY38aex/0tGVtngK1n4sBho2NjX1zdhvo1Jdg4vBoVku08RY2Njb2qewkeZqB91s8O+Q8/IyNjY19EDu/0zIbQnn0n/xqMzjr0hcbGxv7JuxNWdvGRm3B0NYAxRUfbGxs7EPZyZLtAWBzWbPd4uTfg42NjX0e+/mQyGOgBJwfVPKYaXYEwsbGxj6JffH+ja7s5JeBkoEXDU5sbGzs49izkH1zOLkgGNrUzNjY2NjHsfMnH2BJzJS8Yj7GijIYGxsb+yD2cACUR5G2QmgZ+/GGjY2NfXd2Hi3N4v68gs2rhTyiuqAkwMbGxr4JOz8S5HHSBraPloYlATY2NvbR7OfUTTzUjs88VHq4LjY2NvYHsxNA/qvZIWQ2ArGxsbHPZrcHhnz5tn5oh2VeJwyzNGxsbOy3Z1/1WrNAKv/VrCRetd/Y2NjY787+A7XAbfH0TMuuAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

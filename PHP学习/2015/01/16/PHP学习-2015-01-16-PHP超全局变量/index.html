@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>php超全局变量 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="PHP 全局变量-超全局变量PHP 中的许多预定义变量都是”超全局的”,这意味着他们在一个脚本的全部作用域都可用.在函数或方法中无需执行 $variable```,就可以访问他们.1234这些超全局变量是:* ```$GLOBALS  1* ```$_REQUEST  1* ```$_GET  1* ```$_ENV  1* ```$_SESSION   $GLOBAL —引用全局作用域中可用的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php超全局变量">
+<meta property="og:url" content="http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="PHP 全局变量-超全局变量PHP 中的许多预定义变量都是”超全局的”,这意味着他们在一个脚本的全部作用域都可用.在函数或方法中无需执行 $variable```,就可以访问他们.1234这些超全局变量是:* ```$GLOBALS  1* ```$_REQUEST  1* ```$_GET  1* ```$_ENV  1* ```$_SESSION   $GLOBAL —引用全局作用域中可用的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php超全局变量">
+<meta name="twitter:description" content="PHP 全局变量-超全局变量PHP 中的许多预定义变量都是”超全局的”,这意味着他们在一个脚本的全部作用域都可用.在函数或方法中无需执行 $variable```,就可以访问他们.1234这些超全局变量是:* ```$GLOBALS  1* ```$_REQUEST  1* ```$_GET  1* ```$_ENV  1* ```$_SESSION   $GLOBAL —引用全局作用域中可用的">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php超全局变量</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php超全局变量</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-15T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PHP-全局变量-超全局变量"><span class="post-toc-number">1.</span> <span class="post-toc-text">PHP 全局变量-超全局变量</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-PHP学习-2015-01-16-PHP超全局变量" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php超全局变量</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-16 00:00:00" datetime="2015-01-15T16:00:00.000Z" itemprop="datePublished">2015-01-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h3 id="PHP-全局变量-超全局变量"><a href="#PHP-全局变量-超全局变量" class="headerlink" title="PHP 全局变量-超全局变量"></a>PHP 全局变量-超全局变量</h3><p>PHP 中的许多预定义变量都是”超全局的”,这意味着他们在一个脚本的全部作用域都可用.在函数或方法中无需执行 <figure class="highlight plain"><figcaption><span>$variable```,就可以访问他们.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这些超全局变量是:</span><br><span class="line"></span><br><span class="line">* ```$GLOBALS</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```$_REQUEST</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```$_GET</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```$_ENV</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ```$_SESSION</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>$GLOBAL</strong> —引用全局作用域中可用的全部变量</p>
+<figure class="highlight plain"><figcaption><span>这种全局变量用于在PHP脚本中的任意未知访问全局变量(从函数或方法中均可).PHP在名为$GLOBAL[index]的数组中存储了所有的全局变量,变量的名字就是数组的键.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">&lt;?php</span><br><span class="line">$x = 75;</span><br><span class="line">$y = 25;</span><br><span class="line"></span><br><span class="line">function addition()&#123;</span><br><span class="line">	$GLOBALS[&apos;z&apos;] = $GLOBALS[&apos;x&apos;] + $GLOBALS[&apos;y&apos;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addition();</span><br><span class="line">echo $z;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>$_SERVER</strong></p>
+<p>$_SERVER 这种超全局变量保存关于报头,路径和脚本位置的信息.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">元素/代码</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$_SERVER[‘PHP_SELF’]</td>
+<td style="text-align:center">返回当前执行脚本的文件名</td>
+</tr>
+<tr>
+<td style="text-align:center">$_SERVER[‘GATWAY_INTERFACE’]</td>
+<td style="text-align:center">返回服务器使用的CGI规范的版本</td>
+</tr>
+<tr>
+<td style="text-align:center">$_SERVER[‘SERVER_ADDR’]</td>
+<td style="text-align:center">返回当前运行脚本所在服务器的IP地址</td>
+</tr>
+<tr>
+<td style="text-align:center">$_SERVER[‘SERVER_NAME’]</td>
+<td style="text-align:center">返回当前运行脚本所在服务器的主机名（比如　daodaoliang.github.io）</td>
+</tr>
+<tr>
+<td style="text-align:center">$_SERVER[‘SERVER_SOFTWARE’]</td>
+<td style="text-align:center">返回服务器标识字符串(比如Apache/2.2.24)</td>
+</tr>
+<tr>
+<td style="text-align:center">$_SERVER[‘SERVER_PROTOCOL’]</td>
+<td style="text-align:center">返回当前通信协议的名称和版本(例如：”HTTP/1.0”)</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘REQUEST_METHOD’]</td>
+<td style="text-align:center">返回访问页面使用的请求方法(例如POST)</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘REQUEST_TIME’]</td>
+<td style="text-align:center">返回请求开始时间戳例如1575457898</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘QUERY_STRING’]</td>
+<td style="text-align:center">返回查询字符串，如果时通过查询字符串访问此页面</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘HTTP_ACCEPT’]</td>
+<td style="text-align:center">返回来自当前请求的请求头</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘HTTP_ACCEPT_CHARSET’]</td>
+<td style="text-align:center">返回来自当前请求的accept＿charset头(例如 utf-8,ISO-8859-1)</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘HTTP_HOST’]</td>
+<td style="text-align:center">返回当前请求的Host头</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘HTTP_REFERER’]</td>
+<td style="text-align:center">放回当前页面完整的ＵＲＬ(不可靠，因为不是所有用户代理都支持)</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘HTTPS’]</td>
+<td style="text-align:center">是否通过安全HTTP协议查询脚本</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘REMOVE_ADDR’]</td>
+<td style="text-align:center">返回浏览当前页面的用户的IP地址</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘REMOVE_HOST’]</td>
+<td style="text-align:center">返回当前页面的用户的主机名</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘REMOVE_PORT’]</td>
+<td style="text-align:center">返回用户级其上链接到ＷＥＢ服务器所使用的端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘SCRIPT_FILENAME’]</td>
+<td style="text-align:center">当前当前执行脚本的绝对路径</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘SERVER_ADMIN’]</td>
+<td style="text-align:center">该值致命了Apache服务器配置文件中的SERVR_ADMIN参数</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘SERVER_PORT’]</td>
+<td style="text-align:center">返回服务器使用的端口，默认时’80’</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘SERVER_SIGNATURE’]</td>
+<td style="text-align:center">返回服务器版本和虚拟主机名</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘PATH_TRANSLATED’]</td>
+<td style="text-align:center">当前脚本所在文件系统(非文档根目录)的基本路径</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘SCRIPT_NAME’]</td>
+<td style="text-align:center">返回当前脚本的路径</td>
+</tr>
+<tr>
+<td style="text-align:center">$SERVER[‘SCRIPT_URL’]</td>
+<td style="text-align:center">返回当前页面的URL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>_REQUEST</strong></p>
+<p>PHP $＿REQUEST　用于收集HTML 表单提交的数据</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"&lt;?php echo $_SERVER[PHP_SELF];?&gt;"</span>&gt;</span></span><br><span class="line">Name:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"fname"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">$name = $_REQUEST[<span class="string">'fname'</span>];</span></span><br><span class="line"><span class="php"><span class="keyword">echo</span> $name</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/" target="_blank" rel="external">http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/&title=《php超全局变量》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/&title=《php超全局变量》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php超全局变量》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/PHP学习/2015/01/17/PHP学习-2015-01-17-PHP日期函数/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">php时间处理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP表单处理/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">php表单处理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="PHP学习-2015-01-16-PHP超全局变量" data-title="php超全局变量" data-url="http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/&title=《php超全局变量》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/&title=《php超全局变量》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php超全局变量》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/16/PHP学习-2015-01-16-PHP超全局变量/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aQW5bMQwE0Nz/0i0QdFEg8e8MKSUp8LwynPhbTwuRGPHtLX79en99/OTvz1+9f37m87faZw5feHh4eKOlv3o9LyX5brJB+RryNePh4eHd5j0Xgxn1VClKSsjLz/Hw8PC+lZcXjH0DnfwuHh4e3v/C2xePtgDg4eHh/UxeGwQkzfTsr5vfxcPDw/sa3iwa+N73F+/38PDw8Ba36veO9WQNmxX+eQIeHh7eBV4e124a2c2QwWygoU6j8fDw8Ea8PDB9Zu9DinxY9jkgxsPDw7vNS5rgvGC0T2iHDPKNwMPDw7vBa8et8oZ436ZvrsTw8PDwbvDa6/b94tpGPG+sP/kEDw8P7xpvVUOClrqNEma8T97j4eHhXeAlh3V78Z/8/CZKaANfPDw8vHu8Z0AbxW4i2tmWFfkKHh4e3oK3P9bbQpKHxcl2/CP+wMPDw7vAy9PONsY9e8QncXCxi3h4eHgXeMkPHLigKuPj2Rrw8PDwzvLycHY2btVuX/7/0dbg4eHhXeAlQUDegrftcps35602Hh4e3j3eJjZt44bkZmo2rhqVBDw8PLyjvLaRnQ0KJK354fEFPDw8vC/hbRaxiWL3YwpRYcDDw8Nb8/IwIh+QygetTsW4eHh4eF/Jy8tAHgS0V2Xthq6uvvDw8PDWvPyCf3+Fn5eTdlOSwoOHh4d3ijc7cNuoYtZ210f/x+/i4eHhXeDlhaEtA3k7Xiyx3BQ8PDy8G7xNoDDbiPyg3zTleHh4ePd47bG7qjxlw51fyB1A4uHh4ZW82TXYJsLYjBfUY1t4eHh413izK7GkbMyGD46VLjw8PLwfwJstdD/gNRwswMPDw/tWXkLaBMRn4ww8PDy827z9kZ0HB/k2tc10PUCAh4eHN+LNHtGOIMxCijYcGd7y4eHh4aW83/S9QQW7q9dGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

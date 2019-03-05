@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>php运算符说明 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="PHP 算数运算符   运算符 名称 例子 结果     + 加法 $x + $y $x 与 $y 求和   - 减法 $x - $y $x 与 $y 的差值   * 乘法 $x * $y $x 与 $y 的乘积   / 除法 $x / $y $x 与 $y 的商数   % 模数 $X % $y $x 与 $y 的模数    PHP 赋值运算符   赋值 等同于 描述     x = y x =">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php运算符说明">
+<meta property="og:url" content="http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="PHP 算数运算符   运算符 名称 例子 结果     + 加法 $x + $y $x 与 $y 求和   - 减法 $x - $y $x 与 $y 的差值   * 乘法 $x * $y $x 与 $y 的乘积   / 除法 $x / $y $x 与 $y 的商数   % 模数 $X % $y $x 与 $y 的模数    PHP 赋值运算符   赋值 等同于 描述     x = y x =">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.325Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php运算符说明">
+<meta name="twitter:description" content="PHP 算数运算符   运算符 名称 例子 结果     + 加法 $x + $y $x 与 $y 求和   - 减法 $x - $y $x 与 $y 的差值   * 乘法 $x * $y $x 与 $y 的乘积   / 除法 $x / $y $x 与 $y 的商数   % 模数 $X % $y $x 与 $y 的模数    PHP 赋值运算符   赋值 等同于 描述     x = y x =">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php运算符说明</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php运算符说明</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-14T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP-算数运算符"><span class="post-toc-number">1.</span> <span class="post-toc-text">PHP 算数运算符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP-赋值运算符"><span class="post-toc-number">2.</span> <span class="post-toc-text">PHP 赋值运算符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP-字符串运算符"><span class="post-toc-number">3.</span> <span class="post-toc-text">PHP 字符串运算符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP-递增-递减运算符"><span class="post-toc-number">4.</span> <span class="post-toc-text">PHP 递增/递减运算符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP比较运算符"><span class="post-toc-number">5.</span> <span class="post-toc-text">PHP比较运算符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP-逻辑运算符"><span class="post-toc-number">6.</span> <span class="post-toc-text">PHP 逻辑运算符</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-PHP学习-2015-01-15-PHP运算逻辑符号说明" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php运算符说明</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-15 00:00:00" datetime="2015-01-14T16:00:00.000Z" itemprop="datePublished">2015-01-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="PHP-算数运算符"><a href="#PHP-算数运算符" class="headerlink" title="PHP 算数运算符"></a>PHP 算数运算符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">例子</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">加法</td>
+<td style="text-align:center">$x + $y</td>
+<td style="text-align:center">$x 与 $y 求和</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">减法</td>
+<td style="text-align:center">$x - $y</td>
+<td style="text-align:center">$x 与 $y 的差值</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">乘法</td>
+<td style="text-align:center">$x * $y</td>
+<td style="text-align:center">$x 与 $y 的乘积</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">除法</td>
+<td style="text-align:center">$x / $y</td>
+<td style="text-align:center">$x 与 $y 的商数</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">模数</td>
+<td style="text-align:center">$X % $y</td>
+<td style="text-align:center">$x 与 $y 的模数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PHP-赋值运算符"><a href="#PHP-赋值运算符" class="headerlink" title="PHP 赋值运算符"></a>PHP 赋值运算符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">赋值</th>
+<th style="text-align:center">等同于</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x = y</td>
+<td style="text-align:center">x = y</td>
+<td style="text-align:center">右侧表达式为左侧运算数设置数</td>
+</tr>
+<tr>
+<td style="text-align:center">x += y</td>
+<td style="text-align:center">x = x + y</td>
+<td style="text-align:center">加</td>
+</tr>
+<tr>
+<td style="text-align:center">x -= y</td>
+<td style="text-align:center">x = x - y</td>
+<td style="text-align:center">减</td>
+</tr>
+<tr>
+<td style="text-align:center">x *= y</td>
+<td style="text-align:center">x = x * y</td>
+<td style="text-align:center">乘</td>
+</tr>
+<tr>
+<td style="text-align:center">x /= y</td>
+<td style="text-align:center">x = x / y</td>
+<td style="text-align:center">除</td>
+</tr>
+<tr>
+<td style="text-align:center">x %= y</td>
+<td style="text-align:center">x = x % y</td>
+<td style="text-align:center">模数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PHP-字符串运算符"><a href="#PHP-字符串运算符" class="headerlink" title="PHP 字符串运算符"></a>PHP 字符串运算符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">例子</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">串接</td>
+<td style="text-align:center">$txt1 = “hello”; $txt2 = $txt1.”world”;</td>
+<td style="text-align:center">现在 $txt2 包含 “helloworld”</td>
+</tr>
+<tr>
+<td style="text-align:center">.=</td>
+<td style="text-align:center">串接赋值</td>
+<td style="text-align:center">$txt1 = “hello”; $txt1 .= “world”;</td>
+<td style="text-align:center">现在 $txt1 包含 “helloworld”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PHP-递增-递减运算符"><a href="#PHP-递增-递减运算符" class="headerlink" title="PHP 递增/递减运算符"></a>PHP 递增/递减运算符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">++$x</td>
+<td style="text-align:center">前递增</td>
+<td style="text-align:center">$x 加一递增,然后返回$x</td>
+</tr>
+<tr>
+<td style="text-align:center">$x++</td>
+<td style="text-align:center">后递增</td>
+<td style="text-align:center">返回$x 然后$x 加一递增</td>
+</tr>
+<tr>
+<td style="text-align:center">–$x</td>
+<td style="text-align:center">前递减</td>
+<td style="text-align:center">$x 减一递减 然后返回$x</td>
+</tr>
+<tr>
+<td style="text-align:center">$x–</td>
+<td style="text-align:center">后递减</td>
+<td style="text-align:center">返回$x 然后$x 减一递减</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PHP比较运算符"><a href="#PHP比较运算符" class="headerlink" title="PHP比较运算符"></a>PHP比较运算符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">例子</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:center">等于</td>
+<td style="text-align:center">$x == $y</td>
+<td style="text-align:center">如果 $x 等于 $y 则返回 true</td>
+</tr>
+<tr>
+<td style="text-align:center">===</td>
+<td style="text-align:center">全等(完全相同)</td>
+<td style="text-align:center">$x === $y</td>
+<td style="text-align:center">如果 $x 等于 $y 且他们类型相同则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">不等于</td>
+<td style="text-align:center">$x != $y</td>
+<td style="text-align:center">如果 $x 不等于 $y 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;&gt;</td>
+<td style="text-align:center">不等于</td>
+<td style="text-align:center">$x != $y</td>
+<td style="text-align:center">如果 $x 不等于 $y 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">!==</td>
+<td style="text-align:center">不全等(完全不同)</td>
+<td style="text-align:center">$x !== $y</td>
+<td style="text-align:center">如果$x 不等于 $y 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">大于</td>
+<td style="text-align:center">$x &gt; $y</td>
+<td style="text-align:center">如果 $x 大于 $y 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">小于</td>
+<td style="text-align:center">$x &lt; $y</td>
+<td style="text-align:center">如果 $x 小于 $y 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;=</td>
+<td style="text-align:center">大于等于</td>
+<td style="text-align:center">$x &gt;= $y</td>
+<td style="text-align:center">如果 $x 大于等于 $y 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:center">小于或等</td>
+<td style="text-align:center">$x &lt;= $y</td>
+<td style="text-align:center">如果 $x 小于等于 $y 则返回true</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PHP-逻辑运算符"><a href="#PHP-逻辑运算符" class="headerlink" title="PHP 逻辑运算符"></a>PHP 逻辑运算符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">例子</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">and</td>
+<td style="text-align:center">与</td>
+<td style="text-align:center">$x and $y</td>
+<td style="text-align:center">如果 $x 和 $y 都为true 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">or</td>
+<td style="text-align:center">或</td>
+<td style="text-align:center">$x or $y</td>
+<td style="text-align:center">如果 $x 或者 $y 有一个为true 则返回 true</td>
+</tr>
+<tr>
+<td style="text-align:center">xor</td>
+<td style="text-align:center">异或</td>
+<td style="text-align:center">$x xor $y</td>
+<td style="text-align:center">如果$x和$y仅有一个为true则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;&amp;</td>
+<td style="text-align:center">与</td>
+<td style="text-align:center">$x &amp;&amp; $y</td>
+<td style="text-align:center">如果$x 和 $y 都为true 则返回true</td>
+</tr>
+<tr>
+<td style="text-align:center">!</td>
+<td style="text-align:center">非</td>
+<td style="text-align:center">!$x</td>
+<td style="text-align:center">如果$x不为true则返回true</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.325Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/" target="_blank" rel="external">http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/&title=《php运算符说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/&title=《php运算符说明》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php运算符说明》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP变量说明/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">php变量类型说明</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/Python学习/2015/01/14/Python学习-2015-01-14-python的Twisted框架学习之路之安装/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python twisted模块之安装部署</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="PHP学习-2015-01-15-PHP运算逻辑符号说明" data-title="php运算符说明" data-url="http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/&title=《php运算符说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/&title=《php运算符说明》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php运算符说明》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/15/PHP学习-2015-01-15-PHP运算逻辑符号说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMElEQVR42u3a0W7bQAwEwPz/T6evAVrHu6RbxOzoKbBl6UYCQnB5Hx/x8fnlePT512+Tz3+/zqNz8m9ffGBjY2O/Cfvz2yO5cb7c/Pz92h6dj42NjX2V/eg/fL6gtnbkd0wKXn5lbGxsbOzvF9EWvPz8TVuCjY2Njd3GQ+1SkljqVffCxsbGvspOgptZEZoVvNn1/0qWho2Njf3j2W0M9JP//ivzbWxsbOwfzP4sj7bsJe1BW4T2BzY2NvYl9mZbzGwrz6wItU1OFC1hY2NjH2InZWkW2efhVN47vHa12NjY2DfYs0W05aQtb5v7Ro8YGxsb+wT7+9KyKRuzspQz2rtgY2NjX2XnwdCsPcgfbjtUbjf01O8cGxsb+03YSYw+i2yS8zdD3+8fxJPXho2NjX2anV+03WqTD3fbrT/1tlFsbGzs0+wZb9ZmtAW1fdBR74WNjY395uy8dG1alLwLaGfUm+gKGxsb+wa7HazmRWI2DN4EVcW2HmxsbOxD7DZYb0OiJLTajJbzXz3ZtYSNjY39tuxN3D8bJGyKUH79J1fGxsbGPspOSkXbiuwZsyH0k+KHjY2NfZQd/SBoEtoi17YZswALGxsb+yp7Nl7NN0ruxw9JFDUbNmBjY2NfYm/GpcmooB0n5MjNcAIbGxv7BrttFZJharu9JjlzP4r+QweGjY2NfYLdlqJZ3JMXxbxYbl4ANjY29iV2S5qVtE37kQRVdbCFjY2NfYi9bxLax7QJ9PPw6yM5sLGxsY+yW1Je0vLxcB5ptU3Lw6kINjY29iH27PZ59NOWtHZgkDcq2NjY2JfYRRAz2hO0b2xmIVRRVrGxsbHfnD3bIpMsum1O8pFtGyE9nI1gY2NjH2K/aqz7T1uIzaPExsbGPsH+LI9ZYWujq03kFI2BsbGxsQ+x22KQL2L2+f7Ks/EDNjY29ruz26LVfps/vlnoP1wVNjY29jn2qy5dBPTlMGBTdFf1EBsbG/sce9+EtA9oVlCftDrY2NjY/z27DYPaDZr7LTtPXhs2Njb2OXYbG82Gta8dLefnvGw8gI2Njf0j2XlAMxsVtM1D3pbMRgjY2NjYh9i/AAPPz6s0z+uTAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

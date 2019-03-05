@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>php文件处理 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="PHP 文件处理PHP Open File —- fopen() 说明： fopen 的第一个参数包含被打开的文件名，第二个参数规定打开文件的模式，如果fopen()没能打开指定文件，下面的例子回升呈一段消息： 1234&amp;lt;?php$myfile = fopen(&quot;daodaoliang.txt&quot;,&apos;r&apos;)  or die(&quot;Unable to open file&quot;);fclose($myf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php文件处理">
+<meta property="og:url" content="http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="PHP 文件处理PHP Open File —- fopen() 说明： fopen 的第一个参数包含被打开的文件名，第二个参数规定打开文件的模式，如果fopen()没能打开指定文件，下面的例子回升呈一段消息： 1234&amp;lt;?php$myfile = fopen(&quot;daodaoliang.txt&quot;,&apos;r&apos;)  or die(&quot;Unable to open file&quot;);fclose($myf">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php文件处理">
+<meta name="twitter:description" content="PHP 文件处理PHP Open File —- fopen() 说明： fopen 的第一个参数包含被打开的文件名，第二个参数规定打开文件的模式，如果fopen()没能打开指定文件，下面的例子回升呈一段消息： 1234&amp;lt;?php$myfile = fopen(&quot;daodaoliang.txt&quot;,&apos;r&apos;)  or die(&quot;Unable to open file&quot;);fclose($myf">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php文件处理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php文件处理</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-18T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP-文件处理"><span class="post-toc-number">1.</span> <span class="post-toc-text">PHP 文件处理</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-PHP学习-2015-01-19-PHP文件操作" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php文件处理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-19 00:00:00" datetime="2015-01-18T16:00:00.000Z" itemprop="datePublished">2015-01-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="PHP-文件处理"><a href="#PHP-文件处理" class="headerlink" title="PHP 文件处理"></a>PHP 文件处理</h2><p><strong>PHP Open File —- fopen()</strong></p>
+<p>说明：</p>
+<p><strong><em>fopen</em></strong> 的第一个参数包含被打开的文件名，第二个参数规定打开文件的模式，如果fopen()没能打开指定文件，下面的例子回升呈一段消息：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$myfile = fopen(<span class="string">"daodaoliang.txt"</span>,<span class="string">'r'</span>)  <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Unable to open file"</span>);</span><br><span class="line">fclose($myfile);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>文件打开模式如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模式</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">r</td>
+<td style="text-align:center">打开文件为只读,文件指针在文件的开头开始</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:center">打开文件为只写,删除文件的内容或创建一个新的文件，如果他不存在．文件指针在文件的开头开始</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">打开文件为只写，文件中的现有数据会被保留，文件指针在文件结尾开始，创建新的文件，如果文件不存在</td>
+</tr>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:center">创建新文件为只写，返回false和错误，如果文件已存在</td>
+</tr>
+<tr>
+<td style="text-align:center">r+</td>
+<td style="text-align:center">打开文件为读写方式，文件指针在文件开头开始</td>
+</tr>
+<tr>
+<td style="text-align:center">w+</td>
+<td style="text-align:center">打开文件为读写，删除文件内容或创建新文件，如果它不存在，文件指针在文件开头开始</td>
+</tr>
+<tr>
+<td style="text-align:center">a+</td>
+<td style="text-align:center">打开文件为读写，文件中已有的数据会被保留，文件指针在文件结尾开始，创建新文件，如果他不存在</td>
+</tr>
+<tr>
+<td style="text-align:center">x+</td>
+<td style="text-align:center">创建新文件为读写，返回false和错误．如果文件已存在</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PHP fread()</strong></p>
+<p><strong><em>fread()</em></strong> 函数读取打开的文件</p>
+<p>fread()的第一个参数包含待读取文件的文件名．第二个参数规定待读取的最大字节数．</p>
+<p>示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	fread($myfile,filesize(<span class="string">"daodoaliang.txt"</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>PHP 检查文件结尾</strong></p>
+<p><strong><em>feof()</em></strong> 函数检查是否已达到”end-of-file”(EOF)</p>
+<p>feof()对于遍历未知长度的数据很有用</p>
+<p>示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$myfile=fopen(<span class="string">"daodaoliang.txt"</span>,<span class="string">"r"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Unable to open file!"</span>);</span><br><span class="line"><span class="keyword">while</span>(!feof($myfile))　&#123;</span><br><span class="line">	<span class="keyword">echo</span> fgets($myfile).<span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line">fclose($myfile);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>PHP 文件上传</strong></p>
+<p>通过PHP的全局数组 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第一个参数是表单的 input name,第二个下标可以是&quot;name&quot;,&quot;type&quot;,&quot;size&quot;,&quot;tmp_name&quot;,&quot;error&quot;:</span><br><span class="line"></span><br><span class="line">* $_FILES[&quot;file&quot;][&quot;name&quot;]-被上传文件的名称；</span><br><span class="line">* $_FILES[&quot;file&quot;][&quot;type&quot;]-被上传文件的类型；</span><br><span class="line">* $_FILES[&quot;file&quot;][&quot;size&quot;]-被上传文件的大小．以字节计；</span><br><span class="line">* $_FILES[&quot;file&quot;][&quot;tmp＿name&quot;]-存储在服务器的文件的临时副本名称</span><br><span class="line">* $_FILES[&quot;file&quot;][&quot;error&quot;]-由文件上传导致的错误代码</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">```html</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;form action=&quot;upload_file.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">			&lt;label for=&quot;file&quot;&gt;Filename&lt;/label&gt;</span><br><span class="line">			&lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot; /&gt;</span><br><span class="line">			&lt;br /&gt;</span><br><span class="line">			&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> ((($_FILES[<span class="string">"file"</span>][<span class="string">"type"</span>] == <span class="string">"image/gif"</span>)</span><br><span class="line">	|| ($_FILES[<span class="string">"files"</span>][<span class="string">"type"</span>] == <span class="string">"image/jpeg"</span>)</span><br><span class="line">	|| ($_FILES[<span class="string">"file"</span>][<span class="string">"type"</span>] == <span class="string">"image/pjpeg"</span>))</span><br><span class="line">	&amp;&amp; ($_FILES[<span class="string">"file"</span>][<span class="string">"size"</span>] &lt; <span class="number">20000</span>))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> ($_FILES[<span class="string">"file"</span>][<span class="string">"error"</span>] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"Return Code:"</span>.$_FILES[<span class="string">"file"</span>][<span class="string">"error"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"Upload:"</span>.$_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"Type:"</span>.$_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"Size:"</span>.($_FILES[<span class="string">"file"</span>][<span class="string">"size"</span>] / <span class="number">1024</span>).<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"Temp file:"</span>.$_FILES[<span class="string">"file"</span>][<span class="string">"temp_name"</span>].<span class="string">"&lt;br/&gt;"</span>;</span><br><span class="line">		<span class="keyword">if</span> (file_exists(<span class="string">"upload/"</span>.$_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>]))&#123;</span><br><span class="line">			<span class="keyword">echo</span> $_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>].<span class="string">"already exists."</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			move_upload_file($_FILES[<span class="string">"file"</span>][<span class="string">"tmp_name"</span>],<span class="string">"upload/"</span>.$_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>]);</span><br><span class="line">			<span class="keyword">echo</span> <span class="string">"Store in: "</span>.<span class="string">"upload/"</span>.$_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"Invalid file"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>PHP 文件引用</strong></p>
+<p><strong><em>include</em></strong> 和　<strong><em>require</em></strong></p>
+<ul>
+<li>include 语句引用某个文件并且PHP无法找到它时，脚本会继续执行；</li>
+<li>require 语句引用某个文件并且PHP无法找到它时，脚本会终止运行；</li>
+</ul>
+<p>示例：</p>
+<p>test.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$daodaoliang = <span class="string">"xiaobai"</span>;</span><br><span class="line">$wangxiaowei = <span class="string">"wangxiaowei"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"test.php"</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"daodaoliang:"</span>.$daodaoliang.<span class="string">"wangxiaowei:"</span>.$wangxiaowei;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/" target="_blank" rel="external">http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/&title=《php文件处理》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/&title=《php文件处理》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php文件处理》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP异常处理/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">php异常</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/PHP学习/2015/01/17/PHP学习-2015-01-17-PHP日期函数/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">php时间处理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="PHP学习-2015-01-19-PHP文件操作" data-title="php文件处理" data-url="http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/&title=《php文件处理》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/&title=《php文件处理》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php文件处理》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP文件操作/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQW7DMAwEwP7/0+21QJpkl7RSH8anwElljQqINMWvr/j6frh+33/8zeO3r8d89vt8tNWFh4eHt556zkjuz5asncPT5+Lh4eEd4z17fLtlJ4+chZP2N3h4eHj34SWJ8utFSUJIEhjw8PDw7s9LJjRboNeJNR4eHt49eUkxIpnWvniRf7641oKHh4cX8/JTpPt8PnK+h4eHh7c+VW9LBm3CnafOswsPDw/vBG/TOrAJIbPyRPstHh4e3gnefutPSgxtcSEPJG9KIXh4eHgHeO3BUjLovukqDzlRuMLDw8O7lNceTeWNAsn9WWgplgkPDw/vAK9NnXNkm6wnyzq7g4eHh3ctLw8Ms4an2QjJaNHLAB4eHt4B3qY82m7fsyWbHdHh4eHhfYbXFkyTVLjI6ONntfPHw8PDO8FLCgdtc1VbgGiXtVhEPDw8vGP7cz7QpsTQPvGq8i4eHh7eCV5SGJ2B86lsyrjDdwU8PDy8RTI9K+9uAkN7VFan8nh4eHgHeHkAuHbjTth5AHgzJh4eHt6lvH3amhd/8+x+U4zAw8PDO82r25UW013FrlHbAR4eHt4JXv6S327Z7cF/m2TX/zc8PDy8i3j5y39bqpj97aaF68388fDw8A7wZsf5sykmU9k3e+Hh4eGd483Ko/nh1iZgtEuwikV4eHh4JW9GSkq9eVo8OxjDw8PD+y/eprV0thB528HmWA4PDw/vWt53eW3KE235tT1C++O5eHh4eAd4s+R4dviUtxfMir+rAIOHh4dX8tpgkBQIZqn2plEADw8P7/O8/PB+ttG3m/ssjr3pJsPDw8P7J16S5uZl3Fl5tygB4+Hh4d2Atzk22xcm6qYuPDw8vGO8TTGibWNtR0jKH3VnBB4eHt6C177kJ9tx+5v8fh5a8PDw8A7wfgAqwG67lx2pLQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>python装饰器学习(转载) | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="这是转载原文在这里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python装饰器学习(转载)">
+<meta property="og:url" content="http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="这是转载原文在这里">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python装饰器学习(转载)">
+<meta name="twitter:description" content="这是转载原文在这里">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">python装饰器学习(转载)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">python装饰器学习(转载)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-09-08T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-09-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">引言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于代理模式、装饰模式"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于代理模式、装饰模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python中的代理-装饰"><span class="post-toc-number">3.</span> <span class="post-toc-text">Python中的代理/装饰</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-Python学习-2015-09-09-python装饰器学习-转载" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python装饰器学习(转载)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-09-09 00:00:00" datetime="2015-09-08T16:00:00.000Z" itemprop="datePublished">2015-09-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这是转载原文在<a href="http://segmentfault.com/a/1190000003719779" target="_blank" rel="noopener">这里</a></p>
+<a id="more"></a>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>本文主要梳理了Python decorator的实现思路，解释了为什么Python decorator是现在这个样子。</p>
+<h3 id="关于代理模式、装饰模式"><a href="#关于代理模式、装饰模式" class="headerlink" title="关于代理模式、装饰模式"></a>关于代理模式、装饰模式</h3><p>设计模式中经常听到的代理模式、装饰器模式，这两种叫法实际上是说的同一件事，只是侧重点不同而已。</p>
+<p>例如：(以Java为例)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountProxy</span> <span class="keyword">implements</span> <span class="title">Count</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">private</span> CountImpl countImpl;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">CountProxy</span><span class="params">(CountImpl countImpl)</span></span>&#123;</span><br><span class="line">       	countImpl = countImpl;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queryCount</span><span class="params">()</span></span>&#123;</span><br><span class="line">       	System.out.println(<span class="string">"事务处理之前"</span>);</span><br><span class="line">           <span class="comment">// 调用委托类的方法</span></span><br><span class="line">           countImpl.queryCount();</span><br><span class="line">           System.out.println(<span class="string">"事务处理之后"</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       	System.out.println(<span class="string">"事务处理之前"</span>);</span><br><span class="line">           <span class="comment">// 调用委托类的方法</span></span><br><span class="line">           countImpl.update();</span><br><span class="line">           System.out.println(<span class="string">"事务处理之后"</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>在这个例子中CountProxy是对CountImpl的封装。</strong></p>
+<ul>
+<li><p>使用者通过CountProxy.queryCount()方法调用CountImpl.queryCount()方法被称为代理，即CountProxy是代理类，CountImpl是被代理类。</p>
+</li>
+<li><p>在Countproxy.queryCount()中，可以在CountImpl.queryCount()被调用之前和之后执行一些额外的操作，被称为装饰，即CountProxy被称为装饰类，CountImpl被称为被装饰类。</p>
+</li>
+</ul>
+<p><strong><em>so:</em></strong></p>
+<ul>
+<li>如果强调CountProxy类对CountImpl进行代理的作用，则称为代理模式。</li>
+<li>如果强调CountProxy类对CountImpl进行装饰的作用，则称为装饰模式。</li>
+</ul>
+<p>不论是哪种称呼其本质都是对原有对象的封装，其封装的目的就是增强所管理的对象或者是管理所增强的对象。</p>
+<p>从上面的例子可以发现，封装围绕的核心是可调用对象。</p>
+<h3 id="Python中的代理-装饰"><a href="#Python中的代理-装饰" class="headerlink" title="Python中的代理/装饰"></a>Python中的代理/装饰</h3><ul>
+<li>Python中的可调用对象包括函数和实现<strong>call</strong>方法的类。</li>
+<li>Python中的函数也是对象，可以作为高阶函数的参数传入或者返回值返回。</li>
+</ul>
+<p>因此当被封装的对象是一个函数时，可以使用高阶函数对这个函数进行封装。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_count_proxy</span><span class="params">(param_fun, name, age)</span></span></span><br><span class="line"><span class="function">	<span class="title">print</span> "事务开始之前"</span></span><br><span class="line">    res = param_fun(name, age)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"事务开始之后"</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_count</span><span class="params">(name, age)</span></span></span><br><span class="line"><span class="function">	<span class="title">print</span> "<span class="title">something</span> <span class="title">you</span> <span class="title">want</span>"</span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function"><span class="title">query_count_proxy</span><span class="params">(query_count, name, age)</span></span></span><br></pre></td></tr></table></figure>
+<p>但是，这个例子中，query_count函数作为参数传入query_count_proxy函数中，并在query_count_proxy函数中被调用，并作返回值作为其返回值返回，完成了其代理的功能，同时在调用之前和之后加上了一些装饰的代码，完成了装饰的功能，但是query_count_proxy的函数参数和query_count的函数参数不一样了，理想情况应该保持接口一直才对。</p>
+<p>为了保持一致，我们可以利用高阶函数可以返回函数的特点来完成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_count_proxy</span><span class="params">(param_fun)</span></span></span><br><span class="line"><span class="function">	<span class="title">def</span> <span class="title">inner_function</span><span class="params">(name,age)</span></span></span><br><span class="line"><span class="function">    	<span class="title">print</span> "事务执行之前"</span></span><br><span class="line">        res = param_fun(name, age)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"事务执行之后"</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"><span class="keyword">return</span> inner_function</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">query_count</span><span class="params">(name, age)</span></span></span><br><span class="line"><span class="function">	<span class="title">print</span> "<span class="title">somethiing</span> <span class="title">you</span> <span class="title">want</span>"</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">query_count_proxy</span><span class="params">(query_count)</span><span class="params">(<span class="string">'daodaoliang'</span>,<span class="number">26</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>修改后的例子，query_count_proxy仅负责接收一个被代理的函数query_count作为参数，同时，返回一个函数对象inner_function,真正的封装动作都是在这个闭包函数中。</p>
+<p>此时若是调用query_count_proxy(query_count) 就会返回一个函数对象，则给其传递参数就像与执行了inner_function(name,age)</p>
+<p>但是目前为止我们的使用方式query_count_proxy(query_count)(‘daodaoliang’,26)并没有做到接口一直，为此我们需要用到python的动态绑定的特性修改为如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">query_count = query_count_proxy(query_count)</span><br><span class="line">query_count(<span class="string">'daodaoliang'</span>, <span class="number">26</span>)</span><br></pre></td></tr></table></figure>
+<p>执行query_count_proxy(query_count) 返回一个函数对象，并通过动态绑定将其绑定到query_count上面，在此之后执行query_count(‘daodaoliang’, 26) 等同于执行innery_function(‘daodaoliang’, 26)</p>
+<p>这么做的结果是代理之后使用方式和未代理时的使用方式一样，都是使用query_count(‘daodaoliang’, 26) 不同的是使用代理后执行的是代理之后的代码。</p>
+<p>但是这样子的是不简洁的，这种反复而又琐碎的工作，python给我提供了一个语法糖，就是在其前面加上@query_count.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@query_count_proxy</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">query_count</span><span class="params">(name, age)</span></span></span><br><span class="line"><span class="function">   	<span class="title">print</span> "<span class="title">do</span> <span class="title">something</span> <span class="title">you</span> <span class="title">want</span>"</span></span><br></pre></td></tr></table></figure>
+<p>python 看到这样的语法就会自动执行 query_count = query_count_proxy(query_count)进行名字绑定</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/" target="_blank" rel="external">http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/&title=《python装饰器学习(转载)》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/&title=《python装饰器学习(转载)》 — 刀刀亮的博客&source=这是转载原文在这里" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python装饰器学习(转载)》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Python学习/2015/09/09/Python学习-2015-09-09-python提升效率-视频/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python提升效率(视频)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">深入浅出RPC——深入篇(转载)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Python学习-2015-09-09-python装饰器学习-转载" data-title="python装饰器学习(转载)" data-url="http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/&title=《python装饰器学习(转载)》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/&title=《python装饰器学习(转载)》 — 刀刀亮的博客&source=这是转载原文在这里" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python装饰器学习(转载)》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3aQW7jQAwEQP//097rAgvL3RwFiLilk+EI0tTkQLM5r1d8vf+5/v7++s5P91x/vl7Dp6fdfGFjY2M/hP2+vBLe9T3XG5dsR7uGZOuxsbGx97GTRVyXkKSY5UWuXVt+PzY2NjZ2+31bWmZ3YmNjY2O3RWJGzWOgPDzCxsbGxs5DpbZtSDauDfrvKpPY2NjYm9j5VPT3f/6R+TY2Njb2L2a/R1deTn4i6L9h/djY2NiL2G2RONmCPIpqv29DLmxsbOz/gd2GQW3Q35afPNg66q6wsbGxV7BnQ9a81N01JG6HDV9aEWxsbOzHstsl5gFQ3lrUR22Crf+yfmxsbOx17PbATRvZJ09oG4yjkomNjY29jn2OT56QF5j8jclWRnuMjY2N/Vj2+c/9NhLK25V2GJwPIbCxsbF3s/NBbz52vXlAe1OLgo2Njb2P3TYhbWyUL7QdHswKGzY2NvYmdt5OtPjZqLhtQo6GDdjY2NgPZ5/E8e/4ygOj2RPazB8bGxt7EzuP7GeD4VmoNBsJ560LNjY29iZ2+xN/tqPt4LYNvNrNwsbGxt7HbgcDeeSUFLB3eeX/no/3YGNjY69mJ5/Phwd5u5KPH+oICRsbG3sFOx/Hzg70zNL4WdtTh03Y2NjYi9jJy2ZHZ04mFedx0nD0i42Njf0o9iwGOm9vZm3MbKOxsbGxd7Pz6CcPm9pWYRYb5SOEqAPDxsbGfiw7H5Qmjz4ve0k7cT4wxsbGxt7HPh8J5K1FUszqQL98JjY2NvZu9uwoZN6KXPPujZaiOAkbGxv74eyTdmJ25HFW6tqoK7kfGxsbewc7HwDMRrMz2E8MIV6z12NjY2P/enZbVNotyMtMe+xmdmTn43wbGxsb+7HsWYR0EjC1pXF2z5fgCRsbG3sRexYGzVqUJPqZDSTyEAobGxt7K/ukSMxGBfe+5fppH5+AjY2NvY6dF4ZZ+UkW2pa9tui+8l3ExsbGXsoujsWUf51FRe1QGRsbGxt7NvqdjZDzTRw2SNjY2Njr2PnS89iobSRmpXRYzLCxsbEXsWeMZKCbvDiJq/KCV4RK2NjY2BvYfwC0dE8CE6aeBgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

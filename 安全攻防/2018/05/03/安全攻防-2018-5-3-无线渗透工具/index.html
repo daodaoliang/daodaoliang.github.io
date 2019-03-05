@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>无线渗透工具 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="无线,安全">
+    <meta name="description" content="本文原出处在这里，我是为了查阅方便，特转载一份我这里;                                                                                             嘚瑟">
+<meta name="keywords" content="无线,安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无线渗透工具">
+<meta property="og:url" content="http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="本文原出处在这里，我是为了查阅方便，特转载一份我这里;                                                                                             嘚瑟">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/安全攻防/嘚瑟.gif">
+<meta property="og:updated_time" content="2018-05-03T07:42:28.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无线渗透工具">
+<meta name="twitter:description" content="本文原出处在这里，我是为了查阅方便，特转载一份我这里;                                                                                             嘚瑟">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/安全攻防/嘚瑟.gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">无线渗透工具</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">无线渗透工具</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-02T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-05-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/安全攻防/">安全攻防</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#工具"><span class="post-toc-number">1.</span> <span class="post-toc-text">工具</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#监控"><span class="post-toc-number">2.</span> <span class="post-toc-text">监控</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#扫描"><span class="post-toc-number">3.</span> <span class="post-toc-text">扫描</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#攻击：WEP-WPA-WPS-EAP"><span class="post-toc-number">4.</span> <span class="post-toc-text">攻击：WEP / WPA / WPS / EAP</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#防御"><span class="post-toc-number">5.</span> <span class="post-toc-text">防御</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#FAKE-AP"><span class="post-toc-number">6.</span> <span class="post-toc-text">FAKE AP</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#本地"><span class="post-toc-number">7.</span> <span class="post-toc-text">本地</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Android"><span class="post-toc-number">8.</span> <span class="post-toc-text">Android</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-安全攻防-2018-5-3-无线渗透工具" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">无线渗透工具</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-03 00:00:00" datetime="2018-05-02T16:00:00.000Z" itemprop="datePublished">2018-05-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/安全攻防/">安全攻防</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文原出处在<a href="http://www.4hou.com/tools/5584.html" target="_blank" rel="noopener">这里</a>，我是为了查阅方便，特转载一份我这里;<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/安全攻防/嘚瑟.gif" alt="嘚瑟" title="">
+                </div>
+                <div class="image-caption">嘚瑟</div>
+            </figure></p>
+<a id="more"></a>
+<h5 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h5><ul>
+<li><a href="https://github.com/kylemcdonald/FreeWifi" target="_blank" rel="noopener">FreeWiFi</a> – 如何获得免费的WiFi。</li>
+</ul>
+<h5 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h5><ul>
+<li><a href="https://github.com/v1s1t0r1sh3r3/airgeddon" target="_blank" rel="noopener">Airgeddon</a> – 这是一个多用途的bash脚本，用于Linux系统审核无线网络。</li>
+<li><a href="http://trac.assembla.com/giskismet" target="_blank" rel="noopener">GISKismet</a> – 是一种无线侦察可视化工具，以灵活的方式表示使用Kismet收集的数据。</li>
+<li><a href="http://www.nirsoft.net/utils/wifi_hotspot_starter.html" target="_blank" rel="noopener">HostedNetworkStarter</a> – 是Windows 7及更高版本的简单工具，可以使用Windows操作系统的Wifi托管网络功能轻松创建无线网络适配器的WiFi热点。</li>
+<li><a href="http://www.metageek.com/products/inssider/" target="_blank" rel="noopener">inSSIDer</a> – WiFi故障排除和优化工具，将小型WiFi网络管理提升到一个全新的水平。</li>
+<li><a href="https://www.kismetwireless.net/" target="_blank" rel="noopener">Kismet</a> – 是无线网络检测器，嗅探器和入侵检测系统。Kismet主要使用Wi-Fi（IEEE 802.11）网络，但可以通过插件扩展以处理其他网络类型。</li>
+<li><a href="https://sourceforge.net/projects/linssid/" target="_blank" rel="noopener">LinSSID</a> – Linux的图形无线扫描。</li>
+<li><a href="http://www.netstumbler.com/" target="_blank" rel="noopener">NetStumbler</a> – Windows的工具，便于使用802.11b，802.11a和802.11g WLAN标准检测无线局域网。</li>
+<li><a href="http://wellenreiter.sourceforge.net/" target="_blank" rel="noopener">wellenreiter</a> – 是无线网络发现和审计工具。</li>
+<li><a href="https://github.com/hkm/whoishere.py" target="_blank" rel="noopener">whoishere.py</a> – WIFI客户端检测 – 通过为执行无线探测请求的设备分配名称来识别人员。</li>
+<li><a href="http://www.nirsoft.net/utils/wifi_channel_monitor.html" target="_blank" rel="noopener">WiFiChannelMonitor</a> – 是一款适用于Windows的实用程序，可在您选择的通道上捕获WiFi流量，在监视器模式下使用Microsoft网络监视器捕获驱动程序，并显示有关接入点和连接到它们的WiFi客户端的</li>
+</ul>
+<h5 id="扫描"><a href="#扫描" class="headerlink" title="扫描"></a>扫描</h5><ul>
+<li><a href="http://www.nirsoft.net/utils/wifi_information_view.html" target="_blank" rel="noopener">WifiInfoView</a>  – 扫描您所在地区的无线网络，并显示有关它们的广泛信息。</li>
+<li><a href="http://www.nirsoft.net/utils/wireless_network_watcher.html" target="_blank" rel="noopener">wireless_network_watcher</a> – 是一个小型实用程序，用于扫描您的无线网络，并显示当前连接到网络的所有计算机和设备的列表。</li>
+</ul>
+<h5 id="攻击：WEP-WPA-WPS-EAP"><a href="#攻击：WEP-WPA-WPS-EAP" class="headerlink" title="攻击：WEP / WPA / WPS / EAP"></a>攻击：WEP / WPA / WPS / EAP</h5><ul>
+<li><a href="https://www.aircrack-ng.org/" target="_blank" rel="noopener">Aircrack-NG</a> – 是一套完整的工具来评估WiFi网络安全。</li>
+<li><a href="https://sourceforge.net/projects/airsnort/" target="_blank" rel="noopener">AirSnort</a> – 是一种无线局域网（WLAN）工具，可以破解802.11b WEP网络上的加密密钥。</li>
+<li><a href="http://www.willhackforsushi.com/?page_id=41" target="_blank" rel="noopener">Asleap</a> – 显示了专有的Cisco LEAP网络的严重缺陷。由于LEAP使用MS-CHAPv2的变体进行认证交换，因此易受加速脱机字典攻击。</li>
+<li><a href="https://github.com/DominikStyp/auto-reaver" target="_blank" rel="noopener">auto-reaver</a> – 使用Reaver进行多个接入点攻击。</li>
+<li><a href="https://github.com/Tylous/Auto_EAP" target="_blank" rel="noopener">Auto_EAP</a> – 自动强力登录攻击EAP网络。</li>
+<li><a href="http://www.willhackforsushi.com/?page_id=50br%20/%3E" target="_blank" rel="noopener">coWPAtty</a> – 使用基于PSK的身份验证对WPA / WPA2网络实施脱机字典攻击。</li>
+<li><a href="https://github.com/mikeryan/crackle" target="_blank" rel="noopener">crackle</a> – 破解和解密BLE加密。</li>
+<li><a href="https://github.com/savio-code/fern-wifi-cracker" target="_blank" rel="noopener">fern-wifi-cracker</a> – Fern Wifi Cracker是一种无线安全审计和攻击软件程序，能够破解和恢复WEP / WPA / WPS密钥，并在基于无线或以太网的网络上运行其他基于网络的攻击。</li>
+<li><a href="https://github.com/xtr4nge/FruityWifi" target="_blank" rel="noopener">FruityWiFi</a> – 是一种开源工具来审核无线网络。它允许用户通过直接使用Web界面或通过向其发送消息来部署高级攻击。</li>
+<li><a href="https://digi.ninja/metasploit/getwlanprofiles.php" target="_blank" rel="noopener">Metasploit的getwlanprofiles</a> – 是一个简单的Meterpreter脚本，当对Windows 7或Vista框运行时，将提取并下载所有使用Windows客户端设置的无线配置文件。</li>
+<li><a href="https://github.com/entropy1337/infernal-twin" target="_blank" rel="noopener">infernal-twin</a> – 这是邪恶的双重攻击自动（无线黑客）。</li>
+<li><a href="https://code.google.com/archive/p/killerbee/" target="_blank" rel="noopener">killerbee</a> – 是一个基于Python的框架和工具集，用于探索和利用ZigBee和IEEE 802.15.4网络的安全性。</li>
+<li><a href="http://git.kali.org/gitweb/?p=packages/mdk3.git;a=summary" target="_blank" rel="noopener">mdk3</a> – 是一种利用常规IEEE 802.11协议弱点的概念验证工具。</li>
+<li><a href="https://github.com/wiire/pixiewps/" target="_blank" rel="noopener">PixieWPS</a> – 用C编写的工具用来强制脱机使用某些AP（低分辨率灰尘攻击）的低或不存在的熵的WPS引脚</li>
+<li><a href="https://code.google.com/archive/p/reaver-wps/" target="_blank" rel="noopener">reaver-wps</a> – 对Wi-Fi保护设置（WPS）注册商PIN进行强力攻击，以恢复WPA / WPA2密码。</li>
+<li><a href="http://wepcrack.sourceforge.net/" target="_blank" rel="noopener">WEPCrack</a> – 是一款用于打破802.11 WEP密钥的开源工具。</li>
+<li><a href="https://github.com/DanMcInerney/wifijammer" target="_blank" rel="noopener">wifijammer</a> – 持续阻止所有wifi客户端/路由器。</li>
+<li><a href="https://wifiphisher.org/docs.html" target="_blank" rel="noopener">Wifiphisher</a> – 针对Wi-Fi网络的自动网络钓鱼攻击。</li>
+<li><a href="http://sid.rstack.org/static/articles/w/i/f/Wifitap_EN_9613.html" target="_blank" rel="noopener">Wifitap</a> – 通过使用流量注入的WiFi网络进行通信的概念验证。</li>
+<li><a href="https://code.google.com/archive/p/wifite/" target="_blank" rel="noopener">Wifite</a> – 连续攻击多个WEP，WPA和WPS加密网络。</li>
+<li><a href="https://github.com/cyrus-and/zizzania" target="_blank" rel="noopener">zizzania</a> – 嗅探无线流量监听WPA握手，并仅倾倒适合解密的帧（一个信标+ EAPOL帧+数据）。为了加快这个过程，zizzania向需要握手的站发送IEEE 802.11 DeAuth帧，正确处理重发和重新连接，并 试图限制发送到每个站的DeAuth帧的数量。</li>
+</ul>
+<h5 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h5><ul>
+<li><a href="https://github.com/SYWorks/waidps" target="_blank" rel="noopener">waidps</a> – 无线审计，入侵检测与预防系统。</li>
+</ul>
+<h5 id="FAKE-AP"><a href="#FAKE-AP" class="headerlink" title="FAKE AP"></a>FAKE AP</h5><ul>
+<li><a href="https://github.com/DanMcInerney/fakeAP" target="_blank" rel="noopener">fakeAP</a> – 使用1个命令在Kali中创建假AP。</li>
+<li><a href="https://github.com/savio-code/ghost-phisher" target="_blank" rel="noopener">ghost-phisher</a> – 是使用Python编程编写的无线和以太网安全审计和攻击软件程序语言和Python Qt GUI库，该程序能够模拟接入点和部署。</li>
+<li><a href="http://digi.ninja/jasager/" target="_blank" rel="noopener">Jasager</a> – 是一个无线上网的中间工具，它使用假接入点诱使无人值守的受害者连接到您的网络。</li>
+<li><a href="https://digi.ninja/karma/" target="_blank" rel="noopener">karma</a> – 是一组接入点软件的补丁，以使其不仅响应于自身的探测请求，而且对所请求的任何ESSID进行响应。</li>
+<li><a href="https://github.com/xdavidhu/mitmAP" target="_blank" rel="noopener">mitmAP</a> – 一个python程序来创建一个假的AP并嗅探数据。</li>
+<li><a href="https://github.com/P0cL4bs/WiFi-Pumpkin" target="_blank" rel="noopener">WiFi-Pumpkin</a> – 是一个开放源代码的安全工具，它提供了Rogue接入点到中间人和网络攻击。</li>
+</ul>
+<h5 id="本地"><a href="#本地" class="headerlink" title="本地"></a>本地</h5><ul>
+<li><a href="https://github.com/Viralmaniar/Wifi-Dumper" target="_blank" rel="noopener">Wifi-Dumper</a> – 转载Windows机器上连接的接入点的wifi配置文件和明文密码。</li>
+<li><a href="https://github.com/LionSec/wifresti" target="_blank" rel="noopener">Wifresti</a> – 在Windows，Linux和Mac OS中找到无线网络密码。</li>
+</ul>
+<h5 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h5><ul>
+<li><a href="https://github.com/chrisk44/Hijacker" target="_blank" rel="noopener">Hijacker</a> – Aircrack、Airodump、Aireplay、MDK3和Reaver GUI应用程序 – 需要监视器模式。</li>
+</ul>
+<hr>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-05-03T07:42:28.289Z" itemprop="dateUpdated">2018-05-03 15:42:28</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/" target="_blank" rel="external">http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/无线/">无线</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/&title=《无线渗透工具》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/&title=《无线渗透工具》 — 刀刀亮的博客&source=本文原出处在这里，我是为了查阅方便，特转载一份我这里;
+                
+                    
+           ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《无线渗透工具》 — 刀刀亮的博客&url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/环境搭建/2018/05/18/环境搭建-2018-05-18-CentOS升级PHP/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CentOS升级PHP</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/Python学习/2018/04/25/Python学习-2018-04-25-python爬虫/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python爬虫</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="安全攻防-2018-5-3-无线渗透工具" data-title="无线渗透工具" data-url="http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/&title=《无线渗透工具》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/&title=《无线渗透工具》 — 刀刀亮的博客&source=本文原出处在这里，我是为了查阅方便，特转载一份我这里;
+                
+                    
+           ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《无线渗透工具》 — 刀刀亮的博客&url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/安全攻防/2018/05/03/安全攻防-2018-5-3-无线渗透工具/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMUlEQVR42u3a3WrjQAwG0L7/S2dhrxYWJ5+kaRsrx1fBOOM5U4iqn6+v+Hr8vf79fHX9/3xy52qF5++9WvnYhY2NjX0Tds7It54A8p0kT+YWbGxs7K3sJGglsSBfIVnz+fr5PrGxsbGxT4Wl5LvfkZZgY2NjYz8PIUk4yYtQeSryCwEMGxsb+43Z820lCUleq0/29kO1NGxsbOy3Z/cave/5+dv729jY2Nhvxn4MrmqrYP7Gq9BYXgEbGxt7Ebta0KmWb6ptgEmqU25dYGNjY69m583USWthvvKobYCNjY29lH0qFOWF+16TYNJ+wMbGxt7H7gWeU83d3v0kHBaaB9jY2Ni3ZfdGW5Kle2WpXnJSHu7BxsbGXsROfs/n7d7JynnBq3zQ2NjY2B/A7v3rX20zlBu0xXB4eQcbGxv7A9i9rUTl+CDgTYpQhZEdbGxs7Juzqw3UZFvVqzd2Ux0DwsbGxt7NzjddjY29TZ9FXnZFsLGxsVew8xJMXtyfpBl5SStPVKLxHWxsbOxF7GpZv9pOyDc6WTNPrrCxsbF3sPMRnFOjM7235KExCq7Y2NjYK9hni/XV0FItKvXaydjY2Ni72dV/+vMWQp7S5EM5p/5I2NjY2JvYvTGdJGwkpfl869X27Ys9Y2NjYy9iJz/9edJSpSakXsM4D8zY2NjYd2f3kpAckJx68nxyv7B/bGxs7A9g99KGSXs4CYTVA73cDzY2NvY6dnUUJikt9Y4pb0X0jgYbGxt7H7s6+FJNPJKyfjUdOtbGwMbGxl7B7o3pJAeRt2Z7YSlvP7wY2cHGxsa+Obs6UpMXm5KEJDn0fJ1eywEbGxv77uw8ePSGb3rgPIhWR4WwsbGx97En4SpPUXqFqkJVLD4CbGxs7H3sR/HKy/HVTVcLWL22dKGTjI2NjX0T9qno1yv39xKYnNdLY7CxsbHvyO61aavfqhaAeqM5hXdhY2Njr2PnRZ9JGajXKp4kFdG8EjY2NvaHsXtHkGwlKWBVQxc2NjY2dvJMD9YLTnnIfHEo2NjY2OvY89SienzzEv+o2YyNjY29iH220Tsp9Ffv52nPt4/sYGNjY/8O+w/N9vOHVWwJKQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

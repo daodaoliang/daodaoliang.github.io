@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>mysql配置文件详解 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="配置文件解析 你也可以使用在线配置文件生成向导来完成这个工作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql配置文件详解">
+<meta property="og:url" content="http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="配置文件解析 你也可以使用在线配置文件生成向导来完成这个工作">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql配置文件详解">
+<meta name="twitter:description" content="配置文件解析 你也可以使用在线配置文件生成向导来完成这个工作">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql配置文件详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">mysql配置文件详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-06-02T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-06-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#client"><span class="post-toc-number">1.</span> <span class="post-toc-text">[client]</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysqld"><span class="post-toc-number">2.</span> <span class="post-toc-text">[mysqld]</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysqldump"><span class="post-toc-number">3.</span> <span class="post-toc-text">[mysqldump]</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql"><span class="post-toc-number">4.</span> <span class="post-toc-text">[mysql]</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#isamchk"><span class="post-toc-number">5.</span> <span class="post-toc-text">[isamchk]</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#myisamchk"><span class="post-toc-number">6.</span> <span class="post-toc-text">[myisamchk]</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysqlhotcopy"><span class="post-toc-number">7.</span> <span class="post-toc-text">[mysqlhotcopy]</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysqld-safe"><span class="post-toc-number">8.</span> <span class="post-toc-text">[mysqld_safe]</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-数据库学习-mysql专题-2015-06-03-mysql配置文件详解" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mysql配置文件详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-06-03 00:00:00" datetime="2015-06-02T16:00:00.000Z" itemprop="datePublished">2015-06-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong><em>配置文件解析</em></strong></p>
+<p>你也可以使用<a href="https://tools.percona.com/wizard" target="_blank" rel="noopener">在线配置文件生成向导</a>来完成这个工作</p>
+<a id="more"></a>
+<p><strong><em>4GB RAM, 只使用InnoDB, ACID, 少量的连接, 队列负载大</em></strong></p>
+<h4 id="client"><a href="#client" class="headerlink" title="[client]"></a><strong><em>[client]</em></strong></h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysql客户端链接数据库时默认的tcp端口号</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="comment"># 为MySQL客户程序与服务器之间的本地通信指定一个套接字文件(Linux下默认是/var/lib/mysql/mysql.sock文件)</span></span><br><span class="line"><span class="attr">socket</span> = /var/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
+<h4 id="mysqld"><a href="#mysqld" class="headerlink" title="[mysqld]"></a><strong><em>[mysqld]</em></strong></h4><p><strong><em>一般配置</em></strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysql服务端监听默认的tcp端口号</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line">       </span><br><span class="line"><span class="comment"># 为MySQL客户程序与服务器之间的本地通信指定一个套接字文件(Linux下默认是/var/lib/mysql/mysql.sock文件)</span></span><br><span class="line"><span class="attr">socket</span> = /var/lib/mysql/mysql.sock</span><br><span class="line"></span><br><span class="line"><span class="comment"># back_log 是操作系统在监听队列中所能保持的连接数,队列保存了在MySQL连接管理器线程处理之前的连接.</span></span><br><span class="line"><span class="comment"># 如果你有非常高的连接率并且出现”connection refused” 报错,你就应该增加此处的值.</span></span><br><span class="line"><span class="comment"># 检查你的操作系统文档来获取这个变量的最大值.如果将back_log设定到比你操作系统限制更高的值,将会没有效果</span></span><br><span class="line"><span class="attr">back_log</span> = <span class="number">50</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不在TCP/IP端口上进行监听.如果所有的进程都是在同一台服务器连接到本地的mysqld,这样设置将是增强安全的方法</span></span><br><span class="line"><span class="comment"># 所有mysqld的连接都是通过Unix sockets 或者命名管道进行的.注意在windows下如果没有打开命名管道选项而只是用此项</span></span><br><span class="line"><span class="comment"># (通过 “enable-named-pipe” 选项) 将会导致mysql服务没有任何作用!</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MySQL 服务所允许的同时会话数的上限，其中一个连接将被SUPER权限保留作为管理员登录.即便已经达到了连接数的上限.</span></span><br><span class="line"><span class="attr">max_connections</span> = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个客户端连接最大的错误允许数量,如果达到了此限制.这个客户端将会被MySQL服务阻止直到执行了”FLUSH HOSTS” 或者服务重启</span></span><br><span class="line"><span class="comment"># 非法的密码以及其他在链接时的错误会增加此值.查看 “Aborted_connects” 状态来获取全局计数器.</span></span><br><span class="line"><span class="attr">max_connect_errors</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有线程所打开表的数量.这样你需要确认在[mysqld_safe]中 “open-files-limit” 变量设置打开文件数量允许至少4096</span></span><br><span class="line"><span class="attr">table_cache</span> = <span class="number">2048</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许外部文件级别的锁. 打开文件锁会对性能造成负面影响,</span></span><br><span class="line"><span class="comment"># 所以只有在你在同样的文件上运行多个数据库实例时才使用此选项(注意仍会有其他约束!)</span></span><br><span class="line"><span class="comment"># 或者你在文件层面上使用了其他一些软件依赖来锁定MyISAM表</span></span><br><span class="line">external-locking</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务所能处理的请求包的最大大小以及服务所能处理的最大的请求大小(当与大的BLOB字段一起工作时相当必要)</span></span><br><span class="line"><span class="comment"># 每个连接独立的大小.大小动态增加</span></span><br><span class="line"><span class="attr">max_allowed_packet</span> = <span class="number">16</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在一个事务中binlog为了记录SQL状态所持有的cache大小,如果你经常使用大的,多声明的事务,你可以增加此值来获取更大的性能.</span></span><br><span class="line"><span class="comment"># 所有从事务来的状态都将被缓冲在binlog缓冲中然后在提交后一次性写入到binlog中,如果事务比此值大, 会使用磁盘上的临时文件来替代.</span></span><br><span class="line"><span class="comment"># 此缓冲在每个连接的事务第一次更新状态时被创建</span></span><br><span class="line"><span class="attr">binlog_cache_size</span> = <span class="number">1</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 独立的内存表所允许的最大容量.此选项为了防止意外创建一个超大的内存表导致永尽所有的内存资源.</span></span><br><span class="line"><span class="attr">max_heap_table_size</span> = <span class="number">64</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序缓冲被用来处理类似ORDER BY以及GROUP BY队列所引起的排序,如果排序后的数据无法放入排序缓冲,一个用来替代的基于磁盘的合并分类会被使用</span></span><br><span class="line"><span class="comment"># 查看 “Sort_merge_passes” 状态变量.在排序发生时由每个线程分配</span></span><br><span class="line"><span class="attr">sort_buffer_size</span> = <span class="number">8</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此缓冲被使用来优化全联合(full JOINs 不带索引的联合).类似的联合在极大多数情况下有非常糟糕的性能表现,但是将此值设大能够减轻性能影响.</span></span><br><span class="line"><span class="comment"># 通过 “Select_full_join” 状态变量查看全联合的数量,当全联合发生时,在每个线程中分配</span></span><br><span class="line"><span class="attr">join_buffer_size</span> = <span class="number">8</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们在cache中保留多少线程用于重用,当一个客户端断开连接后,如果cache中的线程还少于thread_cache_size,则客户端线程被放入cache中.</span></span><br><span class="line"><span class="comment"># 这可以在你需要大量新连接的时候极大的减少线程创建的开销, (一般来说如果你有好的线程模型的话,这不会有明显的性能提升.).</span></span><br><span class="line"><span class="attr">thread_cache_size</span> = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此允许应用程序给予线程系统一个提示在同一时间给予渴望被运行的线程的数量.</span></span><br><span class="line"><span class="comment"># 此值只对于支持 thread_concurrency() 函数的系统有意义( 例如Sun Solaris).</span></span><br><span class="line"><span class="comment"># 你可可以尝试使用 [CPU数量]*(2..4) 来作为thread_concurrency的值</span></span><br><span class="line"><span class="attr">thread_concurrency</span> = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询缓冲常被用来缓冲 SELECT 的结果并且在下一次同样查询的时候不再执行直接返回结果.</span></span><br><span class="line"><span class="comment"># 打开查询缓冲可以极大的提高服务器速度, 如果你有大量的相同的查询并且很少修改表.</span></span><br><span class="line"><span class="comment"># 查看 “Qcache_lowmem_prunes” 状态变量来检查是否当前值对于你的负载来说是否足够高.</span></span><br><span class="line"><span class="comment"># 注意: 在你表经常变化的情况下或者如果你的查询原文每次都不同,</span></span><br><span class="line"><span class="comment"># 查询缓冲也许引起性能下降而不是性能提升.</span></span><br><span class="line"><span class="attr">query_cache_size</span> = <span class="number">64</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只有小于此设定值的结果才会被缓冲</span></span><br><span class="line"><span class="comment"># 此设置用来保护查询缓冲,防止一个极大的结果集将其他所有的查询结果都覆盖.</span></span><br><span class="line"><span class="comment"># query_cache_limit = 2M</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 被全文检索索引的最小的字长.</span></span><br><span class="line"><span class="comment"># 你也许希望减少它,如果你需要搜索更短字的时候.</span></span><br><span class="line"><span class="comment"># 注意在你修改此值之后,</span></span><br><span class="line"><span class="comment"># 你需要重建你的 FULLTEXT 索引</span></span><br><span class="line"><span class="attr">ft_min_word_len</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你的系统支持 memlock() 函数,你也许希望打开此选项用以让运行中的mysql在在内存高度紧张的时候。</span></span><br><span class="line"><span class="comment"># 数据在内存中保持锁定并且防止可能被swapping out</span></span><br><span class="line"><span class="comment"># 此选项对于性能有益</span></span><br><span class="line"><span class="comment"># memlock</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当创建新表时作为默认使用的表类型,</span></span><br><span class="line"><span class="comment"># 如果在创建表示没有特别执行表类型,将会使用此值</span></span><br><span class="line"><span class="attr">default_table_type</span> = MYISAM</span><br><span class="line"></span><br><span class="line"><span class="comment"># 线程使用的堆大小. 此容量的内存在每次连接时被预留.</span></span><br><span class="line"><span class="comment"># MySQL 本身常不会需要超过64K的内存</span></span><br><span class="line"><span class="comment"># 如果你使用你自己的需要大量堆的UDF函数</span></span><br><span class="line"><span class="comment"># 或者你的操作系统对于某些操作需要更多的堆,</span></span><br><span class="line"><span class="comment"># 你也许需要将其设置的更高一点.</span></span><br><span class="line"><span class="attr">thread_stack</span> = <span class="number">192</span>K</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设定默认的事务隔离级别.可用的级别如下:</span></span><br><span class="line"><span class="comment"># READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE</span></span><br><span class="line"><span class="attr">transaction_isolation</span> = REPEATABLE-READ</span><br><span class="line"></span><br><span class="line"><span class="comment"># 内部(内存中)临时表的最大大小</span></span><br><span class="line"><span class="comment"># 如果一个表增长到比此值更大,将会自动转换为基于磁盘的表.</span></span><br><span class="line"><span class="comment"># 此限制是针对单个表的,而不是总和.</span></span><br><span class="line"><span class="attr">tmp_table_size</span> = <span class="number">64</span>M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开二进制日志功能.</span></span><br><span class="line"><span class="comment"># 在复制(replication)配置中,作为MASTER主服务器必须打开此项</span></span><br><span class="line"><span class="comment"># 如果你需要从你最后的备份中做基于时间点的恢复,你也同样需要二进制日志.</span></span><br><span class="line"><span class="comment"># 如果你需要从你最后的备份中做基于时间点的恢复,你也同样需要二进制日志.</span></span><br><span class="line"><span class="attr">log-bin</span>=mysql-bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你在使用链式从服务器结构的复制模式 (A-&gt;B-&gt;C),</span></span><br><span class="line"><span class="comment"># 你需要在服务器B上打开此项.</span></span><br><span class="line"><span class="comment"># 此选项打开在从线程上重做过的更新的日志,</span></span><br><span class="line"><span class="comment"># 并将其写入从服务器的二进制日志.</span></span><br><span class="line"><span class="comment"># log_slave_updates</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开全查询日志. 所有的由服务器接收到的查询 (甚至对于一个错误语法的查询)</span></span><br><span class="line"><span class="comment"># 都会被记录下来. 这对于调试非常有用, 在生产环境中常常关闭此项.</span></span><br><span class="line"><span class="comment"># log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将警告打印输出到错误log文件. 如果你对于MySQL有任何问题</span></span><br><span class="line"><span class="comment"># 你应该打开警告log并且仔细审查错误日志,查出可能的原因.</span></span><br><span class="line"><span class="comment"># log_warnings</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 记录慢速查询. 慢速查询是指消耗了比 “long_query_time” 定义的更多时间的查询.</span></span><br><span class="line"><span class="comment"># 如果 log_long_format 被打开,那些没有使用索引的查询也会被记录.</span></span><br><span class="line"><span class="comment"># 如果你经常增加新查询到已有的系统内的话. 一般来说这是一个好主意,</span></span><br><span class="line">log_slow_queries</span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有的使用了比这个时间(以秒为单位)更多的查询会被认为是慢速查询.</span></span><br><span class="line"><span class="comment"># 不要在这里使用”1″, 否则会导致所有的查询,甚至非常快的查询页被记录下来(由于MySQL 目前时间的精确度只能达到秒的级别).</span></span><br><span class="line"><span class="attr">long_query_time</span> = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在慢速日志中记录更多的信息.</span></span><br><span class="line"><span class="comment"># 一般此项最好打开.</span></span><br><span class="line"><span class="comment"># 打开此项会记录使得那些没有使用索引的查询也被作为到慢速查询附加到慢速日志里</span></span><br><span class="line">log_long_format</span><br><span class="line"></span><br><span class="line"><span class="comment"># 此目录被MySQL用来保存临时文件.例如,</span></span><br><span class="line"><span class="comment"># 它被用来处理基于磁盘的大型排序,和内部排序一样.</span></span><br><span class="line"><span class="comment"># 以及简单的临时表.</span></span><br><span class="line"><span class="comment"># 如果你不创建非常大的临时文件,将其放置到 swapfs/tmpfs 文件系统上也许比较好</span></span><br><span class="line"><span class="comment"># 另一种选择是你也可以将其放置在独立的磁盘上.</span></span><br><span class="line"><span class="comment"># 你可以使用”;”来放置多个路径</span></span><br><span class="line"><span class="comment"># 他们会按照roud-robin方法被轮询使用.</span></span><br><span class="line"><span class="comment"># tmpdir = /tmp</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>复制有关的设置</em></strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment"># 唯一的服务辨识号,数值位于 1 到 2^32-1之间.</span></span><br><span class="line">	<span class="comment"># 此值在master和slave上都需要设置.</span></span><br><span class="line">	<span class="comment"># 如果 “master-host” 没有被设置,则默认为1, 但是如果忽略此选项,MySQL不会作为master生效.</span></span><br><span class="line">	server-id = 1</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 复制结构中的master – 必须</span></span><br><span class="line">	<span class="comment"># master-host =</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment"># 当连接到master上时slave所用来认证的用户名 – 必须</span></span><br><span class="line">	<span class="comment"># master-user =</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 当连接到master上时slave所用来认证的密码 – 必须</span></span><br><span class="line">	<span class="comment"># master-password =</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># master监听的端口.</span></span><br><span class="line">	<span class="comment"># 可选 – 默认是3306</span></span><br><span class="line">	<span class="comment"># master-port =</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 使得slave只读.只有用户拥有SUPER权限和在上面的slave线程能够修改数据.</span></span><br><span class="line">	<span class="comment"># 你可以使用此项去保证没有应用程序会意外的修改slave而不是master上的数据</span></span><br><span class="line">	<span class="comment"># read_only</span></span><br><span class="line"></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line">***MyISAM 相关选项***</span><br><span class="line"></span><br><span class="line">```ini</span><br><span class="line">	<span class="comment"># 关键词缓冲的大小, 一般用来缓冲MyISAM表的索引块.</span></span><br><span class="line">	<span class="comment"># 不要将其设置大于你可用内存的30%,</span></span><br><span class="line">	<span class="comment"># 因为一部分内存同样被OS用来缓冲行数据</span></span><br><span class="line">	<span class="comment"># 甚至在你并不使用MyISAM 表的情况下, 你也需要仍旧设置起 8-64M 内存由于它同样会被内部临时磁盘表使用.</span></span><br><span class="line">	key_buffer_size = 32M</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 用来做MyISAM表全表扫描的缓冲大小.</span></span><br><span class="line">	<span class="comment"># 当全表扫描需要时,在对应线程中分配.</span></span><br><span class="line">	read_buffer_size = 2M</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 当在排序之后,从一个已经排序好的序列中读取行时,行数据将从这个缓冲中读取来防止磁盘寻道.</span></span><br><span class="line">	<span class="comment"># 如果你增高此值,可以提高很多ORDER BY的性能.</span></span><br><span class="line">	<span class="comment"># 当需要时由每个线程分配</span></span><br><span class="line">	read_rnd_buffer_size = 16M</span><br><span class="line"></span><br><span class="line">	<span class="comment"># MyISAM 使用特殊的类似树的cache来使得突发插入</span></span><br><span class="line">	<span class="comment"># (这些插入是,INSERT SELECT, INSERT VALUES (), (), , 以及 LOAD DATA</span></span><br><span class="line">	<span class="comment"># INFILE) 更快. 此变量限制每个进程中缓冲树的字节数.</span></span><br><span class="line">	<span class="comment"># 设置为 0 会关闭此优化.</span></span><br><span class="line">	<span class="comment"># 为了最优化不要将此值设置大于 “key_buffer_size”.</span></span><br><span class="line">	<span class="comment"># 当突发插入被检测到时此缓冲将被分配.</span></span><br><span class="line">	bulk_insert_buffer_size = 64M</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 此缓冲当MySQL需要在 REPAIR, OPTIMIZE, ALTER 以及 LOAD DATA INFILE 到一个空表中引起重建索引时被分配.</span></span><br><span class="line">	<span class="comment"># 这在每个线程中被分配.所以在设置大值时需要小心.</span></span><br><span class="line">	myisam_sort_buffer_size = 128M</span><br><span class="line"></span><br><span class="line">	<span class="comment"># MySQL重建索引时所允许的最大临时文件的大小 (当 REPAIR, ALTER TABLE 或者 LOAD DATA INFILE).</span></span><br><span class="line">	<span class="comment"># 如果文件大小比此值更大,索引会通过键值缓冲创建(更慢)</span></span><br><span class="line">	myisam_max_sort_file_size = 10G</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 如果被用来更快的索引创建索引所使用临时文件大于制定的值,那就使用键值缓冲方法.</span></span><br><span class="line">	<span class="comment"># 这主要用来强制在大表中长字串键去使用慢速的键值缓冲方法来创建索引.</span></span><br><span class="line">	myisam_max_extra_sort_file_size = 10G</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 如果一个表拥有超过一个索引, MyISAM 可以通过并行排序使用超过一个线程去修复他们.</span></span><br><span class="line">	<span class="comment"># 这对于拥有多个CPU以及大量内存情况的用户,是一个很好的选择.</span></span><br><span class="line">	myisam_repair_threads = 1</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 自动检查和修复没有适当关闭的 MyISAM 表.</span></span><br><span class="line">	myisam_recover</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 默认关闭 Federated</span></span><br><span class="line">	skip-federated</span><br></pre></td></tr></table></figure>
+<p><strong><em>BDB 相关选项</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 如果你运行的MySQL服务有BDB支持但是你不准备使用的时候使用此选项. 这会节省内存并且可能加速一些事.</span><br><span class="line">skip-bdb</span><br></pre></td></tr></table></figure>
+<p><strong><em>INNODB 相关选项</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"># 如果你的MySQL服务包含InnoDB支持但是并不打算使用的话,</span><br><span class="line"># 使用此选项会节省内存以及磁盘空间,并且加速某些部分</span><br><span class="line"># skip-innodb</span><br><span class="line"></span><br><span class="line"># 附加的内存池被InnoDB用来保存 metadata 信息</span><br><span class="line"># 如果InnoDB为此目的需要更多的内存,它会开始从OS这里申请内存.</span><br><span class="line"># 由于这个操作在大多数现代操作系统上已经足够快, 你一般不需要修改此值.</span><br><span class="line"># SHOW INNODB STATUS 命令会显示当先使用的数量.</span><br><span class="line">innodb_additional_mem_pool_size = 16M</span><br><span class="line"></span><br><span class="line"># InnoDB使用一个缓冲池来保存索引和原始数据, 不像 MyISAM.</span><br><span class="line"># 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.</span><br><span class="line"># 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的80%</span><br><span class="line"># 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.</span><br><span class="line"># 注意在32位系统上你每个进程可能被限制在 2-3.5G 用户层面内存限制,</span><br><span class="line"># 所以不要设置的太高.</span><br><span class="line">innodb_buffer_pool_size = 2G</span><br><span class="line"></span><br><span class="line"># InnoDB 将数据保存在一个或者多个数据文件中成为表空间.</span><br><span class="line"># 如果你只有单个逻辑驱动保存你的数据,一个单个的自增文件就足够好了.</span><br><span class="line"># 其他情况下.每个设备一个文件一般都是个好的选择.</span><br><span class="line"># 你也可以配置InnoDB来使用裸盘分区 – 请参考手册来获取更多相关内容</span><br><span class="line">innodb_data_file_path = ibdata1:10M:autoextend</span><br><span class="line"></span><br><span class="line"># 设置此选项如果你希望InnoDB表空间文件被保存在其他分区.</span><br><span class="line"># 默认保存在MySQL的datadir中.</span><br><span class="line"># innodb_data_home_dir =</span><br><span class="line"></span><br><span class="line"># 用来同步IO操作的IO线程的数量. This value is</span><br><span class="line"># 此值在Unix下被硬编码为4,但是在Windows磁盘I/O可能在一个大数值下表现的更好.</span><br><span class="line">innodb_file_io_threads = 4</span><br><span class="line"></span><br><span class="line"># 如果你发现InnoDB表空间损坏, 设置此值为一个非零值可能帮助你导出你的表.</span><br><span class="line"># 从1开始并且增加此值知道你能够成功的导出表.</span><br><span class="line"># innodb_force_recovery=1</span><br><span class="line"></span><br><span class="line"># 在InnoDb核心内的允许线程数量.</span><br><span class="line"># 最优值依赖于应用程序,硬件以及操作系统的调度方式.</span><br><span class="line"># 过高的值可能导致线程的互斥颠簸.</span><br><span class="line">innodb_thread_concurrency = 16</span><br><span class="line"></span><br><span class="line"># 如果设置为1 ,InnoDB会在每次提交后刷新(fsync)事务日志到磁盘上,</span><br><span class="line"># 这提供了完整的ACID行为.</span><br><span class="line"># 如果你愿意对事务安全折衷, 并且你正在运行一个小的食物, 你可以设置此值到0或者2来减少由事务日志引起的磁盘I/O</span><br><span class="line"># 0代表日志只大约每秒写入日志文件并且日志文件刷新到磁盘.</span><br><span class="line"># 2代表日志写入日志文件在每次提交后,但是日志文件只有大约每秒才会刷新到磁盘上.</span><br><span class="line">innodb_flush_log_at_trx_commit = 1</span><br><span class="line"></span><br><span class="line"># 加速InnoDB的关闭. 这会阻止InnoDB在关闭时做全清除以及插入缓冲合并.</span><br><span class="line"># 这可能极大增加关机时间, 但是取而代之的是InnoDB可能在下次启动时做这些操作.</span><br><span class="line"># innodb_fast_shutdown</span><br><span class="line"></span><br><span class="line"># 用来缓冲日志数据的缓冲区的大小.</span><br><span class="line"># 当此值快满时, InnoDB将必须刷新数据到磁盘上.</span><br><span class="line"># 由于基本上每秒都会刷新一次,所以没有必要将此值设置的太大(甚至对于长事务而言)</span><br><span class="line">innodb_log_buffer_size = 8M</span><br><span class="line"></span><br><span class="line"># 在日志组中每个日志文件的大小.</span><br><span class="line"># 你应该设置日志文件总合大小到你缓冲池大小的25%~100%</span><br><span class="line"># 来避免在日志文件覆写上不必要的缓冲池刷新行为.</span><br><span class="line"># 不论如何, 请注意一个大的日志文件大小会增加恢复进程所需要的时间.</span><br><span class="line">innodb_log_file_size = 256M</span><br><span class="line"></span><br><span class="line"># 在日志组中的文件总数.</span><br><span class="line"># 通常来说2~3是比较好的.</span><br><span class="line">innodb_log_files_in_group = 3</span><br><span class="line"></span><br><span class="line"># InnoDB的日志文件所在位置. 默认是MySQL的datadir.</span><br><span class="line"># 你可以将其指定到一个独立的硬盘上或者一个RAID1卷上来提高其性能</span><br><span class="line"># innodb_log_group_home_dir</span><br><span class="line"></span><br><span class="line"># 在InnoDB缓冲池中最大允许的脏页面的比例.</span><br><span class="line"># 如果达到限额, InnoDB会开始刷新他们防止他们妨碍到干净数据页面.</span><br><span class="line"># 这是一个软限制,不被保证绝对执行.</span><br><span class="line">innodb_max_dirty_pages_pct = 90</span><br><span class="line"></span><br><span class="line"># InnoDB用来刷新日志的方法.</span><br><span class="line"># 表空间总是使用双重写入刷新方法</span><br><span class="line"># 默认值是 “fdatasync”, 另一个是 “O_DSYNC”.</span><br><span class="line"># innodb_flush_method=O_DSYNC</span><br><span class="line"></span><br><span class="line"># 在被回滚前,一个InnoDB的事务应该等待一个锁被批准多久.</span><br><span class="line"># InnoDB在其拥有的锁表中自动检测事务死锁并且回滚事务.</span><br><span class="line"># 如果你使用 LOCK TABLES 指令, 或者在同样事务中使用除了InnoDB以外的其他事务安全的存储引擎</span><br><span class="line"># 那么一个死锁可能发生而InnoDB无法注意到.</span><br><span class="line"># 这种情况下这个timeout值对于解决这种问题就非常有帮助.</span><br><span class="line">innodb_lock_wait_timeout = 120</span><br></pre></td></tr></table></figure>
+<h4 id="mysqldump"><a href="#mysqldump" class="headerlink" title="[mysqldump]"></a><strong><em>[mysqldump]</em></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 不要在将内存中的整个结果写入磁盘之前缓存. 在导出非常巨大的表时需要此项</span><br><span class="line">quick</span><br><span class="line">max_allowed_packet = 16M</span><br></pre></td></tr></table></figure>
+<h4 id="mysql"><a href="#mysql" class="headerlink" title="[mysql]"></a><strong><em>[mysql]</em></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">no-auto-rehash</span><br><span class="line"># 仅仅允许使用键值的 UPDATEs 和 DELETEs .</span><br><span class="line"># safe-updates</span><br></pre></td></tr></table></figure>
+<h4 id="isamchk"><a href="#isamchk" class="headerlink" title="[isamchk]"></a><strong><em>[isamchk]</em></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key_buffer = 512M</span><br><span class="line">sort_buffer_size = 512M</span><br><span class="line">read_buffer = 8M</span><br><span class="line">write_buffer = 8M</span><br></pre></td></tr></table></figure>
+<h4 id="myisamchk"><a href="#myisamchk" class="headerlink" title="[myisamchk]"></a><strong><em>[myisamchk]</em></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key_buffer = 512M</span><br><span class="line">sort_buffer_size = 512M</span><br><span class="line">read_buffer = 8M</span><br><span class="line">write_buffer = 8M</span><br></pre></td></tr></table></figure>
+<h4 id="mysqlhotcopy"><a href="#mysqlhotcopy" class="headerlink" title="[mysqlhotcopy]"></a><strong><em>[mysqlhotcopy]</em></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">interactive-timeout</span><br></pre></td></tr></table></figure>
+<h4 id="mysqld-safe"><a href="#mysqld-safe" class="headerlink" title="[mysqld_safe]"></a><strong><em>[mysqld_safe]</em></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 增加每个进程的可打开文件数量.</span><br><span class="line"># 警告: 确认你已经将全系统限制设定的足够高!</span><br><span class="line"># 打开大量表需要将此值设b</span><br><span class="line">open-files-limit = 8192</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.372Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/" target="_blank" rel="external">http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/&title=《mysql配置文件详解》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/&title=《mysql配置文件详解》 — 刀刀亮的博客&source=配置文件解析
+你也可以使用在线配置文件生成向导来完成这个工作" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql配置文件详解》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Python学习/2015/06/09/Python学习-2015-06-09-python在windows下的服务/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python在windows下的服务程序</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql解决中文乱码问题/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">mysql中文乱码问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="数据库学习-mysql专题-2015-06-03-mysql配置文件详解" data-title="mysql配置文件详解" data-url="http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/&title=《mysql配置文件详解》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/&title=《mysql配置文件详解》 — 刀刀亮的博客&source=配置文件解析
+你也可以使用在线配置文件生成向导来完成这个工作" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql配置文件详解》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/06/03/数据库学习-mysql专题-2015-06-03-mysql配置文件详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD9UlEQVR42u3awXIiMQwEUP7/p5Nzigx0S56wW/U4pSCxxy+HxpIej/j19fSaffr8frJXsuPzb16tf+CFAwcOHDjKo14tnXz6+p322An38/r58/+yGg4cOHDgOMSRbJA/6Cx0k3BtD5+fEQcOHDhwfIrjdYDV2wf3qeRvcz4cOHDgwPGvcWyAEo6EOF8HBw4cOHB8iiNv4WwCeH/svOR3e60UBw4cOHCkSVeE1v/y8y3zHThw4MCBI4i6NrRyxFMtqySAh6fDgQMHDhxrjrbQljd+ToXf3dczHDhw4MDxNxz7Atx+WCEZs0tG65KV68kIHDhw4MBx8YT5wZKN20ZUvm97OcwvkD9+xoEDBw4ca468rJYHWHuhSsYakiBvY7UoDuLAgQMHjnjfWeNnFpOnDtzSFF8acODAgQPHmiMvCOahlQd2/uizoG2HJHDgwIEDx54jL5/NGkUz9HZMoX3n8lMcOHDgwHGIY3ZVq0fQRqE+i//k3/ymC4cDBw4cOG7jSIIqH2Vor3btji3iZdsJBw4cOHDM3x8W+GYjC+3Ks6rdbBccOHDgwHGKow3Udhwhp9y0r2ZfAh7t9wUcOHDgwDHiSC5jZ8t2yVH3hcjor3DgwIEDx4IjD7DNAEE79JBcwzbrR20nHDhw4MAx4sivZHlLKb847WO7RSwufjhw4MCBY8SRm+UFxP2QxKzF9fqd6Plx4MCBA8eaYxZUeYsoB2qvXvkg3f7KhwMHDhw4co68qNd2/+tJvUONpbbEiQMHDhw4znJsyoKzplRbsGsD9UAbDAcOHDhwLDhmY9b5IfPQzVfIL2b1iAYOHDhw4DjK0Zb52mBrQ7o9ajs8cTk5iAMHDhw41hz5uEC06GiIYcbRNsPe0ODAgQMHjjXHrD1zdwNpVqzcjESsDoADBw4cOMrQijpXh8J1/4/JP70sDuLAgQMHjkMcs0LbbIBgRp8fux3UOFZ3xIEDBw4c64jdDCVE4Vf+zqz5dBm0OHDgwIFj0i0qxtFObdlevZIBiPadokSIAwcOHDhijk0EzgJ1f/HLn7m+5uHAgQMHjkMcefv/7vDbrJbQv0HEgQMHDhxrjlnzKdmsHSmYlSA3A3PF3AQOHDhw4Ig5vspXG2NtGXE2JNdeNR/tNwscOHDgwBFz5K9oFKAMtjbI21jdr4ADBw4cOGYrzGIyvwoml7H8v5Sv0AY5Dhw4cOA4y7EJqnrLUbTPGldtDOPAgQMHjk9x5A+aF/vaNlhe0KybTzhw4MCB46Mc+af7AYW81ZQXEw8HLQ4cOHDgGA0xJI+Y08waWrN8fLMXDhw4cOBYc6xKaXHIzdpI7bUtf8LVlAcOHDhw4Pj9978BMrR77sC2dIsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>python 的日志logging模块学习 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1.简单的将日志打印到屏幕12345import logginglogging.debug(&apos;This is debug message&apos;)logging.info(&apos;This is info message&apos;)logging.warning(&apos;This is warning message&apos;) 屏幕上打印:  WARNING:root:This is warning message  默认情况">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 的日志logging模块学习">
+<meta property="og:url" content="http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="1.简单的将日志打印到屏幕12345import logginglogging.debug(&apos;This is debug message&apos;)logging.info(&apos;This is info message&apos;)logging.warning(&apos;This is warning message&apos;) 屏幕上打印:  WARNING:root:This is warning message  默认情况">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python 的日志logging模块学习">
+<meta name="twitter:description" content="1.简单的将日志打印到屏幕12345import logginglogging.debug(&apos;This is debug message&apos;)logging.info(&apos;This is info message&apos;)logging.warning(&apos;This is warning message&apos;) 屏幕上打印:  WARNING:root:This is warning message  默认情况">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">python 的日志logging模块学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">python 的日志logging模块学习</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-12-21T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2014-12-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-简单的将日志打印到屏幕"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.简单的将日志打印到屏幕</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-通过logging-basicConfig函数对日志的输出格式及方式做相关配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.通过logging.basicConfig函数对日志的输出格式及方式做相关配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-将日志同时输出到文件和屏幕"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.将日志同时输出到文件和屏幕</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-logging之日志回滚"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.logging之日志回滚</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-通过logging-config模块配置日志"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.通过logging.config模块配置日志</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-logging是线程安全的"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.logging是线程安全的</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-Python学习-2014-12-22-python的日志logging模块学习" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python 的日志logging模块学习</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014-12-22 00:00:00" datetime="2014-12-21T16:00:00.000Z" itemprop="datePublished">2014-12-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="1-简单的将日志打印到屏幕"><a href="#1-简单的将日志打印到屏幕" class="headerlink" title="1.简单的将日志打印到屏幕"></a><strong>1.简单的将日志打印到屏幕</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.debug(<span class="string">'This is debug message'</span>)</span><br><span class="line">logging.info(<span class="string">'This is info message'</span>)</span><br><span class="line">logging.warning(<span class="string">'This is warning message'</span>)</span><br></pre></td></tr></table></figure>
+<p>屏幕上打印:</p>
+<blockquote>
+<p>WARNING:root:This is warning message</p>
+</blockquote>
+<p>默认情况下，logging将日志打印到屏幕，日志级别为WARNING；<br>日志级别大小关系为：CRITICAL &gt; ERROR &gt; WARNING &gt; INFO &gt; DEBUG &gt; NOTSET，当然也可以自己定义日志级别。</p>
+<h2 id="2-通过logging-basicConfig函数对日志的输出格式及方式做相关配置"><a href="#2-通过logging-basicConfig函数对日志的输出格式及方式做相关配置" class="headerlink" title="2.通过logging.basicConfig函数对日志的输出格式及方式做相关配置"></a><strong>2.通过logging.basicConfig函数对日志的输出格式及方式做相关配置</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.DEBUG,</span><br><span class="line">                format=<span class="string">'%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s'</span>,</span><br><span class="line">                datefmt=<span class="string">'%a, %d %b %Y %H:%M:%S'</span>,</span><br><span class="line">                filename=<span class="string">'test.log'</span>,</span><br><span class="line">                filemode=<span class="string">'w'</span>)</span><br><span class="line">    </span><br><span class="line">logging.debug(<span class="string">'This is debug message'</span>)</span><br><span class="line">logging.info(<span class="string">'This is info message'</span>)</span><br><span class="line">logging.warning(<span class="string">'This is warning message'</span>)</span><br></pre></td></tr></table></figure>
+<p>./test.log 文件中内容为:</p>
+<blockquote>
+</blockquote>
+<p>Sun, 24 May 2009 21:48:54 demo2.py[line:11] DEBUG This is debug message<br>Sun, 24 May 2009 21:48:54 demo2.py[line:12] INFO This is info message<br>Sun, 24 May 2009 21:48:54 demo2.py[line:13] WARNING This is warning message</p>
+<p><strong>logging.basicConfig函数各参数:</strong></p>
+<blockquote>
+</blockquote>
+<p>filename: 指定日志文件名<br>filemode: 和file函数意义相同，指定日志文件的打开模式，’w’或’a’<br>format: 指定输出的格式和内容，format可以输出很多有用信息，如上例所示:<br> %(levelno)s: 打印日志级别的数值<br> %(levelname)s: 打印日志级别名称<br> %(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]<br> %(filename)s: 打印当前执行程序名<br> %(funcName)s: 打印日志的当前函数<br> %(lineno)d: 打印日志的当前行号<br> %(asctime)s: 打印日志的时间<br> %(thread)d: 打印线程ID<br> %(threadName)s: 打印线程名称<br> %(process)d: 打印进程ID<br> %(message)s: 打印日志信息<br>datefmt: 指定时间格式，同time.strftime()<br>level: 设置日志级别，默认为logging.WARNING<br>stream: 指定将日志的输出流，可以指定输出到sys.stderr,sys.stdout或者文件，默认输出到sys.stderr，当stream和filename同时指定时，stream被忽略</p>
+<h2 id="3-将日志同时输出到文件和屏幕"><a href="#3-将日志同时输出到文件和屏幕" class="headerlink" title="3.将日志同时输出到文件和屏幕"></a><strong>3.将日志同时输出到文件和屏幕</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.DEBUG,</span><br><span class="line">                format=<span class="string">'%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s'</span>,</span><br><span class="line">                datefmt=<span class="string">'%a, %d %b %Y %H:%M:%S'</span>,</span><br><span class="line">                filename=<span class="string">'test.log'</span>,</span><br><span class="line">                filemode=<span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#################################################################################################</span></span><br><span class="line"><span class="comment">#定义一个StreamHandler，将INFO级别或更高的日志信息打印到标准错误，并将其添加到当前的日志处理对象#</span></span><br><span class="line">console = logging.StreamHandler()</span><br><span class="line">console.setLevel(logging.INFO)</span><br><span class="line">formatter = logging.Formatter(<span class="string">'%(name)-12s: %(levelname)-8s %(message)s'</span>)</span><br><span class="line">console.setFormatter(formatter)</span><br><span class="line">logging.getLogger(<span class="string">''</span>).addHandler(console)</span><br><span class="line"><span class="comment">#################################################################################################</span></span><br><span class="line"></span><br><span class="line">logging.debug(<span class="string">'This is debug message'</span>)</span><br><span class="line">logging.info(<span class="string">'This is info message'</span>)</span><br><span class="line">logging.warning(<span class="string">'This is warning message'</span>)</span><br></pre></td></tr></table></figure>
+<p>屏幕上打印:</p>
+<blockquote>
+</blockquote>
+<p>root        : INFO     This is info message<br>root        : WARNING  This is warning message</p>
+<p>./test.log日之中显示:</p>
+<blockquote>
+</blockquote>
+<p>Sun, 24 May 2009 21:48:54 demo2.py[line:11] DEBUG This is debug message<br>Sun, 24 May 2009 21:48:54 demo2.py[line:12] INFO This is info message<br>Sun, 24 May 2009 21:48:54 demo2.py[line:13] WARNING This is warning message</p>
+<h2 id="4-logging之日志回滚"><a href="#4-logging之日志回滚" class="headerlink" title="4.logging之日志回滚"></a><strong>4.logging之日志回滚</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> logging.handlers <span class="keyword">import</span> RotatingFileHandler</span><br><span class="line"></span><br><span class="line"><span class="comment">#################################################################################################</span></span><br><span class="line"><span class="comment">#定义一个RotatingFileHandler，最多备份5个日志文件，每个日志文件最大10M</span></span><br><span class="line">Rthandler = RotatingFileHandler(<span class="string">'myapp.log'</span>, maxBytes=<span class="number">10</span>*<span class="number">1024</span>*<span class="number">1024</span>,backupCount=<span class="number">5</span>)</span><br><span class="line">Rthandler.setLevel(logging.INFO)</span><br><span class="line">formatter = logging.Formatter(<span class="string">'%(name)-12s: %(levelname)-8s %(message)s'</span>)</span><br><span class="line">Rthandler.setFormatter(formatter)</span><br><span class="line">logging.getLogger(<span class="string">''</span>).addHandler(Rthandler)</span><br><span class="line"><span class="comment">################################################################################################</span></span><br></pre></td></tr></table></figure>
+<p>从上例和本例可以看出，logging有一个日志处理的主对象，其它处理方式都是通过addHandler添加进去的。<br>logging的几种handle方式如下：</p>
+<blockquote>
+</blockquote>
+<p>logging.StreamHandler: 日志输出到流，可以是sys.stderr、sys.stdout或者文件<br>logging.FileHandler: 日志输出到文件<br>日志回滚方式，实际使用时用RotatingFileHandler和TimedRotatingFileHandler<br>logging.handlers.BaseRotatingHandler<br>logging.handlers.RotatingFileHandler<br>logging.handlers.TimedRotatingFileHandler<br>logging.handlers.SocketHandler: 远程输出日志到TCP/IP sockets<br>logging.handlers.DatagramHandler:  远程输出日志到UDP sockets<br>logging.handlers.SMTPHandler:  远程输出日志到邮件地址<br>logging.handlers.SysLogHandler: 日志输出到syslog<br>logging.handlers.NTEventLogHandler: 远程输出日志到Windows NT/2000/XP的事件日志<br>logging.handlers.MemoryHandler: 日志输出到内存中的制定buffer<br>logging.handlers.HTTPHandler: 通过”GET”或”POST”远程输出到HTTP服务器</p>
+<p>由于StreamHandler和FileHandler是常用的日志处理方式，所以直接包含在logging模块中，而其他方式则包含在logging.handlers模块中，<br>上述其它处理方式的使用请参见python2.5手册！</p>
+<h2 id="5-通过logging-config模块配置日志"><a href="#5-通过logging-config模块配置日志" class="headerlink" title="5.通过logging.config模块配置日志"></a><strong>5.通过logging.config模块配置日志</strong></h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#logger.conf</span></span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line"><span class="section">[loggers]</span></span><br><span class="line"><span class="attr">keys</span>=root,example01,example02</span><br><span class="line"><span class="section">[logger_root]</span></span><br><span class="line"><span class="attr">level</span>=DEBUG</span><br><span class="line"><span class="attr">handlers</span>=hand01,hand02</span><br><span class="line"><span class="section">[logger_example01]</span></span><br><span class="line"><span class="attr">handlers</span>=hand01,hand02</span><br><span class="line"><span class="attr">qualname</span>=example01</span><br><span class="line"><span class="attr">propagate</span>=<span class="number">0</span></span><br><span class="line"><span class="section">[logger_example02]</span></span><br><span class="line"><span class="attr">handlers</span>=hand01,hand03</span><br><span class="line"><span class="attr">qualname</span>=example02</span><br><span class="line"><span class="attr">propagate</span>=<span class="number">0</span></span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line"><span class="section">[handlers]</span></span><br><span class="line"><span class="attr">keys</span>=hand01,hand02,hand03</span><br><span class="line"><span class="section">[handler_hand01]</span></span><br><span class="line"><span class="attr">class</span>=StreamHandler</span><br><span class="line"><span class="attr">level</span>=INFO</span><br><span class="line"><span class="attr">formatter</span>=form02</span><br><span class="line"><span class="attr">args</span>=(sys.stderr,)</span><br><span class="line"><span class="section">[handler_hand02]</span></span><br><span class="line"><span class="attr">class</span>=FileHandler</span><br><span class="line"><span class="attr">level</span>=DEBUG</span><br><span class="line"><span class="attr">formatter</span>=form01</span><br><span class="line"><span class="attr">args</span>=(<span class="string">'myapp.log'</span>, <span class="string">'a'</span>)</span><br><span class="line"><span class="section">[handler_hand03]</span></span><br><span class="line"><span class="attr">class</span>=handlers.RotatingFileHandler</span><br><span class="line"><span class="attr">level</span>=INFO</span><br><span class="line"><span class="attr">formatter</span>=form02</span><br><span class="line"><span class="attr">args</span>=(<span class="string">'myapp.log'</span>, <span class="string">'a'</span>, <span class="number">10</span>*<span class="number">1024</span>*<span class="number">1024</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line"><span class="section">[formatters]</span></span><br><span class="line"><span class="attr">keys</span>=form01,form02</span><br><span class="line"><span class="section">[formatter_form01]</span></span><br><span class="line"><span class="attr">format</span>=%(asctime)s %(filename)s[line:%(line<span class="literal">no</span>)d] %(levelname)s %(message)s</span><br><span class="line"><span class="attr">datefmt</span>=%a, %d %b %Y %H:%M:%S</span><br><span class="line"><span class="section">[formatter_form02]</span></span><br><span class="line"><span class="attr">format</span>=%(name)-<span class="number">12</span>s: %(levelname)-<span class="number">8</span>s %(message)s</span><br><span class="line"><span class="attr">datefmt</span>=</span><br></pre></td></tr></table></figure>
+<p>例子1:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> logging.config</span><br><span class="line"></span><br><span class="line">logging.config.fileConfig(<span class="string">"logger.conf"</span>)</span><br><span class="line">logger = logging.getLogger(<span class="string">"example01"</span>)</span><br><span class="line"></span><br><span class="line">logger.debug(<span class="string">'This is debug message'</span>)</span><br><span class="line">logger.info(<span class="string">'This is info message'</span>)</span><br><span class="line">logger.warning(<span class="string">'This is warning message'</span>)</span><br></pre></td></tr></table></figure>
+<p>例子2:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> logging.config</span><br><span class="line"></span><br><span class="line">logging.config.fileConfig(<span class="string">"logger.conf"</span>)</span><br><span class="line">logger = logging.getLogger(<span class="string">"example02"</span>)</span><br><span class="line"></span><br><span class="line">logger.debug(<span class="string">'This is debug message'</span>)</span><br><span class="line">logger.info(<span class="string">'This is info message'</span>)</span><br><span class="line">logger.warning(<span class="string">'This is warning message'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-logging是线程安全的"><a href="#6-logging是线程安全的" class="headerlink" title="6.logging是线程安全的"></a><strong>6.logging是线程安全的</strong></h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/" target="_blank" rel="external">http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/&title=《python 的日志logging模块学习》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/&title=《python 的日志logging模块学习》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 的日志logging模块学习》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SQL语法学习</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/linux学习/2014/12/21/linux学习-2014-12-22-根据进程名杀死进程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">linux下进程的结束</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Python学习-2014-12-22-python的日志logging模块学习" data-title="python 的日志logging模块学习" data-url="http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/&title=《python 的日志logging模块学习》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/&title=《python 的日志logging模块学习》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 的日志logging模块学习》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADG0lEQVR42u3ay27bQBAEQP//TydXA0ac7tklII2KJ0OWuSz60JjH11d8/fl2/fzk5/X9O7NT8vu3p3xhY2Njr2PfOuBfv/35efuCktedW7CxsbG3spPDfn9ZLay9/0lkYmNjY2P/HmZRYMSFTX46NjY2NvZddhJUv+OTAJuVNNjY2NifwM6DISkq8vhpy5LkPpd7adjY2Ngvz86noq//8yPzbWxsbOwXZs9a8G2B0RYqSeFxcmFjY2NvYucBkDSA2js8sbJTPD82Njb2OnbbfJ+NWm8ND/IqAxsbG3s3uw2ktrnfvrg2ivJRcT3ZxsbGxn4TdnKjk89PyoyTIXF0OjY2NvZqdrtG05YxJ6+7LZ+iCgwbGxv7zdmzBZ3Zus+snJgNgB/ZS8LGxsZ+SXYeG0lE5YBZKXLyD8DGxsbex85XIdsyY7b00zaMhv9IbGxs7KXsWZPo96sNyJOISoIQGxsbex+7bQC135mt47QjhGTZ6KjvhY2Njf3C7LyoaBs9+YPOBgZJcP6nFMHGxsZex54VFW1bvy0e2pcY/RYbGxt7HTv/g/yY2cDgVtQVLSRsbGzsFexboTXrabWj3wtDaGxsbOxF7FvrMrPyoG0P5YVNtDCEjY2NvZQ9C7ZbQ9+8xX9h6IuNjY29jv1ESMzi8O6YGRsbG/sT2LOmT15atIPbNjKHTSVsbGzsFey2YGhLhefibfYSsbGxsbey2xXGWZGQY9oVnPoJsbGxsVezkxeRbL+cLFa236/jExsbG3sRO2ecLNncHQDMIrB4CGxsbOw3ZLcxdn78LMDa1x0NCbCxsbEXsZPAyEuOdh3npJi5MMHGxsbGXsp+YiSQr+M8V95gY2Njb2L/Ka+2M3My1p01kqLBBjY2NvYi9mxg0BYt7cO1gFujBWxsbOz3Zc8aOndbUXfHz0lxgo2Njb2PPeufn4yE22Ftm8BRgGFjY2N/MDuJqLa8aQPvaAyMjY2N/cHsfDA8G/SeFBtFTGJjY2OvY5+sVObFRt36iU9/sJeGjY2N/fLsPAZaalK05EHYjoGvzbexsbGxX5f9F/0uNQCe0OZdAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

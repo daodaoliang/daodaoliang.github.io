@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>CentOS下搭建GitLab服务器 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS下搭建GitLab服务器">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS下搭建GitLab服务器">
+<meta name="twitter:description" content="123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CentOS下搭建GitLab服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CentOS下搭建GitLab服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-12T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-Gitlab-简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">0 Gitlab 简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Gitlab-的安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. Gitlab 的安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-采用-Omnibus-方式"><span class="post-toc-number">3.</span> <span class="post-toc-text">1.1 采用 Omnibus 方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-1-安装配置依赖项"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1.1.1 安装配置依赖项</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-2-添加GitLab仓库-并安装到服务器上"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">1.1.2 添加GitLab仓库,并安装到服务器上</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-3-启动-Gitlab"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">1.1.3 启动 Gitlab</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-邮箱配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">2.邮箱配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-注册邮箱"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">2.1 注册邮箱</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-配置邮箱"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2.2 配置邮箱</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-测试邮箱"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">2.3 测试邮箱</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-Gitlab-运维"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. Gitlab 运维</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-1-管理"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">4.1 管理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-2-备份"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">4.2 备份</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-3-恢复"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">4.3 恢复</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CentOS下搭建GitLab服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-13 00:00:00" datetime="2017-04-12T16:00:00.000Z" itemprop="datePublished">2017-04-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作者 : daodaoliang@yeah.net</span><br><span class="line">日期 : 2017-04-13</span><br><span class="line">版本 : 0.0.4</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<hr>
+<ul>
+<li>TOC<br>{:toc}</li>
+</ul>
+<hr>
+<h3 id="0-Gitlab-简介"><a href="#0-Gitlab-简介" class="headerlink" title="0 Gitlab 简介"></a>0 <code>Gitlab</code> 简介</h3><p>GitLab 是一个用于仓库管理系统的开源项目。使用Git作为代码管理工具，并在此基础上搭建起来的web服务。可通过Web界面进行访问公开的或者私人项目。它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。它还提供一个代码片段收集功能可以轻松实现代码复用。</p>
+<hr>
+<h3 id="1-Gitlab-的安装"><a href="#1-Gitlab-的安装" class="headerlink" title="1. Gitlab 的安装"></a>1. <code>Gitlab</code> 的安装</h3><p><code>Gitlab</code> 有两种安装方式:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">安装方式</th>
+<th style="text-align:center">简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">源码方式安装</td>
+<td style="text-align:center">这个有些费劲,时间充足喜欢折腾按照<a href="https://docs.gitlab.com.cn/ce/install/README.html" target="_blank" rel="noopener">链接文档</a>安装即可</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Omnibus</code>方式安装</td>
+<td style="text-align:center">这个简单,不出任何意外大约一个半小时左右安装完毕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-1-采用-Omnibus-方式"><a href="#1-1-采用-Omnibus-方式" class="headerlink" title="1.1 采用 Omnibus 方式"></a>1.1 采用 <code>Omnibus</code> 方式</h3><p>根据<a href="https://www.gitlab.com.cn/downloads" target="_blank" rel="noopener">官网地址</a>，选择 <code>CentOS 6</code> 然后执行相应命令，即可完成安装操作，如果你用虚拟机，就直接用迅雷搞定，然后再拖进去吧，毕竟<code>200+M</code>,<a href="https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/" target="_blank" rel="noopener">下载连接在这里</a></p>
+<p>如果你不想观看官网那么跟着下面步骤走：</p>
+<h4 id="1-1-1-安装配置依赖项"><a href="#1-1-1-安装配置依赖项" class="headerlink" title="1.1.1 安装配置依赖项"></a>1.1.1 安装配置依赖项</h4><p>如想使用Postfix来发送邮件,在安装期间请选择’Internet Site’. 您也可以用sendmai或者 配置SMTP服务 并 使用SMTP发送邮件.在 Centos 6 和 7 系统上, 下面的命令将在系统防火墙里面开放HTTP和SSH端口.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install curl openssh-server openssh-clients postfix cronie</span><br><span class="line">sudo service postfix start</span><br><span class="line">sudo chkconfig postfix on</span><br><span class="line">sudo lokkit -s http -s ssh</span><br></pre></td></tr></table></figure>
+<h4 id="1-1-2-添加GitLab仓库-并安装到服务器上"><a href="#1-1-2-添加GitLab仓库-并安装到服务器上" class="headerlink" title="1.1.2 添加GitLab仓库,并安装到服务器上"></a>1.1.2 添加GitLab仓库,并安装到服务器上</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sS http://packages.gitlab.cc/install/gitlab-ce/script.rpm.sh | sudo bash</span><br><span class="line">sudo yum install gitlab-ce</span><br></pre></td></tr></table></figure>
+<h4 id="1-1-3-启动-Gitlab"><a href="#1-1-3-启动-Gitlab" class="headerlink" title="1.1.3 启动 Gitlab"></a>1.1.3 启动 <code>Gitlab</code></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="2-邮箱配置"><a href="#2-邮箱配置" class="headerlink" title="2.邮箱配置"></a>2.邮箱配置</h3><p>当你按照提示安装好后，基本上就可以使用了，但是在使用的过程中，我们发现邮件通知功能不稳定，使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /var/<span class="built_in">log</span>/mail.log</span><br></pre></td></tr></table></figure>
+<p>查看后发现，邮件被当成了垃圾邮件，被退信了。<br>使用默认<code>Gitlab</code>的邮件服务的话，貌似被退信的几率比较高，因此我们需修改一下，毕竟邮件通知还是很重要的。我们注册一个邮箱账号，让<code>GitLab</code>通过该账号向我们发送邮件通知，这看起来就像两个人正常通信了，基本上就不会被退信了。</p>
+<h4 id="2-1-注册邮箱"><a href="#2-1-注册邮箱" class="headerlink" title="2.1 注册邮箱"></a>2.1 注册邮箱</h4><p>注册QQ企业云邮箱不解释，记住用户名密码即可，你也可以随便使用其他邮箱服务器，不过不建议网易家的，他们会出现一些安全方面的拦截。</p>
+<h4 id="2-2-配置邮箱"><a href="#2-2-配置邮箱" class="headerlink" title="2.2 配置邮箱"></a>2.2 配置邮箱</h4><p>修改发送邮件步骤如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/gitlab/gitlab.rb</span><br></pre></td></tr></table></figure>
+<p>增加如下配置项，例:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails['smtp_enable'] = true</span><br><span class="line">gitlab_rails['smtp_address'] = "smtp.exmail.qq.com"</span><br><span class="line">gitlab_rails['smtp_port'] = 465</span><br><span class="line">gitlab_rails['smtp_user_name'] = "youraccount"</span><br><span class="line">gitlab_rails['smtp_password'] = "yourPWD"</span><br><span class="line">gitlab_rails['smtp_authentication'] = "login"</span><br><span class="line">gitlab_rails['smtp_enable_starttls_auto'] = true</span><br><span class="line">gitlab_rails['smtp_tls'] = true</span><br><span class="line">gitlab_rails['gitlab_email_from'] = 'youraccount'</span><br></pre></td></tr></table></figure>
+<p>修改完成后，需要执行以下命令使生效:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl reconfigure.</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-测试邮箱"><a href="#2-3-测试邮箱" class="headerlink" title="2.3 测试邮箱"></a>2.3 测试邮箱</h4><ol>
+<li>执行 gitlab-rails console</li>
+<li>在上面步骤后执行：</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Notify.test_email(<span class="string">'destination_email@address.com'</span>, <span class="string">'Message Subject'</span>, <span class="string">'Message Body'</span>).deliver_now</span><br></pre></td></tr></table></figure>
+<p><strong>PS:</strong> 具体其他的请参考<a href="http://docs.gitlab.com/omnibus/settings/smtp.html" target="_blank" rel="noopener">这篇文档</a></p>
+<h3 id="4-Gitlab-运维"><a href="#4-Gitlab-运维" class="headerlink" title="4. Gitlab 运维"></a>4. <code>Gitlab</code> 运维</h3><p>具体运维请参考<a href="https://docs.gitlab.com.cn/ce/README.html" target="_blank" rel="noopener">这篇文档</a></p>
+<h4 id="4-1-管理"><a href="#4-1-管理" class="headerlink" title="4.1 管理"></a>4.1 管理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 启动所有 gitlab 组件：</span><br><span class="line">sudo gitlab-ctl start</span><br><span class="line"></span><br><span class="line"># 停止所有 gitlab 组件：</span><br><span class="line">sudo gitlab-ctl stop</span><br><span class="line"></span><br><span class="line"># 重启所有 gitlab 组件：</span><br><span class="line">sudo gitlab-ctl restart</span><br></pre></td></tr></table></figure>
+<h4 id="4-2-备份"><a href="#4-2-备份" class="headerlink" title="4.2 备份"></a>4.2 备份</h4><p>备份GitLab repositories and GitLab metadata</p>
+<p>在 crontab 中加入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
+<h4 id="4-3-恢复"><a href="#4-3-恢复" class="headerlink" title="4.3 恢复"></a>4.3 恢复</h4><p>首先进入备份 gitlab 的目录，这个目录是配置文件中的<code>gitlab_rails[&#39;backup_path&#39;]</code> ，默认为 <code>/var/opt/gitlab/backups</code> 。</p>
+<p>然后停止 <code>unicorn 和 sidekiq</code> ，保证数据库没有新的连接，不会有写数据情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl stop unicorn</span><br><span class="line"># ok: down: unicorn: 0s, normally up</span><br><span class="line">sudo gitlab-ctl stop sidekiq</span><br><span class="line"># ok: down: sidekiq: 0s, normally up</span><br></pre></td></tr></table></figure>
+<p>然后恢复数据，1406691018为备份文件的时间戳</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:restore BACKUP=1406691018</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.512Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/&title=《CentOS下搭建GitLab服务器》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/&title=《CentOS下搭建GitLab服务器》 — 刀刀亮的博客&source=123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS下搭建GitLab服务器》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CentOS6.8下安装Maven</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/windows学习/2017/04/12/windows学习-2017-04-12-windows下面服务程序相关/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">windows下服务程序相关</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7" data-title="CentOS下搭建GitLab服务器" data-url="http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/&title=《CentOS下搭建GitLab服务器》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/&title=《CentOS下搭建GitLab服务器》 — 刀刀亮的博客&source=123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS下搭建GitLab服务器》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADQklEQVR42u3ay27iQBAF0Pz/T2ek2UUzOPdWkQg3xytEwN2nLaWox8dHfH3+vf59/eiv+Weu3390Xa/1tAsbGxv7Jux8gUffau9zvdF2P+0esLGxsU9lJ0ErX/j6btdhbHZA7erY2NjY78meJQB5SEvSmCSZwcbGxsbOA9j1EcySh2jTccELGxsb+33YbZhpjykvTs2C3w/W0rCxsbFfnr1p9L7a61/qb2NjY2O/DPuzvJJDaUv/+xGcWoGNjY19EPt60/tkY5bk5EWiPDkpnhU2Njb2DdktYzPck5f+82CWFL++eebY2NjYt2VvlpwdUHuUzy08fcnAsLGxsY9gt8EgDxVtopKXjfLPFI1ebGxs7JuzkwSjHZGZlfU3ozz5t7CxsbFPYs9K+T8XYNpBnOLZYmNjYx/KbgNY3hjeD/08q1X88ICwsbGxj2AnxfS84J6Hw7aInx9iPaOEjY2NfQS7vUVe9E/Y+bVPZr4EMGxsbOyD2Hk6sQk5bcuhbS0UjWdsbGzsg9izJKRNAPaDPrMGxjfBEhsbG/sI9myBvLSUpxPtMa0eHjY2NvZB7PbWSfqRl3va+7TRp6hRYWNjY9+c3f7cny2fNxva5GRfosLGxsa+Lzv/cZ9vqG3rJgEsR0YhFhsbG/sg9qZAkyyTD9y0jYe2VYCNjY19Nrttmm4KRjm4DWn5IBE2Njb2eex9mHlWrWY2HlQ3A7CxsbGPY+f/7jfN1Fk7IU8whiOY2NjY2Eew80bvbFgnSSryI2gTm+hRYWNjY9+cnSzTBpi2I5Fv+lnDmtjY2NhnsPPttmM6bTBrC0858j97wMbGxj6InY+/JCFn0wBoH8Dsu0XWhY2NjX0T9uZG+1GbZCSorY0VqQg2Njb2Qey86PMT4zVtQ2L/ALCxsbHPY8+au/m4TDvK04bPepAIGxsb+yD2MACUKUGekCQJTJ7wYGNjY78Pe5YAzIo7++A0O+I6IcHGxsa+IXtTEtrEhSTVmaUcRZMAGxsb+23YybeS45i1b2ehFBsbGxs7CTl56adNJJJVhi0KbGxs7OPYSfIwCz+zWv0++D2tloaNjY398uy20Ttr1ubNgKQxcP3OZoQIGxsb+1bsP8tpMBPL3H/3AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

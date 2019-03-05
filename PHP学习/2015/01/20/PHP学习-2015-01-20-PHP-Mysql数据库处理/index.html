@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>php mysql数据库处理 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="PHP 数据库处理安装  首先安装mysql和php; 安装PHP5-mysql; 安装PHP5-gd;  链接到一个mysql 数据库 语法: 1mysql_connect(servername,username,password);    参数 描述     servername 可选,规定要链接服务器,默认是”localhost3306”   username 可选,规定登陆所使用的用户名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php mysql数据库处理">
+<meta property="og:url" content="http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="PHP 数据库处理安装  首先安装mysql和php; 安装PHP5-mysql; 安装PHP5-gd;  链接到一个mysql 数据库 语法: 1mysql_connect(servername,username,password);    参数 描述     servername 可选,规定要链接服务器,默认是”localhost3306”   username 可选,规定登陆所使用的用户名">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php mysql数据库处理">
+<meta name="twitter:description" content="PHP 数据库处理安装  首先安装mysql和php; 安装PHP5-mysql; 安装PHP5-gd;  链接到一个mysql 数据库 语法: 1mysql_connect(servername,username,password);    参数 描述     servername 可选,规定要链接服务器,默认是”localhost3306”   username 可选,规定登陆所使用的用户名">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php mysql数据库处理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php mysql数据库处理</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-19T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PHP-数据库处理"><span class="post-toc-number">1.</span> <span class="post-toc-text">PHP 数据库处理</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-PHP学习-2015-01-20-PHP-Mysql数据库处理" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php mysql数据库处理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-20 00:00:00" datetime="2015-01-19T16:00:00.000Z" itemprop="datePublished">2015-01-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP学习/">PHP学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="PHP-数据库处理"><a href="#PHP-数据库处理" class="headerlink" title="PHP 数据库处理"></a>PHP 数据库处理</h2><p><strong>安装</strong></p>
+<ul>
+<li>首先安装mysql和php;</li>
+<li>安装PHP5-mysql;</li>
+<li>安装PHP5-gd;</li>
+</ul>
+<p><strong>链接到一个mysql 数据库</strong></p>
+<p>语法:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_connect(servername,username,password);</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">servername</td>
+<td style="text-align:center">可选,规定要链接服务器,默认是”localhost3306”</td>
+</tr>
+<tr>
+<td style="text-align:center">username</td>
+<td style="text-align:center">可选,规定登陆所使用的用户名.默认值时拥有服务器进程的用户的名称</td>
+</tr>
+<tr>
+<td style="text-align:center">password</td>
+<td style="text-align:center">可选,规定登陆所用的密码,默认是””</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关闭链接</strong></p>
+<p>用法:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_close(connecttion);</span><br></pre></td></tr></table></figure>
+<p>示例:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$con=mysql_connect(<span class="string">"localhost"</span>,<span class="string">"daodaoliang"</span>,<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">if</span> (!$con)&#123;</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">"coould not connect:"</span>.mysql_error());</span><br><span class="line">&#125;</span><br><span class="line">mysql_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>创建数据库和创建表</strong></p>
+<p>示例:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$con = mysql_connect(<span class="string">"localhost"</span>,<span class="string">"daodaoliang"</span>,<span class="string">"123"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!$con)&#123;</span><br><span class="line">		<span class="keyword">die</span>(<span class="string">"could not connect"</span>.mysql_error());</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (mysql_query(<span class="string">"create database my_db"</span>,$con)) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"database created"</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"error creating database:"</span>.mysql_error();</span><br><span class="line">	&#125;</span><br><span class="line">	mysql_select_db(<span class="string">"my_db"</span>,$con);</span><br><span class="line">	$sql = <span class="string">"create table test (</span></span><br><span class="line"><span class="string">	column varchar(10) not null auto_increment,</span></span><br><span class="line"><span class="string">	column2 int(11),</span></span><br><span class="line"><span class="string">	primary key(column)</span></span><br><span class="line"><span class="string">	)"</span>;</span><br><span class="line">	mysql_query($sql,$con);</span><br><span class="line">	mysql_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>从数据库中获取数据</strong></p>
+<p>示例:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	$con = mysql_connect(<span class="string">"localhost"</span>,<span class="string">"daodaoliang"</span>,<span class="string">"123"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!$con) &#123;</span><br><span class="line">		<span class="keyword">die</span>(<span class="string">"could not connect :"</span>.mysql_error());</span><br><span class="line">	&#125;</span><br><span class="line">	mysql_select_db(<span class="string">"my_db"</span>,$con);</span><br><span class="line">	$result = mysql_query(<span class="string">"select * from test_table"</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;table border = '1'&gt;</span></span><br><span class="line"><span class="string">	&lt;tr&gt;</span></span><br><span class="line"><span class="string">	&lt;th&gt;column&lt;/th&gt;</span></span><br><span class="line"><span class="string">	&lt;th&gt;eloumn2&lt;/th&gt;</span></span><br><span class="line"><span class="string">	&lt;/th&gt;</span></span><br><span class="line"><span class="string">	"</span>;</span><br><span class="line">	<span class="keyword">while</span> ($row = mysql_fetch_array($result))&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;tr&gt;"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;td&gt;"</span>.$row[<span class="string">'column'</span>].<span class="string">"&lt;/td&gt;"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;td&gt;"</span>.$row[<span class="string">'column2'</span>].<span class="string">"&lt;/td&gt;"</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"&lt;/tr&gt;"</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"&lt;/table&gt;"</span>;</span><br><span class="line">	mysql_close($con);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/" target="_blank" rel="external">http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/&title=《php mysql数据库处理》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/&title=《php mysql数据库处理》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php mysql数据库处理》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2015/01/22/linux学习-2015-01-22-linux定时任务/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux下定时任务</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/PHP学习/2015/01/19/PHP学习-2015-01-19-PHP异常处理/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">php异常</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="PHP学习-2015-01-20-PHP-Mysql数据库处理" data-title="php mysql数据库处理" data-url="http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/&title=《php mysql数据库处理》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/&title=《php mysql数据库处理》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php mysql数据库处理》 — 刀刀亮的博客&url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/PHP学习/2015/01/20/PHP学习-2015-01-20-PHP-Mysql数据库处理/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMklEQVR42u3a0W7iQAwF0P7/T7OvK7WEaztIjDl5qkAkcwapxtfz8xNfj/+u61fy+zy7ft9t/tzmhY2NjX0Iu7eIZ6/8XkT+Sr6SZG3Xq8LGxsbex372H7669EnRSjYlKW/XFmxsbGzs6hbkxabaWuSfxcbGxsbO24Ok/CT37N0ZGxsb+5vZkyinFyH1Cl5S/G7O0rCxsbE/np3/6P/8v98y38bGxsb+YPajeN0VOU2K0PzCxsbG3sTuHdm5l5cUoXmA9cdTsLGxsVewq8dl8o3Iw6neQLc6tMDGxsbeyp7H8dcPmI9ye4PnaIuxsbGxF7EnP/3zTcyPTk5CqMl6sLGxsc9lzweoeSifNzD3Bk9PTyphY2NjL2LnY9d8GNAbD+TtUN7wFL4rbGxs7KPY0Rx4cEDzXkxvndFUBBsbG/tYdrWw5bF7NR5K2pXJxpW/PWxsbOyj2NWW4H2fnY+Wo8M62NjY2IvYyQGaeQxULY3XJbDa8PxxH2xsbOxF7DyOyYvHpD2YFK2bQyVsbGzsA9nVh/WSqrzUPQZXuQ/DxsbGPpadL/2uQzy99qO3TU+/PGxsbOzV7OpYt7oF+XZMBtIvyhs2Njb217Cvo/l5glVtKqqb9fTLw8bGxl7Ezsel7xvEVgOs6t0KKRo2Njb2sexqfJ8/IG9y8g29BjQLMDY2Nvbh7OoAtTqarQ4YJo1QYbOwsbGx17HzAOiukpa3NPOCh42Njb2V3WsM8magsPfx5vbW9sdUBBsbG3s1e5KiV4/a9N5NSt2LOAkbGxt7BTt5Iw/rq/F9HiRNRgsvVoWNjY29iD0h9Y77VI/+5KOIXiHExsbGPpc9D26qvPmxnl7bU+jDsLGxsY9l90pIdERmcM9eNS4katjY2NjHsh/FqxfuT4bE1aAqKo3Y2NjYi9ijn/Ljset1y5GHRNXmBxsbG3sfOylaSXnoNRjJc/Nsv7CV2NjY2OvYvVvnk9Neacw3olx0sbGxsb+YPWkJ8oI3aV2icoiNjY2NXUynJttUDZ6iYoaNjY29jt0rCb0y0wuwko0rRFrY2NjYi9iT8pOPYwtNwhtGwqMjO9jY2Nify/4HuO6RzXsB4yQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

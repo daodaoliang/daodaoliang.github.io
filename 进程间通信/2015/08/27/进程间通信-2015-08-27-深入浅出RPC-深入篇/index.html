@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>深入浅出RPC——深入篇(转载) | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="本文转载自这里是原文 《深入篇》我们主要围绕 RPC 的功能目标和实现考量去展开，一个基本的 RPC 框架应该提供什么功能，满足什么要求以及如何去实现它？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入浅出RPC——深入篇(转载)">
+<meta property="og:url" content="http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="本文转载自这里是原文 《深入篇》我们主要围绕 RPC 的功能目标和实现考量去展开，一个基本的 RPC 框架应该提供什么功能，满足什么要求以及如何去实现它？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/进程间通信/2014-09-22-1.svg">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/进程间通信/2014-09-22-2.png">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入浅出RPC——深入篇(转载)">
+<meta name="twitter:description" content="本文转载自这里是原文 《深入篇》我们主要围绕 RPC 的功能目标和实现考量去展开，一个基本的 RPC 框架应该提供什么功能，满足什么要求以及如何去实现它？">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/进程间通信/2014-09-22-1.svg">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">深入浅出RPC——深入篇(转载)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">深入浅出RPC——深入篇(转载)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-08-26T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-08-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/进程间通信/">进程间通信</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RPC-功能目标"><span class="post-toc-number">1.</span> <span class="post-toc-text">RPC 功能目标</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RPC调用分类"><span class="post-toc-number">2.</span> <span class="post-toc-text">RPC调用分类</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RPC结构拆解"><span class="post-toc-number">3.</span> <span class="post-toc-text">RPC结构拆解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RPC组件职责"><span class="post-toc-number">4.</span> <span class="post-toc-text">RPC组件职责</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RPC实现分析"><span class="post-toc-number">5.</span> <span class="post-toc-text">RPC实现分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#导出远程接口"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">导出远程接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#导入远程接口与客户端代理"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">导入远程接口与客户端代理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#协议编解码"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">协议编解码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#调用编码"><span class="post-toc-number">5.3.1.</span> <span class="post-toc-text">调用编码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#返回编码"><span class="post-toc-number">5.3.2.</span> <span class="post-toc-text">返回编码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#传输服务"><span class="post-toc-number">5.3.3.</span> <span class="post-toc-text">传输服务</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#执行调用"><span class="post-toc-number">5.3.4.</span> <span class="post-toc-text">执行调用</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RPC-异常处理"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">RPC 异常处理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-进程间通信-2015-08-27-深入浅出RPC-深入篇" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">深入浅出RPC——深入篇(转载)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-08-27 00:00:00" datetime="2015-08-26T16:00:00.000Z" itemprop="datePublished">2015-08-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/进程间通信/">进程间通信</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<p>本文转载自<a href="http://mindwind.me/blog/2014/09/22/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BARPC%E2%80%94%E2%80%94%E6%B7%B1%E5%85%A5%E7%AF%87.html" target="_blank" rel="noopener">这里是原文</a></p>
+<p>《深入篇》我们主要围绕 RPC 的功能目标和实现考量去展开，一个基本的 RPC 框架应该提供什么功能，满足什么要求以及如何去实现它？</p>
+<a id="more"></a>
+<h2 id="RPC-功能目标"><a href="#RPC-功能目标" class="headerlink" title="RPC 功能目标"></a>RPC 功能目标</h2><p><strong>RPC的主要功能呢个目标是让构建分布式计算更加容易，在提供强大的远程调用能力时不损失本地调用的语义简洁性</strong>。为实现该目标，RPC框架提供一种透明的调用机制让使用者不必显式的区分本地调用和远程调用，在前文《浅出篇》给出了一种时间结构，基于stub的是结构来实现，下面我们将细化stub结构的实现。</p>
+<h2 id="RPC调用分类"><a href="#RPC调用分类" class="headerlink" title="RPC调用分类"></a>RPC调用分类</h2><p>RPC调用分以下两种：</p>
+<ul>
+<li><p>同步调用</p>
+<blockquote>
+<p>客户方等待调用执行完成并返回结果</p>
+</blockquote>
+</li>
+<li><p>异步调用</p>
+<blockquote>
+<p>客户调用后不用等待执行结果返回，但依然可以通过回调通知等方式获取返回结果，若客户方不关系调用返回结果，则变成单向异步调用，单向调用不用返回结果。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="RPC结构拆解"><a href="#RPC结构拆解" class="headerlink" title="RPC结构拆解"></a>RPC结构拆解</h2><p>《浅出篇》给出了一个比较粗粒度的RPC实现概念结构，这里我们进一步细化它该由哪些组件构成，如下图所示：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/进程间通信/2014-09-22-1.svg" alt="示例" title="">
+                </div>
+                <div class="image-caption">示例</div>
+            </figure></p>
+<p>RPC服务方通过RpcServer导出远程接口方法，而客户方通过RpcClient去引入远程接口方法。客户方向调用本地方法一样去调用远程方法，RPC框架提供接口的代理实现，实际的调用委托给RpcProxy。代理封装调用信用信息将调用转交给RpcInvoker去实际执行，在客户端的RpcInvoker通过连接器RpcConnector去维持服务器端的通道RpcChannel，并使用RpcProtocol执行协议编码(encode)并将编码后的消息通过通道发给服务方。</p>
+<p>RPC服务方的RpcAcceptor去接受客户方的调用请求，同样使用RPCProtocol执行协议解码(decode)。解码后的信息传递给RPCProcessor去控制处理调用过程，最后在委托调用给RPCInvoker去实际执行并返回调用结果。</p>
+<h2 id="RPC组件职责"><a href="#RPC组件职责" class="headerlink" title="RPC组件职责"></a>RPC组件职责</h2><p>上面我们进一步拆解了RPC实现结构的哥哥组件部分，下面我们详细说明每个部分的职责：</p>
+<ul>
+<li><ol>
+<li>RPCServer<blockquote>
+<p>负责导出接口</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>RpcClient<blockquote>
+<p>负责导入接口</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>RpcProxy<blockquote>
+<p>远程接口代理实现</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>RpcInvoker<blockquote>
+<p>客户方实现：负责编码调用信息，并发送调用信息并等待调用返回。<br>服务方实现：负责调用服务端接口的具体实现并返回调用结果。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>RpcProtocol<blockquote>
+<p>负责协议编解码</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>RpcConnector<blockquote>
+<p>负责维持客户方和服务方的谅解通道和发送数据到服务方</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>RpcAcceptor<blockquote>
+<p>负责接收客户方的请求并返回处理结果</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="8">
+<li>RpcProcessor<blockquote>
+<p>负责在服务方管理调用过程，包括线程池和调用的超时时间等。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="9">
+<li>RpcChannel<blockquote>
+<p>数据传输通道</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="RPC实现分析"><a href="#RPC实现分析" class="headerlink" title="RPC实现分析"></a>RPC实现分析</h2><p>在进一步拆解了组件并划分了职责以后，这里以在Java平台实现该RPC框架概念模型为例，详细分析下实现中需要考虑的因素：</p>
+<h3 id="导出远程接口"><a href="#导出远程接口" class="headerlink" title="导出远程接口"></a>导出远程接口</h3><p>导出远程接口的意思指的只有导出的接口可以供远程调用，而未导出的接口则不能用，在java中导出接口的代码片段可能如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DemoServer demo = <span class="keyword">new</span> ...;</span><br><span class="line">   RpcSerber server = <span class="keyword">new</span> ...;</span><br><span class="line">   server.export(Demoserver.class, demo, options)</span><br></pre></td></tr></table></figure>
+<p>我们可以导出整个接口也可以更细粒度一点只导出接口中的某些方法，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只导出Demoserver中签名为hi(string s) 的方法</span></span><br><span class="line">   server.export(DemoServer.class, demo, <span class="string">"hi"</span>, <span class="keyword">new</span> Class&lt;?&gt;[] &#123;String.class&#125;,options)</span><br></pre></td></tr></table></figure>
+<p>java 中还有一种比较特殊的调用就是多态，也就是一个接口可能有多个实现，那么远程调用时到底调用哪个？ 这个本地调用的语义是通过 jvm 提供的引用多态性隐式实现的，那么对于 RPC 来说跨进程的调用就没法隐式实现了。 如果前面 DemoService 接口有 2 个实现，那么在导出接口时就需要特殊标记不同的实现，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DemoService demo   = <span class="keyword">new</span> ...;</span><br><span class="line">DemoService demo2  = <span class="keyword">new</span> ...;</span><br><span class="line">RpcServer   server = <span class="keyword">new</span> ...;</span><br><span class="line">server.export(DemoService.class, demo, options);</span><br><span class="line">server.export(<span class="string">"demo2"</span>, DemoService.class, demo2, options);</span><br></pre></td></tr></table></figure>
+<p>上面 demo2 是另一个实现，我们标记为 demo2 来导出， 那么远程调用时也需要传递该标记才能调用到正确的实现类，这样就解决了多态调用的语义。</p>
+<h3 id="导入远程接口与客户端代理"><a href="#导入远程接口与客户端代理" class="headerlink" title="导入远程接口与客户端代理"></a>导入远程接口与客户端代理</h3><p>导入相对于导出远程接口，客户端代码为了能够发起调用必须要获得远程接口的方法或过程定义。 目前，大部分跨语言平台 RPC 框架采用根据 IDL 定义通过 code generator 去生成 stub 代码， 这种方式下实际导入的过程就是通过代码生成器在编译期完成的。 我所使用过的一些跨语言平台 RPC 框架如 CORBAR、WebService、ICE、Thrift 均是此类方式。</p>
+<p>代码生成的方式对跨语言平台 RPC 框架而言是必然的选择，而对于同一语言平台的 RPC 则可以通过共享接口定义来实现。 在 java 中导入接口的代码片段可能如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RpcClient client = <span class="keyword">new</span> ...;</span><br><span class="line">   DemoServer 	demo = client.refer(DemoServer.class);</span><br><span class="line">   demo.hi(<span class="string">"how are you"</span>);</span><br></pre></td></tr></table></figure>
+<p>在 java 中 import 是关键字，所以代码片段中我们用 refer 来表达导入接口的意思。 这里的导入方式本质也是一种代码生成技术，只不过是在运行时生成，比静态编译期的代码生成看起来更简洁些。 java 里至少提供了两种技术来提供动态代码生成，一种是 jdk 动态代理，另外一种是字节码生成。 动态代理相比字节码生成使用起来更方便，但动态代理方式在性能上是要逊色于直接的字节码生成的，而字节码生成在代码可读性上要差很多。 两者权衡起来，个人认为牺牲一些性能来获得代码可读性和可维护性显得更重要。</p>
+<h3 id="协议编解码"><a href="#协议编解码" class="headerlink" title="协议编解码"></a>协议编解码</h3><p>客户端代理在发起调用前需要对调用信息进行编码，这就要考虑需要编码些什么信息并以什么格式传输到服务端才能让服务端完成调用。 出于效率考虑，编码的信息越少越好（传输数据少），编码的规则越简单越好（执行效率高）。 我们先看下需要编码些什么信息：</p>
+<h4 id="调用编码"><a href="#调用编码" class="headerlink" title="调用编码"></a>调用编码</h4><ol>
+<li>接口方法</li>
+</ol>
+<blockquote>
+<p>包括接口名、方法名</p>
+</blockquote>
+<ol start="2">
+<li>方法参数</li>
+</ol>
+<blockquote>
+<p>包括参数类型、参数值</p>
+</blockquote>
+<ol start="3">
+<li>调用属性</li>
+</ol>
+<blockquote>
+<p>包括调用属性信息，例如调用附件隐式参数、调用超时时间等</p>
+</blockquote>
+<h4 id="返回编码"><a href="#返回编码" class="headerlink" title="返回编码"></a>返回编码</h4><ol>
+<li>返回结果</li>
+</ol>
+<blockquote>
+<p>接口方法中定义的返回值</p>
+</blockquote>
+<ol start="2">
+<li>返回码</li>
+</ol>
+<blockquote>
+<p>异常返回码</p>
+</blockquote>
+<ol start="3">
+<li>返回异常信息</li>
+</ol>
+<blockquote>
+<p>调用异常信息</p>
+</blockquote>
+<p>除了以上这些必须的调用信息，我们可能还需要一些元信息以方便程序编解码以及未来可能的扩展。 这样我们的编码消息里面就分成了两部分，一部分是元信息、另一部分是调用的必要信息。 如果设计一种 RPC 协议消息的话，元信息我们把它放在协议消息头中，而必要信息放在协议消息体中。 下面给出一种概念上的 RPC 协议消息设计格式：</p>
+<p><strong>消息头</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/进程间通信/2014-09-22-2.png" alt="头信息" title="">
+                </div>
+                <div class="image-caption">头信息</div>
+            </figure>
+<ul>
+<li>magic：协议魔数，为解码设计</li>
+<li>header size: 协议头长度，为扩展设计</li>
+<li>version: 协议版本，为扩展时使用</li>
+<li>st: 消息体序列化类型</li>
+<li>hb: 心跳信息标记，为长连接传输层心跳设计</li>
+<li>ow: 单向消息标记</li>
+<li>rp: 相应消息标记。不置位默认是请求消息</li>
+<li>status code： 响应消息状态码</li>
+<li>reserved: 为字节对齐保留</li>
+<li>message id：消息id</li>
+<li>body size:消息体长度</li>
+</ul>
+<p><strong>消息体</strong></p>
+<p>采用序列化编码，常见有以下格式：</p>
+<ul>
+<li>XML:如webservice(SOAP)</li>
+<li>json: 如json-RPC</li>
+<li>binary: 如thrift,hession,kryo等</li>
+</ul>
+<p>格式确定后编解码就简单了，由于头长度一定所以我们比较关心的就是消息体的序列化方式。 序列化我们关心三个方面：</p>
+<ul>
+<li>序列化和反序列化的效率，越快越好。</li>
+<li>序列化后的字节长度，越小越好。</li>
+<li>序列化和反序列化的兼容性，接口参数对象若增加了字段，是否兼容。</li>
+</ul>
+<p>上面这三点有时是鱼与熊掌不可兼得，这里面涉及到具体的序列化库实现细节，就不在本文进一步展开分析了。</p>
+<h4 id="传输服务"><a href="#传输服务" class="headerlink" title="传输服务"></a>传输服务</h4><p>协议编码之后，自然就是需要将编码后的 RPC 请求消息传输到服务方，服务方执行后返回结果消息或确认消息给客户方。 RPC 的应用场景实质是一种可靠的请求应答消息流，和 HTTP 类似。 因此选择长连接方式的 TCP 协议会更高效，与 HTTP 不同的是在协议层面我们定义了每个消息的唯一 id，因此可以更容易的复用连接。</p>
+<p>既然使用长连接，那么第一个问题是到底 client 和 server 之间需要多少根连接？ 实际上单连接和多连接在使用上没有区别，对于数据传输量较小的应用类型，单连接基本足够。 单连接和多连接最大的区别在于，每根连接都有自己私有的发送和接收缓冲区， 因此大数据量传输时分散在不同的连接缓冲区会得到更好的吞吐效率。 所以，如果你的数据传输量不足以让单连接的缓冲区一直处于饱和状态的话，那么使用多连接并不会产生任何明显的提升， 反而会增加连接管理的开销。</p>
+<p>连接是由 client 端发起建立并维持。 如果 client 和 server 之间是直连的，那么连接一般不会中断（当然物理链路故障除外）。 如果 client 和 server 连接经过一些负载中转设备，有可能连接一段时间不活跃时会被这些中间设备中断。 为了保持连接有必要定时为每个连接发送心跳数据以维持连接不中断。 心跳消息是 RPC 框架库使用的内部消息，在前文协议头结构中也有一个专门的心跳位， 就是用来标记心跳消息的，它对业务应用透明。</p>
+<h4 id="执行调用"><a href="#执行调用" class="headerlink" title="执行调用"></a>执行调用</h4><p>client stub 所做的事情仅仅是编码消息并传输给服务方，而真正调用过程发生在服务方。 server stub 从前文的结构拆解中我们细分了 RpcProcessor 和 RpcInvoker 两个组件， 一个负责控制调用过程，一个负责真正调用。 这里我们还是以 java 中实现这两个组件为例来分析下它们到底需要做什么？</p>
+<p>java 中实现代码的动态接口调用目前一般通过反射调用。 除了原生的 jdk 自带的反射，一些第三方库也提供了性能更优的反射调用， 因此 RpcInvoker 就是封装了反射调用的实现细节。</p>
+<p>调用过程的控制需要考虑哪些因素，RpcProcessor 需要提供什么样地调用控制服务呢？ 下面提出几点以启发思考：</p>
+<ul>
+<li>效率提升</li>
+</ul>
+<blockquote>
+<p>每个请求应该尽快被执行，因此我们不能每请求来再创建线程去执行，需要提供线程池服务.</p>
+</blockquote>
+<ul>
+<li>资源隔离</li>
+</ul>
+<blockquote>
+<p>当我们导出多个远程接口时，如何避免单一接口调用占据所有线程资源，而引发其他接口执行阻塞。</p>
+</blockquote>
+<ul>
+<li>超时控制</li>
+</ul>
+<blockquote>
+<p>当某个接口执行缓慢，而 client 端已经超时放弃等待后，server 端的线程继续执行此时显得毫无意义。</p>
+</blockquote>
+<h3 id="RPC-异常处理"><a href="#RPC-异常处理" class="headerlink" title="RPC 异常处理"></a>RPC 异常处理</h3><p>无论 RPC 怎样努力把远程调用伪装的像本地调用，但它们依然有很大的不同点，而且有一些异常情况是在本地调用时绝对不会碰到的。 在说异常处理之前，我们先比较下本地调用和 RPC 调用的一些差异：</p>
+<ul>
+<li>本地调用一定会执行，而远程调用则不一定，调用消息可能因为网络原因并未发送到服务方。</li>
+<li>本地调用只会抛出接口声明的异常，而远程调用还会跑出 RPC 框架运行时的其他异常。</li>
+<li>本地调用和远程调用的性能可能差距很大，这取决于 RPC 固有消耗所占的比重。</li>
+</ul>
+<p>正是这些区别决定了使用 RPC 时需要更多考量。 当调用远程接口抛出异常时，异常可能是一个业务异常， 也可能是 RPC 框架抛出的运行时异常（如：网络中断等）。 业务异常表明服务方已经执行了调用，可能因为某些原因导致未能正常执行， 而 RPC 运行时异常则有可能服务方根本没有执行，对调用方而言的异常处理策略自然需要区分。</p>
+<p>由于 RPC 固有的消耗相对本地调用高出几个数量级，本地调用的固有消耗是纳秒级，而 RPC 的固有消耗是在毫秒级。 那么对于过于轻量的计算任务就并不合适导出远程接口由独立的进程提供服务， 只有花在计算任务上时间远远高于 RPC 的固有消耗才值得导出为远程接口提供服务。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>至此我们提出了一个 RPC 实现的概念框架，并详细分析了需要考虑的一些实现细节。 无论 RPC 的概念是如何优雅，但是“草丛中依然有几条蛇隐藏着”，只有深刻理解了 RPC 的本质，才能更好地应用。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.543Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/" target="_blank" rel="external">http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/&title=《深入浅出RPC——深入篇(转载)》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/&title=《深入浅出RPC——深入篇(转载)》 — 刀刀亮的博客&source=
+本文转载自这里是原文
+《深入篇》我们主要围绕 RPC 的功能目标和实现考量去展开，一个基本的 RPC 框架应该提供什么功能，满足什么要求以及如何去实现它？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出RPC——深入篇(转载)》 — 刀刀亮的博客&url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Python学习/2015/09/09/Python学习-2015-09-09-python装饰器学习-转载/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python装饰器学习(转载)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-浅出篇/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">深入浅出RPC——浅出篇(转载)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="进程间通信-2015-08-27-深入浅出RPC-深入篇" data-title="深入浅出RPC——深入篇(转载)" data-url="http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/&title=《深入浅出RPC——深入篇(转载)》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/&title=《深入浅出RPC——深入篇(转载)》 — 刀刀亮的博客&source=
+本文转载自这里是原文
+《深入篇》我们主要围绕 RPC 的功能目标和实现考量去展开，一个基本的 RPC 框架应该提供什么功能，满足什么要求以及如何去实现它？" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出RPC——深入篇(转载)》 — 刀刀亮的博客&url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/进程间通信/2015/08/27/进程间通信-2015-08-27-深入浅出RPC-深入篇/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKklEQVR42u3aQW7jMBAEwPz/095rgGzk7iEXa1GlUxDLFosGMplpfn3F1+vb9f03P1/9eWd7/fbJyf2bL2xsbOybsF+XV/746ztXlv7bq9frfPM1YGNjYx/HTgpJy8tfvf7862ddf86vv8fGxsZ+MPu6yF0vPSk8+UZjY2NjY+8qYG3j0Q6M8mdhY2NjP5mdDJWS+/NR1Kwt+Q+zNGxsbOyPZ8/C18/8+Z/k29jY2NgfzH6VV7uUWUMyK5CFAhsbG/sg9mwAtBK4rty/d3OxsbGxz2Dn8Woe9+469DMLcaMgARsbG/sg9myolLcQbTHLy2TbomyYpWFjY2N/PDv/o78LnEfI+bvaJgobGxv77uy8CclbhaRszMpV3lS8+aqwsbGxj2NfF4NZgZm1EG0YMFwbNjY29kHstpzMBv2ze5KvZBZLY2NjY5/EboPedsyUBw+z0tiOq7CxsbGfyc6PxbTD/ZVyNSuExUklbGxs7Juw2/A1H9Dn5W0F0LZMdcXDxsbGvgm7DWjbrUnAs/ZjaQiFjY2NfTS7LRW7ik276W0MjI2NjX0qexb35sWvjXITWB48F6EvNjY29m3ZSdloF5GPe/KnJxtdRM7Y2NjYR7BnBWkWrObB8Ho5fLNN2NjY2AexV8Y3s7h3PRJuG5JindjY2Ng3ZK8Et3lLMCwnZdkrvjxsbGzs49gtYDYwagdS+dYMh0rY2NjYR7DXD2LOYtqVg5htIFGMk7CxsbGPY+8dMM22MnnKhngAGxsb+7bslWHQ9eLWS0uyoW27go2NjX0euz0Es36kZldbsq39wMbGxj6I3f67nzwmHxXNClt7GAgbGxv7OeyVkc36yGk9Zoi2BhsbG/tQdn58Z6VVmBW/DUULGxsb+zj2bIQ0CwbaQzlJYcvvwcbGxj6VnV8rTch6S5NECEkkjI2NjX0qe1a0VnY3b2nacoiNjY39ZHbSErQxcPvqSgA8nKVhY2NjP5Kdl6UZo40rZs0JNjY29pPZ7ZGavUOlWRn7y7uwsbGxj2O3y2rj2zwYXj8qFD0XGxsb+yD2+oAmKT/59iWltN2CtuxhY2Nj34T9B0tDkc1ADlRoAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

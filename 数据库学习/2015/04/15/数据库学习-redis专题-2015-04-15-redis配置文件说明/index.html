@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>redis配置文件说明 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="redis info 123redis-cliauth 密码info">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis配置文件说明">
+<meta property="og:url" content="http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="redis info 123redis-cliauth 密码info">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis配置文件说明">
+<meta name="twitter:description" content="redis info 123redis-cliauth 密码info">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">redis配置文件说明</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">redis配置文件说明</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-04-14T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-04-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="life-数据库学习-redis专题-2015-04-15-redis配置文件说明" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">redis配置文件说明</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-04-15 00:00:00" datetime="2015-04-14T16:00:00.000Z" itemprop="datePublished">2015-04-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong><em>redis info</em></strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br><span class="line">auth 密码</span><br><span class="line">info</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>[server]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>记录了 Redis 服务器的信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">redis_version</td>
+<td style="text-align:left">redis服务器版本</td>
+</tr>
+<tr>
+<td style="text-align:left">redis_git_sha1</td>
+<td style="text-align:left">Git SHA1</td>
+</tr>
+<tr>
+<td style="text-align:left">redis_git_dirty</td>
+<td style="text-align:left">Git dirty flag</td>
+</tr>
+<tr>
+<td style="text-align:left">os</td>
+<td style="text-align:left">Redis 服务器的宿主操作系统</td>
+</tr>
+<tr>
+<td style="text-align:left">arch_bits</td>
+<td style="text-align:left">架构（32 或 64 位）</td>
+</tr>
+<tr>
+<td style="text-align:left">multiplexing_api</td>
+<td style="text-align:left">Redis 所使用的事件处理机制</td>
+</tr>
+<tr>
+<td style="text-align:left">gcc_version</td>
+<td style="text-align:left">编译 Redis 时所使用的 GCC 版本</td>
+</tr>
+<tr>
+<td style="text-align:left">process_id</td>
+<td style="text-align:left">服务器进程的 PID</td>
+</tr>
+<tr>
+<td style="text-align:left">run_id</td>
+<td style="text-align:left">Redis 服务器的随机标识符（用于 Sentinel 和集群）</td>
+</tr>
+<tr>
+<td style="text-align:left">tcp_port</td>
+<td style="text-align:left">TCP/IP 监听端口</td>
+</tr>
+<tr>
+<td style="text-align:left">uptime_in_seconds</td>
+<td style="text-align:left">自 Redis 服务器启动以来，经过的秒数</td>
+</tr>
+<tr>
+<td style="text-align:left">uptime_in_days</td>
+<td style="text-align:left">自 Redis 服务器启动以来，经过的天数</td>
+</tr>
+<tr>
+<td style="text-align:left">lru_clock</td>
+<td style="text-align:left">以分钟为单位进行自增的时钟，用于 LRU 管理</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[clients]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>记录了已链接客户端信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">connected_clients</td>
+<td style="text-align:left">已连接客户端的数量（不包括通过从属服务器连接的客户端）</td>
+</tr>
+<tr>
+<td style="text-align:left">client_longest_output_list</td>
+<td style="text-align:left">当前连接的客户端当中，最长的输出列表</td>
+</tr>
+<tr>
+<td style="text-align:left">client_longest_input_buf</td>
+<td style="text-align:left">当前连接的客户端当中，最大输入缓存</td>
+</tr>
+<tr>
+<td style="text-align:left">blocked_clients</td>
+<td style="text-align:left">正在等待阻塞命令（BLPOP、BRPOP、BRPOPLPUSH）的客户端的数量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[memory]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>记录了服务器的内存信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">used_memory</td>
+<td style="text-align:left">由 Redis 分配器分配的内存总量，以字节（byte）为单位</td>
+</tr>
+<tr>
+<td style="text-align:left">used_memory_human</td>
+<td style="text-align:left">以人类可读的格式返回 Redis 分配的内存总量</td>
+</tr>
+<tr>
+<td style="text-align:left">used_memory_rss</td>
+<td style="text-align:left">从操作系统的角度，返回 Redis 已分配的内存总量（俗称常驻集大小）。这个值和 top 、 ps 等命令的输出一致</td>
+</tr>
+<tr>
+<td style="text-align:left">used_memory_peak</td>
+<td style="text-align:left">Redis 的内存消耗峰值（以字节为单位）</td>
+</tr>
+<tr>
+<td style="text-align:left">used_memory_peak_human</td>
+<td style="text-align:left">以人类可读的格式返回 Redis 的内存消耗峰值</td>
+</tr>
+<tr>
+<td style="text-align:left">used_memory_lua</td>
+<td style="text-align:left">Lua 引擎所使用的内存大小（以字节为单位）</td>
+</tr>
+<tr>
+<td style="text-align:left">mem_fragmentation_ratio</td>
+<td style="text-align:left">used_memory_rss 和 used_memory 之间的比率</td>
+</tr>
+<tr>
+<td style="text-align:left">mem_allocator</td>
+<td style="text-align:left">在编译时指定的， Redis 所使用的内存分配器。可以是 libc 、 jemalloc 或者 tcmalloc</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[persistence]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>记录了跟 RDB 持久化和 AOF 持久化有关的信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">loading</td>
+<td style="text-align:left">一个标志值，记录了服务器是否正在载入持久化文件</td>
+</tr>
+<tr>
+<td style="text-align:left">rdb_changes_since_last_save</td>
+<td style="text-align:left">距离最近一次成功创建持久化文件之后，经过了多少秒</td>
+</tr>
+<tr>
+<td style="text-align:left">rdb_bgsave_in_progress</td>
+<td style="text-align:left">一个标志值，记录了服务器是否正在创建 RDB 文件</td>
+</tr>
+<tr>
+<td style="text-align:left">rdb_last_save_time</td>
+<td style="text-align:left">最近一次成功创建 RDB 文件的 UNIX 时间戳</td>
+</tr>
+<tr>
+<td style="text-align:left">rdb_last_bgsave_status</td>
+<td style="text-align:left">一个标志值，记录了最近一次创建 RDB 文件的结果是成功还是失败</td>
+</tr>
+<tr>
+<td style="text-align:left">rdb_last_bgsave_time_sec</td>
+<td style="text-align:left">记录了最近一次创建 RDB 文件耗费的秒数</td>
+</tr>
+<tr>
+<td style="text-align:left">rdb_current_bgsave_time_sec</td>
+<td style="text-align:left">如果服务器正在创建 RDB 文件，那么这个域记录的就是当前的创建操作已经耗费的秒数</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_enabled</td>
+<td style="text-align:left">一个标志值，记录了 AOF 是否处于打开状态</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_rewrite_in_progress</td>
+<td style="text-align:left">一个标志值，记录了服务器是否正在创建 AOF 文件</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_rewrite_scheduled</td>
+<td style="text-align:left">一个标志值，记录了在 RDB 文件创建完毕之后，是否需要执行预约的 AOF 重写操作</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_last_rewrite_time_sec</td>
+<td style="text-align:left">最近一次创建 AOF 文件耗费的时长</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_current_rewrite_time_sec</td>
+<td style="text-align:left">如果服务器正在创建 AOF 文件，那么这个域记录的就是当前的创建操作已经耗费的秒数</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_last_bgrewrite_status</td>
+<td style="text-align:left">一个标志值，记录了最近一次创建 AOF 文件的结果是成功还是失</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_current_size</td>
+<td style="text-align:left">AOF 持久化功能处于开启状态–AOF 文件目前的大小</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_base_size</td>
+<td style="text-align:left">AOF 持久化功能处于开启状态–服务器启动时或者 AOF 重写最近一次执行之后，AOF 文件的大小</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_pending_rewrite</td>
+<td style="text-align:left">AOF 持久化功能处于开启状态–一个标志值，记录了是否有 AOF 重写操作在等待 RDB 文件创建完毕之后执行</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_buffer_length</td>
+<td style="text-align:left">AOF 持久化功能处于开启状态–AOF 缓冲区的大小</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_rewrite_buffer_length</td>
+<td style="text-align:left">AOF 持久化功能处于开启状态–AOF 重写缓冲区的大小</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_pending_bio_fsync</td>
+<td style="text-align:left">AOF 持久化功能处于开启状态–后台 I/O 队列里面，等待执行的 fsync 调用数量</td>
+</tr>
+<tr>
+<td style="text-align:left">aof_delayed_fsync</td>
+<td style="text-align:left">AOF 持久化功能处于开启状态–被延迟的 fsync 调用数量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[stats]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>记录了一般统计信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">total_connections_received</td>
+<td style="text-align:left">服务器已接受的连接请求数量</td>
+</tr>
+<tr>
+<td style="text-align:left">total_commands_processed</td>
+<td style="text-align:left">服务器已执行的命令数量</td>
+</tr>
+<tr>
+<td style="text-align:left">instantaneous_ops_per_sec</td>
+<td style="text-align:left">服务器每秒钟执行的命令数量</td>
+</tr>
+<tr>
+<td style="text-align:left">rejected_connections</td>
+<td style="text-align:left">因为最大客户端数量限制而被拒绝的连接请求数量</td>
+</tr>
+<tr>
+<td style="text-align:left">expired_keys</td>
+<td style="text-align:left">因为过期而被自动删除的数据库键数量</td>
+</tr>
+<tr>
+<td style="text-align:left">evicted_keys</td>
+<td style="text-align:left">因为最大内存容量限制而被驱逐（evict）的键数量</td>
+</tr>
+<tr>
+<td style="text-align:left">keyspace_hits</td>
+<td style="text-align:left">查找数据库键成功的次数</td>
+</tr>
+<tr>
+<td style="text-align:left">keyspace_misses</td>
+<td style="text-align:left">查找数据库键失败的次数</td>
+</tr>
+<tr>
+<td style="text-align:left">pubsub_channels</td>
+<td style="text-align:left">目前被订阅的频道数量</td>
+</tr>
+<tr>
+<td style="text-align:left">pubsub_patterns</td>
+<td style="text-align:left">目前被订阅的模式数量</td>
+</tr>
+<tr>
+<td style="text-align:left">latest_fork_usec</td>
+<td style="text-align:left">最近一次 fork() 操作耗费的毫秒数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[replication]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>主/从复制信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">role</td>
+<td style="text-align:left">如果当前服务器没有在复制任何其他服务器，那么这个域的值就是 master ；否则的话，这个域的值就是 slave 。注意，在创建复制链的时候，一个从服务器也可能是另一个服务器的主服务器</td>
+</tr>
+<tr>
+<td style="text-align:left">ter_host</td>
+<td style="text-align:left">从服务器—主服务器的 IP 地址</td>
+</tr>
+<tr>
+<td style="text-align:left">master_port</td>
+<td style="text-align:left">从服务器—主服务器的 TCP 监听端口号</td>
+</tr>
+<tr>
+<td style="text-align:left">master_link_status</td>
+<td style="text-align:left">从服务器—复制连接当前的状态， up 表示连接正常， down 表示连接断开</td>
+</tr>
+<tr>
+<td style="text-align:left">master_last_io_seconds_ago</td>
+<td style="text-align:left">从服务器—距离最近一次与主服务器进行通信已经过去了多少秒钟</td>
+</tr>
+<tr>
+<td style="text-align:left">master_sync_in_progress</td>
+<td style="text-align:left">从服务器—一个标志值，记录了主服务器是否正在与这个从服务器进行同步</td>
+</tr>
+<tr>
+<td style="text-align:left">master_sync_left_bytes</td>
+<td style="text-align:left">同步操作正在进行—距离同步完成还缺少多少字节数据</td>
+</tr>
+<tr>
+<td style="text-align:left">master_sync_last_io_seconds_ago</td>
+<td style="text-align:left">同步操作正在进行—距离最近一次因为 SYNC 操作而进行 I/O 已经过去了多少秒</td>
+</tr>
+<tr>
+<td style="text-align:left">master_link_down_since_seconds</td>
+<td style="text-align:left">断线状态—主从服务器连接断开了多少秒</td>
+</tr>
+<tr>
+<td style="text-align:left">connected_slaves</td>
+<td style="text-align:left">已连接的从服务器数量</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[cpu]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>计算量统计信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名字</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">used_cpu_sys</td>
+<td style="text-align:left">Redis 服务器耗费的系统 CPU</td>
+</tr>
+<tr>
+<td style="text-align:left">used_cpu_user</td>
+<td style="text-align:left">Redis 服务器耗费的用户 CPU</td>
+</tr>
+<tr>
+<td style="text-align:left">used_cpu_sys_children</td>
+<td style="text-align:left">后台进程耗费的系统 CPU</td>
+</tr>
+<tr>
+<td style="text-align:left">used_cpu_user_children</td>
+<td style="text-align:left">后台进程耗费的用户 CPU</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[keyspace]</li>
+</ul>
+<blockquote>
+</blockquote>
+<p>记录了数据库相关的统计信息，比如数据库的键数量、数据库已经被删除的过期键数量等</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.372Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/" target="_blank" rel="external">http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/&title=《redis配置文件说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/&title=《redis配置文件说明》 — 刀刀亮的博客&source=redis info
+123redis-cliauth 密码info" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《redis配置文件说明》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Python学习/2015/04/20/Python学习-2015-04-20-windows64位python注册问题/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">windows64位python注册问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/刀刀爱学习/2015/04/05/刀刀爱学习-2015-04-05-刀刀亮的书单/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">刀刀亮的书单</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="数据库学习-redis专题-2015-04-15-redis配置文件说明" data-title="redis配置文件说明" data-url="http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/&title=《redis配置文件说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/&title=《redis配置文件说明》 — 刀刀亮的博客&source=redis info
+123redis-cliauth 密码info" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《redis配置文件说明》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/04/15/数据库学习-redis专题-2015-04-15-redis配置文件说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD60lEQVR42u3cS07kQBAFQO5/aWYLGux+L7PcsAivRo0pV4WRsvOj+fiIr8+L6/6nV/d//a32WckT79c/cOHAgQMHjtFRrw58/8nVmrNjt6slu32xGg4cOHDgOMSRPOCJcHh1gHw/7at6cXYcOHDgwPFLHPchsE3b8mMnv9XuHwcOHDhw/AWOfNNJApYT71lx4MCBA8d7OPIWTtvmmQXp/DW0xc1jtVIcOHDgwJFGumFa9Zf//ch8Bw4cOHDgiEcKNgHpVKrWFvvaptcPT8eBAwcOHGuOttA2K9htgt+pMb7i5eHAgQMHjgXHbBiuHXSYtYWScbrZ+N3lrnDgwIEDx5pjA/RE42ffysrvicI/Dhw4cOB4gGNfvLsPupsRinad5H4cOHDgwLHn2CyRJFH5U5IDz4gLXBw4cODAseDIA9ssZZoFyP06LR8OHDhw4DjF0bZ82k3MhiTaMNx+8uJ+HDhw4MCx4MgD2/uTsdn4wmr/OHDgwIHjEEdbyGsPU1cr44GDfOWoeYYDBw4cOA5x3CddbYkw2fRs65uRuGjcAQcOHDhwrDmSILppVrVb3LSd2rNcroMDBw4cOB7gaBeabTcvJs4C+fCJOHDgwIFj8cTNSNxmiGF/4Pbw0Wo4cODAgWPNsRkgSAp/++LgpjS5Cv84cODAgWPBkR9pwzcbkmgLiG2hMPq7wIEDBw4ck17Ssf/+Mq+zbVLHdpCuTvlw4MCBA8eaY1bmy8PhexpLs/3jwIEDB46zHO2RZuW/WcGuDahJOldUSXHgwIEDx5qj/aRtILVMbYlw86UBBw4cOHC8hyNPxnK+ZFv7p+fFShw4cODAcZajbdK0aV4+TLBpJrUFxBfnxYEDBw4cI47N4WdtpPyJbRFw8zpXMxo4cODAgeM/js1YQBHJy4ZQS7BJI78FWhw4cODAcYhjP6CWh8AZ32ycokhBceDAgQPHUY42BOZDcqvgV97TNp+i7x04cODAgSPmaMfRZkW9feqVD8PNwm1dE8WBAwcOHEHbaVZo26RqeWifrVmneThw4MCB4xDHLD3Lg19+4E0onb2qA20nHDhw4MBxG27zlk8eYmcFx036165f/xXgwIEDB46Lez7LazYokCdm+T2n1seBAwcOHGc58qsNpZuRhbbklze6ZoEZBw4cOHC0KzzXIsqPnb+lfIV8/WJUDgcOHDhwxByzQDgbcZuF9rYd1bLiwIEDB47f4tgPDbQ/TV5J/hUhaj7hwIEDB443cuQBtT3Y7DXMEshHUjgcOHDgwFEWBzfhNi/hzVLB/KW+eBYOHDhw4FhzbEppRTtn1EbKC5Tty1tNeeDAgQMHjp/v/welxnIUPpspQAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

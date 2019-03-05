@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>linux命令之Bc | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="linux,命令,bc">
+    <meta name="description" content="作者: daodaoliang 版本: V 0.0.1 日期: 2018年03月27日">
+<meta name="keywords" content="linux,命令,bc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux命令之Bc">
+<meta property="og:url" content="http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="作者: daodaoliang 版本: V 0.0.1 日期: 2018年03月27日">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/linux学习/bc.jpg">
+<meta property="og:updated_time" content="2018-03-27T07:39:15.735Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux命令之Bc">
+<meta name="twitter:description" content="作者: daodaoliang 版本: V 0.0.1 日期: 2018年03月27日">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/linux学习/bc.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">linux命令之Bc</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">linux命令之Bc</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-03-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x00-简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x00 简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x01-选项值"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x01 选项值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x02-使用方式"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x02 使用方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#0x021-交互式使用方式"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">0x021 交互式使用方式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#0x022-通过管道符号"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">0x022 通过管道符号</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#0x023-进制转换"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">0x023 进制转换</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-linux学习-2018-3-27-linux命令之Bc" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">linux命令之Bc</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-27 00:00:00" datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished">2018-03-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <pre><code>作者: daodaoliang
+版本: V 0.0.1
+日期: 2018年03月27日
+</code></pre><a id="more"></a>
+<p>[TOC]</p>
+<h4 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h4><p>bc，即bench calculator的缩写，是一种任意精度计算器语言（an arbitrary precision calculator language），语法和C语言类似。bc是Unix 作业系统下的一个高精确度数学运算工具，小数点后最多可有2147483647位值。bc使用POSIX 1003.2草案标准，并作了若干扩展，包括多字符的变量名，以及完整的布尔表达式。bc可以通过在unix终端中输入bc进入。bc是文本界面，无GUI。</p>
+<h4 id="0x01-选项值"><a href="#0x01-选项值" class="headerlink" title="0x01 选项值"></a>0x01 选项值</h4><p><img src="/res/img/blog/linux学习/bc.jpg" alt="这里是图"></p>
+<ul>
+<li>-i：强制进入交互式模式；</li>
+<li>-l：定义使用的标准数学库</li>
+<li>-w：对POSIX bc的扩展给出警告信息；</li>
+<li>-q：不打印正常的GNU bc环境信息；</li>
+<li>-v：显示指令版本信息；</li>
+<li>-h：显示指令的帮助信息。</li>
+</ul>
+<h4 id="0x02-使用方式"><a href="#0x02-使用方式" class="headerlink" title="0x02 使用方式"></a>0x02 使用方式</h4><h5 id="0x021-交互式使用方式"><a href="#0x021-交互式使用方式" class="headerlink" title="0x021 交互式使用方式"></a>0x021 交互式使用方式</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# bc</span><br><span class="line">bc 1.06.95</span><br><span class="line">Copyright 1991-1994, 1997, 1998, 2000, 2004, 2006 Free Software Foundation, Inc.</span><br><span class="line">This is free software with ABSOLUTELY NO WARRANTY.</span><br><span class="line">For details type `warranty'.</span><br><span class="line">12.345*12.345</span><br><span class="line">152.399</span><br></pre></td></tr></table></figure>
+<h5 id="0x022-通过管道符号"><a href="#0x022-通过管道符号" class="headerlink" title="0x022 通过管道符号"></a>0x022 通过管道符号</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# echo "12.345*12.456" | bc</span><br><span class="line">153.769</span><br></pre></td></tr></table></figure>
+<h5 id="0x023-进制转换"><a href="#0x023-进制转换" class="headerlink" title="0x023 进制转换"></a>0x023 进制转换</h5><p>ibase是输入数字的进制，而obase就是输出数字的进制了。很好记，i是input，o是output。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash-4.2$ echo "ibase=10;obase=2;98757" | bc</span><br><span class="line">11000000111000101</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bash-4.2$ echo "ibase=10;obase=3;98757" | bc</span><br><span class="line">12000110200</span><br></pre></td></tr></table></figure>
+<hr>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-27T07:39:15.735Z" itemprop="dateUpdated">2018-03-27 15:39:15</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/" target="_blank" rel="external">http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bc/">bc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令/">命令</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/&title=《linux命令之Bc》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/&title=《linux命令之Bc》 — 刀刀亮的博客&source=作者: daodaoliang
+版本: V 0.0.1
+日期: 2018年03月27日
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux命令之Bc》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2018/03/27/linux学习-2018-3-27-linux下利用Autotools产生Makefiles/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux下利用Autotools产生Makefiles</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2018/03/22/环境搭建-2018-3-22-nginx运维笔记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">nginx运维笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux学习-2018-3-27-linux命令之Bc" data-title="linux命令之Bc" data-url="http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/&title=《linux命令之Bc》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/&title=《linux命令之Bc》 — 刀刀亮的博客&source=作者: daodaoliang
+版本: V 0.0.1
+日期: 2018年03月27日
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux命令之Bc》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2018/03/27/linux学习-2018-3-27-linux命令之Bc/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADRUlEQVR42u3aS27jMBAFwNz/0gqQVRaR/F5TASy6tAo8McmigOn05+srfo6f5/fPv5/rz89WaHc5W/NstRsebGxs7Iewj8vn7KDXv3N93OTQOTW5rD92wcbGxt6OnYeTPHjkFzfbK3k9p59jY2NjfyQ7Wi4IjbcdfeWc2NjY2B/JzgNY8t02LZmFSWxsbOzPYSdFpeuifxuQ2tJS3ni4uZaGjY2N/fbsWaP3PX/+9/42NjY29puxj/LJi/5taJkxjtGDjY2NvRM7OXrSms3Thvw6WnCdCGFjY2Nvx27HKNtyT15OagPbLLhiY2Nj78TOE4CVAZ08RLUvYOXKsLGxsfdjz5KEvIi/PvSTD+VEiQ02Njb2Fux2ZKcdmmkbCe0oTxsgsbGxsXdi5+X+/PP8KttWRLv+ixYvNjY29hbsWUEnoc7ayW2roL3WqKKGjY2N/Sh22+KdbTwLOXnuUD/Y2NjYG7HzULQ+uLNe3G93j9q92NjY2Nux26CSpxBt+Ln+zaN8sLGxsXdlR3Wm5VCRBK12taXgio2Njb0pu/jz/aZy/3+nHFEAw8bGxn44O2nQriQMsyQnfwF1vpVPd2JjY2M/it2Oy7QrtIEwfyWzFAgbGxt7J3YSHmaXkiQh6wWj9iRRLQ0bGxv74ez1os/suHddfdRaxsbGxt6IvfJXepJgrIDvautGV4CNjY39WHZSrE/CQL7OrA1wb6EKGxsbe1d226ydhZ9ZIpHE3jywYWNjY+/HLr4Qh5O72gPtUFHRHsDGxsbeiD0rJ+X4NplZD5zY2NjYn8aeHagtOeWhK09C2lEebGxs7P3YeTqxskE+mpN8N28SvPhXbGxs7C3YSWDILyUvFc3aCXnq8mJfbGxs7O3YszL9XcM9+crtvM3p7tjY2NjbsduCTnLcvD3clpnaYZ0/dsTGxsbeiF3/1x+PyMxKSG1T4ba6GjY2NvbD2W3QmhWPZm3dlQD24hKxsbGxt2O3iUFeNpolNm1DIi9gYWNjY38yu01C2tVW0o88BcLGxsbGvm4G5GM3bVN5Nlp0w9QPNjY29kPYScLQlvLzYaD8CmbtiqX2ADY2Nvbbs2eN3rZ41Iax9jWsNDmwsbGxH8v+Bk7+/WHRmSScAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

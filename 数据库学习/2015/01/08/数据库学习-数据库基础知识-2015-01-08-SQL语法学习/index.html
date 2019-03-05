@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>SQL语法学习 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1. TOP 子句SQLServer的例子 1select top number|percent column_name(s) from table_name; 其中top number代表几条数据,top number percent 代表百分之几的数据; 例如:前50%条 1SELECT TOP 50 PERCENT * FROM Persons; 例如:前50条 1SELECT TOP 5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL语法学习">
+<meta property="og:url" content="http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="1. TOP 子句SQLServer的例子 1select top number|percent column_name(s) from table_name; 其中top number代表几条数据,top number percent 代表百分之几的数据; 例如:前50%条 1SELECT TOP 50 PERCENT * FROM Persons; 例如:前50条 1SELECT TOP 5">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL语法学习">
+<meta name="twitter:description" content="1. TOP 子句SQLServer的例子 1select top number|percent column_name(s) from table_name; 其中top number代表几条数据,top number percent 代表百分之几的数据; 例如:前50%条 1SELECT TOP 50 PERCENT * FROM Persons; 例如:前50条 1SELECT TOP 5">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SQL语法学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">SQL语法学习</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-07T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-TOP-子句"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. TOP 子句</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-SQL-LIKE-操作符"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. SQL LIKE 操作符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-IN-操作符"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. IN 操作符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-列或者表的指定别名-Alias"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 列或者表的指定别名(Alias)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-SQL-JOIN-语法"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. SQL JOIN 语法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-SQL-UNION-和-UNION-ALL"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. SQL UNION 和 UNION ALL</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-SQL-SELECT-INTO-语句"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. SQL SELECT INTO 语句</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#data-type"><span class="post-toc-number">8.</span> <span class="post-toc-text">data_type</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CREATE-TABLE-语法"><span class="post-toc-number">9.</span> <span class="post-toc-text">CREATE TABLE 语法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQL-约束-Constraints"><span class="post-toc-number">10.</span> <span class="post-toc-text">SQL 约束(Constraints)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQL-INDEX-语句"><span class="post-toc-number">11.</span> <span class="post-toc-text">SQL INDEX 语句</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SQL-撤销索引-表以及数据库"><span class="post-toc-number">12.</span> <span class="post-toc-text">SQL 撤销索引,表以及数据库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ALTER-语句"><span class="post-toc-number">13.</span> <span class="post-toc-text">ALTER 语句</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Auto-increment-语法"><span class="post-toc-number">14.</span> <span class="post-toc-text">Auto-increment 语法</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-数据库学习-数据库基础知识-2015-01-08-SQL语法学习" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">SQL语法学习</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-08 00:00:00" datetime="2015-01-07T16:00:00.000Z" itemprop="datePublished">2015-01-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="1-TOP-子句"><a href="#1-TOP-子句" class="headerlink" title="1. TOP 子句"></a>1. TOP 子句</h2><p><strong>SQLServer的例子</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> top <span class="built_in">number</span>|<span class="keyword">percent</span> column_name(s) <span class="keyword">from</span> table_name;</span><br></pre></td></tr></table></figure>
+<p>其中top number代表几条数据,top number percent 代表百分之几的数据;</p>
+<p>例如:前50%条</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TOP <span class="number">50</span> <span class="keyword">PERCENT</span> * <span class="keyword">FROM</span> Persons;</span><br></pre></td></tr></table></figure>
+<p>例如:前50条</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TOP <span class="number">50</span> * <span class="keyword">FROM</span> Persons</span><br></pre></td></tr></table></figure>
+<p><strong>mysql 的例子</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s) <span class="keyword">FROM</span> table_name <span class="keyword">LIMIT</span> <span class="built_in">number</span>;</span><br></pre></td></tr></table></figure>
+<p>例如:前50条</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">limit</span> <span class="number">50</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="2-SQL-LIKE-操作符"><a href="#2-SQL-LIKE-操作符" class="headerlink" title="2. SQL LIKE 操作符"></a>2. SQL LIKE 操作符</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> coloumn_name(s) <span class="keyword">from</span> table_name <span class="keyword">where</span> column_name <span class="keyword">like</span> pattern;</span><br></pre></td></tr></table></figure>
+<p>like 用在操作符用于在where子句中搜索列中的指定模式.</p>
+<p>其中通配符部分解释</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">通配符</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">替代一个或者多个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">_</td>
+<td style="text-align:center">仅替代一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[charlist]</td>
+<td style="text-align:center">字符列表中的任何一个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[^charlist]或者[!charlist]</td>
+<td style="text-align:center">不在字符列表中的任何一个字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-IN-操作符"><a href="#3-IN-操作符" class="headerlink" title="3. IN 操作符"></a>3. IN 操作符</h2><p>IN操作符允许我们在where子句中规定多个值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">from</span> table_name <span class="keyword">in</span> (value1,value2,value3);</span><br></pre></td></tr></table></figure>
+<h2 id="4-列或者表的指定别名-Alias"><a href="#4-列或者表的指定别名-Alias" class="headerlink" title="4. 列或者表的指定别名(Alias)"></a>4. 列或者表的指定别名(Alias)</h2><p><strong>表的别名语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">from</span> table_name <span class="keyword">as</span> alias_name;</span><br></pre></td></tr></table></figure>
+<p><strong>列的别名用法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">as</span> alias_name <span class="keyword">from</span> table_name;</span><br></pre></td></tr></table></figure>
+<p>需要注意的时.列的别名在结果集中会有所体现;</p>
+<h2 id="5-SQL-JOIN-语法"><a href="#5-SQL-JOIN-语法" class="headerlink" title="5. SQL JOIN 语法"></a>5. SQL JOIN 语法</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">join类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">inner join</td>
+<td style="text-align:center">如果表中有至少一个匹配,则返回行</td>
+</tr>
+<tr>
+<td style="text-align:center">left join</td>
+<td style="text-align:center">即使右表中没有匹配,也从左表中返回所有行</td>
+</tr>
+<tr>
+<td style="text-align:center">right join</td>
+<td style="text-align:center">即使左表中没有匹配,也从右表中返回所有行</td>
+</tr>
+<tr>
+<td style="text-align:center">full join</td>
+<td style="text-align:center">只要其中一个表存在匹配,就返回行</td>
+</tr>
+</tbody>
+</table>
+<p><strong>inner join 语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">from</span> table_name1 <span class="keyword">inner</span> <span class="keyword">join</span> table_name2 <span class="keyword">on</span> table_name1.column_name = table_name2_.column_name <span class="keyword">order</span> <span class="keyword">by</span> table_name1.column_name;</span><br></pre></td></tr></table></figure>
+<p><strong>left join语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">from</span> table_name1 <span class="keyword">left</span> <span class="keyword">join</span> table_name2 <span class="keyword">on</span> table_name1.column_name1 = table_name2.column_name2;</span><br></pre></td></tr></table></figure>
+<p><strong>right join 语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">from</span> table_name1 <span class="keyword">right</span> <span class="keyword">join</span> table_name2 <span class="keyword">on</span> table_name1.column1 = table_name2.column2;</span><br></pre></td></tr></table></figure>
+<h2 id="6-SQL-UNION-和-UNION-ALL"><a href="#6-SQL-UNION-和-UNION-ALL" class="headerlink" title="6. SQL UNION 和 UNION ALL"></a>6. SQL UNION 和 UNION ALL</h2><p>UNION 操作符用于合并两个或者多个select 语句的结果集, Union 内部的 select 语句必须有相同数量的列.列也必须有相似的数据类型.同时,每条select 语句中的列的顺序必须相同.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">from</span> table_name1</span><br><span class="line"><span class="keyword">union</span> </span><br><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">from</span> table_name2</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> UINION ALL 命令和 UNION 命令几乎就是等效的,不过UNION ALL 命令会列出所有的值.</p>
+<h2 id="7-SQL-SELECT-INTO-语句"><a href="#7-SQL-SELECT-INTO-语句" class="headerlink" title="7. SQL SELECT INTO 语句"></a>7. SQL SELECT INTO 语句</h2><p>SELECT INTO 语句从一个表中选择数据,然后吧数据插入另外一个表中.<br>SELECT INTO 语句常用与创建表的备份复件或者用于对记录进行存档.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> column_name(s) <span class="keyword">into</span> table_name <span class="keyword">from</span> old_tablename;</span><br></pre></td></tr></table></figure>
+<h2 id="data-type"><a href="#data-type" class="headerlink" title="data_type"></a>data_type</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">数据类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">integer(size)</td>
+<td style="text-align:center">仅容纳整数.在括号内规定数字的最大位数</td>
+</tr>
+<tr>
+<td style="text-align:center">int(size)</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">smallint(size)</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">tinyint(size)</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">decimal(size,d)</td>
+<td style="text-align:center">容纳带有小数的数字,”size” 规定数字的最大位数,”d”规定小数点右侧的最大位数.</td>
+</tr>
+<tr>
+<td style="text-align:center">numeric(size,d)</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">char(size)</td>
+<td style="text-align:center">容纳固定长度的字符串(可容纳字母,数字以及特殊字符),在括号中规定字符串的长度</td>
+</tr>
+<tr>
+<td style="text-align:center">varchar(size)</td>
+<td style="text-align:center">容纳可变长度的字符串(可容纳字母,数字以及特殊字符),在括号中规定字符串的最大长度</td>
+</tr>
+<tr>
+<td style="text-align:center">date(yyyymmdd)</td>
+<td style="text-align:center">容纳日期</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CREATE-TABLE-语法"><a href="#CREATE-TABLE-语法" class="headerlink" title="CREATE TABLE 语法"></a>CREATE TABLE 语法</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名</span><br><span class="line">(</span><br><span class="line">列名字 数据类型,</span><br><span class="line">列名字<span class="number">2</span> 数据类型,</span><br><span class="line">列名字<span class="number">3</span> 数据类型,</span><br><span class="line">...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="SQL-约束-Constraints"><a href="#SQL-约束-Constraints" class="headerlink" title="SQL 约束(Constraints)"></a>SQL 约束(Constraints)</h2><p><strong>NOT NULL</strong></p>
+<p>NOT NULL 约束子昂之字段始终包含值,这意味着,如果不想字段添加值,就无法插入新纪录或者更新记录.</p>
+<p><strong>unique 约束</strong></p>
+<p>unique 和 primary 约束的区别,都是进行唯一性约束,但是一张表只能有一个primary约束,但是可以有多个unique约束;</p>
+<p>mysql 例子</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test_table</span><br><span class="line">(</span><br><span class="line">test_column <span class="built_in">int</span>(<span class="number">12</span>),</span><br><span class="line"><span class="keyword">unique</span> (test_column)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>sqlserver 例子</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test_table</span><br><span class="line">(</span><br><span class="line">test_column <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unique</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="SQL-INDEX-语句"><a href="#SQL-INDEX-语句" class="headerlink" title="SQL INDEX 语句"></a>SQL INDEX 语句</h2><p>索引可以被创建的表中列上,以便于快速搞笑的查询数据,用户无法看到索引,他们只能被用来加速搜索/查询.</p>
+<p><strong>注意</strong> 更新一个包含索引的表需要比更新一个没有索引的表更多的时间,这是由于索引本身也需要更新,因此,理想的做法是仅仅在常常被搜索的列(以及表)上面创建索引.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> index_name <span class="keyword">on</span> table_name (column_name)</span><br></pre></td></tr></table></figure>
+<h2 id="SQL-撤销索引-表以及数据库"><a href="#SQL-撤销索引-表以及数据库" class="headerlink" title="SQL 撤销索引,表以及数据库"></a>SQL 撤销索引,表以及数据库</h2><p><strong>撤销索引</strong></p>
+<p><strong>MS SQL</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> table_name.index_name;</span><br></pre></td></tr></table></figure>
+<p><strong>MySQL</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">drop</span> <span class="keyword">index</span> index_name;</span><br></pre></td></tr></table></figure>
+<p><strong>撤销表</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> 表名字</span><br></pre></td></tr></table></figure>
+<p><strong>撤销数据库</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> 数据库名字</span><br></pre></td></tr></table></figure>
+<h2 id="ALTER-语句"><a href="#ALTER-语句" class="headerlink" title="ALTER 语句"></a>ALTER 语句</h2><p>alter table 用于在已有的表中添加,修改,删除列.</p>
+<p><strong>添加列的语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">add</span> column_name datatype</span><br></pre></td></tr></table></figure>
+<p><strong>删除列的语法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">drop</span> <span class="keyword">column</span> column_name</span><br></pre></td></tr></table></figure>
+<h2 id="Auto-increment-语法"><a href="#Auto-increment-语法" class="headerlink" title="Auto-increment 语法"></a>Auto-increment 语法</h2><p>我们通常希望在每次插入新纪录时,自动创建主键字段,可以使用auto-increment字段;</p>
+<p><strong>Mysql</strong> 语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test_table</span><br><span class="line">(</span><br><span class="line">	column_name1 <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment,</span><br><span class="line">	column_name2 <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="literal">null</span>,</span><br><span class="line">	primary <span class="keyword">key</span> (column_name1)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> mysql的默认开始值为1,每条记录递增1.</p>
+<hr>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.372Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/" target="_blank" rel="external">http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/&title=《SQL语法学习》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/&title=《SQL语法学习》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SQL语法学习》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">mysql基础知识</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/Python学习/2014/12/22/Python学习-2014-12-22-python的日志logging模块学习/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python 的日志logging模块学习</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="数据库学习-数据库基础知识-2015-01-08-SQL语法学习" data-title="SQL语法学习" data-url="http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/&title=《SQL语法学习》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/&title=《SQL语法学习》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SQL语法学习》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD8UlEQVR42u3aS27bQBAFQN3/0so2gE3qve6h7UVxFcjUDKcYoNWf1yu+3v9dXz//es/VdfXdZPf757n65PXEhQMHDhw44qNeHeDqSMnG99/K4ZK/Jp/cr4YDBw4cOE5x3B8jP3D+WMmRZuh50MWBAwcOHH+HY5a8JWlV8t2cGAcOHDhw/H2OWQHuPgl8Yl8cOHDgwPG7HHmA/FBciwmSdfLwmRc3j9VKceDAgQNHGukOBL+/9u9H5jtw4MCBA0c5UtCOEeQtoqQI2A5JtMH1m91x4MCBA8eaY/bo7RjBJvi1ieKmxYUDBw4cOE5xJKFrNkwwG7DLQ2k7TlG8Ehw4cODAMeLICdpv5QlVkoa1gX/4MnDgwIEDx1GOzUjBpoyYQ7TlwhoOBw4cOHAcjUH56Fg+VHeqvDj7KTAL9jhw4MCBY8PRbr9JlvJHb0FPhWocOHDgwHGKox01mCVps4C9GZvLyYqMFgcOHDhwfJ5eO9ZMOvtAeeqVfLdubuHAgQMHjgXHLMTuhxiKymUZqlfpHA4cOHDgOMpxv9C+NdU++owpeXnRLw4cOHDgwFFy5MXBTXlukxyeKhRGJ8WBAwcOHEc58iB3X/jL72nHI+6x2r2isiAOHDhw4Jg/Z33t07M2AWvHLM6ujwMHDhw4kvXbRGuTvOXr56N4hxM/HDhw4MBxqIaWl+fuQ2yepG1Ssn2ojrpwOHDgwIFjxJEXB9sGVV5k3B9yE2hx4MCBA8fTHLOyYLL9E0Nvp06BAwcOHDhOcczKdnmRriXbr7kvbuLAgQMHjic42nQo+eupo7bjdPUwBA4cOHDgeJijCFHlOELeKJoNUuStsuJgOHDgwIHjlqN99MK4HJiYccz4Lk+BAwcOHDjWHHmgnT36+/aaDUMk4wv5i6mLgzhw4MCBI+bYlOTae2ZtoRlWEtq/CbQ4cODAgWPE0YbYNty2wwez0uGsTPnNCjhw4MCBY82xKQu+gisfbshRZqu1ARgHDhw4cGw4NqMDbahrRyj2zafh/wscOHDgwDHiuG/D5NvMRgfaIeykadQ2pXDgwIEDxxMcbRuphTs7cDBrgEWvFgcOHDhwrDnaVlA7IrApKc5CZt6+urwTBw4cOHAsON7llfO1IXM/qHegVYYDBw4cOM5MHQyXzg+QlxHPDj3kww04cODAgeMsRx5c23ZR25SapV5tIP8wYIEDBw4cOA5x5IEqGWto75mll5tdPgzM4cCBAweOH+fIg2vbB2sTv/z+iA8HDhw4cPw4xya125QCZy+g/rmAAwcOHDgOceSNpc0Q2xOjdQlrsRcOHDhw4FhznBoO2KdYbaNo1vTaJJ84cODAgeP2/n9iRXqN0SNwQwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

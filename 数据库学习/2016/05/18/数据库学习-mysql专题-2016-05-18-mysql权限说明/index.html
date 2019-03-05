@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>mysql权限说明 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="作者：daodaoliang 时间：2016年5月18日 版本：0.0.1 邮箱：daodaoliang@yeah.net 官网相关文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql权限说明">
+<meta property="og:url" content="http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="作者：daodaoliang 时间：2016年5月18日 版本：0.0.1 邮箱：daodaoliang@yeah.net 官网相关文档">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql权限说明">
+<meta name="twitter:description" content="作者：daodaoliang 时间：2016年5月18日 版本：0.0.1 邮箱：daodaoliang@yeah.net 官网相关文档">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql权限说明</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">mysql权限说明</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-05-17T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-05-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-mysql-权限概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.mysql 权限概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-mysql-权限列表"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.mysql 权限列表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-mysql-权限操作示例"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.mysql 权限操作示例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-grant-命令使用说明"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 grant 命令使用说明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-刷新权限"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 刷新权限</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-查看权限"><span class="post-toc-number">4.</span> <span class="post-toc-text">3.3 查看权限</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-撤销权限"><span class="post-toc-number">5.</span> <span class="post-toc-text">3.4 撤销权限</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-数据库学习-mysql专题-2016-05-18-mysql权限说明" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mysql权限说明</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-05-18 00:00:00" datetime="2016-05-17T16:00:00.000Z" itemprop="datePublished">2016-05-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <pre><code>作者：daodaoliang
+时间：2016年5月18日
+版本：0.0.1
+邮箱：daodaoliang@yeah.net
+</code></pre><p><a href="http://dev.mysql.com/doc/refman/5.6/en/privileges-provided.html#priv_references" target="_blank" rel="noopener">官网相关文档</a></p>
+<a id="more"></a>
+<h2 id="1-mysql-权限概述"><a href="#1-mysql-权限概述" class="headerlink" title="1.mysql 权限概述"></a>1.mysql 权限概述</h2><p>mysql允许以下几种类别的权限操作：</p>
+<ul>
+<li>管理员权限，使用户能够管理mysql服务器的相关操作，这些权限都是全局的因为并不针对指定数据库做权限；</li>
+<li>数据库权限，可以管理数据库以及包含在数据库里面的对象内容，可以对特定数据库，也可以对全部数据库进行权限操作；</li>
+<li>数据库对象权限例如数据表、索引、视图和存储过程中，可以管理指定数据库的指定对象，也可以管理指定数据库的所有对象，也可以管理所有数据库的所有对象；</li>
+</ul>
+<p>mysql 和权限相关的信息都存储在mysql数据库里面的 <code>user</code> 、 <code>db</code>、 <code>tables_priv</code> 、 <code>columns_priv</code> 和 <code>procs_priv</code>, mysql 数据库在启动时或者reload时都会把权限内容读取到内存中；</p>
+<h2 id="2-mysql-权限列表"><a href="#2-mysql-权限列表" class="headerlink" title="2.mysql 权限列表"></a>2.mysql 权限列表</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">权限名字</th>
+<th style="text-align:left">权限表中列的名字</th>
+<th style="text-align:left">权限级别</th>
+<th style="text-align:left">权限内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CREATE</td>
+<td style="text-align:left">Create_priv</td>
+<td style="text-align:left">数据库、表、索引</td>
+<td style="text-align:left">允许创建新的数据库、表、索引</td>
+</tr>
+<tr>
+<td style="text-align:left">DROP</td>
+<td style="text-align:left">Drop_priv</td>
+<td style="text-align:left">数据库、表</td>
+<td style="text-align:left">允许删除存在的数据库、表、视图</td>
+</tr>
+<tr>
+<td style="text-align:left">GRANT OPTION</td>
+<td style="text-align:left">Grant_priv</td>
+<td style="text-align:left">数据库、表、存储过程</td>
+<td style="text-align:left">允许赋予或者移除其他用户你已经有的权限</td>
+</tr>
+<tr>
+<td style="text-align:left">LOCK TABLES</td>
+<td style="text-align:left">Lock_tables_priv</td>
+<td style="text-align:left">数据库</td>
+<td style="text-align:left">允许使用LOCK TABLES显式锁定用户表</td>
+</tr>
+<tr>
+<td style="text-align:left">REFERENCES</td>
+<td style="text-align:left">References_priv</td>
+<td style="text-align:left">数据库、表</td>
+<td style="text-align:left">官网也没有说清楚，貌似和外键有关</td>
+</tr>
+<tr>
+<td style="text-align:left">EVENT</td>
+<td style="text-align:left">Event_priv</td>
+<td style="text-align:left">数据库</td>
+<td style="text-align:left">允许创建和查看event，同时create, alter, drop也需要该权限</td>
+</tr>
+<tr>
+<td style="text-align:left">ALTER</td>
+<td style="text-align:left">Alter_priv</td>
+<td style="text-align:left">表</td>
+<td style="text-align:left">允许使用 ALTER TABLE该表表结构</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:left">Delete_priv</td>
+<td style="text-align:left">表</td>
+<td style="text-align:left">允许在表中删除列</td>
+</tr>
+<tr>
+<td style="text-align:left">INDEX</td>
+<td style="text-align:left">Index_priv</td>
+<td style="text-align:left">表</td>
+<td style="text-align:left">允许在表中创建和删除索引，如果有create 权限可以在 create table时定义索引</td>
+</tr>
+<tr>
+<td style="text-align:left">INSERT</td>
+<td style="text-align:left">Insert_priv</td>
+<td style="text-align:left">表、列</td>
+<td style="text-align:left">允许在数据表中插入数据</td>
+</tr>
+<tr>
+<td style="text-align:left">SELECT</td>
+<td style="text-align:left">Select_priv</td>
+<td style="text-align:left">表、列</td>
+<td style="text-align:left">允许查询数据库，注意update和delete在where 子句中也是需要select 权限</td>
+</tr>
+<tr>
+<td style="text-align:left">UPDATE</td>
+<td style="text-align:left">Update_priv</td>
+<td style="text-align:left">表、列</td>
+<td style="text-align:left">允许更新数据库里面的列信息</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATE TEMPORARY TABLES</td>
+<td style="text-align:left">Create_tmp_table_priv</td>
+<td style="text-align:left">表</td>
+<td style="text-align:left">允许创建临时表</td>
+</tr>
+<tr>
+<td style="text-align:left">TRIGGER</td>
+<td style="text-align:left">Trigger_priv</td>
+<td style="text-align:left">表</td>
+<td style="text-align:left">允许触发操作</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATE VIEW</td>
+<td style="text-align:left">Create_view_priv</td>
+<td style="text-align:left">视图</td>
+<td style="text-align:left">允许创建视图</td>
+</tr>
+<tr>
+<td style="text-align:left">SHOW VIEW</td>
+<td style="text-align:left">Show_view_priv</td>
+<td style="text-align:left">视图</td>
+<td style="text-align:left">允许允许使用SHOW CREATE VIEW</td>
+</tr>
+<tr>
+<td style="text-align:left">ALTER ROUTINE</td>
+<td style="text-align:left">Alter_routine_priv</td>
+<td style="text-align:left">存储过程</td>
+<td style="text-align:left">允许修改和删除存储过程或者函数</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATE ROUTINE</td>
+<td style="text-align:left">Create_routine_priv</td>
+<td style="text-align:left">存储过程</td>
+<td style="text-align:left">允许创建存储过程</td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTE</td>
+<td style="text-align:left">Execute_priv</td>
+<td style="text-align:left">存储过程</td>
+<td style="text-align:left">允许执行存储过程</td>
+</tr>
+<tr>
+<td style="text-align:left">FILE</td>
+<td style="text-align:left">File_priv</td>
+<td style="text-align:left">服务器上关联的数据文件</td>
+<td style="text-align:left">允许读写相关文件</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATE TABLESPACE</td>
+<td style="text-align:left">Create_tablespace_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许 create, alter, or drop tablespaces</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATE USER</td>
+<td style="text-align:left">Create_user_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许 ALTER USER, CREATE USER, DROP USER, RENAME USER, and REVOKE ALL PRIVILEGES</td>
+</tr>
+<tr>
+<td style="text-align:left">PROCESS</td>
+<td style="text-align:left">Process_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许查看进程信息权限</td>
+</tr>
+<tr>
+<td style="text-align:left">PROXY</td>
+<td style="text-align:left">see proxies_priv table</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许用户代理</td>
+</tr>
+<tr>
+<td style="text-align:left">RELOAD</td>
+<td style="text-align:left">Reload_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许使用 FLUSH 和 mysqladmin</td>
+</tr>
+<tr>
+<td style="text-align:left">REPLICATION CLIENT</td>
+<td style="text-align:left">Repl_client_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许 SHOW MASTER STATUS 、 SHOW SLAVE STATUS 和 SHOW BINARY LOGS</td>
+</tr>
+<tr>
+<td style="text-align:left">REPLICATION SLAVE</td>
+<td style="text-align:left">Repl_slave_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">复制权限</td>
+</tr>
+<tr>
+<td style="text-align:left">SHOW DATABASES</td>
+<td style="text-align:left">Show_db_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许 SHOW DATABASE</td>
+</tr>
+<tr>
+<td style="text-align:left">SHUTDOWN</td>
+<td style="text-align:left">Shutdown_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许 mysqladmin shutdown</td>
+</tr>
+<tr>
+<td style="text-align:left">SUPER</td>
+<td style="text-align:left">Super_priv</td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">允许kill 线程</td>
+</tr>
+<tr>
+<td style="text-align:left">ALL [PRIVILEGES]</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">all privileges available at a given privilege level</td>
+</tr>
+<tr>
+<td style="text-align:left">USAGE</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">数据库管理</td>
+<td style="text-align:left">no privileges</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-mysql-权限操作示例"><a href="#3-mysql-权限操作示例" class="headerlink" title="3.mysql 权限操作示例"></a>3.mysql 权限操作示例</h2><h3 id="3-1-grant-命令使用说明"><a href="#3-1-grant-命令使用说明" class="headerlink" title="3.1 grant 命令使用说明"></a>3.1 grant 命令使用说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to daodaoliang@&apos;localhost&apos; identified by &apos;mypass&apos; with grant option;</span><br></pre></td></tr></table></figure>
+<p><strong>grant命令说明:</strong></p>
+<ul>
+<li><strong>all privileges :</strong> 是表示所有权限，你也可以使用select、update等权限;</li>
+<li><strong>on :</strong> 用来针对哪些库和表;</li>
+<li>*.*: 前面的*用来指定数据库，后面的*用来指定数据表;</li>
+<li><strong>To :</strong> 将权限赋予某个用户;</li>
+<li><strong>daodaoliang@’localhost’:</strong> 用户为daodaoliang，@后面表示限制的主机，可以是IP地址、IP段、域名以及%，%表示任何地方，需要注意有的%不包含本地，所以当出现其他地方可以登录而本机不可以登录时，在添加localhost即可；</li>
+<li><strong>identified by :</strong> 指定用户的登录密码;</li>
+<li><strong>with grant option :</strong> 这个选项表示该用户可以将自己拥有的权限授权给别人;</li>
+</ul>
+<p><strong><em>PS：</em></strong> grant 可以重复给用户添加权限，权限叠加；</p>
+<h3 id="3-2-刷新权限"><a href="#3-2-刷新权限" class="headerlink" title="3.2 刷新权限"></a>3.2 刷新权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>在对权限做了修改之后要使用这个命令来使 privileges 生效；</p>
+<h2 id="3-3-查看权限"><a href="#3-3-查看权限" class="headerlink" title="3.3 查看权限"></a>3.3 查看权限</h2><ul>
+<li>查看当前用户的权限</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show grants;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看指定用户的权限</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show grants for &apos;daodaoliang@%&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-撤销权限"><a href="#3-4-撤销权限" class="headerlink" title="3.4 撤销权限"></a>3.4 撤销权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">revoke delete on *.*  from daodaoliang@&apos;%&apos; identified by &apos;my pass&apos;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.372Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/" target="_blank" rel="external">http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/&title=《mysql权限说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/&title=《mysql权限说明》 — 刀刀亮的博客&source=作者：daodaoliang
+时间：2016年5月18日
+版本：0.0.1
+邮箱：daodaoliang@yeah.net
+官网相关文档" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql权限说明》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">日常linux命令之iftop</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python 在 windows 下的服务开发</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="数据库学习-mysql专题-2016-05-18-mysql权限说明" data-title="mysql权限说明" data-url="http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/&title=《mysql权限说明》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/&title=《mysql权限说明》 — 刀刀亮的博客&source=作者：daodaoliang
+时间：2016年5月18日
+版本：0.0.1
+邮箱：daodaoliang@yeah.net
+官网相关文档" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql权限说明》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD7ElEQVR42u3au27jQBAEQP3/T/vSAyxS3TNLQ0EpMmyJXJaC9jxer/j189/r92+u/nr12d/vubrX/Wfv73J1/QMvHDhw4MARP+r9493fLAfKH/vqnVfvab+8N1fDgQMHDhyHOJIb5Ih5QN7/PjnPJnRx4MCBA8c3cCQF2z1iUkNtzpCcBAcOHDhwfA9HW1zlUbqh2ZwfBw4cOHA8wTFr7c2GRveUSRHY3veRXikOHDhw4Jgk3TDwvu3nR/Y7cODAgQNHHE6zQGpbgfnyxNkx2OXT4cCBAweONUc7CkoOcTb82jW+2VeIAwcOHDhOcexbeE8sLiRRmrcRi7PhwIEDB45DHMnCQX7cWYl1/8DRIkL5njd3wYEDBw4chzg2qwl5U+/UWkNyndkCBA4cOHDg2HO08ZYw3f+ch3GCfmpt7pVUijhw4MCBo7tCceN8wPOXR2/bl1EpiAMHDhw4So42XGdLCbPIPNu4jIIcBw4cOHAc5djE5IGRTxyceSlYRzIOHDhw4Fhz7AdIm+IqHxQl6LPx1YeOKQ4cOHDgGHEkw6Gk9dYuNOwX5mZDsg9fJA4cOHDgWHDMAq8tz/LBVQs3Kykvr4ADBw4cONYc+5jcbALkaw1nG5fR/x04cODAgWPEMVtTeKLN10bj7MsopnA4cODAgeMBjrYAa1cc2ubgZtwVxT8OHDhw4DjKsWmoreItjuTNFxDdFwcOHDhwHOXYL7RtFh1a0JyjaCDiwIEDB46jHLPIbFt4eXMwX6TYtDhx4MCBA8cTHEmzL3/UTXjnJV8eqHXQ4sCBAweOQxyzMmnTnmtBk3W6tix8M3bCgQMHDhwLjrxI28Re2/5rKfP3z7Bw4MCBA0d7nnaANGss7puJeak5Kzhx4MCBA8cpjvzQswZc26prWfcDMxw4cODA8RxHXly1ZdUmnu8/27Yg6+YgDhw4cOBYc8wGUXmI5q26U+3CVdDiwIEDB46SYzWhCkJrM756on354Xlx4MCBA8eCo104y9fU8uvkwZnTz0pEHDhw4MBxliM/YruUlsf5vvxbLczhwIEDB45DHPn4P1lByx8sh5g1LutxFA4cOHDgWHNsjpjH26n2Yl52vjYvHDhw4MCx4PgpX7NhUl6Y5e85dX0cOHDgwHGWYx/GLXFe/u2D/Ll/BXDgwIEDx/0VZuOcU2HcBuFsweLAWgMOHDhw4Cg58qCajX/ahG9XH2bXx4EDBw4c38nRLkO0Cwd52M9O+Gp3K3DgwIEDxwMc7fApX1BIvob9ssXhEg4HDhw4cIyag218to/XLlXM8vHDlXHgwIEDx5pjM+zJG3Oz424Q84YjDhw4cOA4xPEP8ttc/3OCNkYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

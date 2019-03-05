@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>reStructuredText 的基本语法 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="reStructuredText 官方网址, 打不开吧!!!!!! fuck GFW">
+<meta property="og:type" content="article">
+<meta property="og:title" content="reStructuredText 的基本语法">
+<meta property="og:url" content="http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="reStructuredText 官方网址, 打不开吧!!!!!! fuck GFW">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/项目工程管理/2015-12-22-01.png">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/项目工程管理/2015-12-22-02.png">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/项目工程管理/2015-12-22-03.png">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="reStructuredText 的基本语法">
+<meta name="twitter:description" content="reStructuredText 官方网址, 打不开吧!!!!!! fuck GFW">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/项目工程管理/2015-12-22-01.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">reStructuredText 的基本语法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">reStructuredText 的基本语法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-12-21T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-12-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/项目工程管理/">项目工程管理</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-提示类信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.提示类信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-标题类信息"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.标题类信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-字体类信息"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.字体类信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-段落"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.段落</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-代码块"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.代码块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-表格"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 表格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-超链接"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 超链接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-上下标"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 上下标</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-图片资源"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. 图片资源</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-项目工程管理-2015-12-22-reStructuredText文档" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">reStructuredText 的基本语法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-12-22 00:00:00" datetime="2015-12-21T16:00:00.000Z" itemprop="datePublished">2015-12-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/项目工程管理/">项目工程管理</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>reStructuredText <a href="http://docutils.sourceforge.net/rst.html" target="_blank" rel="noopener">官方网址</a>, 打不开吧!!!!!! fuck <a href="https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E" target="_blank" rel="noopener">GFW</a></p>
+<a id="more"></a>
+<p><a href="http://sphinx-doc-zh.readthedocs.org/en/latest/rest.html" target="_blank" rel="noopener">这里</a>是Sphinx中关于<code>reStructuredText</code>的翻译，本文也是从里面挑拣自己平时回经常用到的语法进行示例化记录。</p>
+<p><strong>以下内容纯属虚构，图片也是随手在知乎上巴拉的头像</strong></p>
+<h3 id="1-提示类信息"><a href="#1-提示类信息" class="headerlink" title="1.提示类信息"></a>1.提示类信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.. note::</span><br><span class="line"></span><br><span class="line">    我是note 信息</span><br><span class="line"></span><br><span class="line">.. attention::</span><br><span class="line"></span><br><span class="line">    我是attention信息</span><br><span class="line"></span><br><span class="line">.. caution::</span><br><span class="line"></span><br><span class="line">    我是caution信息</span><br><span class="line"></span><br><span class="line">.. warning::</span><br><span class="line"></span><br><span class="line">    我是warning信息</span><br><span class="line"></span><br><span class="line">.. tip::</span><br><span class="line"></span><br><span class="line">    我是tip信息</span><br><span class="line"></span><br><span class="line">.. important::</span><br><span class="line"></span><br><span class="line">    我是important信息</span><br><span class="line"></span><br><span class="line">.. hint::</span><br><span class="line"></span><br><span class="line">    我是hint信息</span><br><span class="line"></span><br><span class="line">.. error::</span><br><span class="line"></span><br><span class="line">    我是error信息</span><br><span class="line"></span><br><span class="line">.. danger::</span><br><span class="line"></span><br><span class="line">    我是danger信息</span><br></pre></td></tr></table></figure>
+<h3 id="2-标题类信息"><a href="#2-标题类信息" class="headerlink" title="2.标题类信息"></a>2.标题类信息</h3><p>在reST中标题非常简单，只要在标题上(下)使用非字母和数字的七位元ASCII记录下标线（或上标线）即可，你不需担心标题会用什么格式，只要在相同位置使用相同标记即可。可用的字符有：! “ # $ % &amp; ‘ ( ) * + , - . / : ; &lt; = &gt; ? @ [ ] ^ _ ` { | } ~。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">============</span><br><span class="line">文章标题测试</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line">***************</span><br><span class="line">章节标题测试</span><br><span class="line">***************</span><br><span class="line"></span><br><span class="line">小节标题测试</span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">子节标题测试</span><br><span class="line">------------------</span><br><span class="line"></span><br><span class="line">子子节标题测试</span><br><span class="line">^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line"></span><br><span class="line">段落标题测试</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">段落标题测试</span><br><span class="line">******************</span><br></pre></td></tr></table></figure>
+<h3 id="3-字体类信息"><a href="#3-字体类信息" class="headerlink" title="3.字体类信息"></a>3.字体类信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**加黑字体**</span><br><span class="line"></span><br><span class="line">*意大利斜体*</span><br><span class="line"></span><br><span class="line">\ 转义字体(后面跟着一个空格意味着后面是一个空格)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">``原始形态的字体而非Docutils处理后的文字，通常以等宽字体出现 Hello nami!``</span><br></pre></td></tr></table></figure>
+<h3 id="4-段落"><a href="#4-段落" class="headerlink" title="4.段落"></a>4.段落</h3><p>在reST中，段落只要在中间隔开一行即可，Docutils会自动判别各个段落，例如：</p>
+<h3 id="5-代码块"><a href="#5-代码块" class="headerlink" title="5.代码块"></a>5.代码块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">``I am code``</span><br><span class="line"></span><br><span class="line">我是代码测试快::</span><br><span class="line"></span><br><span class="line">    # coding: utf-8</span><br><span class="line"></span><br><span class="line">    __author__ = &apos;daodaoliang&apos;</span><br><span class="line"></span><br><span class="line">    from flask import Flask</span><br><span class="line">    from flask_restful import Resource, Api</span><br><span class="line"></span><br><span class="line">    app = Flask(__name__)</span><br><span class="line">    api = Api(app)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # noinspection PyMethodMayBeStatic</span><br><span class="line">    class Api_HelloWorld_V1(Resource):</span><br><span class="line">        def get(self):</span><br><span class="line">            return &#123;&apos;hello&apos;: &apos;world&apos;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    api.add_resource(Api_HelloWorld_V1, &apos;/&apos;)</span><br><span class="line"></span><br><span class="line">    if __name__ == &apos;__main__&apos;:</span><br><span class="line">        app.run(debug=True)</span><br></pre></td></tr></table></figure>
+<h3 id="6-表格"><a href="#6-表格" class="headerlink" title="6. 表格"></a>6. 表格</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---------------------</span><br><span class="line"></span><br><span class="line">+------------------------+------------+----------+----------+</span><br><span class="line">| Header row, column 1   | Header 2   | Header 3 | Header 4 |</span><br><span class="line">| (header rows optional) |            |          |          |</span><br><span class="line">+========================+============+==========+==========+</span><br><span class="line">| body row 1, column 1   | column 2   | column 3 | column 4 |</span><br><span class="line">+------------------------+------------+----------+----------+</span><br><span class="line">| body row 2             | ...        | ...      |          |</span><br><span class="line">+------------------------+------------+----------+----------+</span><br><span class="line"></span><br><span class="line">或者更为简洁的方式</span><br><span class="line"></span><br><span class="line">=====  =====  ======</span><br><span class="line">   Inputs     Output</span><br><span class="line">------------  ------</span><br><span class="line">  A      B    A or B</span><br><span class="line">=====  =====  ======</span><br><span class="line">False  False  False</span><br><span class="line">True   False  True</span><br><span class="line">False  True   True</span><br><span class="line">True   True   True</span><br><span class="line">=====  =====  ======</span><br></pre></td></tr></table></figure>
+<h3 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7. 超链接"></a>7. 超链接</h3><ul>
+<li>在后面加上下划线，只要在指定目标即可形成超链接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`我的博客啦啦啦啦`_.</span><br><span class="line"></span><br><span class="line">.. _我的博客啦啦啦啦: http://daodaoliang.github.io(这里不仅仅可以时网址，也可以时内部标题，实现内部的跳转)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内嵌网址的形式( <code>链接显示文字 &lt;网址&gt;</code>_ )</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`我的博客啦 &lt;http://daodaoliang.github.io&gt;`_.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>直接写网址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daodaoliang.github.io</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无名超链接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">`我是一个很长长长长长长长……的文字`__我是后面的文字</span><br><span class="line"></span><br><span class="line">.. __: daodaoliang.github.io</span><br><span class="line"></span><br><span class="line">或者更简洁的:</span><br><span class="line"></span><br><span class="line">__ daodaoliang.github.io`</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内部链接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`内部标题`_</span><br></pre></td></tr></table></figure>
+<ul>
+<li>间接链接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">`内部链接`_</span><br><span class="line"></span><br><span class="line">.. _内部链接: daodaoliang.github.io</span><br><span class="line"></span><br><span class="line">`我是链接`_</span><br><span class="line"></span><br><span class="line">.. _我是链接: 内部链接_</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无内容链接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.. _回页首:</span><br><span class="line"></span><br><span class="line">`回页首`_</span><br></pre></td></tr></table></figure>
+<h3 id="8-上下标"><a href="#8-上下标" class="headerlink" title="8. 上下标"></a>8. 上下标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. 上标:</span><br><span class="line"></span><br><span class="line">123:sup:`2` 意思123的上标为2</span><br><span class="line"></span><br><span class="line">2. 下标:</span><br><span class="line"></span><br><span class="line">123:sub:`2` 意思123的下表为2</span><br></pre></td></tr></table></figure>
+<h3 id="9-图片资源"><a href="#9-图片资源" class="headerlink" title="9. 图片资源"></a>9. 图片资源</h3><ul>
+<li>段落间插入图片</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.. image:: https://pic4.zhimg.com/6a97b4a68a4db3f1d3ae66cd1638965f.jpeg</span><br><span class="line">	:scale: 100</span><br><span class="line">	:height: 120</span><br><span class="line">	:width: 160</span><br><span class="line">	:align: left</span><br><span class="line">	:alt: I&apos;m a girl.</span><br><span class="line">	:target: https://pic4.zhimg.com/6a97b4a68a4db3f1d3ae66cd1638965f.jpeg</span><br><span class="line">   	</span><br><span class="line">	这个女孩我也不认识，只是在知乎随手巴拉的啦，哈哈哈哈(这个功能需要PIL库)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>文字间插入图片</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这里有\|内部图片|\，哈哈哈哈哈</span><br><span class="line"></span><br><span class="line">.. |内部图片| image:: https://pic4.zhimg.com/6a97b4a68a4db3f1d3ae66cd1638965f.jpeg</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/项目工程管理/2015-12-22-01.png" alt="这里示例图01" title="">
+                </div>
+                <div class="image-caption">这里示例图01</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/项目工程管理/2015-12-22-02.png" alt="这里示例图02" title="">
+                </div>
+                <div class="image-caption">这里示例图02</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/项目工程管理/2015-12-22-03.png" alt="这里示例图03" title="">
+                </div>
+                <div class="image-caption">这里示例图03</div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.543Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/" target="_blank" rel="external">http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/&title=《reStructuredText 的基本语法》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/&title=《reStructuredText 的基本语法》 — 刀刀亮的博客&source=reStructuredText 官方网址, 打不开吧!!!!!! fuck GFW" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《reStructuredText 的基本语法》 — 刀刀亮的博客&url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2015/12/28/linux学习-2015-12-28-日常linux命令之nc/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">日常linux命令之nc</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/项目工程管理/2015/11/05/项目工程管理-2015-11-05-gitflow分支管理模型/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">gitflow分支管理模型(转载)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="项目工程管理-2015-12-22-reStructuredText文档" data-title="reStructuredText 的基本语法" data-url="http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/&title=《reStructuredText 的基本语法》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/&title=《reStructuredText 的基本语法》 — 刀刀亮的博客&source=reStructuredText 官方网址, 打不开吧!!!!!! fuck GFW" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《reStructuredText 的基本语法》 — 刀刀亮的博客&url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/项目工程管理/2015/12/22/项目工程管理-2015-12-22-reStructuredText文档/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADI0lEQVR42u3azW6rQAwG0L7/S+dK3UbQzza5CubMKkoJzJkujH9+fuL1+l1Hn9/X+ZXvd37//v0OR786uuaChY2NjX0T9ut0Ta5Jvj//XD2aZJ/Y2NjYW9nVoDUJUedXVg/r/MgOv8fGxsZ+JPuqEDVJhPInYmNjY2NPQkUv+OUHhI2NjY3dKyolyDypSNKe5A4fr6VhY2Njfz173uj9ns//tb+NjY2N/QXs12AlLdhPPP2CO2BjY2MvYlfTht4r/rwxnI8EFUpg2NjY2CvYOTJ/cI8xv08hRcHGxsZexM4btHkpP4fl4bPXHijnQ9jY2Ni3ZX/u1T/fbrKf899Wwx42Njb2DvakMFRNMKqjOb3royEhbGxs7HXsCa8Xiq4qQjWPDBsbG/sB7Lz00xvT6Q1N5uw/FNjY2NiL2L0wUE0zqhtNSkiToR9sbGzsTezJsMuruPJgVv5fVRMSbGxs7EXspJCUAOZtgN7ITrXBjI2Njb2VnbQK8iBRHa/pJSq9BAYbGxt7KzsPWr3ifhLMRpWwYokKGxsbeyu7GnLy1u/8gKojPtERYGNjY69j5y3b6kBMfkzz8hM2NjY29jyk9doJvTSpN2aEjY2NvYl9zuu9+lcLQL1yf942wMbGxn4OuzeOM2kD58faG+g53Dk2Njb2InaeAOTthPn11e+rT8fGxsbexM4L/b1wUv1tNVHJgx82Njb2E9h50b/XDK6mKL1yVbI3bGxs7N3sXsjJB3Hyw5qEtD8OHRsbG3sdOy/uVxsD+XHk1a/eX6P+NjY2NvYN2b2t52M9+RhQtXjUK1Ed3gcbGxv7tuxeapFfM/8/9BoAzXCFjY2NfUP2VZ3QvLhfaMdetKK4jY2NjX1b9qu48uZB9Tjm7YdCOQwbGxt7EbsaBqpv8tVw2CtjVRvJ2NjY2PvYedCqtlHzTedP7wW/cvTGxsbGviH7/KLq6/5ksGbOS1rO2NjY2E9mV5u4vYThvCw1Cl3Y2NjYD2b3SkKTnnOeFJXbA9jY2Njr2J8r61THfSajQoW9YWNjYy9iTxq952Gj+ttrG8YjMDY2NvY92P8AQhCM4Dml8/sAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

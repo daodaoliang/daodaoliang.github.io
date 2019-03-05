@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>日常linux命令之iftop | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="作者: daodaoliang 时间: 2016年5月23日 版本: v0.0.1 邮箱: daodaoliang@yeah.net">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日常linux命令之iftop">
+<meta property="og:url" content="http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="作者: daodaoliang 时间: 2016年5月23日 版本: v0.0.1 邮箱: daodaoliang@yeah.net">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/linux学习/iftop.png">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日常linux命令之iftop">
+<meta name="twitter:description" content="作者: daodaoliang 时间: 2016年5月23日 版本: v0.0.1 邮箱: daodaoliang@yeah.net">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/linux学习/iftop.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">日常linux命令之iftop</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">日常linux命令之iftop</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-05-22T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-05-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-安装-iftop"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x01 安装 iftop</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-iftop-界面说明"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x02  iftop 界面说明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-iftop-常用参数"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x03 iftop 常用参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-iftop画面上一些操作命令"><span class="post-toc-number">4.</span> <span class="post-toc-text">0x04 iftop画面上一些操作命令</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-linux学习-2016-05-23-日常linux命令之iftop" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">日常linux命令之iftop</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-05-23 00:00:00" datetime="2016-05-22T16:00:00.000Z" itemprop="datePublished">2016-05-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<pre><code>作者: daodaoliang
+时间: 2016年5月23日
+版本: v0.0.1
+邮箱: daodaoliang@yeah.net
+</code></pre><a id="more"></a>
+<p>日常用的网络流量查看工具为 <code>iftop</code>， 但是他仅仅只能简单的查看网络的流量情况，若是想要查看某个链接的流量情况就比较困难了，因此再次推荐<code>iftop</code> 这个工具</p>
+<h3 id="0x01-安装-iftop"><a href="#0x01-安装-iftop" class="headerlink" title="0x01 安装 iftop"></a>0x01 安装 iftop</h3><p><a href="http://www.ex-parrot.com/pdw/iftop/" target="_blank" rel="noopener">我是官方网站</a></p>
+<p><strong>编译安装iftop示例:</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># centos</span></span><br><span class="line">yum install flex byacc  libpcap ncurses ncurses-devel libpcap-devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># debian</span></span><br><span class="line">apt-get install flex byacc  libpcap0.8 libncurses5</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.ex-parrot.com/pdw/iftop/download/iftop-0.17.tar.gz</span><br><span class="line"></span><br><span class="line">tar zxvf iftop-0.17.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> iftop-0.17</span><br><span class="line"></span><br><span class="line">./configure</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p><strong>一键安装iftop 示例:</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装EPEL源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS/RHEL 5 ：</span></span><br><span class="line">rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-5.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS/RHEL 6 ：</span></span><br><span class="line">rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS/RHEL 7 ：</span></span><br><span class="line">rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># centos</span></span><br><span class="line">yum install iftop</span><br><span class="line"></span><br><span class="line"><span class="comment"># debian</span></span><br><span class="line">apt-get install iftop</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-iftop-界面说明"><a href="#0x02-iftop-界面说明" class="headerlink" title="0x02  iftop 界面说明"></a>0x02  iftop 界面说明</h3><p>直接执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iftop -i eth1</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/linux学习/iftop.png" alt="iftop" title="">
+                </div>
+                <div class="image-caption">iftop</div>
+            </figure>
+<p><strong>界面说明:</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 顶部: 带宽显示， 可以通过按键 `L` 进行切换流量的刻度;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 中间部分: 外部链接列表，列出所有和本机有网络交互的链接信息, 其中右边部分的数字分别为 2s、10s、40s平均流量，=&gt;代表发送数据，&lt;= 代表接收数据;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 底部: TX-发送流量 、RX-接收流量、TOTAL-总流量、Cumm-运行iftop到目前时间的总流量、peak-流量峰值、rates-分别表示过去 2s 10s 40s 的平均流量</span></span><br></pre></td></tr></table></figure>
+<h3 id="0x03-iftop-常用参数"><a href="#0x03-iftop-常用参数" class="headerlink" title="0x03 iftop 常用参数"></a>0x03 iftop 常用参数</h3><p><strong>-i:</strong>  设定监测的网卡，如：# iftop -i eth1</p>
+<p><strong>-B:</strong>  以bytes为单位显示流量(默认是bits)，如：# iftop -B</p>
+<p><strong>-n:</strong> 使host信息默认直接都显示IP，如：# iftop -n</p>
+<p><strong>-N:</strong> 使端口信息默认直接都显示端口号，如: # iftop -N</p>
+<p><strong>-F:</strong> 显示特定网段的进出流量，如# iftop -F 10.10.1.0/24或# iftop -F 10.10.1.0/255.255.255.0</p>
+<p><strong>-h:</strong> （display this message），帮助，显示参数信息</p>
+<p><strong>-p:</strong> 使用这个参数后，中间的列表显示的本地主机信息，出现了本机以外的IP信息;</p>
+<p><strong>-b:</strong> 使流量图形条默认就显示;</p>
+<p><strong>-f:</strong> 这个暂时还不太会用，过滤计算包用的;</p>
+<p><strong>-P:</strong> 使host信息及端口信息默认就都显示;</p>
+<p><strong>-m:</strong> 设置界面最上边的刻度的最大值，刻度分五个大段显示，例：# iftop -m 100M;</p>
+<h3 id="0x04-iftop画面上一些操作命令"><a href="#0x04-iftop画面上一些操作命令" class="headerlink" title="0x04 iftop画面上一些操作命令"></a>0x04 iftop画面上一些操作命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">按h切换是否显示帮助;</span><br><span class="line"></span><br><span class="line">按n切换显示本机的IP或主机名;</span><br><span class="line"></span><br><span class="line">按s切换是否显示本机的host信息;</span><br><span class="line"></span><br><span class="line">按d切换是否显示远端目标主机的host信息;</span><br><span class="line"></span><br><span class="line">按t切换显示格式为2行/1行/只显示发送流量/只显示接收流量;</span><br><span class="line"></span><br><span class="line">按N切换显示端口号或端口服务名称;</span><br><span class="line"></span><br><span class="line">按S切换是否显示本机的端口信息;</span><br><span class="line"></span><br><span class="line">按D切换是否显示远端目标主机的端口信息;</span><br><span class="line"></span><br><span class="line">按p切换是否显示端口信息;</span><br><span class="line"></span><br><span class="line">按P切换暂停/继续显示;</span><br><span class="line"></span><br><span class="line">按b切换是否显示平均流量图形条;</span><br><span class="line"></span><br><span class="line">按B切换计算2秒或10秒或40秒内的平均流量;</span><br><span class="line"></span><br><span class="line">按T切换是否显示每个连接的总流量;</span><br><span class="line"></span><br><span class="line">按l打开屏幕过滤功能，输入要过滤的字符，比如ip,按回车后，屏幕就只显示这个IP相关的流量信息;</span><br><span class="line"></span><br><span class="line">按L切换显示画面上边的刻度;刻度不同，流量图形条会有变化;</span><br><span class="line"></span><br><span class="line">按j或按k可以向上或向下滚动屏幕显示的连接记录;</span><br><span class="line"></span><br><span class="line">按1或2或3可以根据右侧显示的三列流量数据进行排序;</span><br><span class="line"></span><br><span class="line">按&lt;根据左边的本机名或IP排序;</span><br><span class="line"></span><br><span class="line">按&gt;根据远端目标主机的主机名或IP排序;</span><br><span class="line"></span><br><span class="line">按o切换是否固定只显示当前的连接;</span><br><span class="line"></span><br><span class="line">按f可以编辑过滤代码，这是翻译过来的说法，我还没用过这个！</span><br><span class="line"></span><br><span class="line">按!可以使用shell命令，这个没用过！没搞明白啥命令在这好用呢！</span><br><span class="line"></span><br><span class="line">按q退出监控。</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.356Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/" target="_blank" rel="external">http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/&title=《日常linux命令之iftop》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/&title=《日常linux命令之iftop》 — 刀刀亮的博客&source=
+作者: daodaoliang
+时间: 2016年5月23日
+版本: v0.0.1
+邮箱: daodaoliang@yeah.net
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《日常linux命令之iftop》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2016/05/23/linux学习-2016-5-23-iptables禁用IP/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">iptables禁用IP</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/数据库学习/2016/05/18/数据库学习-mysql专题-2016-05-18-mysql权限说明/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">mysql权限说明</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux学习-2016-05-23-日常linux命令之iftop" data-title="日常linux命令之iftop" data-url="http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/&title=《日常linux命令之iftop》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/&title=《日常linux命令之iftop》 — 刀刀亮的博客&source=
+作者: daodaoliang
+时间: 2016年5月23日
+版本: v0.0.1
+邮箱: daodaoliang@yeah.net
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《日常linux命令之iftop》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2016/05/23/linux学习-2016-05-23-日常linux命令之iftop/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNklEQVR42u3aQZKjMBAEQP//097rHNZQ1cIRRiSnCQYDKR/aXa3XKz7ef46/Z/K/j+98/JRP9zn+7wUHNjY29k3Y78MjYR/f5/gVP13TPiu3YGNjY+/KTkpL/rrHyHzJ8nvmFmxsbGzs9sysncivx8bGxsa+ip1Tk8hpVg6xsbGxn8xOIqE8PFq/Mv8avp6lYWNjY/88O5+K/v7fX5lvY2NjY/8wexbK5w3ASjjVjooLBTY2NvZG7LwAtIPbNiRaGQYM3x8bGxt7O3b74Nnod7Z9ZzbGOHlnbGxs7E3Zs/j+e7F+u2TFNdjY2NhbsGcfTpZgFty3g+GkcJ5kadjY2Ng3Z89++h+XqPya5NXzBqk+j42Njb0de30wsBL350ufb9M8+TKwsbGxt2DnTUUeA7UbbtqCl39JdROCjY2NfXN22zDkpJUxw8oI4ZXXZGxsbOwt2PlNr4rpL+iigmf95ww2Njb2Ruz8p/9KfJ+3OsnT84UuAiZsbGzsLdjJMKCN/metSF6ikgWKWhdsbGzsm7OTH/HtkHg2MFgpinkghY2Njb0TO4mNWmq+sWaW2LexFzY2NvYz2W2gPzvTlsB8UH3yWWxsbOyN2Ctp+SzEX2lR8gipXT5sbGzs+7Jngf4sSFrZfDMrTh+jMWxsbOzt2NEMIb4maUVWhhCzsAkbGxt7V3Y+QF0vPHkD075J8qwiM8PGxsa+IXt2i/y/7Wi2vWZlJIyNjY19d/YsTkpKy8mmmbK9ySOk6MvAxsbG3ojdbt/JB7H5dpxZMzOLul75jiFsbGzsG7KTl2tbkdnmm+On53FVG4phY2Nj35c9G9bmpaXFt21MXt6wsbGx92bP2oZ8WJvf4dpB8kcFNjY29nbsPO7Jm5a2aK2U0np4jI2Njb0F+10eszCojfivKoTY2NjYT2CvjAraWCrf7tMOpPO25IIJCTY2NvZPstvtld/bRtkOkpcWFBsbG3s79noc/71BbzvcrbM0bGxs7IexZy1BW0FmUVc++sXGxsZ+MjsvP7P2Jh8D5IuLjY2N/QT2OiCJdZJQKflUO6iop9zY2NjYt2K349X81skyzZ5+1bgCGxsb++bsfwiWfLg/vn75AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>josn 和 jsonp (转载) | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="原文在这里, 为了自己温习方面，特地转载；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="josn 和 jsonp (转载)">
+<meta property="og:url" content="http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="原文在这里, 为了自己温习方面，特地转载；">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="josn 和 jsonp (转载)">
+<meta name="twitter:description" content="原文在这里, 为了自己温习方面，特地转载；">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">josn 和 jsonp (转载)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">josn 和 jsonp (转载)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-03-13T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-03-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/进程间通信/">进程间通信</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-前言："><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 前言：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-什么是JSON？"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.  什么是JSON？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-JSON的优点："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 JSON的优点：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-JSON的格式或者叫规则："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 JSON的格式或者叫规则：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JSON实例："><span class="post-toc-number">2.3.</span> <span class="post-toc-text">JSON实例：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-什么是JSONP？"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 什么是JSONP？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-先说说JSONP是怎么产生的："><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 先说说JSONP是怎么产生的：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-进程间通信-2016-03-14-json和jsonp" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">josn 和 jsonp (转载)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-03-14 00:00:00" datetime="2016-03-13T16:00:00.000Z" itemprop="datePublished">2016-03-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/进程间通信/">进程间通信</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<p>原文在<a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="noopener">这里</a>, 为了自己温习方面，特地转载；</p>
+<a id="more"></a>
+<h2 id="1-前言："><a href="#1-前言：" class="headerlink" title="1. 前言："></a>1. 前言：</h2><p>说到AJAX就会不可避免的面临两个问题，第一个是AJAX以何种格式来交换数据？第二个是跨域的需求如何解决？这两个问题目前都有不同的解决方案，比如数据可以用自定义字符串或者用XML来描述，跨域可以通过服务器端代理来解决。</p>
+<p>但到目前为止最被推崇或者说首选的方案还是用JSON来传数据，靠JSONP来跨域。而这就是本文将要讲述的内容。</p>
+<p>JSON和JSONP虽然只有一个字母的差别，但其实他们根本不是一回事儿：JSON是一种数据交换格式，而JSONP是一种依靠开发人员的聪明才智创造出的一种非官方跨域数据交互协议。我们拿最近比较火的谍战片来打个比方，JSON是地下党们用来书写和交换情报的“暗号”，而JSONP则是把用暗号书写的情报传递给自己同志时使用的接头方式。看到没？一个是描述信息的格式，一个是信息传递双方约定的方法。</p>
+<p>既然随便聊聊，那我们就不再采用教条的方式来讲述，而是把关注重心放在帮助开发人员理解是否应当选择使用以及如何使用上。</p>
+<h2 id="2-什么是JSON？"><a href="#2-什么是JSON？" class="headerlink" title="2.  什么是JSON？"></a>2.  什么是JSON？</h2><p>前面简单说了一下，JSON是一种基于文本的数据交换方式，或者叫做数据描述格式，你是否该选用他首先肯定要关注它所拥有的优点。</p>
+<h3 id="2-1-JSON的优点："><a href="#2-1-JSON的优点：" class="headerlink" title="2.1 JSON的优点："></a><strong>2.1 JSON的优点：</strong></h3><ol>
+<li>基于纯文本，跨平台传递极其简单；</li>
+</ol>
+<ul>
+<li><p>Javascript原生支持，后台语言几乎全部支持；</p>
+</li>
+<li><p>轻量级数据格式，占用字符数量极少，特别适合互联网传递；</p>
+</li>
+<li><p>可读性较强，虽然比不上XML那么一目了然，但在合理的依次缩进之后还是很容易识别的；</p>
+</li>
+<li><p>容易编写和解析，当然前提是你要知道数据结构；</p>
+</li>
+</ul>
+<p>JSON的缺点当然也有，但在作者看来实在是无关紧要的东西，所以不再单独说明。</p>
+<h3 id="2-2-JSON的格式或者叫规则："><a href="#2-2-JSON的格式或者叫规则：" class="headerlink" title="2.2 JSON的格式或者叫规则："></a><strong>2.2 JSON的格式或者叫规则：</strong></h3><p>JSON能够以非常简单的方式来描述数据结构，XML能做的它都能做，因此在跨平台方面两者完全不分伯仲。</p>
+<ol>
+<li>JSON只有两种数据类型描述符，大括号{}和方括号[]，其余英文冒号:是映射符，英文逗号,是分隔符，英文双引号””是定义符。</li>
+</ol>
+<ul>
+<li>大括号{}用来描述一组“不同类型的无序键值对集合”（每个键值对可以理解为OOP的属性描述），方括号[]用来描述一组“相同类型的有序数据集合”（可对应OOP的数组）。</li>
+<li>上述两种集合中若有多个子项，则通过英文逗号,进行分隔。</li>
+<li>键值对以英文冒号:进行分隔，并且建议键名都加上英文双引号””，以便于不同语言的解析。</li>
+<li>JSON内部常用数据类型无非就是字符串、数字、布尔、日期、null 这么几个，字符串必须用双引号引起来，其余的都不用，日期类型比较特殊，这里就不展开讲述了，只是建议如果客户端没有按日期排序功能需求的话，那么把日期时间直接作为字符串传递就好，可以省去很多麻烦。</li>
+</ul>
+<h3 id="JSON实例："><a href="#JSON实例：" class="headerlink" title="JSON实例："></a><strong>JSON实例：</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">// 描述一个人</span><br><span class="line"></span><br><span class="line">var person = &#123;</span><br><span class="line">	&quot;Name&quot;: &quot;Bob&quot;,</span><br><span class="line">	&quot;Age&quot;: 32,</span><br><span class="line">	&quot;Company&quot;: &quot;IBM&quot;,</span><br><span class="line">	&quot;Engineer&quot;: true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 获取这个人的信息</span><br><span class="line"></span><br><span class="line">var personAge = person.Age;</span><br><span class="line"></span><br><span class="line">// 描述几个人</span><br><span class="line"></span><br><span class="line">var members = [</span><br><span class="line">	&#123;</span><br><span class="line">		&quot;Name&quot;: &quot;Bob&quot;,</span><br><span class="line">		&quot;Age&quot;: 32,</span><br><span class="line">		&quot;Company&quot;: &quot;IBM&quot;,</span><br><span class="line">		&quot;Engineer&quot;: true</span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		&quot;Name&quot;: &quot;John&quot;,</span><br><span class="line">		&quot;Age&quot;: 20,</span><br><span class="line">		&quot;Company&quot;: &quot;Oracle&quot;,</span><br><span class="line">		&quot;Engineer&quot;: false</span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		&quot;Name&quot;: &quot;Henry&quot;,</span><br><span class="line">		&quot;Age&quot;: 45,</span><br><span class="line">		&quot;Company&quot;: &quot;Microsoft&quot;,</span><br><span class="line">		&quot;Engineer&quot;: false</span><br><span class="line">	&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">// 读取其中John的公司名称</span><br><span class="line"></span><br><span class="line">var johnsCompany = members[1].Company;</span><br><span class="line"></span><br><span class="line">// 描述一次会议</span><br><span class="line"></span><br><span class="line">var conference = &#123;</span><br><span class="line">	&quot;Conference&quot;: &quot;Future Marketing&quot;,</span><br><span class="line">	&quot;Date&quot;: &quot;2012-6-1&quot;,</span><br><span class="line">	&quot;Address&quot;: &quot;Beijing&quot;,</span><br><span class="line">	&quot;Members&quot;: </span><br><span class="line">	[</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;Name&quot;: &quot;Bob&quot;,</span><br><span class="line">			&quot;Age&quot;: 32,</span><br><span class="line">			&quot;Company&quot;: &quot;IBM&quot;,</span><br><span class="line">			&quot;Engineer&quot;: true</span><br><span class="line">		&#125;,</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;Name&quot;: &quot;John&quot;,</span><br><span class="line">			&quot;Age&quot;: 20,</span><br><span class="line">			&quot;Company&quot;: &quot;Oracle&quot;,</span><br><span class="line">			&quot;Engineer&quot;: false</span><br><span class="line">		&#125;,</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;Name&quot;: &quot;Henry&quot;,</span><br><span class="line">			&quot;Age&quot;: 45,</span><br><span class="line">			&quot;Company&quot;: &quot;Microsoft&quot;,</span><br><span class="line">			&quot;Engineer&quot;: false</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 读取参会者Henry是否工程师</span><br><span class="line"></span><br><span class="line">var henryIsAnEngineer = conference.Members[2].Engineer;</span><br></pre></td></tr></table></figure>
+<p>关于JSON，就说这么多，更多细节请在开发过程中查阅资料深入学习。</p>
+<h2 id="3-什么是JSONP？"><a href="#3-什么是JSONP？" class="headerlink" title="3. 什么是JSONP？"></a>3. 什么是JSONP？</h2><h3 id="3-1-先说说JSONP是怎么产生的："><a href="#3-1-先说说JSONP是怎么产生的：" class="headerlink" title="3.1 先说说JSONP是怎么产生的："></a><strong>3.1 先说说JSONP是怎么产生的：</strong></h3><p>其实网上关于JSONP的讲解有很多，但却千篇一律，而且云里雾里，对于很多刚接触的人来讲理解起来有些困难，小可不才，试着用自己的方式来阐释一下这个问题，看看是否有帮助</p>
+<ol>
+<li>一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；</li>
+</ol>
+<ul>
+<li>不过我们又发现，Web页面上调用js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有”src”这个属性的标签都拥有跨域的能力，比如<script>、<img>、<iframe>）；</li>
+<li>于是可以判断，当前阶段如果想通过纯web端（ActiveX控件、服务端代理、属于未来的HTML5之Websocket等方式不算）跨域访问数据就只有一种可能，那就是在远程服务器上设法把数据装进js格式的文件里，供客户端调用和进一步处理；</li>
+<li>恰巧我们已经知道有一种叫做JSON的纯字符数据格式可以简洁的描述复杂数据，更妙的是JSON还被js原生支持，所以在客户端几乎可以随心所欲的处理这种格式的数据；</li>
+<li>这样子解决方案就呼之欲出了，web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），显而易见，服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。</li>
+<li>客户端在对JSON文件调用成功之后，也就获得了自己所需的数据，剩下的就是按照自己需求进行处理和展现了，这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。</li>
+<li>为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。</li>
+</ul>
+<p>如果对于callback参数如何使用还有些模糊的话，我们后面会有具体的实例来讲解。</p>
+<h3 id="3-2-JSONP的客户端具体实现："><a href="#3-2-JSONP的客户端具体实现：" class="headerlink" title="3.2 JSONP的客户端具体实现："></a><strong>3.2 JSONP的客户端具体实现：</strong></h3><p>不管jQuery也好，extjs也罢，又或者是其他支持jsonp的框架，他们幕后所做的工作都是一样的，下面我来循序渐进的说明一下jsonp在客户端的实现：</p>
+<ol>
+<li>我们知道，哪怕跨域js文件中的代码（当然指符合web脚本安全策略的），web页面也是可以无条件执行的。</li>
+</ol>
+<p>远程服务器remoteserver.com根目录下有个remote.js文件代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(&apos;我是远程文件&apos;);</span><br></pre></td></tr></table></figure>
+<p>本地服务器localserver.com下有个jsonp.html页面代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;http://remoteserver.com/remote.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>毫无疑问，页面将会弹出一个提示窗体，显示跨域调用成功。</p>
+<ol start="2">
+<li>现在我们在jsonp.html页面定义一个函数，然后在远程remote.js中传入数据进行调用。</li>
+</ol>
+<p>jsonp.html页面代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var localHandler = function(data)&#123;</span><br><span class="line">        alert(&apos;我是本地函数，可以被跨域的remote.js文件调用，远程js带来的数据是：&apos; + data.result);</span><br><span class="line">    &#125;;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;http://remoteserver.com/remote.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>remote.js文件代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localHandler(&#123;&quot;result&quot;:&quot;我是远程js带来的数据&quot;&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行之后查看结果，页面成功弹出提示窗口，显示本地函数被跨域的远程js调用成功，并且还接收到了远程js带来的数据。很欣喜，跨域远程获取数据的目的基本实现了，但是又一个问题出现了，我怎么让远程js知道它应该调用的本地函数叫什么名字呢？毕竟是jsonp的服务者都要面对很多服务对象，而这些服务对象各自的本地函数都不相同啊？我们接着往下看。</p>
+<ol start="3">
+<li>聪明的开发者很容易想到，只要服务端提供的js脚本是动态生成的就行了呗，这样调用者可以传一个参数过去告诉服务端“我想要一段调用XXX函数的js代码，请你返回给我”，于是服务器就可以按照客户端的需求来生成js脚本并响应了。</li>
+</ol>
+<p>看jsonp.html页面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    // 得到航班信息查询结果后的回调函数</span><br><span class="line">    var flightHandler = function(data)&#123;</span><br><span class="line">        alert(&apos;你查询的航班结果是：票价 &apos; + data.price + &apos; 元，&apos; + &apos;余票 &apos; + data.tickets + &apos; 张。&apos;);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）</span><br><span class="line">    var url = &quot;http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler&quot;;</span><br><span class="line">    // 创建script标签，设置其属性</span><br><span class="line">    var script = document.createElement(&apos;script&apos;);</span><br><span class="line">    script.setAttribute(&apos;src&apos;, url);</span><br><span class="line">    // 把script标签加入head，此时调用开始</span><br><span class="line">    document.getElementsByTagName(&apos;head&apos;)[0].appendChild(script); </span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>这次的代码变化比较大，不再直接把远程js文件写死，而是编码实现动态查询，而这也正是jsonp客户端实现的核心部分，本例中的重点也就在于如何完成jsonp调用的全过程。</p>
+<p>我们看到调用的url中传递了一个code参数，告诉服务器我要查的是CA1998次航班的信息，而callback参数则告诉服务器，我的本地回调函数叫做flightHandler，所以请把查询结果传入这个函数中进行调用。</p>
+<p>OK，服务器很聪明，这个叫做flightResult.aspx的页面生成了一段这样的代码提供给jsonp.html（服务端的实现这里就不演示了，与你选用的语言无关，说到底就是拼接字符串）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flightHandler(&#123;</span><br><span class="line">    &quot;code&quot;: &quot;CA1998&quot;,</span><br><span class="line">    &quot;price&quot;: 1780,</span><br><span class="line">    &quot;tickets&quot;: 5</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们看到，传递给flightHandler函数的是一个json，它描述了航班的基本信息。运行一下页面，成功弹出提示窗口，jsonp的执行全过程顺利完成！</p>
+<ol start="4">
+<li>到这里为止的话，相信你已经能够理解jsonp的客户端实现原理了吧？剩下的就是如何把代码封装一下，以便于与用户界面交互，从而实现多次和重复调用。</li>
+</ol>
+<p>什么？你用的是jQuery，想知道jQuery如何实现jsonp调用？好吧，那我就好人做到底，再给你一段jQuery使用jsonp的代码（我们依然沿用上面那个航班信息查询的例子，假定返回jsonp结果不变）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line"> &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; &gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line">     &lt;title&gt;Untitled Page&lt;/title&gt;</span><br><span class="line">      &lt;script type=&quot;text/javascript&quot; src=jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">      &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     jQuery(document).ready(function()&#123; </span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">             type: &quot;get&quot;,</span><br><span class="line">             async: false,</span><br><span class="line">             url: &quot;http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&quot;,</span><br><span class="line">             dataType: &quot;jsonp&quot;,</span><br><span class="line">             jsonp: &quot;callback&quot;,//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)</span><br><span class="line">             jsonpCallback:&quot;flightHandler&quot;,//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写&quot;?&quot;，jQuery会自动为你处理数据</span><br><span class="line">             success: function(json)&#123;</span><br><span class="line">                 alert(&apos;您查询到航班信息：票价： &apos; + json.price + &apos; 元，余票： &apos; + json.tickets + &apos; 张。&apos;);</span><br><span class="line">             &#125;,</span><br><span class="line">             error: function()&#123;</span><br><span class="line">                 alert(&apos;fail&apos;);</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;);</span><br><span class="line">     &#125;);</span><br><span class="line">     &lt;/script&gt;</span><br><span class="line">     &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line"> &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>是不是有点奇怪？为什么我这次没有写flightHandler这个函数呢？而且竟然也运行成功了！哈哈，这就是jQuery的功劳了，jquery在处理jsonp类型的ajax时（还是忍不住吐槽，虽然jquery也把jsonp归入了ajax，但其实它们真的不是一回事儿），自动帮你生成回调函数并把数据取出来供success属性方法来调用，是不是很爽呀？</p>
+</script></li></ul>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.543Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/" target="_blank" rel="external">http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/&title=《josn 和 jsonp (转载)》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/&title=《josn 和 jsonp (转载)》 — 刀刀亮的博客&source=
+原文在这里, 为了自己温习方面，特地转载；" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《josn 和 jsonp (转载)》 — 刀刀亮的博客&url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Python学习/2016/05/11/Python学习-2016-05-11-python在windows下服务开发/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python 在 windows 下的服务开发</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2016/03/14/环境搭建-2016-03-14-CentOS6-5升级git/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">centos 6.5 升级git</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="进程间通信-2016-03-14-json和jsonp" data-title="josn 和 jsonp (转载)" data-url="http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/&title=《josn 和 jsonp (转载)》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/&title=《josn 和 jsonp (转载)》 — 刀刀亮的博客&source=
+原文在这里, 为了自己温习方面，特地转载；" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《josn 和 jsonp (转载)》 — 刀刀亮的博客&url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/进程间通信/2016/03/14/进程间通信-2016-03-14-json和jsonp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADL0lEQVR42u3aMXLjQAwEQP//077E2Un0zIKukqBm5KIpkr0KoB3g6ys+vi+P/6+8PpOfv37W9X1uOLCxsbHfhJ2Qnp1JXjT/1PWzni1o8vQHS4ONjY29jp0UkhyZFKF8aVp2VOSwsbGxP5idl5l2u5JsPLCxsbGx7ypgk7J0vSjXy9F+PdjY2Nifw87DoPaFJludl8jSsLGxsV+enXdFX//vP+lvY2NjY78w+7s8kp/77Uu0Rai98sFnsbGxsRex8wKQB0D5JiQvQvlwT/H+2NjY2KvZebM2L3V5cH9WOPOoCxsbG3srux2+yZu7SRlLAv089K+7ItjY2Nhvy27Hbu4qOW1uH43gxOUZGxsbex+7HbJpB2ja0tUufT5ghI2Njb2bnZervNi04dRZI7kOlbCxsbGXsic/9ItQfjBqMwmVsLGxsT+HPX/8WbR02Kwt74mNjY29j3397+tXOQukzkKlM2TU7sXGxsZexJ5E88lmJlncJEiavxs2Njb2JvbfFYl2rKcNpJKy+kuohI2Njb2CnReMSdDfto3bwCu5w2ENx8bGxn559tnP+uTxbXjUvvrZE3+uxMbGxl7Hrluklz/02+1EXhrPNlHRyA42Njb2Cna7kUi2KPNhoEmo9HT5sLGxsRex25ZqUq7agpdHS5MtzajLjY2Njf2G7Jx378DNXV9Gse3BxsbGXsFuR16SEpVsY+akUaMaGxsbewW7mOU5CpUmTdx5WyJq9GJjY2MvYkcfiIOkvBy2pLw0Pr0nNjY29iJ2njnlsPzOeUP3LAgroiVsbGzsFey8jLVlL7lP25yYLwQ2Njb2JnbbEqgHHAdladT3uH4uNjY29sew7y1X8+i/DZWwsbGxP42dn2mjqDa4b0tUXSyxsbGxV7AnJWfeuM3Bk1FObGxs7N3sSasgj3vygct5qDRpG2NjY2O/LztvxLaLMmn35luj/CvBxsbG3s2exDotbBI/teM79b+xsbGxP4Cdl5/5qGV7ZV6SsbGxsbHverm2JZCXsV/uiY2Njb2OfRb3TBZo0hhul/jBGWxsbOxF7DagyQtMsj3IQ6uzJTgLpLCxsbHfhP0PT5C6lj97VBEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

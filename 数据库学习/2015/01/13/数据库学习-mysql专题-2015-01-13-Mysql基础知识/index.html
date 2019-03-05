@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>mysql基础知识 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="Mysql 数据类型1.整型   MySQL数据类型 含义(有符号)     tinyint(m) 1个字节 范围(-128~127)   smallint(m) 2个字节 范围(-32768~32767)   mediumint(m) 3个字节 范围(-8388608~8388607)   int(m) 4个字节 范围(-2147483648~2147483647)   bigint(m) 8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql基础知识">
+<meta property="og:url" content="http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="Mysql 数据类型1.整型   MySQL数据类型 含义(有符号)     tinyint(m) 1个字节 范围(-128~127)   smallint(m) 2个字节 范围(-32768~32767)   mediumint(m) 3个字节 范围(-8388608~8388607)   int(m) 4个字节 范围(-2147483648~2147483647)   bigint(m) 8">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql基础知识">
+<meta name="twitter:description" content="Mysql 数据类型1.整型   MySQL数据类型 含义(有符号)     tinyint(m) 1个字节 范围(-128~127)   smallint(m) 2个字节 范围(-32768~32767)   mediumint(m) 3个字节 范围(-8388608~8388607)   int(m) 4个字节 范围(-2147483648~2147483647)   bigint(m) 8">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql基础知识</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">mysql基础知识</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-12T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Mysql-数据类型"><span class="post-toc-number">1.</span> <span class="post-toc-text">Mysql 数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-整型"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.整型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-浮点型-float和double"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.浮点型(float和double)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-定点数"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.定点数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-字符串-char-varchar-test"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4.字符串(char,varchar,_test)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-二进制数据-Blob"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5.二进制数据(_Blob)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-日期时间类型"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">6.日期时间类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数据类型的属性"><span class="post-toc-number">1.6.1.</span> <span class="post-toc-text">数据类型的属性</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-数据库学习-mysql专题-2015-01-13-Mysql基础知识" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mysql基础知识</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-13 00:00:00" datetime="2015-01-12T16:00:00.000Z" itemprop="datePublished">2015-01-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库学习/">数据库学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="Mysql-数据类型"><a href="#Mysql-数据类型" class="headerlink" title="Mysql 数据类型"></a><strong>Mysql 数据类型</strong></h2><h3 id="1-整型"><a href="#1-整型" class="headerlink" title="1.整型"></a>1.整型</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">MySQL数据类型</th>
+<th style="text-align:center">含义(有符号)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">tinyint(m)</td>
+<td style="text-align:center">1个字节 范围(-128~127)</td>
+</tr>
+<tr>
+<td style="text-align:center">smallint(m)</td>
+<td style="text-align:center">2个字节 范围(-32768~32767)</td>
+</tr>
+<tr>
+<td style="text-align:center">mediumint(m)</td>
+<td style="text-align:center">3个字节 范围(-8388608~8388607)</td>
+</tr>
+<tr>
+<td style="text-align:center">int(m)</td>
+<td style="text-align:center">4个字节 范围(-2147483648~2147483647)</td>
+</tr>
+<tr>
+<td style="text-align:center">bigint(m)</td>
+<td style="text-align:center">8个字节 范围(+-9.22*10的18次方)</td>
+</tr>
+</tbody>
+</table>
+<p>取值范围如果增加了unsigned,则最大值翻倍，如tinyint unsigned的取值范围为(0~256).<br>int(m)里的m是表示select查询结果集中的显示宽度，并不影响实际的取值范围，没有影响到显示的宽度，不知道这个m有什么用。</p>
+<h3 id="2-浮点型-float和double"><a href="#2-浮点型-float和double" class="headerlink" title="2.浮点型(float和double)"></a>2.浮点型(float和double)</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">MySQL数据类型</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">float(m,d)</td>
+<td style="text-align:center">单精度浮点型 8位精度(4字节) m总个数，d小数位</td>
+</tr>
+<tr>
+<td style="text-align:center">double(m,d)</td>
+<td style="text-align:center">双精度浮点型 16位精度(8字节) m总个数, d小数位</td>
+</tr>
+</tbody>
+</table>
+<p>设一个字段定义为float(5,3) ,如果插入一个数123.456789，实际存的数据会是99.999,因为5-3=2,2为其整数部分最大长度。</p>
+<h3 id="3-定点数"><a href="#3-定点数" class="headerlink" title="3.定点数"></a>3.定点数</h3><p>浮点型在数据库中存在的是近似值，而定点类型在数据库中存放的时精确值，decimal(m,d)参数m&lt;65是m&lt;65是总个数，d&lt;30且d&lt;m是小数位。</p>
+<h3 id="4-字符串-char-varchar-test"><a href="#4-字符串-char-varchar-test" class="headerlink" title="4.字符串(char,varchar,_test)"></a>4.字符串(char,varchar,_test)</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">MySQL数据类型</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">char(n)</td>
+<td style="text-align:center">固定长度，最多255个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">varchar(n)</td>
+<td style="text-align:center">固定长度，最多65535个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">tinytext</td>
+<td style="text-align:center">可变长度，最多255个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">text</td>
+<td style="text-align:center">可变长度，最多65535个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">mediumtext</td>
+<td style="text-align:center">可变长度，最多2的24次方-1个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">longtext</td>
+<td style="text-align:center">可变长度，最多2的32次方-1个字符</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>char 和 varchar：</em></strong></p>
+<ul>
+<li><p>char(n) 若存入字符数小于n，则以空格补于其后，查询之时再将空格去掉。所以char类型存储的字符串末尾不能有空格，varchar不限于此。</p>
+</li>
+<li><p>char(n) 固定长度，char(4)不管是存入几个字符，都将占用4个字节，varchar是存入的实际字符数+1个字节（n&lt;=255）或2个字节(n&gt;255)，所以varchar(4),存入3个字符将占用4个字节。</p>
+</li>
+<li><p>char类型的字符串检索速度要比varchar类型的快。</p>
+</li>
+</ul>
+<p><strong><em>varchar和text：</em></strong></p>
+<ul>
+<li><p>varchar可指定n，text不能指定，内部存储varchar是存入的实际字符数+1个字节（n&lt;=255）或2个字节(n&gt;255)，text是实际字符数+2个字节。</p>
+</li>
+<li><p>text类型不能有默认值。</p>
+</li>
+<li><p>varchar可直接创建索引，text创建索引要指定前多少个字符。varchar查询速度快于text,在都创建索引的情况下，text的索引似乎不起作用。</p>
+</li>
+</ul>
+<h3 id="5-二进制数据-Blob"><a href="#5-二进制数据-Blob" class="headerlink" title="5.二进制数据(_Blob)"></a>5.二进制数据(_Blob)</h3><ul>
+<li><p>_BLOB和_text存储方式不同，_TEXT以文本方式存储，英文存储区分大小写，而_Blob是以二进制方式存储，不分大小写。</p>
+</li>
+<li><p>_BLOB存储的数据只能整体读出。</p>
+</li>
+<li><p>_TEXT可以指定字符集，_BLOB不用指定字符集。</p>
+</li>
+</ul>
+<h3 id="6-日期时间类型"><a href="#6-日期时间类型" class="headerlink" title="6.日期时间类型"></a>6.日期时间类型</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">MySQL数据类型</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">date</td>
+<td style="text-align:center">日期 ‘2008-12-2′</td>
+</tr>
+<tr>
+<td style="text-align:center">time</td>
+<td style="text-align:center">时间 ’12:25:36′</td>
+</tr>
+<tr>
+<td style="text-align:center">datetime</td>
+<td style="text-align:center">日期时间 ‘2008-12-2 22:06:44′</td>
+</tr>
+<tr>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">自动存储记录修改时间</td>
+</tr>
+</tbody>
+</table>
+<p>若定义一个字段为timestamp，这个字段里的时间数据会随其他字段修改的时候自动刷新，所以这个数据类型的字段可以存放这条记录最后被修改的时间。</p>
+<h4 id="数据类型的属性"><a href="#数据类型的属性" class="headerlink" title="数据类型的属性"></a>数据类型的属性</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">Mysql关键字</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">NULL</td>
+<td style="text-align:center">数据列可包含NULL值</td>
+</tr>
+<tr>
+<td style="text-align:center">NOT NULL</td>
+<td style="text-align:center">数据列不允许包含NULL值</td>
+</tr>
+<tr>
+<td style="text-align:center">DEFAULT</td>
+<td style="text-align:center">默认值</td>
+</tr>
+<tr>
+<td style="text-align:center">PRIMARY KEY</td>
+<td style="text-align:center">主键</td>
+</tr>
+<tr>
+<td style="text-align:center">AUTO_INCREMENT</td>
+<td style="text-align:center">自动递增，适用于整数类型</td>
+</tr>
+<tr>
+<td style="text-align:center">UNSIGNED</td>
+<td style="text-align:center">无符号</td>
+</tr>
+<tr>
+<td style="text-align:center">CHARACTER SET name</td>
+<td style="text-align:center">指定一个字符集</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.372Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/" target="_blank" rel="external">http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/&title=《mysql基础知识》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/&title=《mysql基础知识》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql基础知识》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Python学习/2015/01/14/Python学习-2015-01-14-python的Twisted框架学习之路之安装/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python twisted模块之安装部署</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/数据库学习/2015/01/08/数据库学习-数据库基础知识-2015-01-08-SQL语法学习/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SQL语法学习</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="数据库学习-mysql专题-2015-01-13-Mysql基础知识" data-title="mysql基础知识" data-url="http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/&title=《mysql基础知识》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/&title=《mysql基础知识》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql基础知识》 — 刀刀亮的博客&url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/数据库学习/2015/01/13/数据库学习-mysql专题-2015-01-13-Mysql基础知识/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD5UlEQVR42u3ay26cQBAFUP//TzvrKAburWqSiXRmZc1A0xwsFfX4+oo/33987o/Jv0+udb/m1ZFX6x/44MCBAweO8lavlm43d3/zyVnt1ZNvHq6IAwcOHDgOcVxtYhMU26B7HxqvVs457tfEgQMHDhyfwJFsLrlWftv5DePAgQMHjv+RI0n58lA6o2nPxYEDBw4cf4fjjRbOrOSXFxm/g8+LtVIcOHDgwDGJdHVa9Zl/vzLfgQMHDhw44qbRbEChTdXy9C+51Xac7oer48CBAweONUdbaEuaQLPBglns26dnOHDgwIHjLEfecDqgXraFknG65FUgf0XAgQMHDhx7jlMp0yxh2wTmdqCheBg4cODAgWPNkaDMlk7CczvW0BYl2+viwIEDB44Nxyzg5UldG0Rn43F5UH9YAQcOHDhwrDlmt5qHtNe3HjfGijQPBw4cOHAsOGZpUhJENyXCdv22sXR5PA4cOHDgWHO0Wz91/KzYlz+8N0IyDhw4cOBIONrAmR+TlAXbQJsXH4ff48CBAweOQxxtm+cecQbXNqhmYfVhVzhw4MCB4wWOPDXKgfJA28LlNBEuDhw4cOBYcyQXa4cbZmW7TSNqA3Q534EDBw4cOEYcUfepHE3IA16yfh7y8/WjthMOHDhw4HiBo03SWohZo2jzwB7oceDAgQPHUY6zhcK2mXQqYWuD8WUKhwMHDhw4RhyzQJhvYjbQsAn87fo4cODAgeMsR9LsabdVd73KZGw1rJC0nXDgwIEDx4Ijaca0KdlseK5oDh19v8CBAwcOHGc58kGBVdCKC5H5IzmVFj504XDgwIEDx7yC9xC62mG1TXKYr7/hLpJJHDhw4MBRctwv3TaTNinZ5pbah3e5fxw4cODAseBIUqA2ZLYlv30qmCecw/8LHDhw4MBRcuyH206lXu2wQt7iippPOHDgwIFjzdGG25ZmH7zPQq+Kgzhw4MCBY5GzbC5/dgCuPabl++0sHDhw4MCx5sjbORumFmU2AJF/8/ArDhw4cOBYcOQQB5o6cbEvWXlTpsSBAwcOHG9ztMMHp8bmcogkSLfp3A+/4sCBAweONcds1CBJ6u6LcRus/frRs8KBAwcOHGuIduAgH0rYTFvcp2qzc3HgwIEDx3scm2DcDhls2lf7ptSm6IkDBw4cOFqOfTsnLxfuU6+Wu34JwIEDBw4chzhmwwd5DG8jfB6kN+vjwIEDB47P4UjCXh6G8+A9eznIm204cODAgePfcuxbUHm6mBQH29UOB1ocOHDgwFEGrTZ8trfXDlXM4uPDyjhw4MCB40xWdbjZc2q7M8S24IgDBw4cOA5x/AIve/ZJjI2AgAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

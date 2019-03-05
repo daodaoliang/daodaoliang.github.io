@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>linux下进程后台运行方法 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="本文绝大部分都是摘抄自这里，我在这里做记录仅仅为了自己以后查阅的方便。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下进程后台运行方法">
+<meta property="og:url" content="http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="本文绝大部分都是摘抄自这里，我在这里做记录仅仅为了自己以后查阅的方便。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux下进程后台运行方法">
+<meta name="twitter:description" content="本文绝大部分都是摘抄自这里，我在这里做记录仅仅为了自己以后查阅的方便。">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">linux下进程后台运行方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">linux下进程后台运行方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-01-24T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-01-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-nohup"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. nohup</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-setsid"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. setsid</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-amp"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. &amp;</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-disown"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. disown</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-screen"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. screen</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-linux学习-2016-01-25-linux进程后台运行方法" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">linux下进程后台运行方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-01-25 00:00:00" datetime="2016-01-24T16:00:00.000Z" itemprop="datePublished">2016-01-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<p>本文绝大部分都是摘抄自<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-nohup/" target="_blank" rel="noopener">这里</a>，我在这里做记录仅仅为了自己以后查阅的方便。</p>
+<a id="more"></a>
+<h3 id="1-nohup"><a href="#1-nohup" class="headerlink" title="1. nohup"></a>1. nohup</h3><p><code>nohup</code> 的作用就是让提交的命令忽略<code>hangup</code>信号，<code>nohup</code> 命令的帮助信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">用法：nohup 命令 [参数]...</span><br><span class="line">　或：nohup 选项</span><br><span class="line">忽略挂起信号运行指定的命令。</span><br><span class="line"></span><br><span class="line">      --help		显示此帮助信息并退出</span><br><span class="line">      --version		显示版本信息并退出</span><br><span class="line"></span><br><span class="line">If standard input is a terminal, redirect it from /dev/null.</span><br><span class="line">If standard output is a terminal, append output to &apos;nohup.out&apos; if possible,</span><br><span class="line">&apos;$HOME/nohup.out&apos; otherwise.</span><br><span class="line">If standard error is a terminal, redirect it to standard output.</span><br><span class="line">To save output to FILE, use &apos;nohup COMMAND &gt; FILE&apos;.</span><br><span class="line"></span><br><span class="line">注意：您的shell 内含自己的nohup 程序版本，它会覆盖这里所提及的相应</span><br><span class="line">版本。请查阅您的shell 文档获知它所支持的选项。</span><br><span class="line"></span><br><span class="line">请向bug-coreutils@gnu.org 报告nohup 的错误</span><br><span class="line">GNU coreutils 的主页：&lt;http://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">GNU 软件一般性帮助：&lt;http://www.gnu.org/gethelp/&gt;</span><br><span class="line">请向&lt;http://translationproject.org/team/zh_CN.html&gt; 报告nohup 的翻译错误</span><br><span class="line">要获取完整文档，请运行：info coreutils &apos;nohup invocation&apos;</span><br></pre></td></tr></table></figure>
+<p>可见,nohup的使用时十分方便的，只需在要处理的命令前加上nohup即可，标准输出和标准错误缺省会被重定向到nohup.out文件中，一般我们可在结尾加上’&amp;’来将命令放入后台运行，也可以用 “&gt;/filename 2&gt;&amp;1” 来更改缺省的重定向文件名。</p>
+<p><strong><em>nohup示例：</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">daodaoliang@daodaoliang-B85-HD3:/work/code/daodaoliang.github.com/_posts/linux学习$ nohup ping www.baidu.com &amp;</span><br><span class="line">[1] 26716</span><br><span class="line">nohup: 忽略输入并把输出追加到&quot;nohup.out&quot;</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:/work/code/daodaoliang.github.com/_posts/linux学习$ ps -ef | grep 26716</span><br><span class="line">daodaol+ 26716 20718  0 14:13 pts/5    00:00:00 ping www.baidu.com</span><br><span class="line">daodaol+ 26721 20718  0 14:13 pts/5    00:00:00 grep --color=auto 26716</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:/work/code/daodaoliang.github.com/_posts/linux学习$</span><br></pre></td></tr></table></figure>
+<h3 id="2-setsid"><a href="#2-setsid" class="headerlink" title="2. setsid"></a>2. setsid</h3><p>nohup无疑通过忽略HUP信号来使我们的进程避免中途被中断，但如果我们换个角度思考，如果我们的进程不属于接受HUP信号的终端的子进程，那么自然也就是不回收到HUP信号的影响了，setsid就能帮助我们做到这一点。</p>
+<p><strong><em>setsid 示例：</em></strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setsid ping www.baidu.com</span><br></pre></td></tr></table></figure>
+<p>值得注意的是  上例中的进程ID(PID)为1839，即为用户的init进程，并不是当前终端进程；</p>
+<h3 id="3-amp"><a href="#3-amp" class="headerlink" title="3. &amp;"></a>3. <code>&amp;</code></h3><p>这里还有一个关于 <code>subshell</code> 的小技巧，我们知道，将一个或者多个命名包含在 “()” 就能让这些命令在子shell中运行，从而扩展出很多有趣的功能，我们现在讨论的就是其中之一，<br>当我们将 <code>&amp;</code> 也放入 <code>()</code> 之内，我们发现所提交的作业并不在作业列表中，也就是说无法通过 <code>jobs</code>来查看的，让我们来看看为什么这样就能躲过 <code>hup</code> 信号的影响把；</p>
+<p><strong><em>subshell 示例：</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">daodaoliang@daodaoliang-B85-HD3:~$ (ping www.baidu.com &gt;/dev/null &amp;)</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:~$ ps -ef | grep ping</span><br><span class="line">daodaol+ 24170  1839  0 10:58 pts/1    00:00:00 ping www.baidu.com</span><br><span class="line">daodaol+ 24176 24096  0 10:58 pts/1    00:00:00 grep --color=auto ping</span><br></pre></td></tr></table></figure>
+<p>从上例中可以看出，新提交的任务的进程的父进程是 1839 即为 当前用户的Init进程，而不是当前终端进程，从而不在受当前终端的 <code>hup</code> 信号的影响了。</p>
+<h3 id="4-disown"><a href="#4-disown" class="headerlink" title="4. disown"></a>4. disown</h3><p>若果我们在没有事先使用 <code>setsid</code> 或者 <code>nohup</code> 的前提下就提交了命令时候就需要用 <code>disdown</code> 来进行补救；</p>
+<p><strong>disown 使用方式：</strong></p>
+<ul>
+<li>用disown -h jobspec 来使某个作业忽略 <code>hup</code> 信号；</li>
+<li>用disown -ah 来使所有作业都忽略 <code>hup</code> 信号；</li>
+<li>用disown -rh 来使正在运行的作业忽略 <code>hup</code> 信号;</li>
+</ul>
+<p>需要注意的是在使用 <code>disown</code> 之后，作业是被从作业列表里面移除的，我们不能使用 <code>jobs</code> 来查询到，但是使用 <code>ps -ef</code> 还是可以查询到；</p>
+<p>需要注意的时这种方式的操作对象是作业，也就是说 <code>disown</code> 的操作对象是作业，如果一个任务没能以作业的形式运行则就需要进行特殊处理；</p>
+<p><strong>示例1 如果提交命令时已经用“&amp;”将命令放入后台运行：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">daodaoliang@daodaoliang-B85-HD3:/work/code/daodaoliang.github.com$ ping www.baidu.com &gt;/dev/null &amp;</span><br><span class="line">[1] 515</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:/work/code/daodaoliang.github.com$ jobs</span><br><span class="line">[1]+  运行中               ping www.baidu.com &gt; /dev/null &amp;</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:/work/code/daodaoliang.github.com$ </span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:/work/code/daodaoliang.github.com$ disown -h %1</span><br></pre></td></tr></table></figure>
+<p><strong>示例2 如果提交命令时未使用“&amp;”将命令放入后台运行，可使用 CTRL-z 和“bg”将其放入后台，再使用 “disown” :</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">daodaoliang@daodaoliang-B85-HD3:~$ ping www.baidu.com</span><br><span class="line">PING www.a.shifen.com (61.135.169.125) 56(84) bytes of data.</span><br><span class="line">64 bytes from 61.135.169.125: icmp_seq=1 ttl=55 time=19.9 ms</span><br><span class="line">^Z</span><br><span class="line">[1]+  已停止               ping www.baidu.com</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:~$ jobs</span><br><span class="line">[1]+  已停止               ping www.baidu.com</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:~$ bg %1</span><br><span class="line">daodaoliang@daodaoliang-B85-HD3:~$ disown -h %1</span><br></pre></td></tr></table></figure>
+<h3 id="5-screen"><a href="#5-screen" class="headerlink" title="5. screen"></a>5. screen</h3><p>screen 提供了 ANSI/VT100 的终端模拟器，使它能够在一个真实终端下运行多个全屏的伪终端。screen 的参数很多，具有很强大的功能，我们在此仅介绍其常用功能以及简要分析一下为什么使用 screen 能够避免 HUP 信号的影响</p>
+<p>使用 screen 很方便，有以下几个常用选项：</p>
+<ul>
+<li>用screen -dmS session name来建立一个处于断开模式下的会话（并指定其会话名）。</li>
+<li>用screen -list 来列出所有会话。</li>
+<li>用screen -r session name来重新连接指定会话。</li>
+<li>用快捷键CTRL-a d 来暂时断开当前会话。</li>
+</ul>
+<p>当我们用“-r”连接到 screen 会话后，我们就可以在这个伪终端里面为所欲为，再也不用担心 HUP 信号会对我们的进程造成影响，也不用给每个命令前都加上“nohup”或者“setsid”了</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.356Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/" target="_blank" rel="external">http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/&title=《linux下进程后台运行方法》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/&title=《linux下进程后台运行方法》 — 刀刀亮的博客&source=
+本文绝大部分都是摘抄自这里，我在这里做记录仅仅为了自己以后查阅的方便。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux下进程后台运行方法》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2016/03/09/linux学习-2016-03-09-linux下利用logroate进行日志切割/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux下用logroate进行日志切割</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/数据库学习/2016/01/14/数据库学习-mysql专题-2016-01-14-mysql全文搜索简介/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">mysql全文索引简介</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux学习-2016-01-25-linux进程后台运行方法" data-title="linux下进程后台运行方法" data-url="http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/&title=《linux下进程后台运行方法》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/&title=《linux下进程后台运行方法》 — 刀刀亮的博客&source=
+本文绝大部分都是摘抄自这里，我在这里做记录仅仅为了自己以后查阅的方便。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux下进程后台运行方法》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2016/01/25/linux学习-2016-01-25-linux进程后台运行方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADM0lEQVR42u3awXLiQAwE0Pz/T7PXvZh0S04VHp5PVCAeP3FoRpqfn/h6XVz/v3v1X+/vebXK1brvP3/zhY2Njf0Q9uvtlbBnpUkK15YjsWBjY2Ofyn4fMO1n2ui6ukMSUcMoxcbGxsaO7/D+0Wd/b8uNjY2NjX0VLbMy5S2htqmEjY2N/c3s2QAgL1ASPHnUtStiY2Njn83Op6Kf//pP5tvY2NjYH8x+lVe7hUgecb9urcDGxsY+iD1rALXNoHZb0g4Dhg0sbGxs7K9hb1ozbWner3hXswkbGxv7JHYSM7Oh711t/c2XEc1DsLGxsR/OTiInae4kh3g2fftZo6oIYGxsbOzHspPNQDtYzTcS+dgg3+REImxsbOwvY88GrkmcJOWYbVqilMbGxsY+gt229fNNwiyQ2vFwvpkZtpawsbGxH8Vuf/S3Y+A8cvYHdG4LLWxsbOyPZ88OR97buM83JDPLZVMJGxsb+wh28vO9vV3++dlcetaQ+uW8EjY2NvZj2bPhaxtIySYnb/q3Bbo8soONjY19EHt/dKYdFbcNqWTdIkqxsbGxD2Lny7cblSTAklHE5nhQtCHBxsbGfjh7FjxtjM0Gye2XUTw/NjY29kHsfTNoc+ymHUK0MflLCbCxsbGPYG8W2Gxa2sM3s3C9LAo2Njb2cezNo7TbhqTc7Ui4jUZsbGzsk9jJP7SHeGZj4CSi8oJGT4iNjY19EHsWMHnLaR9vbYgWR4KwsbGxj2PnVxESJSY/oLM53IONjY19Bjsf8eZLzo7azEbOeeGGh3WwsbGxP549a8S30TK7f3uUZzZ4wMbGxj6D3TbiZ+2kPKg2pUmeChsbG/tU9uzH/ex4ZV6Uvws/bGxs7G9gJzHTbgzywe2qSZTcHxsbG/sI9my4m787G0vMxszJV4WNjY19Hnu2bdiMYDej2VkQbjZL2NjY2E9h56E1e503kmZlmn0l2NjY2OexN/GzeaC8cO3Wou6lYWNjY2MHDaC7Bro3tJCwsbGxv5jdxsZdJduUNTqyg42Njf1w9ma4m8dPfpQzbzklqVRPubGxsbEfxW5jadb0mQ1329bVXStiY2NjP4T9D7puzkrhbTKTAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

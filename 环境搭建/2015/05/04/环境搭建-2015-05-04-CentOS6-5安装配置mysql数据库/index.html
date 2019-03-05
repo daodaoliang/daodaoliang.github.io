@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>CentOS 6.5安装配置MySQL数据库 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1.卸载原有数据库  1.1 查询是否安装了数据库   1rpm -qa | grep mysql   1.2卸载mysql数据库   12# 普通删除模式rpm -e mysql or 12#  强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除rpm -e --nodeps mysql   1.3 检查是否卸载成功   1rpm -qa | grep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 6.5安装配置MySQL数据库">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="1.卸载原有数据库  1.1 查询是否安装了数据库   1rpm -qa | grep mysql   1.2卸载mysql数据库   12# 普通删除模式rpm -e mysql or 12#  强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除rpm -e --nodeps mysql   1.3 检查是否卸载成功   1rpm -qa | grep">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 6.5安装配置MySQL数据库">
+<meta name="twitter:description" content="1.卸载原有数据库  1.1 查询是否安装了数据库   1rpm -qa | grep mysql   1.2卸载mysql数据库   12# 普通删除模式rpm -e mysql or 12#  强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除rpm -e --nodeps mysql   1.3 检查是否卸载成功   1rpm -qa | grep">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CentOS 6.5安装配置MySQL数据库</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CentOS 6.5安装配置MySQL数据库</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-05-03T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-05-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-卸载原有数据库"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.卸载原有数据库</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-mysql安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.mysql安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-mysql数据库的初始化及相关配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.mysql数据库的初始化及相关配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-mysql数据库配置文件说明"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.mysql数据库配置文件说明</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CentOS 6.5安装配置MySQL数据库</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-05-04 00:00:00" datetime="2015-05-03T16:00:00.000Z" itemprop="datePublished">2015-05-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h4 id="1-卸载原有数据库"><a href="#1-卸载原有数据库" class="headerlink" title="1.卸载原有数据库"></a><strong><em>1.卸载原有数据库</em></strong></h4><blockquote>
+<ul>
+<li>1.1 查询是否安装了数据库</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>1.2卸载mysql数据库</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 普通删除模式</span></span><br><span class="line">rpm -e mysql</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可以对其进行强力删除</span></span><br><span class="line">rpm -e --nodeps mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>1.3 检查是否卸载成功</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br></pre></td></tr></table></figure>
+<h4 id="2-mysql安装"><a href="#2-mysql安装" class="headerlink" title="2.mysql安装"></a><strong><em>2.mysql安装</em></strong></h4><blockquote>
+<ul>
+<li>2.1 查看可用的mysql版本</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list | grep mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>2.2 更新YUM源</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一步 在这里http://dev.mysql.com/downloads/repo/yum/选择对应的版本链接</span></span><br><span class="line"><span class="comment"># 第二步 更新源sudo rpm -Uvh 你选择的对应的连接 或者对于linux 6 (# wget http://dev.mysql.com/get/mysql57-community-release-el6-7.noarch.rpm # yum localinstall mysql57-community-release-el6-7.noarch.rpm)</span></span><br><span class="line"><span class="comment"># 第三步 查看默认的安装状态 yum repolist all | grep mysql</span></span><br><span class="line"><span class="comment"># 第四步 禁用和启用 yum-config-manager --disable mysql56-community 和 yum-config-manager --enable mysql57-community-dmr</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>2.3 安装数据库以及依赖文件</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mysql-server mysql mysql-devel</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>2.4 查看安装mysql的状态</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qi mysql-server</span><br></pre></td></tr></table></figure>
+<h4 id="3-mysql数据库的初始化及相关配置"><a href="#3-mysql数据库的初始化及相关配置" class="headerlink" title="3.mysql数据库的初始化及相关配置"></a><strong><em>3.mysql数据库的初始化及相关配置</em></strong></h4><blockquote>
+<ul>
+<li>3.1 启动数据库服务</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	service mysqld start</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&gt; * 3.2 设置开启自启动</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">	<span class="comment"># 检查是否开启自启动</span></span><br><span class="line">	chkconfig --list | grep mysqld</span><br></pre></td></tr></table></figure>
+<p>and</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置开机自启动</span></span><br><span class="line">chkconfig mysqld on</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>3.3　为root用户设置密码</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过该命令给root账号设置密码为 root</span></span><br><span class="line">mysqladmin -u root password <span class="string">'root'</span></span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 为root账号设置密码</span></span><br><span class="line">/usr/bin/mysqladmin -u root password <span class="string">'new-password'</span></span><br></pre></td></tr></table></figure>
+<p>特别说明5.7以后的版本的密码修改策略：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认密码在日至文件里面</span></span><br><span class="line"><span class="comment"># 第一步 获取默认随机密码 sudo grep 'temporary password' /var/log/mysqld.log</span></span><br><span class="line"><span class="comment"># 第二步 登陆 mysql -uroot -p </span></span><br><span class="line"><span class="comment"># 第三步 修改密码 ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!'; </span></span><br><span class="line"><span class="comment"># 然后给root用户进行权限配置</span></span><br></pre></td></tr></table></figure>
+<p><strong>特别说明</strong> mysql_secure_installation 只有在5.6版本的时候可以用。</p>
+<h4 id="4-mysql数据库配置文件说明"><a href="#4-mysql数据库配置文件说明" class="headerlink" title="4.mysql数据库配置文件说明"></a><strong><em>4.mysql数据库配置文件说明</em></strong></h4><blockquote>
+<ul>
+<li>4.1 配置文件存放位置</li>
+</ul>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 默认存放位置/etc/my.cnf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>4.2 配置文件说明</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 暂时先不写了</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.512Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/&title=《CentOS 6.5安装配置MySQL数据库》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/&title=《CentOS 6.5安装配置MySQL数据库》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS 6.5安装配置MySQL数据库》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CentOS 6.5通过源码安装nginx</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/Python学习/2015/04/20/Python学习-2015-04-20-windows64位python注册问题/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">windows64位python注册问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库" data-title="CentOS 6.5安装配置MySQL数据库" data-url="http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/&title=《CentOS 6.5安装配置MySQL数据库》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/&title=《CentOS 6.5安装配置MySQL数据库》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS 6.5安装配置MySQL数据库》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD6ElEQVR42u3cS24cMQwFwLn/pSfbGHG3H/nUdoKUVsZ81FLJAC2S8OsVj/dv4+rd5Lt/znP1yv1z37cjWVU1cODAgQNHvNVm0QlQvrHk3auZ83k+mQ0HDhw4cBziSB6Q0OxCdR6wp5ufHg8OHDhw4Ph+jt0mk2CZbDvfMA4cOHDg+Lc4pom5BGJ3JM13ceDAgQPHcxz59nafTwLw/evTbz2eK8WBAwcOHJtIN75W/Z0/P9LfgQMHDhw44rRd00YwZU2KRnmgrXaHAwcOHDhqjl07wi4t2AT43WVy2WaBAwcOHDgKjrzJbFpGylN795/cHU++wsgeBw4cOHDEHEkwuw9v+XKnxaEcpW+A+OTvDhw4cODAUXAkAWz37nTpeeowD/nTA8OBAwcOHD3H9JKTJ+B24Tn5uUlQfrF+HDhw4MBRcyThcPp6k0bcLb1JdOLAgQMHjlMc0yLQtF0gX27+9KYx4ot3ceDAgQNHzZFflvLL3q5ZbdfEkMwwbubDgQMHDhxHOfr61bTNbrq96Z1rPDMOHDhw4Cg4duWZfBGD8FYXq/IQO6i/4cCBAweOIcfuAjZItA2/lY9p+WpQEsOBAwcOHDVHEz53l66cY1rKao4BBw4cOHCc5ejHFHHagtC30+UpThw4cODAsVttUqTpE3958elUOF9eR3HgwIEDxyGOnKa5sJ1qceub8C6fiwMHDhw4jnJMr0ZTvjzQnipojYtVOHDgwIHjEEeTVpte6nZZyRz6WHIQBw4cOHDUZafdBvoGiCn6NImZl7Jw4MCBA8cpjml55omWhabE1XdtXNbicODAgQNHwdE/flfymYbM3QoHf0DgwIEDB44zd7Hqn9Q0G5te25LnPv47ggMHDhw4LvbYJOnysWwvqEtQOQoOHDhw4HiCY1dAatJ80wRfHpiXYRgHDhw4cNQcu+LQ2SvftHGhaVZoWutw4MCBA8eUIy/tTC91u1aDPEA2h7QsO+HAgQMHjos1vI+OXbGnSRdOA3ZUecOBAwcOHA9wTKsw0yvfNKWYr2GX7vyQK8WBAwcOHDVH3sqw+2TfytCnBQ/0d+DAgQMHjviTSdBqykjT1oHmkPKq2uVqceDAgQNHwdFsr08gNunFUwH+w5w4cODAgaPmmDbM5c0BfRoxb5Lom/xe04EDBw4cOG5nmD54F96iws/weM4eCQ4cOHDgOMsxLfbsClS70J4fUgOKAwcOHDh+imPagpYH3b4MNk0pHgi0OHDgwIHjMY6kyLTDTRBz6G8KtDhw4MDx33NMw+cueXeWeBqGo5lx4MCBA0fNMU2lNY0OyQamW502Nxzo8sCBAwcOHJ9z/AIEiAttPECP0AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

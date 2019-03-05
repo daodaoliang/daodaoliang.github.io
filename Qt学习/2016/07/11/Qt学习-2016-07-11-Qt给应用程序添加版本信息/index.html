@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Qt给应用程序添加版本信息 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="作者:daodaoliang 时间:2016年7月11日16:12:09 版本:V 0.0.4 邮箱:daodaoliang@yeah.net">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt给应用程序添加版本信息">
+<meta property="og:url" content="http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="作者:daodaoliang 时间:2016年7月11日16:12:09 版本:V 0.0.4 邮箱:daodaoliang@yeah.net">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt给应用程序添加版本信息">
+<meta name="twitter:description" content="作者:daodaoliang 时间:2016年7月11日16:12:09 版本:V 0.0.4 邮箱:daodaoliang@yeah.net">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Qt给应用程序添加版本信息</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Qt给应用程序添加版本信息</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-07-10T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-07-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Qt学习/">Qt学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-环境说明"><span class="post-toc-number">1.</span> <span class="post-toc-text">0. 环境说明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-使用-rc文件"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. 使用.rc文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-在工程项目下创建-rc-文件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.1 在工程项目下创建 .rc 文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-修改-pro-文件"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1.2 修改 pro 文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-使用内置变量"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. 使用内置变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-防坑提示"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. 防坑提示</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-Qt学习-2016-07-11-Qt给应用程序添加版本信息" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Qt给应用程序添加版本信息</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-07-11 00:00:00" datetime="2016-07-10T16:00:00.000Z" itemprop="datePublished">2016-07-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Qt学习/">Qt学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<pre><code>作者:daodaoliang
+时间:2016年7月11日16:12:09
+版本:V 0.0.4
+邮箱:daodaoliang@yeah.net
+</code></pre><a id="more"></a>
+<h3 id="0-环境说明"><a href="#0-环境说明" class="headerlink" title="0. 环境说明"></a>0. 环境说明</h3><ul>
+<li>系统环境: win10 64位</li>
+<li>Qt环境: Qt-lib 5.6.0</li>
+<li>QCreat0r 3.6.1</li>
+</ul>
+<h3 id="1-使用-rc文件"><a href="#1-使用-rc文件" class="headerlink" title="1. 使用.rc文件"></a>1. 使用.rc文件</h3><h4 id="1-1-在工程项目下创建-rc-文件"><a href="#1-1-在工程项目下创建-rc-文件" class="headerlink" title="1.1 在工程项目下创建 .rc 文件"></a>1.1 在工程项目下创建 <code>.rc</code> 文件</h4><p> 例如 <code>version.rc</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># if defined(UNDER_CE)</span><br><span class="line">#  include &lt;winbase.h&gt;</span><br><span class="line"># else</span><br><span class="line">#  include &lt;windows.h&gt;</span><br><span class="line"># endif</span><br><span class="line"></span><br><span class="line">VS_VERSION_INFO VERSIONINFO</span><br><span class="line">	FILEVERSION 1,0,2,0</span><br><span class="line">	PRODUCTVERSION 1,0,2,0</span><br><span class="line">	FILEFLAGSMASK 0x3fL</span><br><span class="line">#ifdef _DEBUG</span><br><span class="line">	FILEFLAGS VS_FF_DEBUG</span><br><span class="line">#else</span><br><span class="line">	FILEFLAGS 0x0L</span><br><span class="line">#endif</span><br><span class="line">	FILEOS VOS__WINDOWS32</span><br><span class="line">	FILETYPE VFT_DLL</span><br><span class="line">	FILESUBTYPE 0x0L</span><br><span class="line">	BEGIN</span><br><span class="line">		BLOCK &quot;StringFileInfo&quot;</span><br><span class="line">		BEGIN</span><br><span class="line">			BLOCK &quot;040904b0&quot;</span><br><span class="line">			BEGIN</span><br><span class="line">				VALUE &quot;CompanyName&quot;, &quot;NS\0&quot;</span><br><span class="line">				VALUE &quot;FileDescription&quot;, &quot;数据库测试类库\0&quot;</span><br><span class="line">				VALUE &quot;FileVersion&quot;, &quot;1.0.1.0\0&quot;</span><br><span class="line">				VALUE &quot;LegalCopyright&quot;, &quot;@2016\0&quot;</span><br><span class="line">				VALUE &quot;OriginalFilename&quot;, &quot;NDBPool1.dll\0&quot;</span><br><span class="line">				VALUE &quot;ProductName&quot;, &quot;NDBPool\0&quot;</span><br><span class="line">				VALUE &quot;ProductVersion&quot;, &quot;1.0.1.0\0&quot;</span><br><span class="line">			END</span><br><span class="line">		END</span><br><span class="line">		BLOCK &quot;VarFileInfo&quot;</span><br><span class="line">		BEGIN</span><br><span class="line">			VALUE &quot;Translation&quot;, 0x0409, 1200</span><br><span class="line">		END</span><br><span class="line">	END</span><br><span class="line">/* End of Version info */</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-修改-pro-文件"><a href="#1-2-修改-pro-文件" class="headerlink" title="1.2 修改 pro 文件"></a>1.2 修改 <code>pro</code> 文件</h4><p>在项目的工程文件里面添加 <code>RC_FILE += ./version.rc</code></p>
+<h3 id="2-使用内置变量"><a href="#2-使用内置变量" class="headerlink" title="2. 使用内置变量"></a>2. 使用内置变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VERSION = 1.2.3</span><br><span class="line">QMAKE_TARGET_PRODUCT = 产品名称</span><br><span class="line">QMAKE_TARGET_COMPANY = 公司</span><br><span class="line">QMAKE_TARGET_DESCRIPTION = 文件描述</span><br><span class="line">QMAKE_TARGET_COPYRIGHT = 版权</span><br></pre></td></tr></table></figure>
+<h3 id="3-防坑提示"><a href="#3-防坑提示" class="headerlink" title="3. 防坑提示"></a>3. 防坑提示</h3><p><strong>一定要确保rc文件为GBK的格式,不然会乱码,生成的rc文件默认都是UTF-8格式</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/" target="_blank" rel="external">http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/&title=《Qt给应用程序添加版本信息》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/&title=《Qt给应用程序添加版本信息》 — 刀刀亮的博客&source=
+作者:daodaoliang
+时间:2016年7月11日16:12:09
+版本:V 0.0.4
+邮箱:daodaoliang@yeah.net
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Qt给应用程序添加版本信息》 — 刀刀亮的博客&url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2016/07/19/linux学习-2015-01-28-wget命令学习/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">wget命令学习</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2016/06/01/环境搭建-2016-6-1-Linux配置秘钥登录ssh/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux配置秘钥登录ssh</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Qt学习-2016-07-11-Qt给应用程序添加版本信息" data-title="Qt给应用程序添加版本信息" data-url="http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/&title=《Qt给应用程序添加版本信息》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/&title=《Qt给应用程序添加版本信息》 — 刀刀亮的博客&source=
+作者:daodaoliang
+时间:2016年7月11日16:12:09
+版本:V 0.0.4
+邮箱:daodaoliang@yeah.net
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Qt给应用程序添加版本信息》 — 刀刀亮的博客&url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Qt学习/2016/07/11/Qt学习-2016-07-11-Qt给应用程序添加版本信息/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIklEQVR42u3aUW7cMAwE0L3/pbcHSL2ZER0gZp6/gtrw6slAiSH1esXX+8v19e7nf7l6Z/L81d2r9dx2YWNjYz+E/f54JewEc7ZZyds+r/NyzdjY2Njr2C3g8xZMClJSoj5/nugXsbGxsf88uw0qySa24DzSYGNjY2PnoSKJAUn5ad+DjY2NjZ00lc7a+m1cmXyGH+mlYWNjY/96dj4V/f1//8h8GxsbG/sXs9/llcePyQh58mT0NmxsbOxF7LwA5Pj5cZykbdTGDGxsbOzd7KQsnRWqfAx813Gcw7iCjY2N/Vh2e1CmDQ9nhSoZKrTrfOU7jY2Njf0odv6ivMwkd/NNb+twUiCxsbGx97HPhrvtou/a7nYNUTHDxsbGfiw7gSVtpnb7zramjUzRPAQbGxt7BTupafMhbtsqyptW9TqxsbGx/wy7bfG04955dGlbSNjY2Nj72GfHX9qjNmcD3TyWtG0vbGxs7H3slpfcPYsWZ8+PjuxgY2NjL2XfOz2eDHEnAamu1djY2NiPZeeFJ3/mrtZ/uzXJOrGxsbF3syet+TzenDWMkkKVF1FsbGzsHewzQBsS2oHxWYnKNwgbGxt7Nzs/NNNuxGQM0Ialb1aOjY2NvY6dx4+2zLRNorak5fHjP1EEGxsbeyn7rnZ825aax6HkbZcFDBsbG3sRexIVJltw12g2+pDY2NjYi9j50LSNIglyvmW5Ivrm2NjY2I9lT2agbV04O3YzaSFhY2Nj72bnL2qf/4mS1g6eLy3Y2NjYi9htU+asKX+2xLOWU/4r2NjY2JvYSdhoD/fcFRvatxWxChsbG/vPsOcHa/LNSrY+L7F1rcbGxsZ+OPusfd/GjzwwJIHkVV6XHTVsbGzsx7Lf5TUpV3c1qtox8GU7CRsbG3sFu/2vP48i7bC2bVflLarX5MLGxsZ+CDspWm0smQSGSQOrGAxjY2Njr2O3g4GcnW9o3txvh9PY2NjY2JNjNPkz88ZWUT6xsbGxscct/jw2tId7oqYYNjY29jp2/sNnY4P58cr5r2BjY2NvZZ816ydF664jPmcjBGxsbOxF7H8WDaWBt5EJyQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

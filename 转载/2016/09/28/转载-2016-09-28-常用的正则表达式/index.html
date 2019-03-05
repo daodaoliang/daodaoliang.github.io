@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>常用的正则表达式 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="原文出处: (http://www.jianshu.com/p/e7bb97218946) 日期: 2016年9月28日 版本: V1.0.1.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的正则表达式">
+<meta property="og:url" content="http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="原文出处: (http://www.jianshu.com/p/e7bb97218946) 日期: 2016年9月28日 版本: V1.0.1.0">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/转载/正则.jpg">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用的正则表达式">
+<meta name="twitter:description" content="原文出处: (http://www.jianshu.com/p/e7bb97218946) 日期: 2016年9月28日 版本: V1.0.1.0">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/转载/正则.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">常用的正则表达式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">常用的正则表达式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-09-27T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-09-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/转载/">转载</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-校验密码强度"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.校验密码强度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-校验中文"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.校验中文</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-由数字、26个英文字母或下划线组成的字符串"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.由数字、26个英文字母或下划线组成的字符串</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-校验E-Mail-地址"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.校验E-Mail 地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-校验身份证号码"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.校验身份证号码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-校验日期"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.校验日期</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-校验金额"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.校验金额</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-校验手机号"><span class="post-toc-number">8.</span> <span class="post-toc-text">8.校验手机号</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-判断IE的版本"><span class="post-toc-number">9.</span> <span class="post-toc-text">9.判断IE的版本</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-校验IP-v4地址"><span class="post-toc-number">10.</span> <span class="post-toc-text">10.校验IP-v4地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#11-校验IP-v6地址"><span class="post-toc-number">11.</span> <span class="post-toc-text">11.校验IP-v6地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-检查URL的前缀"><span class="post-toc-number">12.</span> <span class="post-toc-text">12.检查URL的前缀</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#13-提取URL链接"><span class="post-toc-number">13.</span> <span class="post-toc-text">13.提取URL链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-文件路径及扩展名校验"><span class="post-toc-number">14.</span> <span class="post-toc-text">14.文件路径及扩展名校验</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#15-提取Color-Hex-Codes"><span class="post-toc-number">15.</span> <span class="post-toc-text">15.提取Color Hex Codes</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#16-提取网页图片"><span class="post-toc-number">16.</span> <span class="post-toc-text">16.提取网页图片</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#17-提取页面超链接"><span class="post-toc-number">17.</span> <span class="post-toc-text">17.提取页面超链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#18-查找CSS属性"><span class="post-toc-number">18.</span> <span class="post-toc-text">18.查找CSS属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#19-抽取注释"><span class="post-toc-number">19.</span> <span class="post-toc-text">19.抽取注释</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#20-匹配HTML标签"><span class="post-toc-number">20.</span> <span class="post-toc-text">20.匹配HTML标签</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#学习正则表达式"><span class="post-toc-number">21.</span> <span class="post-toc-text">学习正则表达式</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-转载-2016-09-28-常用的正则表达式" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">常用的正则表达式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-09-28 00:00:00" datetime="2016-09-27T16:00:00.000Z" itemprop="datePublished">2016-09-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/转载/">转载</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<pre><code>原文出处: (http://www.jianshu.com/p/e7bb97218946)
+日期: 2016年9月28日
+版本: V1.0.1.0
+</code></pre><a id="more"></a>
+<p>正则表达式，一个十分古老而又强大的文本处理工具，仅仅用一段非常简短的表达式语句，便能够快速实现一个非常复杂的业务逻辑。熟练地掌握正则表达式的话，能够使你的开发效率得到极大的提升。</p>
+<p>正则表达式经常被用于字段或任意字符串的校验，如下面这段校验基本日期格式的JavaScript代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(\\d&#123;1,4&#125;)(-|\\/</span>)(\\d&#123;<span class="number">1</span>,<span class="number">2</span>&#125;)\\<span class="number">2</span>(\\d&#123;<span class="number">1</span>,<span class="number">2</span>&#125;)$/; </span><br><span class="line"><span class="keyword">var</span> r = fieldValue.match(reg); </span><br><span class="line"><span class="keyword">if</span>(r==<span class="literal">null</span>)alert(<span class="string">'Date format error!'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="1-校验密码强度"><a href="#1-校验密码强度" class="headerlink" title="1.校验密码强度"></a>1.校验密码强度</h2><p>密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$</span><br></pre></td></tr></table></figure>
+<h2 id="2-校验中文"><a href="#2-校验中文" class="headerlink" title="2.校验中文"></a>2.校验中文</h2><p>字符串仅能是中文.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[\\u4e00-\\u9fa5]&#123;0,&#125;$</span><br></pre></td></tr></table></figure>
+<h2 id="3-由数字、26个英文字母或下划线组成的字符串"><a href="#3-由数字、26个英文字母或下划线组成的字符串" class="headerlink" title="3.由数字、26个英文字母或下划线组成的字符串"></a>3.由数字、26个英文字母或下划线组成的字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\\w+$</span><br></pre></td></tr></table></figure>
+<h2 id="4-校验E-Mail-地址"><a href="#4-校验E-Mail-地址" class="headerlink" title="4.校验E-Mail 地址"></a>4.校验E-Mail 地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[\\w!#$%&amp;&apos;*+/=?^_`&#123;|&#125;~-]+(?:\\.[\\w!#$%&amp;&apos;*+/=?^_`&#123;|&#125;~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?</span><br></pre></td></tr></table></figure>
+<h2 id="5-校验身份证号码"><a href="#5-校验身份证号码" class="headerlink" title="5.校验身份证号码"></a>5.校验身份证号码</h2><p>下面是身份证号码的正则校验。15 或 18位。</p>
+<p><strong>15位</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[1-9]\\d&#123;7&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;$</span><br></pre></td></tr></table></figure>
+<p><strong>18位</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[1-9]\\d&#123;5&#125;[1-9]\\d&#123;3&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;([0-9]|X)$</span><br></pre></td></tr></table></figure>
+<h2 id="6-校验日期"><a href="#6-校验日期" class="headerlink" title="6.校验日期"></a>6.校验日期</h2><p>“yyyy-mm-dd“ 格式的日期校验，已考虑平闰年。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$</span><br></pre></td></tr></table></figure>
+<h2 id="7-校验金额"><a href="#7-校验金额" class="headerlink" title="7.校验金额"></a>7.校验金额</h2><p>金额校验，精确到2位小数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[0-9]+(.[0-9]&#123;2&#125;)?$</span><br></pre></td></tr></table></figure>
+<h2 id="8-校验手机号"><a href="#8-校验手机号" class="headerlink" title="8.校验手机号"></a>8.校验手机号</h2><p>下面是国内 13、15、18开头的手机号正则表达式。（可根据目前国内收集号扩展前两位开头号码）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d&#123;8&#125;$</span><br></pre></td></tr></table></figure>
+<h2 id="9-判断IE的版本"><a href="#9-判断IE的版本" class="headerlink" title="9.判断IE的版本"></a>9.判断IE的版本</h2><p>IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\/[5-9]\\.0).*$</span><br></pre></td></tr></table></figure>
+<h2 id="10-校验IP-v4地址"><a href="#10-校验IP-v4地址" class="headerlink" title="10.校验IP-v4地址"></a>10.校验IP-v4地址</h2><p>IP4 正则语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b</span><br></pre></td></tr></table></figure>
+<h2 id="11-校验IP-v6地址"><a href="#11-校验IP-v6地址" class="headerlink" title="11.校验IP-v6地址"></a>11.校验IP-v6地址</h2><p>IP6 正则语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(([0-9a-fA-F]&#123;1,4&#125;:)&#123;7,7&#125;[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,7&#125;:|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,6&#125;:[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,5&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,2&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,3&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,3&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,2&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,5&#125;|[0-9a-fA-F]&#123;1,4&#125;:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,6&#125;)|:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,7&#125;|:)|fe80:(:[0-9a-fA-F]&#123;0,4&#125;)&#123;0,4&#125;%[0-9a-zA-Z]&#123;1,&#125;|::(ffff(:0&#123;1,4&#125;)&#123;0,1&#125;:)&#123;0,1&#125;((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;:((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9]))</span><br></pre></td></tr></table></figure>
+<h2 id="12-检查URL的前缀"><a href="#12-检查URL的前缀" class="headerlink" title="12.检查URL的前缀"></a>12.检查URL的前缀</h2><p>应用开发中很多时候需要区分请求是HTTPS还是HTTP，通过下面的表达式可以取出一个url的前缀然后再逻辑判断。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (!s.match(/^[a-zA-Z]+:\\/\\//)) &#123; s = &apos;http://&apos; + s; &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="13-提取URL链接"><a href="#13-提取URL链接" class="headerlink" title="13.提取URL链接"></a>13.提取URL链接</h2><p>下面的这个表达式可以筛选出一段文本中的URL.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(f|ht)&#123;1&#125;(tp|tps):\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- ./?%&amp;=]*)?</span><br></pre></td></tr></table></figure>
+<h2 id="14-文件路径及扩展名校验"><a href="#14-文件路径及扩展名校验" class="headerlink" title="14.文件路径及扩展名校验"></a>14.文件路径及扩展名校验</h2><p>验证windows下文件路径和扩展名（下面的例子中为.txt文件）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^([a-zA-Z]\\:|\\\\)\\\\([^\\\\]+\\\\)*[^\\/:*?&quot;&lt;&gt;|]+\\.txt(l)?$</span><br></pre></td></tr></table></figure>
+<h2 id="15-提取Color-Hex-Codes"><a href="#15-提取Color-Hex-Codes" class="headerlink" title="15.提取Color Hex Codes"></a>15.提取Color Hex Codes</h2><p>有时需要抽取网页中的颜色代码，可以使用下面的表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^#([A-Fa-f0-9]&#123;6&#125;|[A-Fa-f0-9]&#123;3&#125;)$</span><br></pre></td></tr></table></figure>
+<h2 id="16-提取网页图片"><a href="#16-提取网页图片" class="headerlink" title="16.提取网页图片"></a>16.提取网页图片</h2><p>假若你想提取网页中所有图片信息，可以利用下面的表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\&lt; *[img][^\\\\&gt;]*[src] *= *[\\&quot;\\&apos;]&#123;0,1&#125;([^\\&quot;\\&apos;\\ &gt;]*)</span><br></pre></td></tr></table></figure>
+<h2 id="17-提取页面超链接"><a href="#17-提取页面超链接" class="headerlink" title="17.提取页面超链接"></a>17.提取页面超链接</h2><p>提取html中的超链接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&lt;a\\s*(?!.*\\brel=)[^&gt;]*)(href=&quot;https?:\\/\\/)((?!(?:(?:www\\.)?&apos;.implode(&apos;|(?:www\\.)?&apos;, $follow_list).&apos;))[^&quot;]+)&quot;((?!.*\\brel=)[^&gt;]*)(?:[^&gt;]*)&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="18-查找CSS属性"><a href="#18-查找CSS属性" class="headerlink" title="18.查找CSS属性"></a>18.查找CSS属性</h2><p>通过下面的表达式，可以搜索到相匹配的CSS属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^\\s*[a-zA-Z\\-]+\\s*[:]&#123;1&#125;\\s[a-zA-Z0-9\\s.#]+[;]&#123;1&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="19-抽取注释"><a href="#19-抽取注释" class="headerlink" title="19.抽取注释"></a>19.抽取注释</h2><p>如果你需要移除HMTL中的注释，可以使用如下的表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--(.*?)--&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="20-匹配HTML标签"><a href="#20-匹配HTML标签" class="headerlink" title="20.匹配HTML标签"></a>20.匹配HTML标签</h2><p>通过下面的表达式可以匹配出HTML中的标签属性.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:&quot;.*?&quot;|&apos;.*?&apos;|[\\^&apos;&quot;&gt;\\s]+))?)+\\s*|\\s*)\\/?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="学习正则表达式"><a href="#学习正则表达式" class="headerlink" title="学习正则表达式"></a>学习正则表达式</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/转载/正则.jpg" alt="正则" title="">
+                </div>
+                <div class="image-caption">正则</div>
+            </figure>
+<p><a href="https://msdn.microsoft.com/en-us/library/az24scfc(v=vs.110).aspx" target="_blank" rel="noopener">1.快速学习指南</a></p>
+<p><a href="https://regex101.com/#javascript" target="_blank" rel="noopener">2.在线测试工具</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.543Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/" target="_blank" rel="external">http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/&title=《常用的正则表达式》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/&title=《常用的正则表达式》 — 刀刀亮的博客&source=
+原文出处: (http://www.jianshu.com/p/e7bb97218946)
+日期: 2016年9月28日
+版本: V1.0.1.0
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用的正则表达式》 — 刀刀亮的博客&url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/环境搭建/2016/10/28/环境搭建-2016-10-28-nginx配置https并自签名证书/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">nginx 配置https并自签名证书</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2016/09/20/环境搭建-2016-03-14-nginx的常用配置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">nginx 常用的配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="转载-2016-09-28-常用的正则表达式" data-title="常用的正则表达式" data-url="http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/&title=《常用的正则表达式》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/&title=《常用的正则表达式》 — 刀刀亮的博客&source=
+原文出处: (http://www.jianshu.com/p/e7bb97218946)
+日期: 2016年9月28日
+版本: V1.0.1.0
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用的正则表达式》 — 刀刀亮的博客&url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/转载/2016/09/28/转载-2016-09-28-常用的正则表达式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3aQW4bMRAEQP//0wqQWxBo0T1D2jJQPAmyTLF4WI56+PUVj9ff8fz+67+RfD7/3uTzw4GHh4c3Wvq7kXzNO9IzPue9W080Jx4eHt41Xv5QTibd/HVzSODh4eF9Gu/5wNgcIfn/4uHh4f0u3qkt2IPx8PDwPoGXhBG344n2M4ezFjw8PLyYtwkCfur1xf4eHh4e3qKr3o7ZItqHfrEePDw8vAu8JA7YtPZnxfTsnWL/8PDw8Ba8PIB4jk1PHQ/7g+Sf2fDw8PCu8dpDIrlQtZlzFkO8Labx8PDwjvLaKnTW4so3Jd+4YesLDw8P71t47UO8Rc6uHQyReHh4eGte23ZKCtx2U9qZ86MFDw8P7zbvVIN/uJSj4S8eHh7ePV5eBOct/7zUfl5WdKEqb6Th4eHhXea17aUZOA8+NtcI8PDw8G7z8kJ5Fv5u4uPZ4YSHh4d3m9eWwm3g214LyKON4S8GPDw8vJL3ikcbW+yL9fYCAR4eHt738NrjoX2Ib+aP7ogFhxMeHh7eWd7sYHiGHWjzl+C3m4uHh4d3gdeGsLPiexbRthta/G7Aw8PDW/BmDaf28tMszjhQpuPh4eFd4BWFaVlMt22wWTRcbD0eHh7eUV77ZXlTatYey9cTFeV4eHh4F3h5WyufNN+g9nLALAjGw8PDO8t7bv+/K1U3sW8e9W5e4+Hh4d3mfcUjb5glRXMeeeRrw8PDw7vHe5XjeXGzqCKfLV9PfacMDw8PL+bNHrjt1PuN2FxHwMPDw7vByx/TpyLaWRndHlR4eHh4t3mbw6Btqs2i4WFEgoeHh/cBvFOf3NT7xeUGPDw8vB/lzZpep0rtNt7Fw8PDu82btaOSefJl5fFucfUBDw8P7wJvdlerBbS1bkI6cGkADw8Pr+P9AeKhVLntBbw3AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

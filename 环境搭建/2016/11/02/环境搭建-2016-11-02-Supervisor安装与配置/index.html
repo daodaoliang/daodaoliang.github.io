@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>supervisor 安装与配置 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="作者: daodaoliang 版本: V1.0.1 邮箱： daodaoliang@yeah.net 这里是官方链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="supervisor 安装与配置">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="作者: daodaoliang 版本: V1.0.1 邮箱： daodaoliang@yeah.net 这里是官方链接">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="supervisor 安装与配置">
+<meta name="twitter:description" content="作者: daodaoliang 版本: V1.0.1 邮箱： daodaoliang@yeah.net 这里是官方链接">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">supervisor 安装与配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">supervisor 安装与配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-01T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-11-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x00-supervisor-简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">0x00 supervisor 简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x01-supervisor-安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">0x01 supervisor 安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x02-supervisor-配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">0x02 supervisor 配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0x03-supervisord-启动和维护"><span class="post-toc-number">4.</span> <span class="post-toc-text">0x03 supervisord 启动和维护</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2016-11-02-Supervisor安装与配置" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">supervisor 安装与配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-11-02 00:00:00" datetime="2016-11-01T16:00:00.000Z" itemprop="datePublished">2016-11-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<pre><code>作者: daodaoliang
+版本: V1.0.1
+邮箱： daodaoliang@yeah.net
+</code></pre><p><a href="http://supervisord.org/installing.html" target="_blank" rel="noopener">这里是官方链接</a></p>
+<a id="more"></a>
+<h2 id="0x00-supervisor-简介"><a href="#0x00-supervisor-简介" class="headerlink" title="0x00 supervisor 简介"></a>0x00 supervisor 简介</h2><p>Supervisor 是一个用 python 语言开发的用来在 linux 系统下进行进程管理的工具。可以很方面的监控、启动、停止、重启一个或者多个进程。当进程意外终止时可以在第一时间进行重启，做到自动恢复。</p>
+<h2 id="0x01-supervisor-安装"><a href="#0x01-supervisor-安装" class="headerlink" title="0x01 supervisor 安装"></a>0x01 supervisor 安装</h2><p><strong>1.确保 python 环境完备</strong></p>
+<p><strong>Note:</strong> Supervisor is known to work with Python 2.4 or later but will not work under any version of Python 3.</p>
+<p>安装 <a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="noopener">easy_install</a> 或者 <a href="https://pip.pypa.io/en/stable/installing/" target="_blank" rel="noopener">pip</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py -O - | sudo python</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># get-pip.py请从官网获取</span><br><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure>
+<p><strong>2.安装 supervisor</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install supervisor</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">easy_install supervisor</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 需要源支持</span><br><span class="line">yum install supervisor</span><br></pre></td></tr></table></figure>
+<p>supervisor安装完成后会生成三个执行程序：supervisortd、supervisorctl、echo_supervisord_conf，分别是supervisor的守护进程服务（用于接收进程管理命令）、客户端（用于和守护进程通信，发送管理进程的指令）、生成初始配置文件程序。</p>
+<h2 id="0x02-supervisor-配置"><a href="#0x02-supervisor-配置" class="headerlink" title="0x02 supervisor 配置"></a>0x02 supervisor 配置</h2><p><strong>1. 配置文件生成</strong></p>
+<p>运行supervisord服务的时候，需要用 c 参数指定supervisor配置文件，如果没有显示指定，默认以此在以下目录查找：</p>
+<ul>
+<li><code>$CWD/supervisord.conf</code></li>
+<li><code>$CWD/etc/supervisord.conf</code></li>
+<li><code>/etc/supervisord.conf</code></li>
+<li><code>/etc/supervisor/supervisord.conf (since Supervisor 3.3.0)</code></li>
+<li><code>../etc/supervisord.conf (Relative to the executable)</code></li>
+<li><code>../supervisord.conf (Relative to the executable)</code></li>
+</ul>
+<p><strong>Note：</strong> <code>$CWD</code> 表示运行 <code>supervisord</code> 程序的目录。</p>
+<p>可以通过运行 <code>echo_supervisord_conf</code> 程序生成 <code>supervisor</code> 的初始化配置文件,如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /etc/supervisor</span><br><span class="line">   echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf</span><br></pre></td></tr></table></figure>
+<p><strong>2. 配置项说明</strong></p>
+<p>supervisor的配置参数较多，下面介绍一下常用的参数配置，详细的配置及说明，请参考<a href="http://supervisord.org/configuration.html" target="_blank" rel="noopener">官方文档</a>介绍。分号（;）开头的配置表示注释</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="section">[unix_http_server]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;socket文件的路径，supervisorctl用XML_RPC和supervisord通信就是通过它进行的,不设置的话，默认为none。非必须设置。</span></span><br><span class="line"><span class="attr">file</span>=/tmp/supervisor.sock</span><br><span class="line"></span><br><span class="line"><span class="comment">;修改file的权限必须为0700,非必须设置。</span></span><br><span class="line"><span class="attr">chmod</span>=<span class="number">0700</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;修改file的权限的所属组为nobody:nogroup,非必需设置。</span></span><br><span class="line"><span class="attr">chown</span>=nobody:nogroup</span><br><span class="line"></span><br><span class="line"><span class="comment">;使用supervisorctl链接的时候,认证的用户,不设置的话默认不需要用户,非必需设置。</span></span><br><span class="line"><span class="attr">username</span>=user</span><br><span class="line"></span><br><span class="line"><span class="comment">;和上面的用户名对应的密码，可以直接使用明码，也可以使用SHA加密如&#123;SHA&#125;82ab876d1387bfafe46cc1c8a2ef074eae50cb1d。</span></span><br><span class="line"><span class="attr">password</span>=<span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;侦听在TCP上的socket,Web Server和远程的supervisorctl都要用到他不设置的话，默认为不开启。非必须设置。</span></span><br><span class="line"><span class="section">[inet_http_server]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;侦听的IP和端口，侦听所有IP用 :9001或*:9001或者0.0.0.0:9001.这个必须设置，只要上面的[inet_http_server]开启了，就必须设置它。</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9001</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;登录时的用户名。</span></span><br><span class="line"><span class="attr">username</span>=user</span><br><span class="line"></span><br><span class="line"><span class="comment">;登录时的密码。</span></span><br><span class="line"><span class="attr">password</span>=<span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;定义supervisord这个服务端进程的一些参数的。</span></span><br><span class="line"><span class="section">[supervisord]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;supervisord这个主进程的日志路径,默认路径$CWD/supervisord.log,$CWD是当前目录,非必需设置。</span></span><br><span class="line"><span class="attr">logfile</span>=/tmp/supervisord.log</span><br><span class="line"></span><br><span class="line"><span class="comment">;这个是上面那个日志文件的最大的大小,当超过50M(默认值是50M)的时候,会生成一个新的日志文件。当设置为0时,表示不限制文件大小,非必须设置。</span></span><br><span class="line"><span class="attr">logfile_maxbytes</span>=<span class="number">50</span>MB</span><br><span class="line"></span><br><span class="line"><span class="comment">;日志文件保持的数量,supervisor在启动程序时,会自动创建10个buckup文件(默认10),用于log rotate当设置为0时,表示不限制文件的数量。</span></span><br><span class="line"><span class="attr">logfile_backups</span>=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;日志级别，有critical, error, warn, info, debug, trace, or blather等默认为info,非必须设置项。</span></span><br><span class="line"><span class="attr">loglevel</span>=info</span><br><span class="line"></span><br><span class="line"><span class="comment">;supervisord的pid文件路径,默认为$CWD/supervisord.pid。</span></span><br><span class="line"><span class="attr">pidfile</span>=/tmp/supervisord.pid</span><br><span class="line"></span><br><span class="line"><span class="comment">;如果是true,supervisord进程将在前台运行默认为false,也就是后台以守护进程运行。</span></span><br><span class="line"><span class="attr">nodaemon</span>=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;这个是最少系统空闲的文件描述符，低于这个值(默认值1024)supervisor将不会启动。系统的文件描述符在这里设置cat /proc/sys/fs/file-max。</span></span><br><span class="line"><span class="attr">minfds</span>=<span class="number">1024</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;最小可用的进程描述符,低于这个值(默认200)supervisor也将不会正常启动。ulimit  -u这个命令，可以查看linux下面用户的最大进程数。</span></span><br><span class="line"><span class="attr">minprocs</span>=<span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;进程创建文件的掩码,默认为022</span></span><br><span class="line"><span class="attr">umask</span>=<span class="number">022</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;这个参数可以设置一个非root用户，当我们以root用户启动supervisord之后。我这里面设置的这个用户，也可以对supervisord进行管理,默认不设置。</span></span><br><span class="line"><span class="attr">user</span>=daodaoliang</span><br><span class="line"></span><br><span class="line"><span class="comment">;supervisord的标识符，主要是给XML_RPC用的。当你有多个supervisor的时候，而且想调用XML_RPC统一管理，就需要为每个supervisor设置不同的标识符了,默认sipervisor。</span></span><br><span class="line"><span class="attr">identifier</span>=supervisor</span><br><span class="line"></span><br><span class="line"><span class="comment">;当supervisord作为守护进程运行的时候,设置这个参数的话,启动supervisord进程之前,会先切换到这个目录默认不设置。</span></span><br><span class="line"><span class="attr">directory</span>=/tmp</span><br><span class="line"></span><br><span class="line"><span class="comment">;在supervisord进程启动的时候，把以前子进程产生的日志文件(路径为AUTO的情况下)清除掉,默认false,有调试需求的同学可以设置为true。</span></span><br><span class="line"><span class="attr">nocleanup</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;当子进程日志路径为AUTO的时候，子进程日志文件的存放路径。默认路径是这个东西，执行下面的这个命令看看就OK了，处理的东西就默认路径</span></span><br><span class="line"><span class="comment">;python -c "import tempfile;print tempfile.gettempdir()"</span></span><br><span class="line"><span class="attr">childlogdir</span>=/tmp</span><br><span class="line"></span><br><span class="line"><span class="comment">;设置环境变量的，supervisord在linux中启动默认继承了linux的环境变量，在这里可以设置supervisord进程特有的其他环境变量。</span></span><br><span class="line"><span class="comment">;supervisord启动子进程时，子进程会拷贝父进程的内存空间内容。 所以设置的这些环境变量也会被子进程继承。</span></span><br><span class="line"><span class="comment">;小例子：environment=name="daodaoliang",age="26"</span></span><br><span class="line"><span class="attr">environment</span>=KEY=<span class="string">"value"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;如果设置为true，会清除子进程日志中的所有 ANSI 序列（\n,\t等）。</span></span><br><span class="line"><span class="attr">strip_ansi</span>=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="section">[rpcinterface:supervisor]</span></span><br><span class="line"></span><br><span class="line">supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface</span><br><span class="line"></span><br><span class="line"><span class="comment">;针对supervisorctl的一些配置</span></span><br><span class="line"><span class="section">[supervisorctl]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;supervisorctl本地连接supervisord的时候，本地UNIX socket路径，注意这个是和前面的[unix_http_server]对应的默认值就是unix:///tmp/supervisor.sock</span></span><br><span class="line"><span class="attr">serverurl</span>=unix:///tmp/supervisor.sock</span><br><span class="line"></span><br><span class="line"><span class="comment">;supervisorctl远程连接supervisord的时候，用到的TCP socket路径,注意这个和前面的[inet_http_server]对应默认就是http://127.0.0.1:9001</span></span><br><span class="line"><span class="attr">serverurl</span>=http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9001</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;用户名</span></span><br><span class="line"><span class="attr">username</span>=daodaoliang</span><br><span class="line"></span><br><span class="line"><span class="comment">;密码</span></span><br><span class="line"><span class="attr">password</span>=<span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;输入用户名密码时候的提示符</span></span><br><span class="line"><span class="attr">prompt</span>=iamnami</span><br><span class="line"></span><br><span class="line"><span class="comment">;这个参数和shell中的history类似，我们可以用上下键来查找前面执行过的命令默认是no file,所以我们想要有这种功能，必须指定一个文件</span></span><br><span class="line"><span class="attr">history_file</span>=~/.sc_history</span><br><span class="line"></span><br><span class="line"><span class="comment">;要管理的子进程了,":"后面的是名字，最好别乱写和实际进程有点关联最好。这样的program我们可以设置一个或多个，一个program就是要被管理的一个进程</span></span><br><span class="line"><span class="section">[program:theprogramname]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;要启动进程的命令路径了，可以带参数/home/test.py -a 'hehe'</span></span><br><span class="line"><span class="comment">;需要注意的是，我们的command只能是那种在终端运行的进程，不能是守护进程。这个是个必须设置的项。</span></span><br><span class="line"><span class="attr">command</span>=/bin/cat</span><br><span class="line"></span><br><span class="line"><span class="comment">;当numprocs为1时,process_name=%(program_name)s</span></span><br><span class="line"><span class="comment">;当numprocs&gt;=2时,%(program_name)s_%(process_num)02d</span></span><br><span class="line"><span class="attr">process_name</span>=%(program_name)s</span><br><span class="line"></span><br><span class="line"><span class="comment">;进程数量,当不为1时，就是进程池的概念</span></span><br><span class="line"><span class="attr">numprocs</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;进程开始的数字</span></span><br><span class="line"><span class="attr">numprocs_start</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;进程运行前，会前切换到这个目录</span></span><br><span class="line"><span class="attr">directory</span>=/tmp</span><br><span class="line"></span><br><span class="line"><span class="comment">;进程掩码:--- -w- -w-, 转换后rwx r-x r-x</span></span><br><span class="line"><span class="attr">umask</span>=<span class="number">022</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;优先级,值越高,最后启动,最先被关闭,默认值999</span></span><br><span class="line"><span class="attr">priority</span>=<span class="number">999</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;如果为true则程序在supervisord启动后将会启动</span></span><br><span class="line"><span class="attr">autostart</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;自动重启的情况</span></span><br><span class="line"><span class="comment">;有三个选项，false,unexpected和true。</span></span><br><span class="line"><span class="comment">;如果为false的时候，无论什么情况下，都不会被重新启动。</span></span><br><span class="line"><span class="comment">;如果为unexpected，只有当进程的退出码不在下面的exitcodes里面定义的退出码的时候，才会被自动重启。</span></span><br><span class="line"><span class="comment">;当为true的时候，只要子进程挂掉，将会被无条件的重启。</span></span><br><span class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;子进程气动阀多少秒后才把状态置为running</span></span><br><span class="line"><span class="attr">startsecs</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;当进程启动失败后，最大尝试启动的次数。。当超过3次后，supervisor将把此进程的状态置为FAIL。</span></span><br><span class="line"><span class="attr">startretries</span>=<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;和上面的的autorestart=unexpected对应。exitcodes里面的定义的退出码是expected的。</span></span><br><span class="line"><span class="attr">exitcodes</span>=<span class="number">0</span>,<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;进程停止信号，可以为TERM, HUP, INT, QUIT, KILL, USR1, or USR2等信号。当用设定的信号去干掉进程，退出码会被认为是expected。</span></span><br><span class="line"><span class="comment">;中断:INT(类似于Ctrl+C)(kill -INT pid),退出后会将写文件或日志(推荐)</span></span><br><span class="line"><span class="comment">;终止:TERM(kill -TERM pid)</span></span><br><span class="line"><span class="comment">;挂起:HUP(kill -HUP pid),注意与Ctrl+Z/kill -stop pid不同</span></span><br><span class="line"><span class="comment">;从容停止:QUIT(kill -QUIT pid) ;KILL, USR1, USR2其他见命令(kill -l),说明1</span></span><br><span class="line"><span class="comment">;默认为TERM。</span></span><br><span class="line"><span class="attr">stopsignal</span>=TERM</span><br><span class="line"></span><br><span class="line"><span class="comment">;当我们向子进程发送stopsignal信号后，到系统返回信息给supervisord，所等待的最大时间。 超过这个时间，supervisord会向该子进程发送一个强制kill的信号。</span></span><br><span class="line"><span class="comment">;默认为10秒,非必须设置。</span></span><br><span class="line"><span class="attr">stopwaitsecs</span>=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;用于supervisord管理的子进程，这个子进程本身还有子进程。那么我们如果仅仅干掉supervisord的子进程的话，子进程的子进程有可能会变成孤儿进程.</span></span><br><span class="line"><span class="comment">;所以可以设置可个选项，把整个该子进程的整个进程组都干掉。 设置为true的话，一般killasgroup也会被设置为true。</span></span><br><span class="line"><span class="comment">;需要注意的是，该选项发送的是stop信号默认为false。</span></span><br><span class="line"><span class="comment">;非必须设置。</span></span><br><span class="line"><span class="attr">stopasgroup</span>=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;这个和上面的stopasgroup类似，不过发送的是kill信号。</span></span><br><span class="line"><span class="comment">;非必须设置</span></span><br><span class="line"><span class="attr">killasgroup</span>=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;如果supervisord是root启动，我们在这里设置这个非root用户，可以用来管理该program。</span></span><br><span class="line"><span class="comment">;非必须设置项。</span></span><br><span class="line"><span class="attr">user</span>=daodaoliang</span><br><span class="line"></span><br><span class="line"><span class="comment">;如果为true，则stderr的日志会被写入stdout日志文件中</span></span><br><span class="line"><span class="attr">redirect_stderr</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;子进程的stdout的日志路径，可以指定路径，AUTO，none等三个选项</span></span><br><span class="line"><span class="comment">;设置为none的话，将没有日志产生。</span></span><br><span class="line"><span class="comment">;设置为AUTO的话，将随机找一个地方生成日志文件,而且当supervisord重新启动的时候,以前的日志文件会被清空。</span></span><br><span class="line"><span class="comment">;当 redirect_stderr=true的时候，sterr也会写进这个日志文件。</span></span><br><span class="line"><span class="attr">stdout_logfile</span>=/a/path</span><br><span class="line"></span><br><span class="line"><span class="comment">;日志文件最大大小，和[supervisord]中定义的一样。默认为50</span></span><br><span class="line"><span class="attr">stdout_logfile_maxbytes</span>=<span class="number">1</span>MB</span><br><span class="line"></span><br><span class="line"><span class="comment">;和[supervisord]定义的一样。默认10</span></span><br><span class="line"><span class="attr">stdout_logfile_backups</span>=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;这个东西是设定capture管道的大小，当值不为0的时候，子进程可以从stdout发送信息，而supervisor可以根据信息，发送相应的event。</span></span><br><span class="line"><span class="comment">;默认为0，为0的时候表达关闭管道。</span></span><br><span class="line"><span class="comment">;非必须项</span></span><br><span class="line"><span class="attr">stdout_capture_maxbytes</span>=<span class="number">1</span>MB</span><br><span class="line"></span><br><span class="line"><span class="comment">;当设置为ture的时候,当子进程由stdout向文件描述符中写日志的时候,将触发supervisord发送PROCESS_LOG_STDOUT类型的event.</span></span><br><span class="line"><span class="comment">;默认为false</span></span><br><span class="line"><span class="comment">;非必须设置</span></span><br><span class="line"><span class="attr">stdout_events_enabled</span>=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;这个东西是设置stderr写的日志路径，当redirect_stderr=true。这个就不用设置了，设置了也是白搭。因为它会被写入stdout_logfile的同一个文件中默认为AUTO。</span></span><br><span class="line"><span class="comment">;也就是随便找个地存,supervisord重启被清空。</span></span><br><span class="line"><span class="comment">;非必须设置</span></span><br><span class="line"><span class="attr">stderr_logfile</span>=/a/path</span><br><span class="line"></span><br><span class="line"><span class="comment">;这个是该子进程的环境变量，和别的子进程是不共享的</span></span><br><span class="line"><span class="attr">environment</span>=A=<span class="string">"1"</span>,B=<span class="string">"2"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">serverurl</span>=AUTO</span><br><span class="line"></span><br><span class="line"><span class="comment">;当我们要管理的进程很多的时候，写在一个文件里面就有点大了。我们可以把配置信息写到多个文件中，然后include过来。</span></span><br><span class="line"><span class="section">[include]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">;例如/an/absolute/filename.conf /an/absolute/*.conf foo.conf config??.conf</span></span><br><span class="line"><span class="attr">files</span> = relative/directory/*.ini</span><br></pre></td></tr></table></figure>
+<p><strong>3.例子</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[program:usercenter]</span></span><br><span class="line"><span class="comment">; 程序的启动目录</span></span><br><span class="line"><span class="attr">directory</span> = /home/leon/projects/usercenter</span><br><span class="line"><span class="comment">; 启动命令，可以看出与手动在命令行启动的命令是一样的</span></span><br><span class="line"><span class="attr">command</span> = gunicorn -c gunicorn.py --port=%(process_num)s wsgi:app</span><br><span class="line"><span class="comment">; 程序名字</span></span><br><span class="line"><span class="attr">process_name</span>=%(program_name)s_%(process_num)<span class="number">02</span>d</span><br><span class="line"><span class="comment">; 开始数字</span></span><br><span class="line"><span class="attr">numprocs_start</span>=<span class="number">8110</span></span><br><span class="line"><span class="comment">; 数量</span></span><br><span class="line"><span class="attr">numprocs</span>=<span class="number">4</span></span><br><span class="line"><span class="comment">; 在 supervisord 启动的时候也自动启动</span></span><br><span class="line"><span class="attr">autostart</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment">; 启动 5 秒后没有异常退出，就当作已经正常启动了</span></span><br><span class="line"><span class="attr">startsecs</span> = <span class="number">5</span></span><br><span class="line"><span class="comment">; 程序异常退出后自动重启</span></span><br><span class="line"><span class="attr">autorestart</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment">; 启动失败自动重试次数，默认是 3</span></span><br><span class="line"><span class="attr">startretries</span> = <span class="number">3</span></span><br><span class="line"><span class="comment">; 用哪个用户启动</span></span><br><span class="line"><span class="attr">user</span> = leon</span><br><span class="line"><span class="comment">; 把 stderr 重定向到 stdout，默认 false</span></span><br><span class="line"><span class="attr">redirect_stderr</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment">; stdout 日志文件大小，默认 50MB</span></span><br><span class="line"><span class="attr">stdout_logfile_maxbytes</span> = <span class="number">20</span>MB</span><br><span class="line"><span class="comment">; stdout 日志文件备份数</span></span><br><span class="line"><span class="attr">stdout_logfile_backups</span> = <span class="number">20</span></span><br><span class="line"><span class="comment">; stdout 日志文件，需要注意当指定目录不存在时无法正常启动，所以需要手动创建目录（supervisord 会自动创建日志文件）</span></span><br><span class="line"><span class="attr">stdout_logfile</span> = /data/logs/usercenter_stdout.log</span><br></pre></td></tr></table></figure>
+<h2 id="0x03-supervisord-启动和维护"><a href="#0x03-supervisord-启动和维护" class="headerlink" title="0x03 supervisord 启动和维护"></a>0x03 supervisord 启动和维护</h2><p><strong>1.启动服务</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/supervisord -c /etc/supervisor.conf</span><br></pre></td></tr></table></figure>
+<p><strong>2.启动管理端</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl -c /etc/supervisor.conf</span><br></pre></td></tr></table></figure>
+<p>若是连接远程的则:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl -c /etc/supervisor.conf -s &quot;http://114.114.114.114:9001&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>3.管理服务</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># 查看服务状态</span><br><span class="line">status</span><br><span class="line"></span><br><span class="line">   # 关闭 usercenter 程序</span><br><span class="line">   stop usercenter</span><br><span class="line"></span><br><span class="line">   # 停止所有程序</span><br><span class="line">   stop all</span><br><span class="line"></span><br><span class="line"># 启动 usercenter 程序</span><br><span class="line">start usercenter</span><br><span class="line"></span><br><span class="line"># 启动所有程序</span><br><span class="line">   start all</span><br><span class="line"></span><br><span class="line">   # 重启 usercenter 程序</span><br><span class="line">   restart usercenter</span><br><span class="line"></span><br><span class="line"># 重启所有程序</span><br><span class="line">   restart all</span><br><span class="line"></span><br><span class="line"># 读取有更新的的配置文件，不会启动新程序</span><br><span class="line">   reread</span><br><span class="line"></span><br><span class="line">   # 重启启动远程supervisord</span><br><span class="line">   reload</span><br><span class="line"></span><br><span class="line">   # 更新配置文件，若有新的则启动，若删除了则停止</span><br><span class="line">   update</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.543Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/&title=《supervisor 安装与配置》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/&title=《supervisor 安装与配置》 — 刀刀亮的博客&source=
+作者: daodaoliang
+版本: V1.0.1
+邮箱： daodaoliang@yeah.net
+这里是官方链接" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《supervisor 安装与配置》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/私人工具项目/2016/11/04/QDaoDaoLiang-2016-11-04-Qt开源项目说明/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Qt开源项目说明</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2016/10/28/环境搭建-2016-10-28-nginx配置https并自签名证书/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">nginx 配置https并自签名证书</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2016-11-02-Supervisor安装与配置" data-title="supervisor 安装与配置" data-url="http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/&title=《supervisor 安装与配置》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/&title=《supervisor 安装与配置》 — 刀刀亮的博客&source=
+作者: daodaoliang
+版本: V1.0.1
+邮箱： daodaoliang@yeah.net
+这里是官方链接" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《supervisor 安装与配置》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2016/11/02/环境搭建-2016-11-02-Supervisor安装与配置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIklEQVR42u3awXLiQAwEUP7/p7OXPWxVitAtOdl4eD5RBOx5w0FRax6P+Pr45/r6nc+vZ0/5fD17yuxZ2NjY2Cex84cln8yf8vX7z+7Q3u3pnbGxsbGPYyePefyn6/PTk/L2woiNjY39xux8O2alMWk5sLGxsbH3BSwPlYqlxA1MsgZsbGzsd2PnoXxeVJI7bLb4h7I0bGxs7F/PbmOd3/z6G9MsbGxs7F/J/iivdnybNzxtcZqt/+93sbGxsQ9iz8Kda8e0+ZghGRsU68fGxsY+gt3GN/vWJR8StKRknFD/DtjY2Ng3Z9e3KxcxC/FnDdKLio2NjY19BHuzrCRCyg8GJY1H+4MV1RUbGxv7tux96HPVt/K/tg3M01AJGxsb+7bsqwrDd4x12/KWj36xsbGxT2Lny82Dm3ah7Vg3b3jq8QA2Njb2Eez2Mzm7jfU3gwFsbGzs92G3ZWbT8eSNRB0PBYOEFx0YNjY29s3ZdQpVHtCZBUb56He2cdjY2NhnsGej2fZYT7s1++YHGxsb+93Y+/hmj9w8q94CbGxs7IPYOXVWYDZRUXvoZ9YOYWNjY9+dnTMeoysJg36miBbzZGxsbOxbsWfxUNJUtC3Kvi3JXdjY2NjnsdtFtIdvZktMlt5+EhsbG/s89mbU2i69/cympXkxcsbGxsY+mj0bFbRHcNoBcF4Ui4qNjY2NfQT7qtYiD4A25Se/cxR4YWNjYx/NrotBPIXII6G8dRm2PdjY2NhHsPN/9Gfj2BmjPdbTxlLY2NjYJ7H35WoT4reNULvR0fqxsbGxj2C3O7QJg5JRRN7M1CNebGxs7Ddg75GzpmUTSLUbjY2NjX0qu43p9wdu9kc8W+rTRA0bGxv7tuyP8spvfUFwf9FouZ51YGNjY9+KnV+z0tW2LrMNmh0DwsbGxj6JnS+6bRLa9iMPufIoqp6KYGNjY9+W3QK+XsR3FLbNSAAbGxsbuw3r86aljbquGv1iY2NjY7fRUn5ocrZZyfpfzLexsbGxb85uG4YE0w50Z5ON4SEhbGxs7IPYs2JQF4xyifmdZ0dFsbGxsY9g/wF+ldgkXxBEOwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

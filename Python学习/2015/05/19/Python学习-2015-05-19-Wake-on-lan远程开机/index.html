@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>远程开机包封装 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="使用方法 同一局域网内的机器，只需指定目标主机的MAC地址，就令远程主机开机。 非同一局域网的情况下，除需指定目标主机的MAC地址，还需指定目标主机的地址。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="远程开机包封装">
+<meta property="og:url" content="http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="使用方法 同一局域网内的机器，只需指定目标主机的MAC地址，就令远程主机开机。 非同一局域网的情况下，除需指定目标主机的MAC地址，还需指定目标主机的地址。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="远程开机包封装">
+<meta name="twitter:description" content="使用方法 同一局域网内的机器，只需指定目标主机的MAC地址，就令远程主机开机。 非同一局域网的情况下，除需指定目标主机的MAC地址，还需指定目标主机的地址。">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">远程开机包封装</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">远程开机包封装</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-05-18T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-05-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="life-Python学习-2015-05-19-Wake-on-lan远程开机" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">远程开机包封装</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-05-19 00:00:00" datetime="2015-05-18T16:00:00.000Z" itemprop="datePublished">2015-05-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python学习/">Python学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <ul>
+<li>使用方法<ul>
+<li>同一局域网内的机器，只需指定目标主机的MAC地址，就令远程主机开机。</li>
+<li>非同一局域网的情况下，除需指定目标主机的MAC地址，还需指定目标主机的地址。</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>示例：<ul>
+<li>同一局域网内的使用示例：./wake_on_lan.py -m 12-34-56-78-90-AB</li>
+<li>非同一局域网的使用示例：./wake_on_lan.py -m 12-34-56-78-90-AB -a 8.8.8.8</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> optparse <span class="keyword">import</span> OptionParser</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wake</span><span class="params">(addr, mac)</span>:</span></span><br><span class="line">    mac_data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">12</span>, <span class="number">2</span>):</span><br><span class="line">        mac_data.append(int(mac[i:i+<span class="number">2</span>], <span class="number">16</span>))</span><br><span class="line">    packet = struct.pack(<span class="string">"!BBBBBB"</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>);</span><br><span class="line">    packet_mac = struct.pack(<span class="string">"!BBBBBB"</span>, *mac_data)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">16</span>):</span><br><span class="line">        packet += packet_mac</span><br><span class="line">    <span class="comment">#print "len: ", len(packet), "data: ", packet</span></span><br><span class="line">    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span><br><span class="line">    s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s.sendto(packet, addr)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"唤醒数据包发送完成"</span>, addr, mac</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        s.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    usage = <span class="string">"%prog [options]"</span></span><br><span class="line">    parser = OptionParser(usage = usage)</span><br><span class="line">    parser.add_option(<span class="string">"-a"</span>, <span class="string">"--addr"</span>, dest=<span class="string">"addr"</span>, help=<span class="string">"Boardcast address"</span>, metavar=<span class="string">"255.255.255.255"</span>)</span><br><span class="line">    parser.add_option(<span class="string">"-p"</span>, <span class="string">"--port"</span>, dest=<span class="string">"port"</span>, help=<span class="string">"Port"</span>, metavar=<span class="string">"7"</span>)</span><br><span class="line">    parser.add_option(<span class="string">"-m"</span>, <span class="string">"--mac"</span>, dest=<span class="string">"mac"</span>, help=<span class="string">"MAC address"</span>, metavar=<span class="string">"FF-FF-FF-FF-FF-FF"</span>)</span><br><span class="line">    (options, args) = parser.parse_args()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> options.mac:</span><br><span class="line">        parser.print_help()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    addr = <span class="string">"255.255.255.255"</span></span><br><span class="line">    port = <span class="number">7</span></span><br><span class="line">    mac = options.mac.replace(<span class="string">"-"</span>, <span class="string">""</span>)</span><br><span class="line">    <span class="keyword">if</span> options.addr:</span><br><span class="line">        addr = options.addr</span><br><span class="line">    <span class="keyword">if</span> len(mac) != <span class="number">12</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"无效的MAC地址: %s"</span> % options.mac</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> options.port:</span><br><span class="line">        port = int(options.port)</span><br><span class="line">    wake((addr, port), mac)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/" target="_blank" rel="external">http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/&title=《远程开机包封装》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/&title=《远程开机包封装》 — 刀刀亮的博客&source=
+使用方法
+同一局域网内的机器，只需指定目标主机的MAC地址，就令远程主机开机。
+非同一局域网的情况下，除需指定目标主机的MAC地址，还需指定目标主机的地..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《远程开机包封装》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2015/05/19/linux学习-2015-05-19-linux系统信息命令/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux系统信息命令</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/数据库学习/2015/05/17/数据库学习-mysql专题-2015-04-15-linux下mysql忘记root密码处理方案/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">linux下mysql忘记root密码的处理方案</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Python学习-2015-05-19-Wake-on-lan远程开机" data-title="远程开机包封装" data-url="http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/&title=《远程开机包封装》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/&title=《远程开机包封装》 — 刀刀亮的博客&source=
+使用方法
+同一局域网内的机器，只需指定目标主机的MAC地址，就令远程主机开机。
+非同一局域网的情况下，除需指定目标主机的MAC地址，还需指定目标主机的地..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《远程开机包封装》 — 刀刀亮的博客&url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Python学习/2015/05/19/Python学习-2015-05-19-Wake-on-lan远程开机/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLklEQVR42u3awY7iQAwEUP7/p1lpTyOtlqmyg0Sa1ycEDMnrHDwu9+MRr+ff9fP1z/Xvd/795v/eueo3H+9Y2NjY2DdhP1+u9mLJTb+mJldM7vP172NjY2Ofx84ByY8mf5vg8w3KLdjY2NjfzE7KTPJpvnF5icLGxsbGfgd7k+TMQiVsbGzsb2bPbmUT9OStyyz8uixLw8bGxv549mzQ+5mv3z7fxsbGxv4w9nOx3hcP5UV0eOfY2NjYB7Fnx2hyzGy4u38/GhtgY2NjH8TeRDb5cDc/jtkG/at2BRsbG/vm7NdxTDJwzcex+Wh5U/CiK2JjY2MfxE7KzyZUyhub2RGiWfuEjY2NfR57FiElxa8I60ch1yy0wsbGxj6J3cb97xgJt5vYtky/dGDY2NjYR7DzIzL7DUoiqpw6GzBjY2Njn8S+6ojM5nBkGx7lW7MKlbCxsbFvxZ7FTAm4Hevm8VD+SJKtwcbGxr4vu21CZs1D21TMjvgUDwwbGxv7IPbs5pIm5B2HLPNAanVGCRsbG/u27LYhaaOfvOzljc2+dcHGxsY+id3+Q78PkjZFa19csbGxsU9ib4pHGw/NCuFV2/3YP0NsbGzsD2PvjzYmh3WuGiQnh36KQS82Njb2QezZxV5fcr8p7SDhggEANjY29hHsNr659tbzscQqtMLGxsY+iL0JkpKCMTtMk7cZq6gLGxsb+2j25kY3pWt/eKh4ANjY2NhHsJ/x2hzNaUtgG2bVjRA2Njb2QezXBWk2TtiMZtvx7erq2NjY2EewE/BVEU87VN68H7Ui2NjY2EewE3Adu8ffzzd9OMpNAixsbGzsm7Pb6CeJnDbj3lmr01YlbGxs7JPYxb/sZfvRthP74pfcc9GQYGNjY9+E/SxXW/byQjgbG7ef1kd2sLGxsT+ena/Zz13Fa4cQ2NjY2N/GnhWt/NO2pLUD5jyQKqo3NjY29g3Zszh+NiRog6QoDyuDMGxsbGzsTag0a11mh3V+mXJjY2Njfxl7FjPl7cFVWxMNsLGxsbGPY++Hu8lANx8S53FVG3thY2Njn8eeDXrbctIWvFmA1Y4NsLGxsW/O/gNtqAirmfEJ7gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

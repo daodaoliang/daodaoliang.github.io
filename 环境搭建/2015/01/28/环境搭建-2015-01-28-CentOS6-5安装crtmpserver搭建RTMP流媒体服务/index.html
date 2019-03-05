@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>CentOS6.5安装crtmpserver搭建RTMP流媒体服务器 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1. crtmpserver简介 支持推送给rtmp流的接受与播放器请求的分发； rtmp流媒体服务器树状网络集群的构建； 支持 和　```android```;1234567891011PS:[官网应用介绍](http://www.rtmpd.com/)## ***2. crtmpserver流媒体服务器的搭建(centOS6.5)***### ***2.1 cmake的安装***下载最新的c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS6.5安装crtmpserver搭建RTMP流媒体服务器">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="1. crtmpserver简介 支持推送给rtmp流的接受与播放器请求的分发； rtmp流媒体服务器树状网络集群的构建； 支持 和　```android```;1234567891011PS:[官网应用介绍](http://www.rtmpd.com/)## ***2. crtmpserver流媒体服务器的搭建(centOS6.5)***### ***2.1 cmake的安装***下载最新的c">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/环境搭建/crtspserver.jpg">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS6.5安装crtmpserver搭建RTMP流媒体服务器">
+<meta name="twitter:description" content="1. crtmpserver简介 支持推送给rtmp流的接受与播放器请求的分发； rtmp流媒体服务器树状网络集群的构建； 支持 和　```android```;1234567891011PS:[官网应用介绍](http://www.rtmpd.com/)## ***2. crtmpserver流媒体服务器的搭建(centOS6.5)***### ***2.1 cmake的安装***下载最新的c">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/环境搭建/crtspserver.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CentOS6.5安装crtmpserver搭建RTMP流媒体服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CentOS6.5安装crtmpserver搭建RTMP流媒体服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-01-27T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-01-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-crtmpserver简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. crtmpserver简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-openssl的安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">2.2 openssl的安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-crtmpserver的编译与安装"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.3 crtmpserver的编译与安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-脚本的自启动和静默运行"><span class="post-toc-number">2.</span> <span class="post-toc-text">3. 脚本的自启动和静默运行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-JWPlayer直播方案搭建"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">4. JWPlayer直播方案搭建</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-搭建http-server"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">4.1 搭建http server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-下载JWPlayer并部署到http-server上"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">4.2 下载JWPlayer并部署到http server上</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-新建播放器的html页面"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4.3 新建播放器的html页面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-使用Flash-Media-Live-Encoder推送直播源"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">4.4 使用Flash Media Live Encoder推送直播源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-5-浏览器中查看"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">4.5 浏览器中查看</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-使用ffmpeg做为直播源"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">4.6 使用ffmpeg做为直播源</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CentOS6.5安装crtmpserver搭建RTMP流媒体服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-01-28 00:00:00" datetime="2015-01-27T16:00:00.000Z" itemprop="datePublished">2015-01-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h2 id="1-crtmpserver简介"><a href="#1-crtmpserver简介" class="headerlink" title="1. crtmpserver简介"></a><strong><em>1. crtmpserver简介</em></strong></h2><ul>
+<li>支持推送给rtmp流的接受与播放器请求的分发；</li>
+<li>rtmp流媒体服务器树状网络集群的构建；</li>
+<li>支持 <figure class="highlight plain"><figcaption><span>和　```android```;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PS:[官网应用介绍](http://www.rtmpd.com/)</span><br><span class="line"></span><br><span class="line">## ***2. crtmpserver流媒体服务器的搭建(centOS6.5)***</span><br><span class="line"></span><br><span class="line">### ***2.1 cmake的安装***</span><br><span class="line"></span><br><span class="line">下载最新的cmake</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">	yum install cmake</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-2-openssl的安装"><a href="#2-2-openssl的安装" class="headerlink" title="2.2 openssl的安装"></a><strong><em>2.2 openssl的安装</em></strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -o openssl-0.9.8t.tar.gz http://www.openssl.org/<span class="built_in">source</span>/openssl-0.9.8ze.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-0.9.8t</span><br><span class="line">./config</span><br><span class="line">make .</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-crtmpserver的编译与安装"><a href="#2-3-crtmpserver的编译与安装" class="headerlink" title="2.3 crtmpserver的编译与安装"></a><strong><em>2.3 crtmpserver的编译与安装</em></strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">svn co --username anonymous --password <span class="string">""</span> https://svn.rtmpd.com/crtmpserver/branches/1.0 crtmpserver</span><br><span class="line"><span class="built_in">cd</span> crtmpserver</span><br><span class="line">sh ./cleanup.sh</span><br><span class="line"><span class="built_in">cd</span> builders/cmake</span><br><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">./crtmpserver/crtmpserver ./crtmpserver/crtmpserver.lua</span><br></pre></td></tr></table></figure>
+<p><strong><em>PS:</em></strong> </p>
+<ul>
+<li>最后一行命令“”#./crtmpserver/crtmpserver ./crtmpserver/crtmpserver.lua”意思是：使用“./crtmpserver/crtmpserver.lua”为配置脚本，启动“crtmpserver”服务;</li>
+<li>最后一行命令的目录是在”builders/cmake”下;</li>
+</ul>
+<h2 id="3-脚本的自启动和静默运行"><a href="#3-脚本的自启动和静默运行" class="headerlink" title="3. 脚本的自启动和静默运行"></a><strong><em>3. 脚本的自启动和静默运行</em></strong></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./crtmpserver/crtmpserver ./crtmpserver/crtmpserver.lua &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="4-JWPlayer直播方案搭建"><a href="#4-JWPlayer直播方案搭建" class="headerlink" title="4. JWPlayer直播方案搭建"></a><strong><em>4. JWPlayer直播方案搭建</em></strong></h3><h3 id="4-1-搭建http-server"><a href="#4-1-搭建http-server" class="headerlink" title="4.1 搭建http server"></a><strong><em>4.1 搭建http server</em></strong></h3><p>略</p>
+<h3 id="4-2-下载JWPlayer并部署到http-server上"><a href="#4-2-下载JWPlayer并部署到http-server上" class="headerlink" title="4.2 下载JWPlayer并部署到http server上"></a><strong><em>4.2 下载JWPlayer并部署到http server上</em></strong></h3><p><a href="http://www.longtailvideo.com/" target="_blank" rel="noopener">JWPlayer官网</a><br><a href="http://www.longtailvideo.com/jw-player/download/" target="_blank" rel="noopener">JWPlayer下载页面</a><br>以上链接不能用的话我自己网盘里面有ｏ（╯□╰）ｏ<br>下载解压后，将jwplayer整个文件夹内容放到网站指定目录下<br>如根目录下的jwplayer文件夹;</p>
+<h3 id="4-3-新建播放器的html页面"><a href="#4-3-新建播放器的html页面" class="headerlink" title="4.3 新建播放器的html页面"></a><strong><em>4.3 新建播放器的html页面</em></strong></h3><p><strong><em>test.html</em></strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/jwplayer/jwplayer.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'my-video'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span>&gt;</span><span class="undefined">    </span></span><br><span class="line"><span class="undefined"> 			jwplayer('my-video').setup(&#123;file:'rtmp://127.0.0.1/live/livestream',width: '640', height: '480'&#125;); </span></span><br><span class="line"><span class="undefined">		</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-4-使用Flash-Media-Live-Encoder推送直播源"><a href="#4-4-使用Flash-Media-Live-Encoder推送直播源" class="headerlink" title="4.4 使用Flash Media Live Encoder推送直播源"></a><strong><em>4.4 使用Flash Media Live Encoder推送直播源</em></strong></h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/环境搭建/crtspserver.jpg" alt="Flash Media Live Encoder" title="">
+                </div>
+                <div class="image-caption">Flash Media Live Encoder</div>
+            </figure>
+<p>设置好后，点start即可</p>
+<h3 id="4-5-浏览器中查看"><a href="#4-5-浏览器中查看" class="headerlink" title="4.5 浏览器中查看"></a><strong><em>4.5 浏览器中查看</em></strong></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/jwplayer/test.html</span><br></pre></td></tr></table></figure>
+<h3 id="4-6-使用ffmpeg做为直播源"><a href="#4-6-使用ffmpeg做为直播源" class="headerlink" title="4.6 使用ffmpeg做为直播源"></a><strong><em>4.6 使用ffmpeg做为直播源</em></strong></h3><ul>
+<li>不能直接使用ffmpeg的rtmp模块进行流推送需要使用librtmp才能进行正常的流推送和观看；</li>
+<li>原始的lua可以不用做修改,示例命令如下：</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ffmpeg -re -i c1.flv -acodec copy -vcodec copy -f flv rtmp://127.0.0.1/live/livestream</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.512Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/&title=《CentOS6.5安装crtmpserver搭建RTMP流媒体服务器》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/&title=《CentOS6.5安装crtmpserver搭建RTMP流媒体服务器》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS6.5安装crtmpserver搭建RTMP流媒体服务器》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/计算机网络/2015/02/02/计算机网络-NAT专题-2015-02-01-p2p的NAT穿越方案/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">P2P的NAT穿越方案</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2015/01/28/环境搭建-2015-01-28-crtmpserver配置文件说明/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">crtmpserver配置文件说明</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务" data-title="CentOS6.5安装crtmpserver搭建RTMP流媒体服务器" data-url="http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/&title=《CentOS6.5安装crtmpserver搭建RTMP流媒体服务器》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/&title=《CentOS6.5安装crtmpserver搭建RTMP流媒体服务器》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS6.5安装crtmpserver搭建RTMP流媒体服务器》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/01/28/环境搭建-2015-01-28-CentOS6-5安装crtmpserver搭建RTMP流媒体服务/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEjklEQVR42u3ayU4jQRAFQP7/pxlpTozA5r3MRuNqwidk2rVEH6pyeXuLP+9/Px///vjN8+c/f5/89tGTn1fy/Lefx3k+++qDCRMmTJhekikf+tFks8Ul3ySvKlltO84Xv8WECRMmTIczXbWs5wd5csAn0O2a8yvFw+8xYcKECdMvYMqf2WNttp2PgAkTJkyYMM220T6Th7st0CzhiwkTJkyY7se0Dzv3KeP2OG8vLjNKTJgwYcJ0OtOscecef/94fxMmTJgwYfqvTO/lZ3/Q5oXM9qJw1R6/mBETJkyYMB3LlC+lLWEmydk8yZtAtOF3PSMmTJgwYTqQKWmveX6Q55Ptj/x9G1C+kn9+iwkTJkyYbsSUh5fFNPHhfVV5tf3VN89jwoQJE6ZjmdpGz3ZZ+UVhBrepReaNPpgwYcKE6Vym3DKHmy0ruUDM0rX5mh+uBBMmTJgwHcuUL+gnju3Nk22Y3QbAD7EwYcKECdOBTD9RUGwX1F4INpeJ2WvAhAkTJkwnMrXpzjaIjd5SGeK26eb2ovCw6osJEyZMmA5k+onpZwHqpkR6VRo3ukBgwoQJE6ajmPI2nXwbyfauSignYW0ekH9zCcCECRMmTAcyJanSth3nqnaZ2YVj1kiUE2PChAkTprOYkuH2qdJZCTNvA5oF5MUuMGHChAnTsUx5GW/TsjPbTD5vngJu70qYMGHChOkeTLOk7SwRnLPmZcvZq80DckyYMGHCdC7T5nDdlyGvSj3PEsrFaJgwYcKE6XCmvHKXTNkGsXlgPNtwmxR+mBvAhAkTJky3YJq10eTJ001ZMQnLk1XVjUSYMGHChOlYpll6d5aK3RzSbeo5/6a4fGDChAkTplswtSnXtqi5Se/OAumrZsSECRMmTCcyXRs6btKyOUp+1UjSuFHwjwkTJkyYbseUB6jDhGnJtxl/Ex5H28aECRMmTC/MlByQ+wJh3syar2Sz1bZEigkTJkyYTmfap2XzomAbiLZkSSieXDUwYcKECdM9mPIJ8nTwbHF5WrYNwmeJ5qizCRMmTJgwHcuUH6vtwT9L7+4D6Vm59JsLASZMmDBhenmm5FrQHrdtK087WvLftiEpWhsmTJgwYTqWqZ2+fSZZyibAbrPa7ZiYMGHChOkeTG2JcV/+vKr1J09P73eKCRMmTJhOZJod9rn3DGX/SmaXg+E2MGHChAnTSzIlKdR20Ly9pm3xSULr9mIRyWDChAkTplswta0w7VHdvoBZU04eHhfJZUyYMGHCdAumfIhrm3U2x3x7TWmvOJgwYcKE6XSmdrj2cN2E0JtrShvorpp1MGHChAnTCzO9l5889J2lhvOgekNcp3oxYcKECdOxTO2ZONvSLBje9M/s14AJEyZMmO7ENLsEbAqHp1wIhplvTJgwYcL0kkz5wdm277Tb26+tLXZG82LChAkTpl/AlKd62zB4U8LMV7sJkjFhwoQJ029mmhU424TyrBSah/rfXCMwYcKECdPhTHmSN+GYPTMrYc4S1nWgjgkTJkyYjmW6Ktmao+TTz475Wbg7SwdjwoQJE6YXZvoDN2BOz9VBfnIAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

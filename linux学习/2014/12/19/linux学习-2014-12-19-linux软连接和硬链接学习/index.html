@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>linux软连接和硬链接的学习 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="概述：   linux的inode这里就不在重复赘述，若感兴趣可以自行google或者baidu,在linux系统中可以通过ln命令对一个已经存在的文件在建立一个新的链接，而不复制文件的内容，链接有软连接和硬链接之分。 硬链接： 硬链接指通过索引节点来进行的链接，源文件名和链接文件名都指向相同的物理地址，目录不能有硬链接，硬链接不能跨越文件系统(不能跨越不同的分区)文件再磁盘中只有一个拷贝，节">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux软连接和硬链接的学习">
+<meta property="og:url" content="http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="概述：   linux的inode这里就不在重复赘述，若感兴趣可以自行google或者baidu,在linux系统中可以通过ln命令对一个已经存在的文件在建立一个新的链接，而不复制文件的内容，链接有软连接和硬链接之分。 硬链接： 硬链接指通过索引节点来进行的链接，源文件名和链接文件名都指向相同的物理地址，目录不能有硬链接，硬链接不能跨越文件系统(不能跨越不同的分区)文件再磁盘中只有一个拷贝，节">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux软连接和硬链接的学习">
+<meta name="twitter:description" content="概述：   linux的inode这里就不在重复赘述，若感兴趣可以自行google或者baidu,在linux系统中可以通过ln命令对一个已经存在的文件在建立一个新的链接，而不复制文件的内容，链接有软连接和硬链接之分。 硬链接： 硬链接指通过索引节点来进行的链接，源文件名和链接文件名都指向相同的物理地址，目录不能有硬链接，硬链接不能跨越文件系统(不能跨越不同的分区)文件再磁盘中只有一个拷贝，节">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">linux软连接和硬链接的学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">linux软连接和硬链接的学习</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-12-18T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2014-12-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="life-linux学习-2014-12-19-linux软连接和硬链接学习" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">linux软连接和硬链接的学习</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014-12-19 00:00:00" datetime="2014-12-18T16:00:00.000Z" itemprop="datePublished">2014-12-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<hr>
+<p><strong>概述：</strong></p>
+<blockquote>
+</blockquote>
+<p>linux的inode这里就不在重复赘述，若感兴趣可以自行google或者baidu,在linux系统中可以通过ln命令对一个已经存在的文件在建立一个新的链接，而不复制文件的内容，链接有软连接和硬链接之分。</p>
+<p><strong>硬链接：</strong></p>
+<p>硬链接指通过索引节点来进行的链接，源文件名和链接文件名都指向相同的物理地址，目录不能有硬链接，硬链接不能跨越文件系统(不能跨越不同的分区)文件再磁盘中只有一个拷贝，节省硬盘空间，防止文件被误删，之删除一个链接并不影响索引节点本身和其他连接，只有最后一个链接被删除以后文件数据块以及目录的链接才会被释放，才算是真正的被删除；</p>
+<p><strong>软链接</strong></p>
+<p>软链接是一种特殊的文件，作用可以理解为一个指针，作用在这个文件上的操作出了删除都直接转向实际指向文件，类似windows的快捷方式；</p>
+<p><strong>ln命令详解</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ln [options] <span class="built_in">source</span> dist，其中 option 的格式为 :</span><br><span class="line">　　[-bdfinsvF] [-S backup-suffix] [-V &#123;numbered,existing,simple&#125;]</span><br><span class="line">　　[--<span class="built_in">help</span>] [--version] [--]</span><br><span class="line">　　-f : 链结时先将与 dist 同档名的档案删除</span><br><span class="line">　　-d : 允许系统管理者硬链结自己的目录</span><br><span class="line">　　-i : 在删除与 dist 同档名的档案时先进行询问</span><br><span class="line">　　-n : 在进行软连结时，将 dist 视为一般的档案</span><br><span class="line">　　-s : 进行软链结(symbolic link)</span><br><span class="line">　　-v : 在连结之前显示其档名</span><br><span class="line">　　-b : 将在链结时会被覆写或删除的档案进行备份</span><br><span class="line">　　-S SUFFIX : 将备份的档案都加上 SUFFIX 的字尾</span><br><span class="line">　　-V METHOD : 指定备份的方式</span><br><span class="line">　　--<span class="built_in">help</span> : 显示辅助说明</span><br><span class="line">　　--version : 显示版本</span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<p><strong>说明</strong> : Linux/Unix 档案系统中，有所谓的连结(link)，我们可以将其视为档案的别名，而连结又可分为两种 : 硬连结(hard link)与软连结(symbolic link)，硬连结的意思是一个档案可以有多个名称，而软连结的方式则是产生一个特殊的档案，该档案的内容是指向另一个档案的位置。硬连结是存在同一个档 案系统中，而软连结却可以跨越不同的档案系统。ln source dist 是产生一个连结(dist)到 source，至于使用硬连结或软链结则由参数决定。不论是硬连结或软链结都不会将原本的档案复制一份，只会占用非常少量的磁碟空间。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/" target="_blank" rel="external">http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/&title=《linux软连接和硬链接的学习》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/&title=《linux软连接和硬链接的学习》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux软连接和硬链接的学习》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2014/12/21/linux学习-2014-12-22-根据进程名杀死进程/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux下进程的结束</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/项目工程管理/2014/11/26/项目工程管理-2014-11-26-InnoSetup提升系统管理员权限/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">InnoSetup提升系统管理员权限</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux学习-2014-12-19-linux软连接和硬链接学习" data-title="linux软连接和硬链接的学习" data-url="http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/&title=《linux软连接和硬链接的学习》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/&title=《linux软连接和硬链接的学习》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux软连接和硬链接的学习》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2014/12/19/linux学习-2014-12-19-linux软连接和硬链接学习/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJklEQVR42u3aQW7jQAwEwPz/095rDmu7m1QAa1w6BbakUSlAGLLn5yc+Hr+O158/OydfJVk3+faCAxsbG/sm7MfLI+HlV+Xg/XM+OwcbGxv7VPbrR0lKSHLkxS8vivlzYmNjY2O/Ll1tcUrajOQqbGxsbOwZO28MZsOmfQnExsbG/jZ2Dtg3J/lYalNQL5ulYWNjY388u41gP/nnP8m3sbGxsT+YvR/uty1E3k7ksXGtwMbGxj6Ivdkuk7QQSZOQrzsLJ56eiY2NjX0cuy0km7C2LUj7QPo/n2BjY2Mfwb4qDJjFDJvyNmty6veKjY2NfUN2W8A2bcas8chLY71ZBxsbG/vm7KuWST6Zvcq2jXn6OTY2NvZB7KsC1LyMJa/jqg1Db4ooNjY29kHszfL5i5jFBpthU3QVNjY29s3ZSXuQl6XNOKndoLNaCxsbG/s49mwLTjs2msW0szHWGxc2Njb2Qex2pN62HO1L2Wz6WW3cwcbGxr4tu71dO9BJClLeYOQtyps7Y2NjYx/Ezh8rP2eWq7Z3SIpoVGKxsbGxb87O/9xfFbvORkuz5ufpWtjY2NgHsTcVbxMPzFqUYQywT5WxsbGxP5jdlqJZEJsXwpY6DJ6xsbGxv4A9G9bkjcRmdLX5VV1QG7GxsbE/kt2OeNrtMrO1kuecDcWwsbGxz2NvNuvM4uHNo8/WKqZo2NjY2LdlJ03F7P/5pHnYl8NiXWxsbOzj2O3f9nwbTRsYbzbo5L8wbGxs7PPYeUjwUx7JoP+qwKDAY2NjYx/Ezh99Vk42YW1bIGfBAzY2NvYZ7PbivDlpW4XNnVcbd7CxsbEPYs/q3qyQ5AOsts2Iii42Njb20ey2Obl2u89w6N+OpbCxsbGPYD/KI7lpHtwm5+dPUsQb2NjY2Aex9yFB21rMmp9NJJyMpbCxsbHvzm6HO21wO9vK2ca99TgMGxsb+zh2PYuKH+4vmoeLZ2nY2NjYX8luB0B5eDAbddWvDxsbGxs7vqrdjjNrafJGCxsbG/tU9mz0sx8JtSUtf+lvvsXGxsY+iJ0HvVflxu1VeTyQX4WNjY19BPsftssrJpQSCwUAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

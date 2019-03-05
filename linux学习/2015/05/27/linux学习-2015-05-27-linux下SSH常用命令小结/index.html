@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>linux下SSH命令用法小结 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="SSH为Secure Shell的缩写，由IETF的网络工作小组（Network Working Group）所制定；SSH为创建在应用层和传输层基础上的安全协议。在我们日常的工作中，经常涉及到维护服务器，那么为了方便操作，以及安全方面的考虑，通常我们都会在服务器上安装ssh服务端，这样，在我们自己的机器上通过ssh客户端工具连接到服务器，既方便又安全。下面说说ssh应用的基本功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下SSH命令用法小结">
+<meta property="og:url" content="http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="SSH为Secure Shell的缩写，由IETF的网络工作小组（Network Working Group）所制定；SSH为创建在应用层和传输层基础上的安全协议。在我们日常的工作中，经常涉及到维护服务器，那么为了方便操作，以及安全方面的考虑，通常我们都会在服务器上安装ssh服务端，这样，在我们自己的机器上通过ssh客户端工具连接到服务器，既方便又安全。下面说说ssh应用的基本功能。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux下SSH命令用法小结">
+<meta name="twitter:description" content="SSH为Secure Shell的缩写，由IETF的网络工作小组（Network Working Group）所制定；SSH为创建在应用层和传输层基础上的安全协议。在我们日常的工作中，经常涉及到维护服务器，那么为了方便操作，以及安全方面的考虑，通常我们都会在服务器上安装ssh服务端，这样，在我们自己的机器上通过ssh客户端工具连接到服务器，既方便又安全。下面说说ssh应用的基本功能。">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">linux下SSH命令用法小结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">linux下SSH命令用法小结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-05-26T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-05-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、连接到远程主机："><span class="post-toc-number">1.</span> <span class="post-toc-text">1、连接到远程主机：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、连接到远程主机指定的端口："><span class="post-toc-number">2.</span> <span class="post-toc-text">2、连接到远程主机指定的端口：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、通过远程主机1跳到远程主机2："><span class="post-toc-number">3.</span> <span class="post-toc-text">3、通过远程主机1跳到远程主机2：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、通过SSH运行远程shell命令："><span class="post-toc-number">4.</span> <span class="post-toc-text">4、通过SSH运行远程shell命令：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、修改SSH监听端口："><span class="post-toc-number">5.</span> <span class="post-toc-text">5、修改SSH监听端口：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6、仅允许SSH协议版本2："><span class="post-toc-number">6.</span> <span class="post-toc-text">6、仅允许SSH协议版本2：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7、禁止root用户登录："><span class="post-toc-number">7.</span> <span class="post-toc-text"> 7、禁止root用户登录：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#8、设置登录时提示信息"><span class="post-toc-number">8.</span> <span class="post-toc-text">8、设置登录时提示信息</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#9、scp命令："><span class="post-toc-number">9.</span> <span class="post-toc-text">9、scp命令：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-linux学习-2015-05-27-linux下SSH常用命令小结" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">linux下SSH命令用法小结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-05-27 00:00:00" datetime="2015-05-26T16:00:00.000Z" itemprop="datePublished">2015-05-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux学习/">linux学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <hr>
+<p>SSH为Secure Shell的缩写，由IETF的网络工作小组（Network Working Group）所制定；SSH为创建在应用层和传输层基础上的安全协议。<br>在我们日常的工作中，经常涉及到维护服务器，那么为了方便操作，以及安全方面的考虑，通常我们都会在服务器上安装ssh服务端，这样，在我们自己的机器上通过ssh客户端工具连接到服务器，既方便又安全。下面说说ssh应用的基本功能。</p>
+<a id="more"></a>
+<h4 id="1、连接到远程主机："><a href="#1、连接到远程主机：" class="headerlink" title="1、连接到远程主机："></a><strong><em>1、连接到远程主机：</em></strong></h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh name@remoteserver</span><br><span class="line">;或者</span><br><span class="line">ssh remoteserver -l name</span><br></pre></td></tr></table></figure>
+<p><strong><em>说明：</em></strong>以上两种方式都可以远程登录到远程主机，server代表远程主机，name为登录远程主机的用户名。</p>
+<h4 id="2、连接到远程主机指定的端口："><a href="#2、连接到远程主机指定的端口：" class="headerlink" title="2、连接到远程主机指定的端口："></a><strong><em>2、连接到远程主机指定的端口：</em></strong></h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh name@remoteserver -p 2222</span><br><span class="line">;或者</span><br><span class="line">ssh remoteserver -l name –p 2222</span><br></pre></td></tr></table></figure>
+<p><strong><em>说明：</em></strong>p 参数指定端口号，通常在路由里做端口映射时，我们不会把22端口直接映射出去，而是转换成其他端口号，这时就需要使用-p 端口号命令格式。</p>
+<h4 id="3、通过远程主机1跳到远程主机2："><a href="#3、通过远程主机1跳到远程主机2：" class="headerlink" title="3、通过远程主机1跳到远程主机2："></a><strong><em>3、通过远程主机1跳到远程主机2：</em></strong></h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -t remoteserver1 ssh remoteserver2</span><br></pre></td></tr></table></figure>
+<p><strong><em>说明：</em></strong>当远程主机remoteserver2无法直接到达时，可以使用-t参数，然后由remoteserver1跳转到remoteserver2。在此过程中要先输入remoteserver1的密码，然后再输入remoteserver2的密码，然后就可以操作remoteserver2了。</p>
+<h4 id="4、通过SSH运行远程shell命令："><a href="#4、通过SSH运行远程shell命令：" class="headerlink" title="4、通过SSH运行远程shell命令："></a><strong><em>4、通过SSH运行远程shell命令：</em></strong></h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -l name remoteserver ‘<span class="built_in">command</span>’</span><br></pre></td></tr></table></figure>
+<p><strong><em>说明：</em></strong>连接到远程主机，并执行远程主机的command命令。例如：查看远程主机的内存使用情况。</p>
+<h4 id="5、修改SSH监听端口："><a href="#5、修改SSH监听端口：" class="headerlink" title="5、修改SSH监听端口："></a><strong><em>5、修改SSH监听端口：</em></strong></h4><blockquote>
+</blockquote>
+<p>默认情况下，SSH监听连接端口22，攻击者使用端口扫描软件就可以看到主机是否运行有SSH服务，将SSH端口修改为大于1024的端口是一个明智的选择，因为大多数端口扫描软件（包括nmap）默认情况都不扫描高位端口。打开/etc/ssh/sshd_config文件并查找下面这样的行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Port  22</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">去掉该行前面的<span class="comment"># 号，然后修改端口号并重新启动SSH服务：</span></span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">$ /etc/init.d/ssh restart</span><br></pre></td></tr></table></figure>
+<h4 id="6、仅允许SSH协议版本2："><a href="#6、仅允许SSH协议版本2：" class="headerlink" title="6、仅允许SSH协议版本2："></a><strong><em>6、仅允许SSH协议版本2：</em></strong></h4><blockquote>
+</blockquote>
+<p>有两个SSH协议版本，仅使用SSH协议版本2会更安全，SSH协议版本1有安全问题，包括中间人攻击（man-in-the-middle）和注入（insertion）攻击。编辑/etc/ssh/sshd_config文件并查找下面这样的行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Protocol 2,1</span></span><br></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Protocol 2</span><br></pre></td></tr></table></figure>
+<h4 id="7、禁止root用户登录："><a href="#7、禁止root用户登录：" class="headerlink" title=" 7、禁止root用户登录："></a><strong><em> 7、禁止root用户登录：</em></strong></h4><blockquote>
+</blockquote>
+<p>通常情况下，不采用直接用root用户登录到远程主机，由于root用户拥有超级权限，这样会带来安全隐患，所以，一般我们用普通用户登录，当需要管理远程主机时，再切换到root用户下。打开/etc/ssh/sshd_config文件并查找下面这样的行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#PermitRootLogin yes</span></span><br></pre></td></tr></table></figure>
+<p> 将#号去掉，然后将yes修改成no，重启ssh服务，这样就可以禁止root用户登录。</p>
+<h4 id="8、设置登录时提示信息"><a href="#8、设置登录时提示信息" class="headerlink" title="8、设置登录时提示信息"></a><strong><em>8、设置登录时提示信息</em></strong></h4><blockquote>
+</blockquote>
+<p>首先编辑一个文件，如bannertest.txt，文件内容自行定义。然后打开/etc/ssh/sshd_config文件并查找下面这样的行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Banner /some/path</span></span><br></pre></td></tr></table></figure>
+<p>将#号去掉，然后将bannertest.txt文件的全路径替换/some/path，然后保存，重启ssh服务。当客户端登录时，就会看到bannertest.txt文件中的提示信息。</p>
+<h4 id="9、scp命令："><a href="#9、scp命令：" class="headerlink" title="9、scp命令："></a><strong><em>9、scp命令：</em></strong></h4><blockquote>
+</blockquote>
+<p>scp命令是SSH中最方便有用的命令，可以在两台服务器之间传送文件。并且在传输过程中仍是使用ssh加密的。</p>
+<p> 将远程主机的/tmp/test 文件复制到本地的/bak文件夹下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -p root@192.168.1.120:/tmp/<span class="built_in">test</span> /bak</span><br></pre></td></tr></table></figure>
+<p>将本地/bak/1234 文件复制到远程主机的/tmp路径下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -p /bak/1234 root@192.168.1.120:/tmp</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.356Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/" target="_blank" rel="external">http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/&title=《linux下SSH命令用法小结》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/&title=《linux下SSH命令用法小结》 — 刀刀亮的博客&source=
+SSH为Secure Shell的缩写，由IETF的网络工作小组（Network Working Group）所制定；SSH为创建在应用层和传输层基础上..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux下SSH命令用法小结》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/linux学习/2015/06/01/linux学习-2015-06-01-linux脚本文件格式错误/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux脚本文件格式错误</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/linux学习/2015/05/27/linux学习-2015-05-27-linux目录结构/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">linux目录结构</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux学习-2015-05-27-linux下SSH常用命令小结" data-title="linux下SSH命令用法小结" data-url="http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/&title=《linux下SSH命令用法小结》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/&title=《linux下SSH命令用法小结》 — 刀刀亮的博客&source=
+SSH为Secure Shell的缩写，由IETF的网络工作小组（Network Working Group）所制定；SSH为创建在应用层和传输层基础上..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《linux下SSH命令用法小结》 — 刀刀亮的博客&url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/linux学习/2015/05/27/linux学习-2015-05-27-linux下SSH常用命令小结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKklEQVR42u3a0U7jQAwFUP7/p7uvrGjDtT1IjXvyhEqa5EwkjH3n6ys+Ht+On5+/Oif/7fU5P89MfnvgwMbGxr4J+3F5JOdcfzdflASfL+7182BjY2PvY7/6C399Tu/8/I5JSUvui42NjY1dLTzVdiJvMLCxsbGxT7GrI6TqSGje3mBjY2N/Gjsf3FTLSW8YNCmoh2dp2NjY2G/PzlPR9//5T/JtbGxs7Ddm94Lb6uab5My84CX3+kWBjY2NvYhdDXHzf+4n2256rU7+/NjY2Nhb2flophrZVuOB3tKU2xVsbGzsRezklknzkDcb1SbkVAyMjY2NvZvdG+L0Sk4PM1ncKOXGxsbGviH7LyKBvC3JA4ak7Sm8KmxsbOx17N4gqbpkk+Wrjop+aUKwsbGxF7GTrZbVsXsyDKoWnhxTjTSwsbGxt7LnxaAXFedL08RgY2Njr2Pn22VOXS0PEqpLkzQwT4ZK2NjY2CvYvZDg1PipN+SqhhD/fY6NjY29lN3bFpMje9uDkuJafUnY2NjYm9jJ6L/6QL0B02RolVclbGxs7N3sfIiTh7VVUtRIDK6MjY2NvY+dj9RPbaaZxLrVGODl82BjY2OvY58KWasPmgyD5ssRzdKwsbGxF7Gr0ekk1u2Vuuqo68k1sbGxsRex86J1KtzNlzvfypM3IU8+x8bGxr45exLf5o+bl8C8pckLVfkNY2NjY9+KXR3TnBo5TYLk6jkv74uNjY29ml3djjlvY+YbdPLrY2NjY29iV0fteQnJw9rkzfRGTtEbwMbGxr45ez5aqpa3vFWojpzKwQM2Njb2OnYe0+ZXqI6HjqXWvXgAGxsb++bsSUtwqkRN7pIXP2xsbOzPYfe2wkS3jEOF6t0LwTA2Njb2CvajeFRjhnnBy19APszCxsbG3sTOjzxAnQ+Ses9WXRRsbGzsTexJ2ZgEw5NlPbAlFBsbG3sdezKOT77b29BTjm8nszRsbGzsj2RPBjfzDZ2j9gYbGxv7g9m9sU4vGEhapmqLhY2Njb2VnTQM+ab2U99NylXeomBjY2NvZffahuo4fhLuJk1IUjixsbGx17H/AaOUFhGhL+LBAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

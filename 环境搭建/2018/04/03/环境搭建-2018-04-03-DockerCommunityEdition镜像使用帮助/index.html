@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Docker Community Edition 镜像使用帮助 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="环境搭建,docker">
+    <meta name="description" content="123作者 : daodaoliang@yeah.net日期 : 2018-04-03版本 : 0.0.1 注意: 本镜像只提供 Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包，非 dockerhub，本文章并非原创而是转载，原文在这里">
+<meta name="keywords" content="环境搭建,docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker Community Edition 镜像使用帮助">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="123作者 : daodaoliang@yeah.net日期 : 2018-04-03版本 : 0.0.1 注意: 本镜像只提供 Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包，非 dockerhub，本文章并非原创而是转载，原文在这里">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-03T07:27:19.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker Community Edition 镜像使用帮助">
+<meta name="twitter:description" content="123作者 : daodaoliang@yeah.net日期 : 2018-04-03版本 : 0.0.1 注意: 本镜像只提供 Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包，非 dockerhub，本文章并非原创而是转载，原文在这里">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Docker Community Edition 镜像使用帮助</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Docker Community Edition 镜像使用帮助</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-02T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-04-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Debian-Ubuntu-用户"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Debian/Ubuntu 用户</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-准备工作"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 准备工作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-debian-系统"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 debian 系统:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-3-ubuntu-系统"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 ubuntu 系统:</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Fedora-CentOS-RHEL"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Fedora/CentOS/RHEL</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-准备工作"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 准备工作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-安装源"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 安装源</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-安装"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-简便化的安装"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 简便化的安装</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Docker Community Edition 镜像使用帮助</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-03 00:00:00" datetime="2018-04-02T16:00:00.000Z" itemprop="datePublished">2018-04-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作者 : daodaoliang@yeah.net</span><br><span class="line">日期 : 2018-04-03</span><br><span class="line">版本 : 0.0.1</span><br></pre></td></tr></table></figure>
+<p>注意: 本镜像只提供 Debian/Ubuntu/Fedora/CentOS/RHEL 的 docker 软件包，非 dockerhub，本文章并非原创而是转载，原文在<a href="https://mirror.tuna.tsinghua.edu.cn/help/docker-ce/" target="_blank" rel="noopener">这里</a></p>
+<a id="more"></a>
+<p>[TOC]</p>
+<h3 id="1-Debian-Ubuntu-用户"><a href="#1-Debian-Ubuntu-用户" class="headerlink" title="1. Debian/Ubuntu 用户"></a>1. Debian/Ubuntu 用户</h3><h4 id="1-1-准备工作"><a href="#1-1-准备工作" class="headerlink" title="1.1 准备工作"></a>1.1 准备工作</h4><p>以下内容根据 <a href="https://docs.docker.com/engine/installation/linux/docker-ce/debian/" target="_blank" rel="noopener">官方文档</a> 修改而来。</p>
+<p>如果你过去安装过 docker，先删掉:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br></pre></td></tr></table></figure>
+<p>首先安装依赖:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common</span><br></pre></td></tr></table></figure>
+<p>根据你的发行版，下面的内容有所不同:</p>
+<h4 id="1-2-debian-系统"><a href="#1-2-debian-系统" class="headerlink" title="1.2 debian 系统:"></a>1.2 debian 系统:</h4><p>信任 Docker 的 GPG 公钥:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<p>对于 amd64 架构的计算机，添加软件仓库:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">   <span class="string">"deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian \</span></span><br><span class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">   stable"</span></span><br></pre></td></tr></table></figure>
+<p>如果你是树莓派或其它ARM架构计算机，请运行:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb [arch=armhf] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian \</span></span><br><span class="line"><span class="string">     <span class="variable">$(lsb_release -cs)</span> stable"</span> | \</span><br><span class="line">    sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
+<p>最后安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-ubuntu-系统"><a href="#1-3-ubuntu-系统" class="headerlink" title="1.3 ubuntu 系统:"></a>1.3 ubuntu 系统:</h4><p>信任 Docker 的 GPG 公钥:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<p>对于 amd64 架构的计算机，添加软件仓库:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">   <span class="string">"deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu \</span></span><br><span class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">   stable"</span></span><br></pre></td></tr></table></figure>
+<p>如果你是树莓派或其它ARM架构计算机，请运行:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb [arch=armhf] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu \</span></span><br><span class="line"><span class="string">     <span class="variable">$(lsb_release -cs)</span> stable"</span> | \</span><br><span class="line">    sudo tee /etc/apt/sources.list.d/docker.list</span><br></pre></td></tr></table></figure>
+<p>最后安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
+<h3 id="2-Fedora-CentOS-RHEL"><a href="#2-Fedora-CentOS-RHEL" class="headerlink" title="2. Fedora/CentOS/RHEL"></a>2. Fedora/CentOS/RHEL</h3><p>以下内容根据 <a href="https://docs.docker.com/engine/installation/linux/docker-ce/centos/" target="_blank" rel="noopener">官方文档</a> 修改而来。</p>
+<h4 id="2-1-准备工作"><a href="#2-1-准备工作" class="headerlink" title="2.1 准备工作"></a>2.1 准备工作</h4><p>如果你之前安装过 docker，请先删掉</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker docker-common docker-selinux docker-engine</span><br></pre></td></tr></table></figure>
+<p>安装一些依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-安装源"><a href="#2-2-安装源" class="headerlink" title="2.2 安装源"></a>2.2 安装源</h4><ul>
+<li><strong>CentOS/RHEL</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/fedora/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<p>把软件仓库地址替换为 TUNA:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i <span class="string">'s+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+'</span> /etc/yum.repos.d/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>fedora</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<p>把软件仓库地址替换为 TUNA:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i <span class="string">'s+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+'</span> /etc/yum.repos.d/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-安装"><a href="#2-3-安装" class="headerlink" title="2.3 安装"></a>2.3 安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum makecache fast</span><br><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
+<h3 id="3-简便化的安装"><a href="#3-简便化的安装" class="headerlink" title="3. 简便化的安装"></a>3. 简便化的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
+<hr>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-04-03T07:27:19.233Z" itemprop="dateUpdated">2018-04-03 15:27:19</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/环境搭建/">环境搭建</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/&title=《Docker Community Edition 镜像使用帮助》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/&title=《Docker Community Edition 镜像使用帮助》 — 刀刀亮的博客&source=123作者 : daodaoliang@yeah.net日期 : 2018-04-03版本 : 0.0.1
+注意: 本镜像只提供 Debian/Ubunt..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Docker Community Edition 镜像使用帮助》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Python学习/2018/04/25/Python学习-2018-04-25-python爬虫/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python爬虫</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/linux学习/2018/03/27/linux学习-2018-3-27-linux下利用Autotools产生Makefiles/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">linux下利用Autotools产生Makefiles</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助" data-title="Docker Community Edition 镜像使用帮助" data-url="http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/&title=《Docker Community Edition 镜像使用帮助》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/&title=《Docker Community Edition 镜像使用帮助》 — 刀刀亮的博客&source=123作者 : daodaoliang@yeah.net日期 : 2018-04-03版本 : 0.0.1
+注意: 本镜像只提供 Debian/Ubunt..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Docker Community Edition 镜像使用帮助》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2018/04/03/环境搭建-2018-04-03-DockerCommunityEdition镜像使用帮助/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD60lEQVR42u3aS3KDQAwFwNz/0sk2VTbkPWlIedGsKGMPTLOQ9fn6io/vX8fvT17Pr371elytfPXb5HmSpzpw4MCBAweOeKvJQ7cP+nq13XYOl3xyf0ccOHDgwHGK4/7R7wNYTnAf/GZXN0EXBw4cOHB8AkcbPnO4/Stpnx8HDhw4cHwCRx7wkiQtqc49F+Bx4MCBA8dzHElxMG/ntJu5L+Ql5cJTxU0cOHDgwLHnOJVKffL5I/MdOHDgwIEjSJbagJRfzQNqEgL3AfjN3XHgwIEDx5pjlpLlW8qHFfJUsI2M9fo4cODAgWPBMSsLJiEt+X6eNO5f1YMNJxw4cODAsS78zWprbWo3G2Jo0d/cBQcOHDhwLDjasYP2O5uRgg1E3jy7TOFw4MCBA8eII0mE9kE0CeF5Gyl5SXkY/iORw4EDBw4cC446FMXp04wySfb298WBAwcOHGc58iRqVsjbtJH2Jb/6tzhw4MCB4wGOWQlvP6+XjNadalMVgRYHDhw4cCw4ZhubBc4kPG9exvBvAQ4cOHDgeJgjCW+zz882hzalRhw4cODAcZZjHzJnwwf55vN19mkhDhw4cODYc+Rp0qkG0qal1La78mE+HDhw4MBximOW2DxdUmwHIzZ3xIEDBw4cT3O0aVWeILVX80Rx37gaxmccOHDgwHHLceo8H19I1pkRzM5x4MCBA8eeI3n02SY3raYnioNRAREHDhw4cBzlONVMaq+2JbzN+N0fa+LAgQMHjjVHvplNO6ptLP3nfYuMFgcOHDhwlByzhe6TtzYA5wXBU62syxIhDhw4cOAYcbQDAW0qlRMMy3lxcTAKzDhw4MCB4xBHG5nzzbeJ1ub1JDRFrRQHDhw4cKw52mRsVpLLyfYtqPqV4MCBAweOM9EtevQ8vM2G2NrC36ZAGTWfcODAgQPHgmM/0NByzAbdklfVtsq+2v8FOHDgwIHjdi/7aYiksXS2obUvWV6uiQMHDhw4DnG0wa993Jz7bLEvD+E4cODAgeMsx2y5fKSgvcusQNmu9uY7OHDgwIHjEMeseJcX8vYpVpuq5UyXDSccOHDgwDHimE09zCCKVCouLG7Wv9w7Dhw4cOBYcHyXRzte0Jb2khX261/S48CBAweONccsILXFxBa0vePshQ0hcODAgQNHwNFutU3kZptJ1syLjEU6igMHDhw4DnG0t89bPrNjFs7b9d/8FgcOHDhw/DtHPqawT9426WUS+Ot+Fw4cOHDgeIBjXxzMW1zFNhZlwQP/O3DgwIEDx8WoXFLIa0t+LdksLWy5LwMzDhw4cOBYc8xKabNQep8rzdK2PC1sE1QcOHDgwFFy/ABs2OxvQn3tKQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

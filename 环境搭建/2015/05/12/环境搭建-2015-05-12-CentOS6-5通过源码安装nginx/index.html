@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>CentOS 6.5通过源码安装nginx | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="1.下载nginx源码 官方网址：http://nginx.org/en/download.html  123cd /tmp# 文章写作时最新的稳定版本为1.8.0wget http://nginx.org/download/nginx-1.8.0.tar.gz  解压源码包  1tar -zxvf nginx-1.8.0.tar.gz 2.编译安装nginx 安装依赖包文件  1yum ins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 6.5通过源码安装nginx">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="1.下载nginx源码 官方网址：http://nginx.org/en/download.html  123cd /tmp# 文章写作时最新的稳定版本为1.8.0wget http://nginx.org/download/nginx-1.8.0.tar.gz  解压源码包  1tar -zxvf nginx-1.8.0.tar.gz 2.编译安装nginx 安装依赖包文件  1yum ins">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 6.5通过源码安装nginx">
+<meta name="twitter:description" content="1.下载nginx源码 官方网址：http://nginx.org/en/download.html  123cd /tmp# 文章写作时最新的稳定版本为1.8.0wget http://nginx.org/download/nginx-1.8.0.tar.gz  解压源码包  1tar -zxvf nginx-1.8.0.tar.gz 2.编译安装nginx 安装依赖包文件  1yum ins">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CentOS 6.5通过源码安装nginx</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CentOS 6.5通过源码安装nginx</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-05-11T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-05-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-下载nginx源码"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.下载nginx源码</span></a></li></ol><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-编译安装nginx"><span class="post-toc-number"></span> <span class="post-toc-text">2.编译安装nginx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-启动测试nginx"><span class="post-toc-number"></span> <span class="post-toc-text">3. 启动测试nginx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-nginx-基本操作"><span class="post-toc-number"></span> <span class="post-toc-text">4. nginx 基本操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-HTTP基本配置"><span class="post-toc-number"></span> <span class="post-toc-text">5. HTTP基本配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-1-配置说明"><span class="post-toc-number">1.</span> <span class="post-toc-text">5.1 配置说明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-2-配置文件目录结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">5.2 配置文件目录结构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-3-配置文件结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">5.3 配置文件结构</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-模块"><span class="post-toc-number"></span> <span class="post-toc-text">6. 模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-1-模块化"><span class="post-toc-number">1.</span> <span class="post-toc-text">6.1 模块化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-2-index模块"><span class="post-toc-number">2.</span> <span class="post-toc-text">6.2 index模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-3-Log模块"><span class="post-toc-number">3.</span> <span class="post-toc-text">6.3 Log模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-4-Real-IP模块"><span class="post-toc-number">4.</span> <span class="post-toc-text">6.4 Real IP模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-5-Access模块"><span class="post-toc-number">5.</span> <span class="post-toc-text">6.5 Access模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-6-Rewrite模块"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.6 Rewrite模块</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-7-Proxy模块"><span class="post-toc-number">7.</span> <span class="post-toc-text">6.7 Proxy模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-配置静态化目录"><span class="post-toc-number"></span> <span class="post-toc-text">7. 配置静态化目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-负载均衡"><span class="post-toc-number"></span> <span class="post-toc-text">8. 负载均衡</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-控制页面缓存"><span class="post-toc-number"></span> <span class="post-toc-text">9. 控制页面缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-nginx的内置变量"><span class="post-toc-number"></span> <span class="post-toc-text">10. nginx的内置变量</span></a>
+        </li></nav>
+    </aside>
+    
+<article id="life-环境搭建-2015-05-12-CentOS6-5通过源码安装nginx" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CentOS 6.5通过源码安装nginx</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-05-12 00:00:00" datetime="2015-05-11T16:00:00.000Z" itemprop="datePublished">2015-05-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<h4 id="1-下载nginx源码"><a href="#1-下载nginx源码" class="headerlink" title="1.下载nginx源码"></a><strong><em>1.下载nginx源码</em></strong></h4><ul>
+<li>官方网址：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line"><span class="comment"># 文章写作时最新的稳定版本为1.8.0</span></span><br><span class="line">wget http://nginx.org/download/nginx-1.8.0.tar.gz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解压源码包</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.8.0.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="2-编译安装nginx"><a href="#2-编译安装nginx" class="headerlink" title="2.编译安装nginx"></a><strong><em>2.编译安装nginx</em></strong></h3><ul>
+<li>安装依赖包文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssl-devel pcre-devel zlib-devel</span><br></pre></td></tr></table></figure>
+<p><a href="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/" target="_blank" rel="noopener">pcre可用包</a></p>
+<ul>
+<li>配置nginx编译选项</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp/nginx-1.8.0</span><br><span class="line">./configure  --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/<span class="built_in">log</span>/nginx/error.log --http-log-path=/var/<span class="built_in">log</span>/nginx/access.log --pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock --http-client-body-temp-path=/var/cache/nginx/client_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --user=nginx --group=nginx --with-http_ssl_module --with-http_realip_module --with-http_addition_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_stub_status_module --with-http_auth_request_module --with-mail --with-mail_ssl_module --with-file-aio --with-ipv6 --with-http_spdy_module --with-cc-opt=<span class="string">'-O2 -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译安装</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h3 id="3-启动测试nginx"><a href="#3-启动测试nginx" class="headerlink" title="3. 启动测试nginx"></a><strong><em>3. 启动测试nginx</em></strong></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/sbin/nginx</span><br><span class="line"><span class="comment"># 提示错误</span></span><br><span class="line">nginx: [emerg] getpwnam(<span class="string">"nginx"</span>) failed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建nginx用户和组</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd -r nginx</span><br><span class="line">useradd -r -g nginx -s /bin/<span class="literal">false</span> -M nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建相应目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 启动错误</span><br><span class="line">nginx: [emerg] mkdir() &quot;/var/tmp/nginx/client/&quot; failed (2: No such file or directory)</span><br><span class="line"># 创建对应目录</span><br><span class="line">mkdir /var/tmp/nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动nginx</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/sbin/nginx</span><br></pre></td></tr></table></figure>
+<h3 id="4-nginx-基本操作"><a href="#4-nginx-基本操作" class="headerlink" title="4. nginx 基本操作"></a><strong><em>4. nginx 基本操作</em></strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">查看帮助</span><br><span class="line">/usr/local/nginx/sbin/nginx -h</span><br><span class="line"></span><br><span class="line">立即停止进程(TERM信号)</span><br><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line"></span><br><span class="line">温和停止进程(QUIT信号)</span><br><span class="line">/usr/local/nginx/sbin/nginx -s quit</span><br><span class="line"></span><br><span class="line">重加载</span><br><span class="line">/etc/init.d/nginx reload #有init脚本情况下</span><br><span class="line">/usr/local/nginx/sbin/nginx -s reload #原生</span><br><span class="line"></span><br><span class="line">检测配置文件是否正确</span><br><span class="line">/usr/local/nginx/sbin/nginx -t #生产路径下的</span><br><span class="line">/usr/local/nginx/sbin/nginx -t -c /home/ken/tmp/test.conf #可以测试某个临时文件</span><br></pre></td></tr></table></figure>
+<h3 id="5-HTTP基本配置"><a href="#5-HTTP基本配置" class="headerlink" title="5. HTTP基本配置"></a><strong><em>5. HTTP基本配置</em></strong></h3><h4 id="5-1-配置说明"><a href="#5-1-配置说明" class="headerlink" title="5.1 配置说明"></a><strong>5.1 配置说明</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">注释，#</span><br><span class="line">每条指令总是以分号结束(;)</span><br><span class="line">配置继承：在一个区块中嵌套其他区段，那么被嵌套的区段会继承其父区段的设置</span><br><span class="line">字符串，可以没有引号，但是如果存在特殊字符（空格，分号，花括号）需要用引号引起</span><br><span class="line">单位：大小(k/K m/M) 时间值(ms/s/m/h/d/w/M/y 默认s)</span><br><span class="line">模块提供各种变量值，可以进行读取和赋值（每个模块提供变量列表需要自己去查）</span><br></pre></td></tr></table></figure>
+<h4 id="5-2-配置文件目录结构"><a href="#5-2-配置文件目录结构" class="headerlink" title="5.2 配置文件目录结构"></a><strong>5.2 配置文件目录结构</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/conf/</span><br><span class="line"></span><br><span class="line">- mime.types 一个文件扩展列表，它们与MIME类型关联</span><br><span class="line">- fastcgi.conf 与FastCGI相关的配置文件</span><br><span class="line">- proxy.conf 与Proxy相关的配置文件</span><br><span class="line">- nginx.conf 应用程序的基本配置文件</span><br><span class="line">- sites/</span><br><span class="line">    |- a.conf #允许给每个单独网站建立一个配置文件</span><br><span class="line">    |- b.conf</span><br><span class="line">    |- dir/</span><br><span class="line">        |- c.conf</span><br><span class="line"></span><br><span class="line">需要在nginx.conf中使用包含命令</span><br><span class="line">include sites/*.conf;</span><br><span class="line">include sites/*/*.conf;</span><br></pre></td></tr></table></figure>
+<h4 id="5-3-配置文件结构"><a href="#5-3-配置文件结构" class="headerlink" title="5.3 配置文件结构"></a><strong>5.3 配置文件结构</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">http &#123; #嵌入配置文件的根部， 一个http里可以配置多个server</span><br><span class="line"></span><br><span class="line">    server &#123; #声明一个站点</span><br><span class="line">        server_name www.website.com; #监听的主机名</span><br><span class="line">        listen 80; #监听套接字所使用的ip地址和端口号</span><br><span class="line"></span><br><span class="line">        error_page 404 /not_found.html;</span><br><span class="line">        error_page 500 501 502 503 504 /server_error.html;</span><br><span class="line"></span><br><span class="line">        index index.html;</span><br><span class="line"></span><br><span class="line">        root /var/www/website/com/html; #定义文档的根目录</span><br><span class="line"></span><br><span class="line">        #location, 通过制定的模式与客户端请求的URI相匹配</span><br><span class="line">        location / &#123; #网站的特定位置</span><br><span class="line">        &#125;</span><br><span class="line">        location /admin/ &#123; #网站的特定位置 #</span><br><span class="line">            alias /var/www/locked/; #只能放在 location区段中，为指定路径提供别名</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #操作符,匹配时跟定义顺序无关</span><br><span class="line">        location = /abcd &#123; #精确匹配，不能用正则</span><br><span class="line">        &#125;</span><br><span class="line">        location /abc/ &#123; #url必须以指定模式开始，不能用正则</span><br><span class="line">        &#125;</span><br><span class="line">        location ^~ /abcd$ &#123; #吴标致行为，URI定位必须以指定模式开始，如果匹配，停止搜索其他模式</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ ^/abcd$ &#123; #正则匹配，区分大小写</span><br><span class="line">        &#125;</span><br><span class="line">        location ~* ^/abcd$ &#123; #正则匹配，不区分大小写</span><br><span class="line">        &#125;</span><br><span class="line">        location @test  &#123; #定义location区段名，客户端不能访问，内部产生的请求可以,例如try_files或error_page</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-模块"><a href="#6-模块" class="headerlink" title="6. 模块"></a><strong>6. 模块</strong></h3><h4 id="6-1-模块化"><a href="#6-1-模块化" class="headerlink" title="6.1 模块化"></a><strong>6.1 模块化</strong></h4><p>nginx真正的魅力在于它的模块，整个应用程序建立在一个模块化系统之上，在编译时，可以对每一个模块进行启用或者禁用</p>
+<h4 id="6-2-index模块"><a href="#6-2-index模块" class="headerlink" title="6.2 index模块"></a><strong>6.2 index模块</strong></h4><p>定义去哪里找index,可以定义多个，但是 nginx 只提供第一个找到的文件；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">index index.php index.html /data/website/index.html;</span><br><span class="line">#可以指定多个，但是ngxin提供第一个找到的文件</span><br></pre></td></tr></table></figure>
+<h4 id="6-3-Log模块"><a href="#6-3-Log模块" class="headerlink" title="6.3 Log模块"></a><strong>6.3 Log模块</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access_log /file/path;</span><br><span class="line">error_log /file/path error;  #level: debug/info/notice/warn/error/crit</span><br></pre></td></tr></table></figure>
+<p>日志格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log_format main $remote_addr - $remote_user [$time_local] &quot;$request&quot;  $status $body_bytes_sent &quot;$http_referer&quot; &quot;$http_user_agent&quot; $http_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">access_log /var/log/test.log main;</span><br></pre></td></tr></table></figure>
+<h4 id="6-4-Real-IP模块"><a href="#6-4-Real-IP模块" class="headerlink" title="6.4 Real IP模块"></a><strong>6.4 Real IP模块</strong></h4><p>默认编译nginx不包含这个模块</p>
+<p>当通过nginx将用户请求进行转发时，接收请求的应用要拿到用户的真实IP(经转发拿到的是服务器的IP)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">real_ip_header X-Forwarded-For;</span><br></pre></td></tr></table></figure>
+<h4 id="6-5-Access模块"><a href="#6-5-Access模块" class="headerlink" title="6.5 Access模块"></a><strong>6.5 Access模块</strong></h4><p>可以禁用ip段, 语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#如果规则之间有冲突，会以最前面匹配的规则为准</span><br><span class="line">deny IP;</span><br><span class="line">deny subnet;</span><br><span class="line">allow IP;</span><br><span class="line">allow subnet;</span><br><span class="line"># block all ips</span><br><span class="line">deny    all;</span><br><span class="line"># allow all ips</span><br><span class="line">allow    all;</span><br></pre></td></tr></table></figure>
+<p>配置一个blockips.conf,然后在nginx.conf中include</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location &#123;</span><br><span class="line">    allow 127.0.0.1; #允许本地ip 注意顺序，allow要放在前面</span><br><span class="line">    deny all; #禁止其他ip</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-6-Rewrite模块"><a href="#6-6-Rewrite模块" class="headerlink" title="6.6 Rewrite模块"></a><strong>6.6 Rewrite模块</strong></h4><p>作用：执行URL重定向,允许你去掉带有恶意的URL，包含多个参数（修改）<br>利用正则的匹配，分组和引用，达到目的break/return/set等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rewrite A B option;</span><br><span class="line">options:</span><br><span class="line">        last :表示完成rewrite</span><br><span class="line">        break:本规则匹配完成后，终止匹配，不再匹配后面的规则</span><br><span class="line">        redirect:返回302临时重定向，地址栏会显示跳转后的地址</span><br><span class="line">        permanent:返回301永久重定向，地址栏会显示跳转后的地址</span><br></pre></td></tr></table></figure>
+<h4 id="6-7-Proxy模块"><a href="#6-7-Proxy模块" class="headerlink" title="6.7 Proxy模块"></a><strong>6.7 Proxy模块</strong></h4><p>默认模块，允许你把客户端的HTTP请求转到后端服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    proxy_pass_header Server;  #该指令强制一些被忽略的头传递到客户端</span><br><span class="line">    proxy_redirect off; #允许改写出现在HTTP头却被后端服务器触发重定向的URL,对相应本身不做任何处理</span><br><span class="line">    proxy_set_header Host $http_host; #允许你重新定义代理header值再转到后端服务器.目标服务器可以看到客户端的原始主机名</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr; #目标服务器可以看到客户端的真实ip，而不是转发服务器的ip</span><br><span class="line">    proxy_set_header X-Scheme $scheme;</span><br><span class="line">    proxy_pass http://localhost:8080;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>upstream模块</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream up_name &#123;</span><br><span class="line">    server 192.168.0.1:9000 weight=5; #权重</span><br><span class="line">    server 192.168.0.2:9000 weight=5 max_fails=5 fail_timeout=60s; #在60s内，其错误通信超过5次,认为该服务失效</span><br><span class="line">    server 192.168.0.3:9000 down; #服务标记为离线，不再使用</span><br><span class="line">    server 192.168.0.4:9000 backup; #备份服务器，其他全部宕机了才启用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-配置静态化目录"><a href="#7-配置静态化目录" class="headerlink" title="7. 配置静态化目录"></a><strong>7. 配置静态化目录</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location /static/</span><br><span class="line">&#123;</span><br><span class="line">    root /var/www/app/;</span><br><span class="line">    autoindex off;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-负载均衡"><a href="#8-负载均衡" class="headerlink" title="8. 负载均衡"></a><strong>8. 负载均衡</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include mime.types;</span><br><span class="line">    default_type application/octet-stream;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout 120;</span><br><span class="line"></span><br><span class="line">    tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">    upstream up_localhost &#123;</span><br><span class="line">        server 127.0.0.1:8000 weight=5;</span><br><span class="line">        server 127.0.0.1:8001 weight=10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line"></span><br><span class="line">        server_name localhost;</span><br><span class="line"></span><br><span class="line">        location /&#123;</span><br><span class="line">            proxy_pass http://up_localhost;</span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            proxy_set_header X-Real_IP $remote_addr;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="9-控制页面缓存"><a href="#9-控制页面缓存" class="headerlink" title="9. 控制页面缓存"></a><strong>9. 控制页面缓存</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.(htm|html|gif|jpg|jpeg|png|bmp|ico|css|js|txt)$ &#123;</span><br><span class="line">    root /opt/webapp;</span><br><span class="line">    expires 24h;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">expires 1 January, 1970, 00:00:01 GMT;</span><br><span class="line">expires 60s;</span><br><span class="line">expires 30m;</span><br><span class="line">expires 24h;</span><br><span class="line">expires 1d;</span><br><span class="line">expires max;</span><br><span class="line">expires off;</span><br></pre></td></tr></table></figure>
+<h3 id="10-nginx的内置变量"><a href="#10-nginx的内置变量" class="headerlink" title="10. nginx的内置变量"></a><strong>10. nginx的内置变量</strong></h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$arg_PARAMETER 这个变量包含在查询字符串时GET请求PARAMETER的值。</span><br><span class="line">$args 这个变量等于请求行中的参数。</span><br><span class="line">$binary_remote_addr 二进制码形式的客户端地址。</span><br><span class="line">$body_bytes_sent</span><br><span class="line">$content_length 请求头中的Content-length字段。</span><br><span class="line">$content_type 请求头中的Content-Type字段。</span><br><span class="line">$cookie_COOKIE cookie COOKIE的值。</span><br><span class="line">$document_root 当前请求在root指令中指定的值。</span><br><span class="line">$document_uri 与$uri相同。</span><br><span class="line">$host 请求中的主机头字段，如果请求中的主机头不可用，则为服务器处理请求的服务器名称。</span><br><span class="line">$is_args 如果$args设置，值为&quot;?&quot;，否则为&quot;&quot;。</span><br><span class="line">$limit_rate 这个变量可以限制连接速率。</span><br><span class="line">$nginx_version 当前运行的nginx版本号。</span><br><span class="line">$query_string 与$args相同。</span><br><span class="line">$remote_addr 客户端的IP地址。</span><br><span class="line">$remote_port 客户端的端口。</span><br><span class="line">$remote_user 已经经过Auth Basic Module验证的用户名。</span><br><span class="line">$request_filename 当前连接请求的文件路径，由root或alias指令与URI请求生成。</span><br><span class="line">$request_body 这个变量（0.7.58+）包含请求的主要信息。在使用proxy_pass或fastcgi_pass指令的location中比较有意义。</span><br><span class="line">$request_body_file 客户端请求主体信息的临时文件名。</span><br><span class="line">$request_completion 请求完成</span><br><span class="line">$request_method 这个变量是客户端请求的动作，通常为GET或POST。包括0.8.20及之前的版本中，这个变量总为main request中的动作，如果当前请求是一个子请求，并不使用这个当前请求的动作。</span><br><span class="line">$request_uri 这个变量等于包含一些客户端请求参数的原始URI，它无法修改，请查看$uri更改或重写URI。</span><br><span class="line">$schemeHTTP 方法（如http，https）。按需使用，例：</span><br><span class="line">rewrite ^(.+)$ $scheme://example.com$1 redirect;</span><br><span class="line">$server_addr 服务器地址，在完成一次系统调用后可以确定这个值，如果要绕开系统调用，则必须在listen中指定地址并且使用bind参数。</span><br><span class="line">$server_name 服务器名称。</span><br><span class="line">$server_port 请求到达服务器的端口号。</span><br><span class="line">$server_protocol 请求使用的协议，通常是HTTP/1.0或HTTP/1.1。</span><br><span class="line">$uri 请求中的当前URI(不带请求参数，参数位于$args)，可以不同于浏览器传递的$request_uri的值，它可以通过内部重定向，或者使用index指令进行修改。</span><br></pre></td></tr></table></figure>
+</code></pre><p>参考链接：</p>
+<p><a href="http://www.wklken.me/posts/2013/11/23/nginx-base.html" target="_blank" rel="noopener">http://www.wklken.me/posts/2013/11/23/nginx-base.html</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.512Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/&title=《CentOS 6.5通过源码安装nginx》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/&title=《CentOS 6.5通过源码安装nginx》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS 6.5通过源码安装nginx》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/数据库学习/2015/05/17/数据库学习-mysql专题-2015-04-15-linux下mysql忘记root密码处理方案/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">linux下mysql忘记root密码的处理方案</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2015/05/04/环境搭建-2015-05-04-CentOS6-5安装配置mysql数据库/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CentOS 6.5安装配置MySQL数据库</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2015-05-12-CentOS6-5通过源码安装nginx" data-title="CentOS 6.5通过源码安装nginx" data-url="http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/&title=《CentOS 6.5通过源码安装nginx》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/&title=《CentOS 6.5通过源码安装nginx》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS 6.5通过源码安装nginx》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2015/05/12/环境搭建-2015-05-12-CentOS6-5通过源码安装nginx/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLUlEQVR42u3aQW7jQAwEwPz/097rAkGUbo4CWHTpZDjOaEo+0E3O11d8vS6v/z/z/fVPf01WSO74/V63XdjY2NgPYbc3uN7u9TsJ8nqfyYO73i02Njb2VnZym/x1C76+e1J96tWwsbGxP5idb+K88OQRBRsbGxu7ZSctnuuAkf/1+oFiY2NjY7et/5N2T/tfb9FLw8bGxn57dj4Vff/XfzLfxsbGxn5j9qu88kbS+fCgDT+FAhsbG3sROy8A7aKzhtSsfLb7x8bGxt7NTtr97UGcnJQPD2bNKWxsbOzd7NmhmbuixawUncQkbGxs7H3spCQkN25HxbOS2ZbVKIFhY2Njr2DPCsPs8M1JEToPMNjY2Ng72ElsyN/JQ8tskNAWzmi+jY2Njb2CnRSAFpMUrVlpbPtCRTsJGxsb+4HsNpbk0eJ8VJAnCGxsbOxPZs+a+CclJ99i8V3FX9gvCQwbGxv7gez2WEw+rG3Dw+xYzywyYWNjY+9jt6klbyqdHMe595PY2NjYu9n5IZj2aE4bJGYF8ugRYGNjYy9lt8FgNr49aSTlB32wsbGxd7Pbw4ttI6ktSLPRb96EqicJ2NjY2G/PTvBthMip7YOeDY9/XBMbGxt7Eft83JuEgZPWUjvoPYo62NjY2I9it2PRWclphwGzI0FFHMLGxsZexM4P1rQBo239tIPb82iEjY2NvYOdN/3zcJKskB/EaZtHUSzBxsbGXsRum0p/MSQ4OeKTDwyOxgPY2NjYb8xuf/TnESLZVluikk9GXww2Njb2InYeGG6YG5cPMW94JWEpelrY2NjYi9izAW2y3eTx5YEkDy3RkAAbGxt7HXt24LItJCeD4TaKYGNjY+9m5z/025IzGyfc1Uj68R1sbGzsFexXec3aTHcdppwV2mhRbGxs7MeyT1r5szHtzY2hYCR89DiwsbGxH8LOi1b+cz8/0DMLG+362NjY2J/AbotQHjNmsSRfsy2i2NjY2Nj5Jtp2VV5Q28BTVEhsbGzsj2fPwkY7kDhZHxsbG3srO79xHhXacUJS0k4GvdjY2Nhb2bNmfV7ATsYPs1HxMJxgY2NjP4/9D/kAm6c6KzPVAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

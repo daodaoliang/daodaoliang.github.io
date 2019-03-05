@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>CentOS6.8下安装Maven | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS6.8下安装Maven">
+<meta property="og:url" content="http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.543Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS6.8下安装Maven">
+<meta name="twitter:description" content="123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">CentOS6.8下安装Maven</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">CentOS6.8下安装Maven</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-13T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-安装Maven前准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">0. 安装Maven前准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-安装maven环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">1.安装maven环境</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="life-环境搭建-2017-04-14-CentOS6-8下安装Maven" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">CentOS6.8下安装Maven</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-14 00:00:00" datetime="2017-04-13T16:00:00.000Z" itemprop="datePublished">2017-04-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/环境搭建/">环境搭建</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作者 : daodaoliang@yeah.net</span><br><span class="line">日期 : 2017-04-13</span><br><span class="line">版本 : 0.0.4</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>[TOC]</p>
+<h3 id="0-安装Maven前准备"><a href="#0-安装Maven前准备" class="headerlink" title="0. 安装Maven前准备"></a>0. 安装<code>Maven</code>前准备</h3><ul>
+<li>确保系统已经安装了<code>Java</code>的运行环境;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看java版本，确保已经安装了java</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<p>终端输出如下内容说明已经安装了java，并且为 openJDK 系列的 <code>1.7.0_131</code> 版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@yafan2-xb src]# java -version</span><br><span class="line">java version &quot;1.7.0_131&quot;</span><br><span class="line">OpenJDK Runtime Environment (rhel-2.6.9.0.el6_8-x86_64 u131-b00)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 24.131-b00, mixed mode)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>确保系统已经配置了<code>JAVA_HOME</code>系统环境变量;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">env | grep JAVA_HOME</span><br><span class="line">   或者</span><br><span class="line">   echo $JAVA_HOME</span><br></pre></td></tr></table></figure>
+<p>若是终端没有输出对应的值，则说明系统是没有配置<code>JAVA_HOME</code>环境变量的;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查找 java 路径, 笔者电脑输出 /usr/bin/java</span><br><span class="line">which java</span><br><span class="line">   </span><br><span class="line">   # 查找 java 的真实路径 笔者电脑输出 /usr/bin/java -&gt; /etc/alternatives/java</span><br><span class="line">   ls -alh /usr/bin/java</span><br><span class="line">   </span><br><span class="line">   # 继续查找 java 的真实路径 笔者电脑输出 /etc/alternatives/java -&gt; /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java</span><br><span class="line">   ls -alh /etc/alternatives/java</span><br></pre></td></tr></table></figure>
+<p>经过上一步找到了 <code>java</code> 的在当前系统中的真实可执行目录，按照如下方式配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
+<p>使新的环境变量生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h3 id="1-安装maven环境"><a href="#1-安装maven环境" class="headerlink" title="1.安装maven环境"></a>1.安装<code>maven</code>环境</h3><ul>
+<li>下载<code>maven</code>二进制包</li>
+</ul>
+<p><code>maven</code>的官方下载地址<a href="Maven的下载地址是：http://maven.apache.org/download.cgi">在这里</a> 。 <strong>PS:</strong> 建议在下载时选择一个比较快的源,笔者选择的是清华大学的源,下载速度在 400K左右;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src</span><br><span class="line">   wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解压并配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxf apache-maven-3.5.0-bin.tar.gz</span><br><span class="line">mv apache-maven-3.5.0 /usr/local/maven3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置环境变量(/etc/profile)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#在适当的位置添加</span><br><span class="line">export M2_HOME=/usr/local/maven3</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin</span><br></pre></td></tr></table></figure>
+<p>使环境变量生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<ul>
+<li>验证版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -v</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.543Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/" target="_blank" rel="external">http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/&title=《CentOS6.8下安装Maven》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/&title=《CentOS6.8下安装Maven》 — 刀刀亮的博客&source=123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS6.8下安装Maven》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/环境搭建/2017/04/20/环境搭建-2017-04-20-CentOS下Nexus搭建Maven私库/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CentOS下Nexus搭建Maven私库</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/环境搭建/2017/04/13/环境搭建-2014-10-17-Ubuntu14-04下配置GitLab7/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CentOS下搭建GitLab服务器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="环境搭建-2017-04-14-CentOS6-8下安装Maven" data-title="CentOS6.8下安装Maven" data-url="http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/&title=《CentOS6.8下安装Maven》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/&title=《CentOS6.8下安装Maven》 — 刀刀亮的博客&source=123作者 : daodaoliang@yeah.net日期 : 2017-04-13版本 : 0.0.4" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《CentOS6.8下安装Maven》 — 刀刀亮的博客&url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/环境搭建/2017/04/14/环境搭建-2017-04-14-CentOS6-8下安装Maven/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIElEQVR42u3asZLiQAwEUP7/p7nkgruA3W7JVOHhOaJY45nnDVRSz+MRX89/ruSvr75pP7+6kl1dcGFjY2PfhN0ukCyTbzF58jO4cgs2Njb2qexXi726J1n+55fSFsucHa2IjY2N/cXsvLxtSmP+HGxsbGzsTQFrR0izMpaUNGxsbGzsvDDkQ6X8m3y0tC+Z2NjY2Oex81T08z+/Jd/GxsbG/mD2s7za2CBveNriNNv/399iY2NjH8RuW4t8E3lk2wbDyfOj8BgbGxv7CPZVmHcc32lJeWyMjY2NfRK7HdO3bUYOmJWiZJ8vn4mNjY19EDtvG/J4tS1U+dGfZJUiSMDGxsY+iJ0XpPbQTPuEfSnNv8fGxsa+O3tWEtqYth1I5W3SLPTFxsbGPok9O7yYbO6qcf+srF7WeGBjY2PfkJ0XgCRMzQ/xbIolNjY2Nva+5bi21M3+mv/zsLGxsU9i5+XnqmF9PiSaBbfRPwYbGxv7IHZ7axvu5ptu1/15RWxsbOxvY79jANSWt9nxnQteATY2NvZB7A11MwBKeJv2BhsbG/tsdn7UJtnWpgnZvIL2V9jY2NgnsWcHYjZRQT4kyqmJqO7AsLGxsW/CbpHJnY/FNRsqJS3Qf3diY2NjH8rOG4Nrh0f562g/vyyH2NjY2Mexk2FQUsDyeHUf3G5mRNjY2NgnsTfNQB6vzkpRWyxnAQM2Njb23dntYZdZWJtHy7NzRnmc8DIewMbGxj6C3Y6BNnfmYfC1w6kLpl/Y2NjYH8ZONro/lJPcM2tRZoeKsLGxsU9lX1vw2tYiDwbaMOOXbAQbGxv7IPbsEUmT0I6E2oM4eVSAjY2N/Q3svMC0L2I2eHosrl+eiY2NjX0E+1le7XhoP8pvn1wftcTGxsa+OXufirbDoPY4Th5Ct2EGNjY29knsDWATBs+ak7ZNKmZp2NjY2Ddn54WhLTnJC90fGGoLGzY2NvY3s/NNbIrNrKzmgQc2Njb2N7NnkXAeD89eVjsUw8bGxj6P3TYMm9igDWuvCnqxsbGxT2XnBWBWoma/TVbPo4hh8cPGxsb+dPYfLYmbp33hktcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

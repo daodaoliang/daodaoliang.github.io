@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Qt常见皮肤qss代码 | 刀刀亮的博客 | 一切源于内心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="##QTabWidget   淡蓝色效果TabWidget(属性值lightblue)   1234567891011121314151617181920212223242526272829303132QTabWidget[lightblue = &quot;true&quot;] QTabBar::tab&amp;#123;    		border-top:1px solid rgb(249,249,249);	bor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt常见皮肤qss代码">
+<meta property="og:url" content="http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/index.html">
+<meta property="og:site_name" content="刀刀亮的博客">
+<meta property="og:description" content="##QTabWidget   淡蓝色效果TabWidget(属性值lightblue)   1234567891011121314151617181920212223242526272829303132QTabWidget[lightblue = &quot;true&quot;] QTabBar::tab&amp;#123;    		border-top:1px solid rgb(249,249,249);	bor">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/皮肤模块说明文档的资源文件/QTabWidget.png">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/皮肤模块说明文档的资源文件/blueTitle.png">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/皮肤模块说明文档的资源文件/lightGrayTitle.png">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/皮肤模块说明文档的资源文件/blueButton.png">
+<meta property="og:image" content="http://daodaoliang.com/res/img/blog/皮肤模块说明文档的资源文件/redProgressBar.png">
+<meta property="og:updated_time" content="2017-05-11T10:33:32.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt常见皮肤qss代码">
+<meta name="twitter:description" content="##QTabWidget   淡蓝色效果TabWidget(属性值lightblue)   1234567891011121314151617181920212223242526272829303132QTabWidget[lightblue = &quot;true&quot;] QTabBar::tab&amp;#123;    		border-top:1px solid rgb(249,249,249);	bor">
+<meta name="twitter:image" content="http://daodaoliang.com/res/img/blog/皮肤模块说明文档的资源文件/QTabWidget.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="刀刀亮的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://source.unsplash.com/random/360x360)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://source.unsplash.com/random/100x100">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">daodaoliang</h5>
+          <a href="mailto:daodaoliang@yeah.net" title="daodaoliang@yeah.net" class="mail">daodaoliang@yeah.net</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                目录
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about">
+                <i class="icon icon-lg icon-user-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://music.163.com/#/user/home?id=30650281" target="_blank">
+                <i class="icon icon-lg icon-headphones"></i>
+                网易云音乐
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/daodaoliang" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/life">
+                <i class="icon icon-lg icon-address-card"></i>
+                心情杂货铺
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Qt常见皮肤qss代码</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Qt常见皮肤qss代码</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-10-29T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2014-10-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Qt学习/">Qt学习</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="life-Qt学习-2014-10-30-Qt常见皮肤的QSS" class="post-article article-type-life fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Qt常见皮肤qss代码</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014-10-30 00:00:00" datetime="2014-10-29T16:00:00.000Z" itemprop="datePublished">2014-10-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Qt学习/">Qt学习</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <a id="more"></a>
+<hr>
+<p>##QTabWidget</p>
+<blockquote>
+<ul>
+<li><strong>淡蓝色效果TabWidget(属性值lightblue)</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">QTabWidget</span><span class="selector-attr">[lightblue = "true"]</span> <span class="selector-tag">QTabBar</span><span class="selector-pseudo">::tab</span>&#123;    	</span><br><span class="line">	<span class="attribute">border-top</span>:<span class="number">1px</span> solid <span class="built_in">rgb</span>(249,249,249);</span><br><span class="line">	<span class="attribute">border-top-left-radius</span>: <span class="number">4px</span>;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: <span class="number">4px</span>;</span><br><span class="line">	<span class="attribute">max-height</span>:<span class="number">20px</span>;</span><br><span class="line">	<span class="attribute">min-height</span>:<span class="number">20px</span>;</span><br><span class="line">	<span class="attribute">min-width</span>:<span class="number">95px</span>;</span><br><span class="line">	<span class="attribute">font-family</span>:microsoft yahei;</span><br><span class="line">	<span class="attribute">color</span>:<span class="built_in">rgb</span>(50,50,50);</span><br><span class="line">	<span class="attribute">font-size</span>:<span class="number">13px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0px</span> <span class="number">0px</span> <span class="number">0px</span> <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">border-image</span>:<span class="built_in">url</span>();</span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">padding-bottom</span>:<span class="number">15px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">QTabWidget</span><span class="selector-attr">[lightblue = "true"]</span> <span class="selector-tag">QTabBar</span><span class="selector-pseudo">::tab</span><span class="selector-pseudo">:selected</span>&#123;</span><br><span class="line">	<span class="attribute">border-left</span>:<span class="number">1px</span> solid <span class="built_in">rgb</span>(192,215,250);</span><br><span class="line">	<span class="attribute">border-right</span>:<span class="number">1px</span> solid <span class="built_in">rgb</span>(192,215,250);</span><br><span class="line">	<span class="attribute">border-top</span>:<span class="number">1px</span> solid <span class="built_in">rgb</span>(192,215,250);</span><br><span class="line">	<span class="attribute">color</span>:<span class="built_in">rgb</span>(50,50,50);</span><br><span class="line">	<span class="attribute">background-color</span>:<span class="built_in">rgb</span>(249,249,249);</span><br><span class="line">	<span class="attribute">font-size</span>:<span class="number">13px</span>;</span><br><span class="line">	<span class="attribute">border-image</span>:<span class="built_in">url</span>();</span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">0px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">QTabWidget</span><span class="selector-attr">[lightblue = "true"]</span><span class="selector-pseudo">::pane</span> &#123; </span><br><span class="line"> <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="built_in">rgb</span>(192,215,250);</span><br><span class="line"> <span class="attribute">position</span>: absolute;</span><br><span class="line"> <span class="attribute">top</span>: -<span class="number">1px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下图所示：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/皮肤模块说明文档的资源文件/QTabWidget.png" alt="QTableWidget" title="">
+                </div>
+                <div class="image-caption">QTableWidget</div>
+            </figure></p>
+<p>##QLabel </p>
+<blockquote>
+<ul>
+<li><strong>蓝色标题Label(属性值blueTitle)</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">QLabel</span><span class="selector-attr">[blueTitle="true"]</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">font-size</span>:<span class="number">18px</span>;</span><br><span class="line">	<span class="attribute">font-family</span>:Microsoft YaHei;</span><br><span class="line">	<span class="attribute">color</span>:<span class="built_in">rgb</span>(255,255,255);</span><br><span class="line">	<span class="attribute">background-color</span>:<span class="built_in">rgb</span>(5 ,112, 183 );</span><br><span class="line">	<span class="attribute">padding-left</span>:<span class="number">25px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下所示：</p>
+<ul>
+<li><ul>
+<li><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/皮肤模块说明文档的资源文件/blueTitle.png" alt="blueTitleLabel" title="">
+                </div>
+                <div class="image-caption">blueTitleLabel</div>
+            </figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>淡灰色标题Label(属性值lightgrayTitle)</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">QLabel</span><span class="selector-attr">[lightgrayTitle="true"]</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">font-family</span>:Microsoft YaHei;</span><br><span class="line">	<span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">	<span class="attribute">background-color</span>: <span class="built_in">rgb</span>(207, 207, 207);</span><br><span class="line">	<span class="attribute">padding-left</span>: <span class="number">25px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下所示：</p>
+<ul>
+<li><ul>
+<li><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/皮肤模块说明文档的资源文件/lightGrayTitle.png" alt="lightGrayTitleLabel" title="">
+                </div>
+                <div class="image-caption">lightGrayTitleLabel</div>
+            </figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>##QPushbutton</p>
+<blockquote>
+<ul>
+<li><strong>蓝色按钮(属性值blueButton)</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">QPushButton</span><span class="selector-attr">[blueButton="true"]</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">color</span>:<span class="built_in">rgb</span>(255,255,255);</span><br><span class="line">	<span class="attribute">border-radius</span>:<span class="number">3px</span>;</span><br><span class="line">	<span class="attribute">background-color</span>:<span class="built_in">rgb</span>(0,109,204);</span><br><span class="line">	<span class="attribute">font-family</span>:Arial;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">QPushButton</span><span class="selector-attr">[blueButton="true"]</span><span class="selector-pseudo">:hover</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">background-color</span>:<span class="built_in">rgb</span>(0 ,119, 224 );</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">QPushButton</span><span class="selector-attr">[blueButton="true"]</span><span class="selector-pseudo">:pressed</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">background-color</span>:<span class="built_in">rgb</span>(0 ,149 ,255  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下所示：</p>
+<ul>
+<li><ul>
+<li><img src="/res/img/blog/皮肤模块说明文档的资源文件/blueButton.png" alt="blueButton"></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>蓝框按钮(属性值)</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">QPushButton</span><span class="selector-attr">[blueBorderButton = "true"]</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">border</span>:<span class="number">1px</span> solid;</span><br><span class="line">	<span class="attribute">border-color</span>:<span class="number">#afafaf</span>;</span><br><span class="line">	<span class="attribute">font-family</span>:microsoft yahei;</span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#555555</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">QPushButton</span><span class="selector-attr">[blueBorderButton = "true"]</span><span class="selector-pseudo">:hover</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">border</span>:<span class="number">1px</span> solid;</span><br><span class="line">	<span class="attribute">border-color</span>:<span class="number">#11a9d6</span>;</span><br><span class="line">	<span class="attribute">font-family</span>:microsoft yahei;</span><br><span class="line">	<span class="attribute">color</span>:<span class="number">#555555</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">QPushButton</span><span class="selector-attr">[blueBorderButton = "true"]</span><span class="selector-pseudo">:pressed</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attribute">background-color</span>:<span class="number">#11a9d6</span>;</span><br><span class="line">	<span class="attribute">border</span>:<span class="number">1px</span> solid;</span><br><span class="line">	<span class="attribute">border-color</span>:<span class="number">#afafaf</span>;</span><br><span class="line">	<span class="attribute">font-family</span>:microsoft yahei;</span><br><span class="line">	<span class="attribute">color</span>:white</span><br><span class="line">&#125;</span><br><span class="line">```      </span><br><span class="line"></span><br><span class="line">效果图如下所示：</span><br><span class="line"></span><br><span class="line">* </span><br><span class="line"> * </span><br><span class="line">  ![blueButton](/res/img/blog/皮肤模块说明文档的资源文件/blueBorderButton.png)</span><br><span class="line">  ![blueBorderButton_normal](/res/img/blog/皮肤模块说明文档的资源文件/blueBorderButton_normal.png)</span><br><span class="line">  ![blueBorderButton_push](/res/img/blog/皮肤模块说明文档的资源文件/blueBorderButton_push.png)</span><br><span class="line">  </span><br><span class="line">## <span class="selector-tag">QProgressBar</span></span><br><span class="line"></span><br><span class="line">&gt; * 淡红色进度条</span><br><span class="line"></span><br><span class="line">```<span class="selector-tag">css</span></span><br><span class="line"><span class="selector-tag">QProgressBar</span><span class="selector-attr">[redProgressBar = "true"]</span>&#123;  </span><br><span class="line">    <span class="attribute">color </span>: solid gray;  </span><br><span class="line">    <span class="attribute">border</span>: <span class="number">2px</span> solid gray;  </span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;  </span><br><span class="line">    <span class="attribute">background</span>: transparent;  </span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0px</span>;  </span><br><span class="line">    <span class="attribute">text-align </span>: center ;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="selector-tag">QProgressBar</span><span class="selector-attr">[redProgressBar = "true"]</span><span class="selector-pseudo">::chunk</span>&#123;  </span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#B22222</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ul>
+<li><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/res/img/blog/皮肤模块说明文档的资源文件/redProgressBar.png" alt="redProgressBar" title="">
+                </div>
+                <div class="image-caption">redProgressBar</div>
+            </figure> </li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-11T10:33:32.340Z" itemprop="dateUpdated">2017-05-11 18:33:32</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/" target="_blank" rel="external">http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/</a>
+        
+    </div>
+    <footer>
+        <a href="http://daodaoliang.com">
+            <img src="https://source.unsplash.com/random/100x100" alt="daodaoliang">
+            daodaoliang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/&title=《Qt常见皮肤qss代码》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/&title=《Qt常见皮肤qss代码》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Qt常见皮肤qss代码》 — 刀刀亮的博客&url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt-msvc编译器如何在Release下产生pdb文件/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">QT在release版本产生pdb文件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/私人工具项目/2014/10/29/QDaoDaoLiang-2014-10-29-刀刀亮私人工具项目/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">工具项目之QDaoDaoLiang向导</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Qt学习-2014-10-30-Qt常见皮肤的QSS" data-title="Qt常见皮肤qss代码" data-url="http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        顺颂商祺
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>daodaoliang &copy; 2012 - 2019</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/&title=《Qt常见皮肤qss代码》 — 刀刀亮的博客&pic=https://source.unsplash.com/random/100x100" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/&title=《Qt常见皮肤qss代码》 — 刀刀亮的博客&source=日日当精进 但求无愧" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Qt常见皮肤qss代码》 — 刀刀亮的博客&url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/&via=http://daodaoliang.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://daodaoliang.com/Qt学习/2014/10/30/Qt学习-2014-10-30-Qt常见皮肤的QSS/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3a0YrjMAwF0Pn/n56FfVoY0t4r2XQWTp6CmzY+KViOpK+v+Pj+e/x7/nrk57dejyTjP685duDh4eGNpv50JKTNp8lMXj/ip+vx8PDwbvOSYJBfnweY5MrVHPDw8PA+yntcfINN8Ovv5vthPDw8vP+dl2y7N3g8PDy838xrEwFJYJglET6Wa8HDw8OLebMC2GfPr9f38PDw8EZV9U2oyJOw39cOPDw8vBu8Nl0729Tm4/sWhDe5Fjw8PLyjvM209rvZPHgUMDw8PLwLvFPZiySQvB7J2XnSBA8PD+8GL28gKEr1cQvCZltfBy08PDy8o7y2DJ9PN28LyFMP7Uzw8PDwzvLaJGySgNi0Yc2241ECFw8PD+8Qr00HzNKyeXIhCQPtI8bDw8M7y8tv2W6OZ6mKtp3rzTkeHh7eZV67BM9KaMXkgt9/84jx8PDwLvDypX+ziM9SGPsRPDw8vBu8vGF0Nt22VLYpqj0mI/Dw8PCO8vIp5qWyffFsk/CNXgbw8PDw1rxWn2+7Z4t4Pl5EPzw8PLxrvHzZPbV8t82s7SYbDw8P7x5vNt2kdSD/dAZbJXPx8PDwSl5yUbJYt9S2kDZsdMDDw8O7wMsX6H2ZKqlJbe7yeF88PDy8o7xE37ZM5QmO/BHkHWSP/xseHh7eIV5+bEpc+aLfhod8O46Hh4d3itcGhjZIzJId+dvAmxE8PDy8C7w8IZsHhk1QyX9zlczFw8PDW/A2y/GsOWBWVMtbrPDw8PBu82bJiFnkydsL8qByIIGLh4eHN+K1r/1Jo1V7/SacFJ0ReHh4eEd5SRIhWZrbYliLr0MXHh4e3q/n5anbtqzVFtXw8PDwfgOvTQRsgkcbAN40DeDh4eFd4J1arPephxqwaSDAw8PDm+dIi1f9vE0qH5+Fh/ZbeHh4eGveH1cSkpeq4eFDAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '我觉得我好想游离出星际外了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '哟吼我又回来了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.9,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
